@@ -1,0 +1,153 @@
+ EXTENDED COMMAND SUMMARY
+  (note periods: ".")
+
+ **** These commands are for AIDES only
+   .Aide ?
+   .Aide Add-file
+   .Aide Chat
+   .Aide Delete-empty-rooms
+   .Aide Edit-room
+   .Aide Insert-pulled-message
+   .Aide Kill-room
+
+ **** These commands are for everyone else
+   .Enter ?
+
+   .Enter Configuration Address <forwarding on the net>
+   .Enter Configuration Biography <for use with <M>eet User>
+   .Enter Configuration Complete-reconfigure
+   .Enter Configuration Delay Time
+   .Enter Configuration Expert
+   .Enter Configuration Floor-mode
+   .Enter Configuration Half-duplex
+   .Enter Configuration Linefeeds
+   .Enter Configuration Mail-Forwarding
+   .Enter Configuration Nulls
+   .Enter Configuration Old on New toggle
+   .Enter Configuration Paging
+   .Enter Configuration Time of Messages
+   .Enter Configuration Width of Screen
+   .Enter Configuration <Y>Toggle Message Edit Prompt
+   .Enter Configuration <Z>Old-RE
+
+       (Also see .Help RECONFIG)
+
+   .Enter File                          (via XMODEM)
+   .Enter Xmodem File
+   .Enter Ymodem File
+   .Enter Message
+   .Enter Xmodem Message
+   .Enter Ymodem Message
+   .Enter Net-Message   (People with net privileges ONLY)
+   .Enter Xmodem Net-Message            "
+   .Enter Ymodem Net-message            "
+                     (Also see .Help PROTOCOL)
+   .Enter Password
+   .Enter Room
+   .Enter Held-Message
+
+   .Goto ?
+   .Goto ANYROOM
+   .Goto PARTIALROOMNAME
+
+   .Help ?
+   .Help ANYFILE
+
+   .Known ?
+   .Known Anonymous-rooms
+   .Known Directory-rooms
+   .Known Information          <display information of all known rooms>
+   .Known Match match-string   <search room list for matching room name>
+   .Known Private-rooms
+   .Known Read-only rooms
+   .Known Shared-rooms
+   .Known ZForgotten-rooms
+
+   .Login PASSWORD
+
+   .Meet User <username>
+   .Meet User ?     <list of users with biographies>
+
+   .Read ?
+   .Read Forward [date-spec | <last X days>]    <a date-spec is: yymmmdd>
+   .Read New [date-spec | <last X days>]        <last X days is a number>
+   .Read Old-Reverse [date-spec | <last X days>]
+   .Read Reverse [date-spec | <last X days>]
+
+      < These may be used in combination with each other and the above>
+   .Read Local-only <any option> <reads local messages only in shared rooms>
+   .Read User ...                <reads messages from specified users>
+   .Read Phrase ...              <search for specified phrase in msgs>
+   .Read Global ...              <read all rooms using Phrase, New, etc... >
+   .Read More ...                <reverse user's Message Paging flag>
+
+   .Read Compressed ...          <compress messages -- not all installations>
+
+        (NFOR == New, Forward, Reverse, Old)
+   .Read Xmodem [NFOR]                    <CRC supported>
+   .Read Ymodem [NFOR]                    <YMODEM SINGLE only>
+                     (Also see .Help PROTOCOL)
+
+   .Read Invited        (Sysop only)
+   .Read Status
+
+   .Read Directory              <This group apply only to directory rooms.>
+   .Read Directory *.DOC [date-spec]
+   .Read Extended-directory
+   .Read Extended-directory *.DOC [date-spec]
+   .Read Global Directory ...
+   .Read Global Extended-directory ...
+   .Read Binaryfile
+   .Read Textfile <C/R>
+   .Read Textfile Formatted
+   .Read Xmodem BinaryFile               <CRC supported>
+   .Read Xmodem Textfile                 <CRC supported>
+   .Read Ymodem [T|B]                    <YMODEM BATCH only>
+   .Read Phrase <directory command>     <searches file comments for phrase>
+                                        <see FILES.HLP.>
+
+   .Read Archive Directory      <Reads compressed file Table of Contents>
+                                <ARC, ZIP, ZOO, LZH files supported>
+
+         < These 4 commands may not be available >
+   .Read Archive Binary-files   <Reads files FROM the arc for download>
+   .Read Xmodem Archive Binary-files    <May also use 'T' or 'F' as synonyms>
+   .Read Ymodem Archive Binary-files
+                     (Also see .Help PROTOCOL)
+
+   .Skip ?
+   .Skip ANYROOM
+   .Skip PARTIALROOMNAME
+
+   .Terminate ?
+   .Terminate Abort
+   .Terminate Stay
+   .Terminate Quit-also
+
+   .Ungoto ANYROOM
+   .Ungoto PARTIALROOMNAME
+
+   .Z     <Lists public forgotten rooms>
+
+ FLOOR COMMANDS
+
+ **** These commands are for AIDES only
+   ;Aide Create-floor
+   ;Aide Delete empty floors
+   ;Aide Floor Moderator
+   ;Aide Kill-floor
+   ;Aide Move rooms
+   ;Aide Rename-floor
+
+ **** These commands are for everyone else
+   ;Configure switch (from Floor mode to Normal mode)
+   ;Goto FLOORNAME
+   ;Known floors
+   ;Skip FLOORNAME
+   ;Z    Forgets current Floor
+
+
+ %ADVANCED Back to the advanced commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+

@@ -1,0 +1,37 @@
+ BASIC OPTIONS for .Read:
+
+  <F>orward [date-spec | <last x days> | #<message count>]
+  <N>ew messages [date-spec | <last x days> | #<message count>]
+  <O>ld messages [date-spec | <last x days> | #<message count>]
+  <R>everse retrieval [date-spec | <last x days> | #<message count>]
+
+ FEEPS (place BEFORE the BASIC OPTIONS):
+
+  <S>tatus of ^variantname system
+
+  Built-in protocols: <X>modem, <Y>modem
+  External protocols: ^dlprotocols
+
+  <U>ser                        <search for a user's messages>
+  <P>hrase                      <search for specified phrase>
+  <L>ocal-only messages         <shared rooms only>
+  <M>ore                        <reverse user's Message Paging flag>
+  <G>lobal                      <all room read>
+  <C>ompressed                  <compress messages before sending>
+
+   You may also have OFFLINE reader options available; see .Help OFFLINE.
+
+ FILE OPTIONS (see .HELP FILES):
+
+  Built-in protocols: <X>modem, <Y>modem
+  External protocols: ^dlprotocols
+
+  <B>inary file printout
+  <D>irectory of files in room
+  <E>xtended-directory of files in room
+  <T>extfile printout <C/R>     -- unformatted
+  <T>extfile printout <F>ormatted
+
+  <P>hrase                      -- searches file comments for the given phrase
+                                -- for processing when used with the above
+                                -- directory commands.

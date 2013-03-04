@@ -1,0 +1,42 @@
+ Enter options:
+
+ To change screen formatting, etc:
+      .Enter Configuration ?
+
+ To upload a file via WardC protocol:
+      .Enter File  (must be in a directory room)
+
+ Other ways to upload a file are
+      .Enter Ymodem File
+      .Enter Zmodem File
+ (See .Help FILES for more info)
+
+ To enter a message:
+      .Enter Message
+
+ To enter a message using Xmodem protocol:
+      .Enter Xmodem Message
+
+ To enter a message using YMODEM protocol:
+      .Enter YMODEM Message
+
+ To change password:
+      .Enter Password
+
+ To create a new room:
+      .Enter Room
+
+ To continue with a message you've held:
+      .Enter Held-Message
+
+ To enter a message into the net:
+      .Enter Net-Message
+
+ To enter a message into the net using XMODEM protocol:
+      .Enter Xmodem Net-Message
+
+ To enter a message into the net using YMODEM protocol:
+      .Enter Ymodem Net-Message
+
+ (You can use external protocols, too -- see .Help protocol)
+

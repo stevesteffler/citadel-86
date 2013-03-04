@@ -1,0 +1,62 @@
+ ^variantname Message Flow Control
+ ---------------------------------
+
+Basics
+   ^variantname supports the following basic message flow controls.  To use
+these, simply type the first letter of each command while messages are flowing
+(displaying).  (If you don't know how to display messages, see .Help READ,
+but these basically boils down to <N>ew, <O>ld, <F>orward, <R>everse, and their
+advanced variants).
+
+ <P>ause - This causes the message flow to temporarily stop.  Hitting nearly
+any key will restart output (but see the advanced section below for an
+exception).
+
+ <S>top - This stops the message flow and returns you to the room prompt.
+
+ <N>ext - This stops displaying the current message and begins displaying
+the next message.  If this is the last message to be displayed, you are returned
+to the room prompt.
+
+ <J>ump - This causes the display of the current paragraph to stop and jump
+to the next paragraph of the current message.  If this was the last paragraph
+of this message, ^variantname will start displaying the next message.
+
+Advanced
+   These are advanced options which many users may not be aware of.
+
+ ^S (Control-S) - For computer old-timers.  This is just like <P>ause except
+you must use ^Q to restart the message flow (a great defense against line
+noise).
+
+ <R>everse - This causes the message flow to reverse its direction after
+finishing the current message.  For example, touching 'R' while displaying
+New messages will cause the new messages to reverse order following the
+current message (i.e., the message displayed prior to the current message
+will re-display after the current is finished).  Useful for re-examining
+messages within long strings of messages, since it can be used without limit
+as needed.
+
+ Pause-Enter (not in Mail>) - This option, which is activated by first Pausing a message
+(see above) and then typing 'E', will place you in the message editor with
+your current Held Message in the editor.  This option lets you build single
+message replies to long strings of messages (or one very large message) without
+breaking up message display.  You may Hold a message built during Pause-E for
+later work, or Abort or Save it.  When one of those three are chosen, the
+message which was being printed when you executed Pause-Enter will be reprinted
+for your review.
+
+ Pause-Enter (Mail>) - Using this same command sequence in Mail> will cause
+quite a different reaction on the part of ^variantname.  Instead of letting you
+compose a message during message output (which doesn't make a lot of sense in
+Mail>, since you need a recipient, etc.), it will cause ^variantname to look
+for the message to which the message currently being displayed is a reply to.
+This lets you trace back, more or less, the string of messages which caused
+this message, finding details, etc.  You may use it several times during
+message output to trace farther and farther back, too.
+
+ %HELD More information on Held Messages.
+ %COMMANDS Back to the commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+

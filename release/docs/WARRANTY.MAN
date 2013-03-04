@@ -1,0 +1,24 @@
+FULLY LIMITED WARRANTY
+
+C&S Software (hereinafter explicitly refered to as CS) warrants this product
+against defect in material and workmanship for a period of 1/5 of a second or 
+one (1) disk revolution, which ever occurs first.
+
+During the warranty period we will replace, repair or ignore (at our option)
+any defective item provided it has not been subjected to flagrant abuse such
+as: inserting the disk in a disk drive; reading the instruction manual, etc;
+or used in accordance with the directions supplied.
+
+No other warranties are expressed including the warranties of merchantablity;
+fitness for a particular purpose; or delivery of product ordered. Nothing in
+this statement shall be construed as a written statement of warranty or
+guarantee including, but not limited to, this sentence.
+
+This statement takes away specific legal rights and you may have other rights
+taken away which may vary from state to state.
+
+					       C&S Software
+
+As of April 27th, 1985, the Citadel-86 software also embraces this highly
+sane policy with as much decorum is as possible for a piece of software to
+do so.

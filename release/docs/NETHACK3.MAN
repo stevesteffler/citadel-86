@@ -1,0 +1,1782 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                NETHACK3 MANUAL
+
+                               Citadel-86: V3.32
+
+                              Copyright 1989, 1990
+
+                                  by Hue, Jr.
+
+                             C-86 Test System Sysop
+
+                                    90Jul01
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                         Table of Contents
+
+     I. Introduction . . . . . . . . . . . . . . . . . . . . . . .  2
+        I.1 History  . . . . . . . . . . . . . . . . . . . . . . .  2
+        I.2 Purpose  . . . . . . . . . . . . . . . . . . . . . . .  2
+     II. Overview  . . . . . . . . . . . . . . . . . . . . . . . .  3
+     III. Information Transfer Layer . . . . . . . . . . . . . . .  3
+        III.1 Call Stabilization . . . . . . . . . . . . . . . . .  4
+        III.2 Transfer Medium  . . . . . . . . . . . . . . . . . .  5
+     IV. Application Layer . . . . . . . . . . . . . . . . . . . .  6
+        IV.1 Overview  . . . . . . . . . . . . . . . . . . . . . .  7
+        IV.2 ID & Name . . . . . . . . . . . . . . . . . . . . . .  7
+        IV.3 Facility Requests . . . . . . . . . . . . . . . . . .  8
+        IV.4 Message & File Transfer . . . . . . . . . . . . . . .  9
+        IV.5 Network Session Control Facilities  . . . . . . . . .  9
+           IV.5.a Hangup command . . . . . . . . . . . . . . . . .  9
+           IV.5.b Error Code Support . . . . . . . . . . . . . . . 10
+           IV.5.c Role Reversal  . . . . . . . . . . . . . . . . . 10
+           IV.6 Data Transfer Facilities . . . . . . . . . . . . . 10
+           IV.6.a Normal Mail  . . . . . . . . . . . . . . . . . . 10
+           IV.6.b Room File Requests . . . . . . . . . . . . . . . 10
+           IV.6.c Ambiguous Room File Requests . . . . . . . . . . 11
+           IV.6.d Ambiguous Room File Requests With Approval . . . 11
+           IV.6.e Network Room . . . . . . . . . . . . . . . . . . 12
+           IV.6.f Check Mail . . . . . . . . . . . . . . . . . . . 12
+           IV.6.g Send File  . . . . . . . . . . . . . . . . . . . 13
+           IV.6.h Alternate Room Sharing . . . . . . . . . . . . . 13
+           IV.6.i Message Compaction . . . . . . . . . . . . . . . 13
+           IV.6.j Route Mail . . . . . . . . . . . . . . . . . . . 14
+        IV.7 ITL Alternate Realities . . . . . . . . . . . . . . . 14
+        IV.8 Security  . . . . . . . . . . . . . . . . . . . . . . 15
+           IV.8.a System Net Password  . . . . . . . . . . . . . . 15
+        IV.9 Other Reserved Facility Byte Values . . . . . . . . . 15
+        IV.10 Facilities -- Short List . . . . . . . . . . . . . . 16
+     V. Minimal Compatability Requirements . . . . . . . . . . . . 16
+     VI. Anytime Netting . . . . . . . . . . . . . . . . . . . . . 16
+     VII. Message Transfer Format  . . . . . . . . . . . . . . . . 17
+          VII.1 Field types  . . . . . . . . . . . . . . . . . . . 17
+            VII.1.a Displayable fields . . . . . . . . . . . . . . 18
+            VII.1.b Non-Displayable fields . . . . . . . . . . . . 19
+            VII.1.c Special Fields . . . . . . . . . . . . . . . . 19
+            VII.1.d Developer's Fields Assignments . . . . . . . . 20
+          VII.2 Special Fields becoming Standard Fields  . . . . . 20
+          VII.3 Other Additions to the Standard Fields . . . . . . 21
+          VII.4 Identifier Summary . . . . . . . . . . . . . . . . 21
+          VII.5 An Example . . . . . . . . . . . . . . . . . . . . 22
+     Appendix A.  Examples!  . . . . . . . . . . . . . . . . . . . 22
+       A.1 Call Stabilization  . . . . . . . . . . . . . . . . . . 22
+       A.2 ID & Name . . . . . . . . . . . . . . . . . . . . . . . 23
+       A.3 Normal Mail . . . . . . . . . . . . . . . . . . . . . . 23
+       A.4 Ambiguous Room File Requests  . . . . . . . . . . . . . 24
+       A.5 Network Room  . . . . . . . . . . . . . . . . . . . . . 24
+       A.6 Check Mail  . . . . . . . . . . . . . . . . . . . . . . 25
+       A.7 Send File . . . . . . . . . . . . . . . . . . . . . . . 25
+       A.8 Alternate Room Sharing  . . . . . . . . . . . . . . . . 25
+     Appendix B. BBS Software compatible with C86Net . . . . . . . 26
+     Appendix C. Main C86Net . . . . . . . . . . . . . . . . . . . 26
+
+
+                                    -1-
+
+
+
+
+
+
+     I. Introduction
+        This document attempts to detail, in a haphazard manner, the network
+     known as C86Net.  C86Net is a BBS network protocol currently used by
+     Citadel-86 (for Z100s and PClones), NeoCitadel (PClones), STadel (Atari
+     STs), Amiga Citadel-68K (Amigas), Novucivitas, Asgard-86, and others.
+
+     I.1 History
+        The original motivations for C86Net were two-fold: to provide an
+     interesting project exploring a topic the author had never studied
+     before, and to (ultimately) allow the sysops of Citadel-86s in the Twin
+     Cities area of Minnesota (aka Minneapolis/St. Paul) to communicate with
+     each other without having to call each other's boards; the number of
+     Citadels in the area was beginning to escalate, making it impossible
+     for gainfully employed sysops to talk conveniently.
+
+        The first version of C86Net came into being in June of 1985, and is
+     better left unmentioned.  After learning from his mistakes and discussing
+     the entire project with John Stanley, a second version was attempted and
+     installed in all local Citadel-86s.  This, too, was a ghastly mistake,
+     but enough lessons were learned so the third version of C86Net could
+     be constructed in an expandable fashion allowing easy backward
+     compatability as the network facilities were expanded.  The installation
+     of the second and third versions mandated this ability: updating an
+     entire set of systems simultaneously is a nightmarish situation.
+
+        The history of C86Net since then has consisted of two events: the
+     addition of new facilities as new needs were identified, and the
+     integration of non-Citadel-86 systems to C86Net networks.
+
+        The exact chronology of adding facilities is not going to be detailed
+     here; it would be both tedious and useless.  However, the astute reader
+     will note several anomolies and redundancies in the facilities.  Be
+     advised this is what happens when the author is programming for both
+     learning and fun; another term is "programming by accretion."
+
+        The first non-Citadel-86 system to join a C86Net was NeoCitadel, by
+     Hue, Sr., which started by supporting Net Mail.  Then a valiant, notable
+     effort was made by Lum the Mad, author of Lumadel, a very good Citadel
+     clone for the Apple II series of computers.  His networker, written in
+     Apple Basic, actually managed to communicate during several manual tests
+     with a Citadel-86.  However, an automated networker was never completed,
+     and Lumadel languished after Lum bought an IBM clone.
+
+        Some Other BBS software compatible with C86Net includes Amiga
+     Citadel-68K as ported by Stallion aka Jay Johnson, and STadel as ported by 
+     David Parsons, both ports of Citadel-86, as well as Asgard-86 by Gary
+     Meadows and Novucivitas by Brent Barrett, both of Sacramento, CA, and
+     Fortress, a port of STadel, by Chris Camacho of Atlanta, GA.  This is not
+     a complete list.  See Appendix B for more detail.
+
+
+     I.2 Purpose
+        The purpose of this document is to detail C86Net at the byte level.
+     We will only talk about how the protocol should react to each condition.
+     We are not going to discuss what each facility "should" be used for,
+     although suggestions may be advanced, and most should be fairly obvious.
+
+
+
+                                    -2-
+
+
+
+
+
+
+        If you only have a headache when you're done reading this, count
+     yourself lucky.  The author will probably know what a year's worth of PMS
+     is like.
+
+     II. Overview
+        Just about any networking textbook will tell you most networks
+     can be divided into some set of layers (an example, the ISO Standard, is
+     fairly well explained in Computer Networks by Tannenbaum), and the
+     Citadel-86 Networking protocol is not an exception, in concept.  (NOTE:
+     no attempt is going to be made to use network terminology currently in
+     use by network experts.  Instead, the terminology I'll use will be what
+     I think best describes the subject matter.  As such, this document's
+     terminology may change from revision to revision as people discuss and
+     argue with me about it.)  Familiarity with such a textbook (or, better
+     yet, a real network implementation) is certainly suggested (unless you
+     have masochistic tendencies, like I did).
+
+        The protocol seems to break down into just two layers.  The first can
+     be termed the "information transfer" layer, or the "link" layer; the
+     second can be described as the "application" layer.
+
+                            ---------------------
+                            | Application Layer | -  -  -  -  -  -  -  -  -
+                            ---------------------
+                                     |  |\                      Another _____\
+             This node              \|  |                         node       /
+                           ------------------------
+                           | Information Transfer |  _  _  _  _  _  _  _  _
+                           |        Layer         |
+                           ------------------------
+
+        The purpose of the Information Transfer Layer is to ensure (to the
+     extent possible) all information be conveyed from and to this system's
+     Application Layer from another system's Application Layer actually
+     succeeds in transmission.
+
+        The purpose of the Application Layer is to accomplish useful work
+     during a networking session with another node.
+
+        It should be apparent that the Application Layer is dependent on the
+     Information Transfer Layer.  Despite this dependency, most of this
+     document is dedicated to the Application Layer and its facilities,
+     since the Information Transfer Layer is very simple (not necessarily a
+     good sign).
+
+        Whenever the acronym "ITL" is used, assume it means Information
+     Transfer Layer; similarly, the "AL" refers to the Application Layer.
+
+     III. Information Transfer Layer
+        As mentioned, the ITL's purpose is to provide a stable communications
+     medium.
+
+
+
+
+
+
+
+
+                                    -3-
+
+
+
+
+
+
+        The keyword here is "stable".  In order to achieve this, several goals
+     must be accomplished during any given networking session in order for
+     overall success to be achieved, and these can be broken into two parts.
+
+        The first part is called "Call Stabilization."  This part of the ITL
+     has the goal of establishing stabilization.  The section on Call
+     Stabilization will detail some of the problems associated with
+     Call Stabilization.
+
+        The second part is the provision of a transfer medium.  In this
+     section, it is best to remember that looking at C86Net from a layer
+     viewpoint does not mean C86Net was built as a reflection of some
+     layer model.  This should lessen confusion.
+
+     III.1 Call Stabilization
+        The purpose of this process is to establish quickly and efficiently
+     that the caller is another system on the net wishing to engage in a
+     networking session.  The design of call stabilization was driven by whim,
+     a wish for efficiency, and experience with earlier versions of C86Net.
+
+        The problems consist of, first, users calling in during networking.
+     Call Stabilization is designed to stave off the fumblings of an honest
+     user who simply doesn't realize the networker is in effect by
+     forcing a "recognition code" to be given that would be difficult for a
+     casual user to generate.
+
+        The second (and last) problem comes from the machines the network
+     was originally implemented on, which are Z-100s and IBMs using MS-DOS.
+     During the last few years the marketplace has literally been bombarded by
+     modems capable of multiple baud rates (300, 1200, 2400, and now 9600
+     looms on the scene), and can signal to the host system what the connect
+     baud rate is.
+
+        The modems can typically have two methods of signaling the connect
+     baud rate: by sending a unique text string to the host at the serial port
+     baud rate, and via signals on the RS232 interface.
+
+        Unfortunately, within my experience the use of the text strings for
+     divining baud rate is not completely reliable; and, ridiculously, both
+     IBM and Zenith completely neglected to make available the RS232 signals
+     on their serial ports that would have allowed the programmer to discover
+     the connect baud rate, with the exception of some internal modems on the
+     IBM.
+
+        Therefore, Call Stabilization must allow some way for effective baud
+     rate connect detection to occur.  The Call Stabilization technique
+     currently in use does not seem to be too bad in achieving the objectives.
+
+
+
+
+
+
+
+
+
+
+
+
+                                    -4-
+
+
+
+
+
+
+        Here is the process (sort of) graphically, right after carrier detect:
+
+               Caller                |                     Receiver
+               ------                |                     --------
+                           Systems detect carrier
+      Wait for full second           |                Wait for full second
+      Send following 3 bytes:        |                Begin waiting for the
+               7                     |                following three bytes:
+               13                    |                        7
+               69                    |                        13
+      and wait 4 seconds.            |                        69
+      If have not received a         |                 After the 4 second
+      correct response (see          |                 response wait, the
+      Receiver column), then         |                 Receiver can switch
+      resend the above 3 bytes.      |                 bauds if necessary.
+      This looping process should    |                 If get the above 3
+      only be repeated 20 times.     |                 bytes, then respond
+      If, on the 20th try, still     |                 instantly with:
+      have not received a correct    |                        ~7
+      response, HANGUP.              |                        ~13
+      If have received a correct     |                        ~69
+      response, send an ACK.         |                 and then wait for an
+                                     |                 ACK. This should end
+                                                       Call Stabilization.
+
+        So, essentially, the caller waits a second, and then sends a 3 byte
+     sequence to the receiver.  When the receiver receives those 3 bytes
+     successfully, it replies with the logical negation of those 3 bytes.  The
+     caller then sends an ACK back, indicating the call is stabilized.
+     If the protocol fails 20 times, then the caller hangs up, assuming
+     something was wrong.
+
+        The 7-13-69 sequence only has significance in that a casual user
+     probably won't generate it accidentally.
+
+     III.2 Transfer Medium
+        The purpose of this part of the ITL is to provide a stable means of
+     transporting information to and from the other half of the networking
+     session.
+
+        Take it as a caveat that this is neither "clean" or "elegant" by
+     any stretch of the imagination.  Just take a deep breath and start
+     reading (particularly if you're a networking professional!).  Also, this
+     is going to be difficult, seeing as I have troubles explaining it
+     coherently myself.  However, considering the fact that adding new
+     facilities to the Applications Layer has been simple as of late, I must
+     assume SOMETHING is being done right here.
+
+
+
+
+
+
+
+
+
+
+
+
+                                    -5-
+
+
+
+
+
+
+        The Transfer Medium takes some stream of information and attempts to
+     transfer it to another system.  As such, it is under strategic control of
+     the Application Layer in terms of when to start and when to stop; another
+     way to explain it is the Application Layer will tell it to start
+     sending some stream of data, will tell it to stop sending, will tell it
+     to receive information from the other system, etc.  Details of when to
+     send, when to receive, etc., are contained in the sections on the
+     Application Layer, and will not be treated further in this section.
+
+        One of the responsibilities of the Transfer Medium is to place no
+     interpretation on the data stream; the Transfer Medium only takes the
+     data and sends it to the other system's Transfer Medium, or receives the
+     data and sends it "up" to the Application Layer of the host system.  The
+     Application Layers involved make decisions as to what is to be done with
+     the data.
+
+        So, what is the structure of the ITL Transfer Medium?  Currently,
+     the systems have four choices.  First, there is Ward Christiansen's
+     XMODEM protocol, which is the default and is always used during the
+     initial phases of a network session (and is, therefore, the required
+     transfer medium).  Citadel-86 usually uses XMODEM-checksum for transfers,
+     but XMODEM-CRC should function just as well, although due to the
+     handshaking overhead, the network may suffer performance degradation
+     when conversing with systems not supporting XMODEM-CRC.
+
+        The other three transfer medium choices are YMODEM (single mode),
+     WXMODEM, and ZMODEM.  Activation of the alternatives is covered in Section
+     IV.7.
+
+        At the risk of confusing the readers, let's hop ahead and state
+     the AL uses the ITL to transfer Facility Requests to and from nodes,
+     sending each Facility Request when needed.  Each Request is, or should
+     be, treated by the ITL as a separate file.  Therefore, the ITL should
+     send, or receive, each Request as a new file (where it stores it is an
+     implementation detail), with a new block 1, etc.  We'll try to provide
+     details at the end of this document.
+
+
+     IV. Application Layer
+        The Application Layer (AL), via the ITL, manages all of the work
+     to take place during a network session.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    -6-
+
+
+
+
+
+
+
+     IV.1 Overview
+        The following diagram graphically demonstrates the flow of control
+     during a C86Net network session.  Assume, of course, this is a
+     minimal diagram. The references to the ITL are provided for completeness'
+     sake and context.
+
+       -----------------
+       |     CALL      |                ITL Territory
+       | STABILIZATION |       _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+       -----------------      /
+               |             /          AL Territory
+       _ _ _ _ | _ _ _ _ _ _/
+               |                RECEIVER TELLS CALLER CAN'T HANDLE COMMAND
+               |                    ____________________<___________
+               |                    |                              |
+       ----------------     ----------------     ------------      ^
+       | CALLER SENDS |_>___| CALLER SENDS |___>_| RECEIVER |___>__|
+       | ID & NAME    |     |   COMMAND    |     | RESPONDS |      |
+       ----------------     ----------------     ------------     \|/
+                                   |                               |
+                                   |                               |
+                                   |                        --------------
+                                   |                        |  RECEIVER  |
+                                   |                        |  TELLS     |
+                                   ^                        |  CALLER    |
+                                   |                        | CAN HANDLE |
+                                   |                        |   COMMAND  |
+                                   |                        --------------
+                                   |                               |
+                                   |                               |
+                                   |  UNLESS COMMAND IS    ----------------
+                                   _____________<__________| DO SPECIFIED |
+                                         'HANGUP'          | ACTION       |
+                                                           ----------------
+
+        Call Stabilization has already been covered (III.1), so we shan't
+     speak of it further.  The diagram can be summarized as: caller identifies
+     itself, and then begins sending a sequence of Facility Requests.  Each
+     Request is dealt with by the receiver as received, and implies some set
+     of actions both systems are aware of.  Each Request's actions are
+     detailed in this document.
+
+     IV.2 ID & Name
+        After receiving the ACK indicating end of Call Stabilization, the
+     calling system must identify itself to the receiver.  The caller sends,
+     in this order, nodeId & nodeName to the Transfer Medium, telling it to
+     send them to the receiver.
+
+        nodeId, nodeName: Are normal null-terminated C strings.
+
+        Neither the nodeId nor nodeName may exceed 20 bytes in length
+     (including the null byte terminating each string); therefore, the total
+     bytes of significant data the AL must deal with should not exceed 40.
+     This also implies the ITL should not send more than a sector
+     (128 bytes) worth of data.
+
+
+
+                                    -7-
+
+
+
+
+
+
+        So, for example, let's say a system using the nodeName "Buffalo"
+     and with a nodeId of "US 612 477 0927" calls some other system. After
+     the WC session was over, the receiver's buffer or temporary file would
+     look like this
+
+          Id            name
+     US 612 477 0927<0>Buffalo<0> <-balance of the sector is trash->
+
+     IV.3 Facility Requests
+        After the caller identifies itself, the two systems go into a loop.
+     Each loop starts with the Caller sending a Facility Request.  A Facility
+     Request at the AL layer consists of at least one byte, which contains a
+     code indicating the Facility requested, and up to four optional
+     parameters which are used to convey other data required for the Facility.
+     Each of these parameters are normal C null-terminated strings, and none
+     may exceed more than 20 bytes in length, including the ending null byte;
+     they may be smaller if the entire 20 bytes is not needed.  The last of
+     the optional parameters, be there 0 or 4 of them, is always followed by a
+     0 byte.  A Facility Request not requiring any parameters would look like
+     this at the Application Layer:
+
+       <facility-byte><0>
+
+     and a Facility Request needing two parameters would look like this:
+
+       <facility-byte><string1><string2><0>
+
+        At the ITL level, the Facility Request byte comes first, followed by
+     each parameter; the rest of the sector is trash.
+
+        The receiver, on receipt of the facility request, must decide if it
+     can execute the facility requested by the caller.  If so, the receiver
+     just sends back one byte, called GOOD, and then the network session
+     proceeds along the lines implied by the facility.  If the receiver cannot
+     execute the facility requested, it sends back a byte called BAD followed
+     by a null-terminated string < 126 characters which explains why the
+     facility cannot be executed.
+
+       <Good>
+
+       <Bad><error string>
+
+        The actual values of GOOD and BAD are
+
+      BAD:  0
+      GOOD: 1
+
+        Section IV.5 through IV.9 detail all facilities currently supported by
+     Citadel-86 in C86Net, plus some proposed facilities.
+
+
+
+
+
+
+
+
+
+
+                                    -8-
+
+
+
+
+
+
+     IV.4 Message & File Transfer
+        When "transfer of messages" is mentioned below, we mean a series of 0
+     or more messages are to be sent from one system to the other.  When the
+     number of messages is 0, then it is not necessary to do more than start
+     and stop the ITL, which should be interpreted by the system receiving the
+     0 messages to mean 0 messages were received.
+
+        When one or more messages are being sent, each should be in the format
+     detailed in Section VII.
+
+        When more than one message is being sent, there should be no separator
+     between messages, due to the format messages are sent in.  Because
+     of the current character of the ITL, networking leaves us with
+     last sectors of which zero or more bytes will be trash.  Therefore, when
+     transferring messages, the balance of the last sector which has no meaning
+     can either be ^Z filled (vis a vis XMODEM rules) or space-filled.
+
+        A file transfer implies one or more files are being sent.  There
+     is no data transformations applied to files at the AL layer, i.e., they
+     are sent (conceptually) byte by byte to the ITL for transfer.  The ITL,
+     being what it is, does not currently perform any transformations.  In the
+     future it may, but the ITL has the responsibility of ensuring
+     transformations inserted by the ITL are taken out before termination of
+     the ITL.
+
+        Really, this may sound bad, but it's very easy.  "Clean up after
+     yourself."
+
+     IV.5 Network Session Control Facilities
+        These facilities are used to control the overall behavior of a network
+     session.
+
+     IV.5.a Hangup command
+        This facility is a simple 1-byte command telling the receiver to
+     hang up.  Unfortunately, the behavior of the receiver for this facility
+     depends on the state of the network session.  If this facility is used
+     while Role Reversal is active, then it signals the end of the Role
+     Reversal facility, and the receiver should send back a GOOD byte (see
+     Section IV.5.c).
+
+        If this Facility is requested when the session is not indulging in
+     a Role Reversal, then the receiver does NOT send back either a GOOD or
+     BAD byte.  Instead, it just hangs up (i.e., terminates the Network
+     session).
+
+        The value of the Hangup byte is 0.
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    -9-
+
+
+
+
+
+
+     IV.5.b Error Code Support
+        This Request asks the receiver if his system can transmit Error Code
+     responses to Requests. This Request must be exercised and accepted as
+     GOOD before the receiver can use the Error Code response instead of the
+     BAD response when reporting his ability to support a particular facility
+     requested.
+
+        The value of the Error Code Support byte is 200.
+
+        Citadel-86 does not currently support this facility.
+
+     IV.5.c Role Reversal
+        In order to make networking more efficient in nets using room
+     sharing concepts, it has become a necessity to allow "role reversal"
+     during the networking period.  The term "role reversal" means during
+     the period of a call, two systems, supposing they are adequately
+     equipped, may exchange their roles of "caller" and "receiver", and then
+     continue to network, with the real receiver now becoming the "caller",
+     and vice versa.  All services should be supported under role reversal.
+
+         When role reversal is agreed upon by the two systems (this is defined
+     to be the point at which the receiver has replied GOOD to the caller),
+     the two systems now switch roles.  The caller, who has now become the
+     receiver, now starts waiting for the first facility request from the
+     receiver, who has now become the caller.
+
+        The caller and receiver should, of course, be aware of who is who;
+     this is why the stage of CALLER SENDS NAME & ID is skipped during role
+     reversal.
+
+        The end of role reversal is signaled by the original receiver (now the
+     caller) by sending the HANGUP command.  The original caller (now the
+     receiver) acknowledges this (reply GOOD), and at this point, the two
+     again reverse roles. Note that the HANGUP command has been modified in
+     this one contextual instance to act differently from its normal behavior.
+
+        The value of the Role Reveral byte is 201.
+
+     IV.6 Data Transfer Facilities
+        These facilities support transfer of various sorts of data between
+     nodes.
+
+     IV.6.a Normal Mail
+        This facility is a parameterless facility which is designed to allow
+     transfer of Mail> from the transmitter to the receiver.  If the receiver
+     signals it can receive Mail>, then the transmitter should begin
+     transmitting all Mail messages destined for the receiver via the ITL.
+
+        The value of the Normal Mail byte is 1.
+
+     IV.6.b Room File Requests
+        This facility is used to request one file from the receiver.  It has
+     two parameters, the name of the room the file is located in
+     (parameter 1), and the name of the file to be transferred (parameter 2).
+
+
+
+
+
+                                    -10-
+
+
+
+
+
+
+        If the receiver is willing to transfer the specified file to the
+     transmitter, it should send back a GOOD byte, and then tell the ITL to
+     send the file to the transmitter, which should be ready to receive the
+     file.
+
+        If the receiver will not or can not satisfy the request, then it should
+     return a BAD byte.  The reasons for not satisfying this request are, of
+     course, implementation dependent, but they can include such reasons as
+     non-existence of room, non-existence of file, sheer peevishness, etc.
+
+        This facility is an anachronism, retained for backward compatability.
+     The facility Ambiguous Room File Requests is a better choice.
+
+        The value of the Room File Request byte is 2.
+
+     IV.6.c Ambiguous Room File Requests
+        This facility is an expansion of IV.6.b, and very similar to it.  It,
+     too, has two parameters, the first the name of the room and the second
+     the name of the file requested.  However, the second parameter can safely
+     be used to specify an ambiguous set of files if the user so chooses.
+
+        If the receiver consents to send the requested files to the
+     transmitter, then it should send back a GOOD byte.  At this point, the
+     procedure diverges from used in IV.6.b.  For each file to be sent to
+     the transmitter by the receiver, it first sends via the ITL two strings
+     (null-terminated), which, in order, are the name of the file, and the
+     size of the file in 128 byte sectors.  If the file SEX.ED was 12877 bytes
+     long, the receiver would send
+
+                    SEX.ED<0>101<0>
+
+        These two strings constitute in themselves a separate transfer; in ITL
+     terms this means a separate XMODEM transfer, as if we were sending a
+     single file just ahead of the real file.
+
+        The transmitter does nothing but receive these pairs for each file
+     it will receive.  When the receiver has no more files to send satisfying
+     the request for files, it sends one more of the pre-file headers,
+     in which the length of the file name is 0.  This indicates the end of this
+     facility.
+
+        The value of the Ambiguous Room File Request byte is 3.
+
+
+     IV.6.d Ambiguous Room File Requests With Approval
+        This is a non-implemented facility, which is not yet completely
+     defined.
+        The value of the Ambiguous Room File Request With Approval byte is 4.
+
+
+
+
+
+
+
+
+
+
+
+                                    -11-
+
+
+
+
+
+
+     IV.6.e Network Room
+        This facility is used to send 0 or more messages from one system to
+     another for a specified room.  The room these messages are coming
+     from is the sole parameter of this facility. If the receiver is willing
+     to accept the messages for delivery to the room on the receiver's system,
+     it replies GOOD to the caller, and then begins data transfer of the
+     messages in the same manner as it would for Mail transfer.  It it does
+     not wish to accept the messages (for whatever reason) from the caller, it
+     then replies BAD.
+
+        The value of the Network Room byte is 5.
+
+     IV.6.f Check Mail
+        The Normal Mail facility does not contain any provisions for checking
+     to see if Mail messages can be delivered to the designated recipients.
+     This command provides that facility.  If the receiver chooses to accept
+     this command, it should send a GOOD byte, and then cycle through the Mail
+     messages already received from the caller.  For each undeliverable message
+     the receiver should send back a byte and three strings which describe the
+     reason the Mail message cannot be delivered.  The three strings, in the
+     order they should be sent, should contain the following information:
+
+             String 1: Author of the Mail> message.
+             String 2: Recipient of the Mail> message.
+             String 3: Error "context."  This field should contain a message
+                       describing (in English) something useful about the
+                       error.  Citadel-86 currently fills this with the date
+                       and time of the message, suitable for sending to the
+                       author of the failed message.
+
+        All three of these strings must be present.  Any or all of the three,
+     however, may be of 0 length.  None may exceed 20 characters in length
+     (including the 0 byte).
+
+        The values of the byte are:
+
+      NO_RECIPIENT    1  -- This reason indicates there is no such
+                            recipient on the Receiver system. Note the
+                            second string following this reason byte normally
+                            contains the name of the unknown recipient.
+      BAD_FORM        2  -- This reason indicates there was no "To" field
+                            in the message.  Usually is a symptom of
+                            programming error.
+      UNKNOWN         99 -- Something really* odd happened.  The context
+                            string (#3) should perhaps contain the number (on
+                            the Caller system) of the message, so it may
+                            be investigated later.
+
+        After all of the negative acknowledgements of Mail> have been sent
+     back, the receiver sends one more byte, which is called the NO_ERROR
+     byte. It indicates there are no more errors to be sent to the
+     transmitter.  If there were no bad Mail messages in the first place, then
+     the only real data the receiver would return to the transmitter
+     would be the NO_ERROR byte.  The value of the NO_ERROR byte is 0.
+
+
+
+
+
+                                    -12-
+
+
+
+
+
+
+        All negative acknowledgements, plus the NO_ERROR byte, are sent as a
+     single stream of data, not as separate ITL transfers!
+
+        The value of the Check Mail byte is 6.
+
+     IV.6.g Send File
+        This facility allows the sysop to send a file to another system.
+     There are three parameters associated with this request: The name of the
+     file the sender wishes to send to the receiver, and the size of the
+     file, first in terms of sectors (CP/M compatibility, if ever any CP/M
+     Citadels wish to join the net), and then in just bytes. (Remember, these
+     are really just ASCII strings.)
+
+        The file is sent only upon positive acknowledgement of this request.
+     However, it should not be assumed a negative response implies
+     the facility is not supported.  Since the size of the file is sent along
+     with the request, the receiver may decline to receive the file due to
+     space considerations, but could receive a smaller file.
+
+        The value of the Send File byte is 7.
+
+     IV.6.h Alternate Room Sharing
+        This facility was motivated by the LD room sharing network, due to the
+     fact that a system willing to absorb the expense of sharing rooms
+     at LD may not be willing to support the additional costs occurring
+     from the role reversal command (for instance, very large files being sent
+     or requested by the receiving system).
+
+        This facility solves the above problem.  Succinctly, it notifies the
+     receiving system the caller wishes to share the specified room.  Upon
+     receiving a positive acknowledgement, the caller proceeds to send all
+     net messages destined for the receiver.  When finished, the
+     receiver sends all net messages destined for the caller for the specified
+     room.  This is most commonly used for C86Net routing.
+
+        Usually, messages from systems other than the two involved in the
+     network session will be passed to other systems using this Facility.
+
+        The value of the Alternate Room Sharing byte is 8.
+
+     IV.6.i Message Compaction
+        This facility allows an optional compaction of all messages transferred
+     during a network session, whether it be Mail, room sharing, or whatnot,
+     no matter which direction is selected.  Such compaction serves to shorten
+     network sessions.  When this facility is used and the receiver agrees to
+     it, all further message transfers will be compacted using the agreed upon
+     method.
+
+        This facility has a single parameter, which is used to indicate which
+     type of compaction is to be used.  More efficient methods can therefore
+     be added easily.
+
+        The only currently valid parameter value is:
+
+        "0" -- Compact messages using C-86 proprietary method.
+
+
+
+
+                                    -13-
+
+
+
+
+
+
+        The "0" compaction method is a low-efficiency method, more for testing
+     than for actual use.  It only achieves 20-30% compaction in limited
+     testing.  New methods will be added as whim takes us.
+
+        The value of the Message Compaction byte is 10.
+
+     IV.6.j Route Mail
+        C86Net RouteMail is triggered using this Facility Request.  C86Net
+     RouteMail functions by passing Mail on from a Source system (the system
+     which generates a piece of Mail meant for another system to which the
+     system is not directly connected) to the Target system (the ultimate
+     target of said Mail) by asking each system in turn to send the Mail
+     meant for the Target.  Included in this "request" is an optional "domain"
+     designator" which can be used by intervening systems as a hint as to
+     where the mail should be routed in order to reach its ultimate destination.
+     How each intervening system wishes to route the Mail onwards is up to the
+     system, whether it be via an implementor's extension or using C86Net
+     RouteMail.  Citadel-86 systems, if they do not connect directly with a
+     given system, only know what system to ask to pass the Mail onwards, based
+     on the domain designation (if present) or the node id.
+
+        This Request currently has three parameters.  The first parameter
+     of this Request is the Node ID of the system for which the Mail is
+     meant (which can be just " " if it's not known), the second parameter is
+     the Name of the system, and the third parameter is the domain of the
+     target system.  Usually, the Node Id should be used for identifying the
+     target system, since the name of any system is not guaranteed to be the
+     same across all systems' nodelists, but if the domain is provided then it
+     can be used as a mechanism for getting the mail to a domain "server", and
+     then the server should be able to make a positive ID on the system and
+     deliver the Mail.  If the receiving system can, or thinks it can, transfer
+     the Mail to the target system, it should reply GOOD.  The sender should
+     then transfer the Mail to the receiver.  If the receiver can not in good
+     conscience accept the Mail for delivery, it should reply BAD.
+
+        Note it is perfectly valid to not only encounter several Route
+     Mail requests during a network session, but to even receive more than
+     one with identical parameters during a network session.
+
+        The value of the Route Mail byte is 9.
+
+     IV.7 ITL Alternate Realities
+        These facilities are used to attempt to change transfer medium types
+     (communication protocols).  When two systems begin a Network Session,
+     they should communicate via XMODEM.  However, while XMODEM is fairly
+     reliable, it is a touch slow.  Therefore, it may be worthwhile for
+     the two systems to attempt to switch from XMODEM to another protocol.
+
+        At this point we should point out this command does not fit
+     neatly into the ITL/AL layering.  Formally, this command should be
+     confined to the ITL layer, without the AL layer knowing anything about
+     it.  However, it has been decided this Facility Request will be
+     transmitted and received just like any other Facility Request, thus
+     impacting the AL.
+
+
+
+
+
+                                    -14-
+
+
+
+
+
+
+        Alright, enough of the nitpicking.  This Facility Request has
+     one parameter connected with it, and it indicates which protocol the
+     transmitter wishes to switch to for ITL transfers.  Whether or not
+     the receiver can use this protocol, neither system should switch
+     to the new protocol until the receiver has acknowledged the Facility
+     Request, whether it be negatively or positively.  This allows one
+     system to request a protocol the receiver does not support without
+     mass confusion arising.
+
+        The four currently valid parameter values are:
+
+        "0" -- Indicates a request for XMODEM.  (Superfluous.)
+        "1" -- Indicates a request for YMODEM.
+        "2" -- Indicates a request for WXMODEM.
+        "3" -- Indicates a request for ZMODEM.  (not supported in C86.)
+
+        As indicated, the parameter values are really ASCII strings, not
+     binary data.
+
+        The value used for changing ITL transfer mediums is 100.
+
+     IV.8 Security
+        These facilities address security concerns on the network.
+
+     IV.8.a System Net Password
+        This facility provides a rough security system by allowing a string
+     designated to be a password to be sent by the caller to the receiver.
+     The protocol itself does not designate what a bad (or good) password
+     should mean to the receiving system; this is up to the implementors.  As
+     an example, the implementor of Citadel-86 has made the following
+     decisions (this is [or should be] detailed in NETWORK3.MAN):
+
+      o If there is no password listed for this system, and none is sent, or a
+        zero-length password is sent, then the caller is assumed to be
+        validated, and all commands will be whole-heartedly executed.
+      o If the caller sends a password matching (non case-sensitive) with
+        the password the receiver has recorded for the caller, then the
+        caller is validated and all commands will be executed.
+      o If the caller sends an invalid password, then the receiver will do
+        nothing useful during role reversal, and will not respond positively
+        to role reversal requests.
+
+        Technically, this command is very simple.  The caller sends the
+     command byte to the receiver, and the first parameter of the command byte
+     contains the password (<= 20 including terminating NULL).  The receiver
+     ALWAYS responds positively, whether or not the password matches.
+
+        The value of the System Net Password byte is 202.
+
+     IV.9 Other Reserved Facility Byte Values.
+        Byte values 11 - 13 are reserved for STadel routing.
+
+        Before using any other byte values, please try to coordinate with
+     whomever else is implementing C86Net.
+
+
+
+
+
+                                    -15-
+
+
+
+
+
+
+
+     IV.10 Facilities -- Short List
+            Name    |     Byte Value  |   Description
+            ----    |     ----------  |   -----------
+     Hangup         |         0       |   End a network session or role
+                    |                 |           reversal.
+     Error Code     |       200       |   Alternate error reporting (not
+                    |                 |           implemented on Citadel-86).
+     Role Reversal  |       201       |   Role reveral.
+     Normal Mail    |         1       |   Send Mail.
+     File Request   |         2       |   Request a File.
+     Ambiguous FR   |         3       |   Ambiguous File Request.
+     AFR w/ approval|         4       |   Ambiguous File Request With Approval
+                    |                 |           (not implemented).
+     Network Room   |         5       |   Send messages from room to system.
+     Check Mail     |         6       |   Check Mail previously sent.
+     Send File      |         7       |   Send File to system.
+     Alt Room Net   |         8       |   Share room alternate system (routing).
+     Route Mail     |         9       |   Mail Routing
+     Message        |        10       |   Compact all messages during network
+         Compaction |                 |   session
+     ITL change     |       100       |   Change ITL communication protocol.
+     System pwd     |       202       |   System password.
+     STadel         |       11-13     |   STadel
+        reserved
+
+     V. Minimal Compatability Requirements
+        In order for a system to be compatible with C86Net at a minimal level,
+     it must satisfy requirements at the ITL and AL levels.
+
+        At the ITL level, it must be able to call stabilize and use the XMODEM
+     style of transfer for all facilities supported at the AL level.  This
+     includes the SYSTEM ID following call stabilization.
+
+        At the AL level, technically the minimum facility support you
+     need is only the Hangup facility (Section IV.5.a).  However, that's
+     hardly useful, so a practical minimum would be the Hangup and Mail
+     commands.
+
+     VI. Anytime Netting
+        While this document was originally written to only address the behavior
+     of two C86Net-compatible systems during a network session, it seems
+     some brief mention of "anytime netting" might be appropriate in this
+     document.
+
+        When C86Net was first implemented in Citadel-86, one of the design
+     decisions made was systems would communicate at a set time during
+     the nighttime hours in order to exchange messages and other data.
+
+        This, as it turns out, was a very simplistic decision, and when the
+     idea of "events" was introduced by David Parsons, they were immediately
+     seized upon as a way to allow multiple net sessions during a day.  This
+     greatly expanded the flexibility of the network.
+
+
+
+
+
+
+                                    -16-
+
+
+
+
+
+
+        However, since most systems did not wish to take up daytime (i.e.,
+     "prime time") hours with static net sessions, delays in delivery of net
+     messages to other systems were still large, and with the network reaching
+     international proportions, forcing messages to traverse several
+     backbones to reach all systems, propagation delays were becoming
+     irritating.
+
+        At that point, several groups indicated a great deal of interest in
+     "anytime netting", and several people implemented it.  After some
+     unfortunately boneheaded delay, Citadel-86 has implemented it.
+
+        While the method of deciding when a net session is to be held between
+     systems is not part of the definition of C86Net, it would appear
+     anytime-netting is handy enough to be worth a short note.  Basically, to
+     handle anytime-netting, a C86Net compatible system must be able to accept
+     a C86Net call during anytime of the day or night, and may optionally be
+     able to call out during the day to other selected C86Net systems.
+     Apparently (and this is rather tentative), the best method of detecting
+     a C86Net call is to scan the input for a binary 7 (the first byte of
+     stabilization) when a call is detected by a system.  If a 7 is detected,
+     then the receiving system should stop output at once (if it has some form
+     of autobaud) and switch to network mode.
+
+
+     VII. Message Transfer Format
+        A C86Net message (like the original Citadel message format) consists
+     of a collection of C strings (ASCII text followed by a null byte).  Each
+     of these strings is the value of some part of the message; precisely which
+     part is identified by the first byte of the string, and this byte is known
+     as the field identifier for this string.
+
+        Fields may come in any order, except the Message field text is the
+     last field of the message, and must always be present.  Most other fields
+     of a message do not have to be present, but it is recommended that as
+     many as are practical be filled in, particularly the date, time, system
+     origin, and message number fields, since these may be used for 'vortex'
+     control.
+
+        Any data following the null byte of the message field is considered
+     to be either garbage or part of the next message, if more than one message
+     has been sent.
+
+     VII.1 Field types
+        The fields of a C86Net message seem to fall into three categories,
+     displayable, non-displayable, and special.  Fields which are 'displayable'
+     are generally fields of interest to the user, such as the author of the
+     message, the text of the message, etc.
+
+        Fields which are 'non-displayable' usually contain information useful
+     for housekeeping on the net.
+
+        The following sections cover all three types of fields in detail,
+     including suggested formats for data.
+
+
+
+
+
+
+                                    -17-
+
+
+
+
+
+
+     VII.1.a Displayable fields
+        As noted, these fields usually contain data of interest to the human
+     readers.  Each field is treated separately.  Normally there should only
+     be one instance of each field in a message; exceptions will be noted.
+
+        Message Author: Field identifier 'A' identifies an author field.  This
+     field may be no more than 128 bytes (including the trailing null byte), and
+     should contain the name of the author of the message.
+
+        Message Date: Field identifier 'D' identifies a date field.  This
+     field, limited to 20 bytes, should contain only the date when the message
+     was entered.  Current standard format is yymmmdd, such as "89Jan01".
+     Note that by adhering to this format, and others like it, individual
+     software packages may more easily customize message headers when
+     displaying messages from foreign systems, and allow the foreign systems
+     to do likewise.
+
+        Message Time: Field identifier 'C' identifies a time field.  This
+     field, limited to 20 bytes, should contain only the time the message was
+     entered.  Current standard format is hh:mm <am | pm>, such as "12:44 pm".
+
+        System Origin: Field identifier 'N' identifies a system origin field.
+     This field, limited to 20 bytes, should contain the name (human readable)
+     of the system this message originated on.  It is NOT recommended this
+     field be used for housekeeping purposes!
+
+        System Domain: Field identifier 'X' identifies the home domain of
+     the system.  This field should only be filled in if domains are actually
+     implemented in your software, since other systems on the net will use
+     a combination of domain and system name to reply to net Mail.
+
+        Message Recipient: Field identifier 'T' identifies a To field.
+     This field, limited to 128 bytes, should contain the name of the recipient
+     of this mail message.  Non-mail messages may contain 'T'o fields, too,
+     but delivery of such messages should not be expected (see Facility Request
+     1, above).  Normally, this field is used to deliver network mail to users,
+     but see the 'w' field, below.
+
+        Other Recipients: Field identifier 'W' identifies an Other Recipient
+     ("Who else?") field.  This field, limited to 61 bytes, identifies a
+     recipient of Mail other than the primary recipient.  It is not, however,
+     a field which should be used for Mail delivery by recipient systems; it
+     is transmitted purely for cosmetic reasons.  See the 'w' field, below.
+     There may be more than one Other Recipient field in a message.
+
+        OtherNet Address: Field Identifier 'P' identifies an "OtherNet
+     Address".  This is a free form string which is used to form addresses
+     of use to other networks, such as USENET, FidoNet, etc.  This is filled
+     in by users sending Mail to systems on other nets, and can also contain
+     "return address" information for messages coming in from other Nets.
+
+        Message Text: Field identifier 'M' identifies a message text field.
+     This field is currently limited to 7499 bytes, but this is an artificial
+     limit and should be done away with someday.  This text should be in
+     normal Citadel format, except all Carriage Returns should become
+     Line Feeds during transmissions (for obscure historical reasons).
+
+
+
+                                    -18-
+
+
+
+
+
+     VII.1.b Non-Displayable fields
+        System ID: Field identifier 'O' identifies a system id field.  The
+     system id field, limited to 20 bytes, identifies a system at program
+     level.  This field should be used for any housekeeping purposes which
+     involve identifying other systems.  The current format of the data of
+     this field is traditional Citadel system id, e.g., "US 612 431 1107",
+     since this is a relatively static value for most systems -- far more
+     static than the 'N' field has turned out to be.
+
+        Room ID: Field identifier 'R' identifies a room name field.  This
+     field, limited to 20 bytes, is the name of the 'room' in which this
+     message originated.  Some systems may find this field cramped ...
+
+        Message ID: Field identifier 'S' identifies a message id field.  This
+     field, limited to 20 bytes, contains the message number assigned to this
+     message by the originating system.  NOTE: the format of this data is
+     special.  It is "<high 16 bits><space><low 16 bits>", where the first
+     number is the high 16 bits of the message id in decimal, and the second
+     number is the low 16 bits of the message id in decimal.  For example,
+     if a message had id 4099, it would appear in the 'S' field as "0 4099".
+     This special format is retained for possible backward compatability with
+     CP/M versions of Citadel ... which are still in use and threatening to
+     network, believe it or not!
+
+        Recipient Override: Field identifier 'w' (different from 'W', above)
+     identifies a Recipient Override field.  'w' fields, of which there may
+     be multiple instances in a message, should appear only in net Mail
+     messages.  When they are present in a message, they OVERRIDE the 'T'o
+     field of the message; that is, the message of which they are part of
+     should be delivered to the person named in each 'w' field, and the person
+     named in the 'T'o field should be ignored insofar as Mail delivery goes.
+     For example, if a message was received during Facility Request 1 which
+     had 3 'w' fields within it, with values of "Jocko", "Moo Cow", and
+     "Jack the Snipper", then the message should be placed in the Mail of
+     those three users, and not to whomever was named in the 'T'o field.
+     'w' fields may be up to 45 bytes long (although only 20 bytes really
+     makes sense).  'w' fields are creatures of the net; there should be no
+     reason to save them in your message base.
+
+        Target System: Field identifier 't' identifies a Target System.  This
+     field, limited to 20 bytes at the moment, if present will contain the
+     name of the system this piece of Mail is targeted for.  This field is
+     purely a creature of the net and should not need to be saved in message
+     bases, but only in temporary files.  At the moment, Citadel-86 is using
+     this field for internal purposes only, involving OtherNet integration.
+     Other software need not expect this field in Mail messages.
+
+     VII.1.c Special Fields
+        There are two sorts of special fields.  The first are those reserved
+     for STadel use by David Parsons, and those field identifiers are 'Z',
+     'J', 'I', and '#'.
+
+        The second type of special field are those identifiers reserved for
+     other C86Net developers.  As the net has grown, become more popular, and
+     endured childish squabbles as poor programming practices and large egos
+     clashed, Mark Metson, developer of the Knotwork software, noted the lack
+
+
+
+
+                                    -19-
+
+
+
+
+
+
+     of communication and devised a scheme to allow further development of
+     C86Net to proceed while protecting developers from each other.  His
+     modified proposal has been incorporated into C86Net, and it essentially
+     consists of assigning to each 'major' developer a field identifier which
+     they may use for their own work.  All other developers are asked not to
+     use these identifiers for their own purposes.
+
+        At first it may seem a single identifier is rather inadequate,
+     but actually it need not be.  Since the developer is assigned the field
+     identifier for their exclusive use, they may use it as they like, so
+     long as they remember it must be treated just like any other field
+     identifier in that a NULL byte still constitutes an "End of Field" mark.
+     The first idea which comes to mind is to use the second byte of the field
+     as a "SubField Identifier", for the developer's own purposes.  There may
+     be other ways of using it, as well.  In any case, it should be apparent
+     the exclusive use of a single identifier should be more than
+     adequate for a developer's needs.
+
+        There is no requirement for one developer to carry or save another
+     developer's fields on the network.
+
+     VII.1.d Developer's Fields Assignments
+        In keeping with the Citadel tradition of using ASCII for field
+     identifiers, the following assignments have been made to known developers
+     who are involved, or thought to be involved, with the net.  If you are
+     not listed here and wish to be, please contact Hue, Jr. or his successors
+     for an assignment.  (For those confused by flawed documentation distributed
+     by K2NE, K2NE never has been and never will be Hue, Jr.'s successor in
+     this matter.)
+
+      Identifier        Assigned to             Software
+      ----------        -----------             --------
+         '0'            David Parsons           STadel
+         '1'            Jay Johnson             Amiga Citadel-68k
+         '2'            Hue, Sr.                NeoCitadel
+         '3'            farokh irani            Citadel-286
+         '4'            Gary Meadows/BKB        Asgard-86
+         '5'            Mark Metson             Knotwork
+         '6'            K2NE                    K2NE
+         '7'            elim & Mr. Neutron      <fnord>adel
+         '8'            cmc                     Fortress
+
+        Mark Metson's scheme, at least at this point, appears to constitute a
+     very good way to avoid clashes in field identifiers in the future.
+     Therefore, developers are asked not to trample outside their assigned
+     identifiers without coordinating with other C86Net developers.  Citadel-86
+     remains the primary C86Net developer so long as Hue, Jr. continues to
+     program.
+
+     VII.2 Special Fields becoming Standard Fields
+        The fields detailed above, with the exception of the "developers'
+     fields", constitute a 'standard' collection of fields.  Not all standard
+     fields need be supported by a system, of course.
+
+
+
+
+
+
+                                    -20-
+
+
+
+
+
+        A field devised by a developer may eventually become a standard field
+     if it displays a wide enough appeal amongst the developers.  Unilateral
+     grabbing of fields is frowned upon deeply with the advent of developers'
+     fields.  The transformation from a developer's special field to a standard
+     field will no doubt require negotiation, biting of fingernails, etc. etc.
+     Due to the anarchic nature of the net, there can be no "final arbiter" on
+     matters such as these; instead, developers are asked to behave in a
+     responsible and respectful manner.  The actual procedures for adding a
+     developer's field (and thus functionality) to the standard set will be
+     developed when, and if!, needed.
+
+     VII.3 Other Additions to the Standard Fields
+        Hue, Jr. of Citadel-86 reserves the right to add new fields to the
+     standard set at any time.  Since Mark Metson's scheme should protect
+     all developers from each other, this should not disrupt any other
+     developer who follows the rules.
+
+     VII.4 Identifier Summary
+
+      Identifier        Data                                 Max Length
+      ----------        ----                                 ----------
+      'A'          Author of current message.                128
+      'C'          Time message was written.                 20
+      'D'          Date on which message was written.        20
+      'J'          STadel reserved
+      'I'          STadel reserved
+      'M'          Message text, all CRs changed to Line     7499, should not
+                    Feeds.                                         be limited,
+                                                                   though.
+      'N'          Name of system which message was          20
+                    written on.
+      'O'          ID of system which message was written    20
+                    on (i.e., "US 612 470-9635").
+      'P'          OtherNet address                          128
+      'Q'          C-86 reserved (inadvertently forgotten)
+      'R'          Room which message was originally         20
+                    written in.
+      'S'          Message ID on source system, in old       20
+                    CP/M Citadel 8-bit style (i.e., 32 bit
+                    number split into two 16 bitters.  See
+                    below in the example).
+      'T'          Recipient of message (normally for        128
+                    private Mail).
+      'W'          Secondary recipient field.                45
+      'X'          Domain of system originating message      20
+      'Z'          STadel reserved
+      't'          Target System identifier (OtherNet)       20
+      'w'          Recipient override field.
+
+      'Z'          STadel reserved                           ??
+      'J'             "      "
+      'I'             "      "
+      '#'             "      "
+
+
+
+
+
+
+
+                                    -21-
+
+
+
+
+
+
+      '0'          David Parsons identifier field           variable
+      '1'          Jay Johnson identifier field
+      '2'          Hue, Sr. identifier field
+      '3'          farokh irani identifier field
+      '4'          Gary Meadows/BKB identifier field
+      '5'          Mark Metson identifier field
+      '6'          K2NE identifier field
+      '7'          elim/Mr. Neutron identifier field
+      '8'          cmc (Fortress) identifier field
+      
+        In the above table, the MAX LENGTHS include the NULL byte.
+
+     VII.5 An example
+        So, a message on Test System (nodeId US 612 470 9635, nodeName 'C86
+     Test System', domain 'MN') in room CitaNews) that looks like this:
+
+        86Feb01 @ 10:01 from John Flash @ C-86 Test System _ MN
+        This is a test.
+
+      with a message ID of 5644 might look like this during transmission on
+      the net:
+
+      D86Feb01<0>C10:01<0>S0 5644<0>NC-86 Test System<0>OUS 612 470
+      9635<0>AJohn Flash<0>RCitaNews<0>XMN<0>MThis is a test.<LF><0>
+
+        Clear as mud, right?
+
+     Appendix A.  Examples!
+        The following are examples for selected facilities, in order to
+     illuminate what may be otherwise very bewildering examples.  Not all
+     of the facilities are covered.
+
+        Many of the facilities will show examples at two levels:  a high level
+     displaying the "file" flow used, and a low level view examining the
+     contents of certain data and control packets.  Throughout the examples,
+     the term "file" means an XMODEM session is completed, starting with block
+     #1 and ending with block N and an EOT.  This may be an actual file being
+     transferred, as will happen with File Requests, or it may mean a series
+     of messages being transmitted, which may or may not be stored as a file,
+     depending on the implementation, or it may refer to control information
+     (such as a Facility Request), which again could be stored as a file on
+     disk, or stored in a temporary RAM buffer.
+
+        The abbreviation FR stands for Facility Request below.  In all cases
+     below, unless otherwise noted, it assumes all Facility Requests are
+     positively acknowledged.
+
+     A.1 Call Stabilization
+        The following illustrates a call in which the first attempt at call
+     stabilization fails because the receiver, a 300/1200 system which cannot
+     directly detect the baud of the caller, started looking at 300 baud, while
+     the caller is at 1200.
+
+
+
+
+
+
+
+                                    -22-
+
+
+
+
+
+
+          CALLER                    RECEIVER
+               <The systems connect!>
+        <7><13>69> -->              receives garbage, switches to 1200 after
+                                    4 seconds
+         Times out at 4
+         seconds
+        <7><13>69> -->              Receives sequence
+         Gets confirmation     <--  <~7><~13><~69>
+          <ACK> -->                 Receives ACK
+
+             CALL STABILIZATION COMPLETED
+
+     A.2. ID & Name
+        From a high level, caller identification flow control is very simple.
+
+        CALLER           RECEIVER
+             == <file> ==>
+
+        The length of file in this case should never exceed a single XMODEM
+     sector.  The contents should look like this:
+
+         <C-string: nodeId><C-string: node name><trash>
+
+        Suppose the node name of a system was Dandelion Wine, and the node id
+     was US 612 732 4419.  Then the ID & Name "file" would contain
+
+         US 612 732 4419<0>Dandelion Wine<0><irrelevant trash>
+
+     A.3. Normal Mail
+        At a high level, here is the sequence of file transfers.
+
+           CALLER           RECEIVER
+         == file: FR == >
+                      <== file: GOOD ==
+         == file: Mail> messages == >
+
+        At a low level, the file: FR should only have a length of one sector
+     (as should all FRs), containing:
+
+        <1><0><126 bytes of irrelevant trash>
+
+        The file: GOOD should contain the following:
+
+        <1><127 bytes of trash>
+
+        This is all a GOOD reply should ever contain, so we shall not
+     explain it again.  Refer to Appendix A for an explanation of the
+     appearance of file: Mail> messages.
+
+
+
+
+
+
+
+
+
+
+
+                                    -23-
+
+
+
+
+
+
+
+     A.4. Ambiguous Room File Requests
+        Here is the high level view of this facility:
+
+           CALLER           RECEIVER
+         == file: FR == >
+                      <== file: GOOD ==
+                      <== file: File #1 header ==
+                      <== file: File #1 ==
+                            ...
+                      <== file: File #n header ==
+                      <== file: File #n ==
+                      <== file: File header with empty string ==
+
+        For a low level examination, let's assume the Caller asked for
+     *.doc in a room called Whatever>.   The file: FR would then contain
+
+        <3>Whatever<0>*.doc<0><0><irrelevant trash>
+
+        Now let's suppose the RECEIVER has decided the files SEX.DOC
+     and GARBAGE.DOC match with *.doc in Whatever>, with sizes of 100,909 and
+     32,555 bytes. File #1 header would contain
+
+        SEX.DOC<0>789<0><irrelevant trash>
+
+     while File #1 itself would be the contents of SEX.DOC.  File #2 header
+     would contain
+
+        GARBAGE.DOC<0>255<0><irrelevant trash>
+
+     while File #2 would be the contents of GARBAGE.DOC.  File #3 header,
+     since no more files need to be sent, would contain
+
+        <0><irrelevant trash>
+
+     and that would constitute the end of this Facility.
+
+     A.5 Network Room
+        From a high level viewpoint, this Facility looks like this:
+
+           CALLER           RECEIVER
+         == file: FR == >
+                      <== file: GOOD ==
+         == file: messages == >
+
+        The contents of the FR for a room named Philosophy would be
+
+         <5>Philosophy<0><0><irrelevant trash>
+
+
+
+
+
+
+
+
+
+
+
+                                    -24-
+
+
+
+
+
+
+     A.6 Check Mail
+        From a high level viewpoint, this Facility looks like this:
+
+           CALLER           RECEIVER
+         == file: FR ==>
+                      <== file: GOOD ==
+                      <== file: acknowledgements ==
+
+        The content of the FR would simply be
+
+           <6><0><irrelevant trash>
+
+        Let's look at the example that all the Mail messages transferred
+     earlier could be delivered.  The content of file: acknowledgements
+     would then be
+
+            <0><irrelevant trash>
+
+     which would result in a single sector being returned to the transmitter.
+     Now let's suppose two Mail messages could not be delivered.  One was
+     addressed to Curly, while the other was addressed to Moe, both from
+     Mikey.  Then the file: acknowledgements would contain
+
+       <1>Mikey<0>Moe<0>87Oct08 @ 4:04<0><1>Mikey<0>Curly<0>87Oct07
+       @ 23:13<0><0><irrelevant trash>
+
+     A.7 Send File
+
+        From a high level viewpoint, this Facility looks like this:
+
+           CALLER           RECEIVER
+         == file: FR ==>
+                      <== file: GOOD ==
+         == file: file ==>
+
+        The contents of the FR for a file named GURGLE.NOT, size 13,934 bytes,
+     would be
+
+          <7>GURGLE.NOT<0>109<0>13934<0><0><irrelevant trash>
+
+     A.8 Alternate Room Sharing
+        From a high level viewpoint, this Facility looks like this:
+
+           CALLER           RECEIVER
+         == file: FR ==>
+                      <== file: GOOD ==
+         == file: messages ==>
+                      <== file: messages ==
+
+        For a room named Horse Trading, the FR would look like
+
+          <8>Horse Trading<0><0><irrelevant trash>
+
+        The file: messages would be the messages to be sent from the
+     transmitter to the receiver, first, and then from the receiver to the
+     transmitter.
+
+
+
+                                    -25-
+
+
+
+
+
+
+     Appendix B.  BBS Software compatible with C86Net
+        The following BBS packages are known to be at least minimally
+     compatible with C86Net.  Consult their documentation to find out how
+     many facilities each supports.
+
+      Name                 Home base           Number           Baud rates
+      ----                 ---------           ------           ----------
+      Citadel-86           C-86 Test System    (612) 470-9635   3/9600 (HST)
+      NeoCitadel           Free Lunch          (612) 431-1107   3/12/24
+      STadel               No longer supported per se.
+      Amiga Citadel-68k    Images              (612) 884-7951   3/12/24
+      Asgard-86            Hotel               (916) 927-7680   3/12/24
+      Novucivitas          Novu                (916) ???-????   ????
+      <fnord>adel          Secret Service      (???) ???-????   300/1200/2400
+      Fortress             Overmind            (???) ???-????   300/1200/2400
+      Citadel-86e          Electronic New York (???) ???-????   ????
+      K2NE                 Jersey Devil        (???) ???-????   ????
+
+     Appendix C. Main C86Net
+        Most of the homebase systems listed in Appendix B participate in
+     what may best be termed the main C86Net, to which all systems are invited
+     to participate in.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                   -26-
+
+

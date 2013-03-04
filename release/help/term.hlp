@@ -1,0 +1,85 @@
+ Terminal Configuration
+ -----------------------
+   ^nodetitle needs to know two (2) things about you and your terminal in
+order to make system usage as pleasurable as possible.  You told us about
+them when you logged in (presumably, or perhaps the sysop did when
+s/he created your account), but you may want to change the settings
+anyways.
+
+   Additionally, you can set other options related to your terminal
+to tune your usage of ^variantname.  These are explained below.
+
+   <W>idth          <L>inefeeds
+   <D>elays         <P>aging
+   <N>ulls          <H>alf-duplex
+
+ Screen Width:
+ Select using 'W' (i.e., .ECW). This is the width of your screen in columns
+(NOT inches!).
+When you request this option the system will prompt for a screen width.  If you
+find after using this option that you are occasionally getting anomalous blank
+lines, and the last character of the line above the blank line seems to be in
+the 80th column, you are using flawed terminal software which does not
+understand when line wrap is supposed to occur (don't feel bad, this is a very
+common problem).  If this is happening, try setting the Width to one less than
+the width of your screen.  For instance, .ECW 79 is a very common setting.
+
+ Linefeeds:
+ Select using 'L' (.ECL).  This is a simple toggle which alternately turns on
+and off your
+need for ^variantname to transmit a Linefeed after it sends a Carriage Return
+(the standard End Of Line indicator in the BBS world).  If you find that either
+each line writes over the one before it, or EVERY line is followed by one
+or more blank lines, then use this option.
+
+ Delays:
+ Select using 'D' (.ECD).  With the advent of cheap, fast modems, it's become
+very common for
+even the most destitute of users to have very fast modems.  While this is very
+useful for downloading files and messages, you may want to slow the output
+while you're reading messages online.  To this end ^variantname provides the
+<D>elay parameter.  It tells ^variantname how long to pause after each
+character is spat out to the modem when you're reading messages or text files
+in ASCII
+mode (this option has no effect when you're downloading messages or files using
+XMODEM or any other protocol).  The units of delay are milliseconds.  Feel free
+to experiment with this value to get it to a value you feel comfortable reading
+at.
+
+ Paging:
+ Select using 'P' (.ECP).  Some users don't want to use .ECD, they prefer to
+read in terms of "pages".  .ECP allows you to select the size of your page.
+After each page is presented, you'll be presented with a <^more> prompt.  Here's
+what happens when you hit a character while at such a prompt:
+
+     's', 'q': Stop the output, return to room prompt.
+     <carriage return or Enter>: Show next line of output.
+     'r': Reverse message flow when showing messages.
+     'c': Continuous Flow of messages.
+     'n': Next message.
+     anything else: show next page of output.
+
+(Aides have more options.)  If you select a page size of 0 then this option is
+disabled.
+
+ Additionally, the system will also ask if you want to pause after each message.
+Some users prefer to use this option to page-length paging, but the two can
+also be used in combination.  Also, see .Read More (READ help file).
+
+ Nulls:
+ Select using 'N' (.ECN).  Nulls are used on very old terminals which, when
+given a carriage return, actually need some time to move the cursor (or print
+head) down a line and all the way to the left.  Unless you're having problems,
+ignore this.
+
+ Half Duplex:
+ Select using 'H' (.ECH). This is useful for the rare user who's terminal
+generates
+its own echo when the user types.  Nearly no one uses this option (so don't
+worry if you don't understand), but sometimes PCPursuit people find it very
+useful as a way to get away from the inherent jerkiness of the service.
+
+ %RECONFIG Back to the reconfiguration menu.
+ %COMMANDS Back to the commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.

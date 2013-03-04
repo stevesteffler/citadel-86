@@ -14,7 +14,7 @@
 #define SYSTEM_DEPENDENT
 #define TIMER_FUNCTIONS_NEEDED
 
-#define HAVE_LSS
+/* #define HAVE_LSS    -- long lost file - not available from Hue, Jr. */
 
 #include "ctdl.h"
 #include "sys\stat.h"
@@ -344,15 +344,15 @@ void SetBaudTo(int x)
 	int latch1;
 	int latch2;
     } baud[] = {
-	{ 0x80, 1 },		// 300
-	{ 0x60, 0 },		// 1200
-	{ 0x30, 0 },		// 2400
-	{ 0x18, 0 },		// 4800
-	{ 0x0c, 0 },		// 9600
-	{ 0x08, 0 },		// 14,400
-	{ 0x06, 0 },		// 19,200
-	{ 0x03, 0 },		// 38,400
-	{ 0x02, 0 },		// 56,800
+	{ 0x80, 1 },		/* 300  */
+	{ 0x60, 0 },		/* 1200 */
+	{ 0x30, 0 },		/* 2400 */
+	{ 0x18, 0 },		/* 4800 */
+	{ 0x0c, 0 },		/* 9600 */
+	{ 0x08, 0 },		/* 14,400 */
+	{ 0x06, 0 },		/* 19,200 */
+	{ 0x03, 0 },		/* 38,400 */
+	{ 0x02, 0 },		/* 56,800 */
     };
 
     outportb(cfg.DepData.ln_ctrl, 0x83);

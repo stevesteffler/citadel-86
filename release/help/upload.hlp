@@ -1,0 +1,54 @@
+ File Uploading
+ --------------
+   Uploading a file to ^nodetitle is very simple with ^variantname.  The basic
+format is
+
+    <.E>nter [protocol specifier] <F>ile
+
+   The protocol specifier is optional, but if you don't specify one, it will
+default to Xmodem.
+
+   ^variantname supports the following protocols internally for uploading:
+
+      <X>modem, <Y>modem (SINGLE FILE mode).
+
+   Additionally, ^nodetitle has the following protocols available for upload
+usage as external drivers:
+
+      ^ulprotocols
+
+   To use any of these protocols for an upload, simply type their letter where
+"protocol specifier" was mentioned before.  For example, to upload a file
+to the system using Ymodem, you'd type
+
+    <.E>nter <Y>modem <F>ile
+
+   The system will prompt for a name.  If the file already exists, you won't
+be allowed to upload the file.
+
+   You are not finished with your upload
+activity when the file has been transferred.  First, ^variantname may ask you if
+you want a file integrity check performed on the file if its extension (don't
+worry if you don't understand this) is ARC, ZIP, ZOO, or LZH.  You can decline
+if you wish, of course.  If the integrity check fails, you will be asked if
+the upload should be aborted.
+
+   If no check was performed, or if it was successful, or if you didn't abort
+the upload process because of a failure, you will then be asked to add a file
+comment to your upload.  ^variantname will simply dump you into the message
+editor, thus placing you in a friendly, familiar environment for composing a
+file comment which will enlighten your fellow users as to your file's contents
+and usage.  Please feel free to speak at length if necessary, the limit on
+the size of a file comment is quite large.
+
+   Batch uploads (that is, many files at a time) are prohibited.
+
+
+ %TOC How to read a directory listing.
+ %DOWNLOAD Information on downloading from ^nodetitle.
+ %PROTOCOL What protocols are available?
+ %FILES Summary of file handling.
+ %ADVANCED Back to the advanced commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+

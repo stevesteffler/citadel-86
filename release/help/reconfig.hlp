@@ -1,0 +1,26 @@
+ Account Reconfiguration
+ -----------------------
+   You can reconfigure your account for a number of parameters using the
+dot commands.  In this there lies an unfortunate paradox -- if you are
+a true novice, you probably don't know what a "dot" command is, because
+it's an advanced topic.  However, fear not
+and press on, for "advanced" is merely a relative term.
+
+   We'll address the issue of reconfiguration in three sections: terminal
+configuration, system usage configuration, and miscellaneous.
+
+   Generally speaking, to change or set any of the following options, the
+generic format of the command you'll use is
+
+    <.E>nter <C>onfiguration <OPTION>
+
+   (If you are not familiar with "dot" commands, the above means you type
+the period ["."], followed by an 'E', a 'C', and then the letter of the
+option you wish to play with.)
+
+ %TERM Terminal configuration information.
+ %USAGE System usage configuration information.
+ %MISCCFG Miscellaneous configuration information.
+ %COMMANDS Back to the commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.

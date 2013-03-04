@@ -1,0 +1,92 @@
+ The Basics:
+ -----------
+
+   Feel free to experiment - you can't hurt the system!
+
+   The first thing to remember about ^variantname is it is message
+oriented software, not file oriented.  The system is built around message
+handling -- we make it easy for you to read and participate in discussions.
+
+   Our collection of messages is divided into different topics by using
+the metaphor of ``rooms'', each having a name.  ^variantname systems
+consist of a collection of rooms, each of which contain messages supposedly
+pertaining to the name of the room.  So, for instance, you may find rooms
+named "Religion", "Abortion", "Stock Market", and "Puns".  You can think of
+yourself strolling down a hallway, looking at each room's nameplate and
+"entering" those which interest you.
+
+   But how do you use these rooms?  How do I get to have FUN?  (Glad you asked.)
+If you're used to other types of BBS software -- forget them.  We'll not
+burden you with painful menus to wait and search through.  Instead, we let you
+use your intelligence by giving you "mnemonic, single-stroke" commands (it
+also doesn't hurt to have a dictionary near your computer when on these
+sorts of systems - users tend to be both highly literate and fond of word
+games).  Those commands you'll want to use most are available with a single
+keystroke, and soon you won't even have to think about using them -- instead,
+you'll spend all of your time trying to decide what you wish to contribute to
+the discussion.  And you need so few to begin using the system ...
+
+   So just what do you need to use any system?  The basic questions are:
+
+ o How do I read messages?
+ o How do I go from one room to another?
+ o How do I enter messages?
+
+   Three questions, three easy to remember commands, which you type at a room
+prompt.  (What is a room prompt?  A topic name followed by either '>', ')', ':',
+or ']' -- just think of those as being the same, although there are subtle
+differences.  You are ALWAYS in some room.)
+
+ <N>ew.  By typing 'N' at the room prompt, ^variantname will display all
+the "New" messages (that is, those which you've never had a chance to read)
+to you in that room.  If you find there are too many messages or they are
+displaying too fast for your reading speed, touch <P>ause as they display and
+the messages should temporarily pause until you touch some key on the keyboard
+again.  You can also do other things while messages display, but you can learn
+about them later.
+
+ <G>oto.  When you type 'G' ^variantname will take you from the current room
+(and mark all messages in there as "read" by you!) to the next room in the
+system which has New messages for you to read, and displays how many new
+messages there are in the room and how many are new, like this:
+
+ 45 messages
+  3 new
+ Bubble Gum>
+
+ You don't have to remember
+what rooms have new messages and which don't -- the system will do it for you.
+This greatly simplifies your use of the system.  When there are no more rooms
+with new messages in the system for you to read, the system will take you
+back to the room named "^baseroom" and not say anything about new messages.
+
+ <E>nter.  Typing 'E' tells ^variantname you want to enter a message in the
+current room.  Message entry is very easy and you'll find some prompts and
+instructions for message entry during this process, so we shan't go farther
+here.
+
+   As you can see, basic use of ^variantname is very easy.  The general routine
+is
+<N>ew to read all the new messages in each room, <G>oto to take you to each
+room which has New messages, and <E>nter to add to the discussions.  This
+covers nearly everything you need to know to make effective use of ^variantname
+as a discussion tool: 3 simple commands.
+
+   But there are many other commands to do many things.  The following three
+commands you will also use frequently during the course of your enjoyment of
+^nodetitle:
+
+ <L>ogin.  You use this command to login each time you call, simply by typing
+in your password (either the one you picked or the sysop assigned to you).
+
+ <T>erminate.  This lets you leave the system gracefully.
+
+ <H>elp.  This lets you use the Help system (which you are already in).
+
+   Good luck with the system.  Just poke around, read the discussions, and
+enjoy!
+
+ %COMMANDS Back to the commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP Back to the top level of help system.
+

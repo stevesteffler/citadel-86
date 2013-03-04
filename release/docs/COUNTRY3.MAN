@@ -1,0 +1,134 @@
+
+
+
+
+     Abu Dhabi               AH  Afghanistan             AF
+     Ajman (U.A.E.)          JM  Albania                 AB
+     Algeria                 DZ  Andora                  AND
+     Angola                  AN  Anguila                 LA 
+     Antigua                 AK  Argentina               AR
+     Australia               AA  Austria                 A
+     Bahamas                 BS  Bahrain                 BN 
+     Bangladesh              BJ  Barbados                WB 
+     Belgium                 B   Belize                  BH
+     Bolivia                 BV  Botswana                BD 
+     Brazil                  BR  Brunei                  BU
+     Bulgaria                BG  Burma (Union of)        BM
+     Burmuda                 BA  Burundi                 UU 
+     Cameroon Republic       KN  Canada                  CA
+     Cayman Islands          CP  Central African Empire  EC
+     Central African Rep.    RC  Chad Republic           KD
+     Chile                   CF  China (People's Rep)    CN
+     Colombia                CO  Congo Republic          KG
+     Cook Islands (Rarotonga)RG  Costa Rica              CR
+     Cuba                    CU  Cyprus                  CY
+     Czechoslovakia          C   Denmark                 DK
+     Djibouti, Rep of        FS  Dominica                DO
+     Dominican Republic      DR  Dubai (U.A.E.)          DB
+     Ecuador                 ED  Egypt, Arab Rep. of     N
+     El Salvador            SAL  Ethiopia                ET
+     Falkland Islands        FK  Faroe Islands           FA 
+     Fiji Islands            FJ  Finland                 SF
+     France                  F   French Guiana           FG
+     French Polynesia        FP  Fujairah (U.A.E.)       FU 
+     Gabon Republic          GO  Gambia                  GV
+     Germany (Dem. Rep)      DD  Germany (Federal Rep)   D
+     Ghana                   GH  Gibralter               GK
+     Greece                  GR  Greenland               GD
+     Grenada                 GA  Guadeloupe (Fr. Ant.)   GL 
+     Guam                    GM  Guatemala               GU
+     Guinea                  GE  Guyana                  GY
+     Haiti                   HC  Honduras                HT
+     Hong Kong               HX  Hungary                 H
+     Iceland                 IS  India                   IN
+     Indonesia               IA  Iran                    IR
+     Iraq                    IK  Ireland, Rep of         EI 
+     Israel                  IL  Italy                   I
+     Jamaica                 JA  Japan                   J
+     Jordan                  JO  Korea (South)           K
+     Korea, Dem People's Rep KZ  Kuwait (Persian Gulf)   KT
+     Laos                    LS  Lebanon                 LE
+     Lesotho                 BB  Liberia                LIB
+     Libya                   LY  Liechtenstein           FL
+     Luxembourg              LU  Macao                   OM
+     Madagascar              MG  Malawi                  MI
+     Malaysia                MA  Maldives                MF
+     Mali                    MJ  Malta                   MT
+     Mariana Islands(Saipan) SA  Martinique (Fr. Ant.)   MR 
+     Mauritania, Islam Rep  MTN  Mauritius               IW
+     Mexico                  ME  Monaco                  MC
+
+
+
+
+                                    -1-
+
+
+
+
+
+
+     Mongolia                MH  Monterrat               MK 
+     Morocco                  M  Mozambique              MO 
+     Nauru Islands           ZV  Nepal                   NP
+     Nethelands Antilles     NA  Netherlands             NL 
+     New Caledonia           NM  New Hebrides            NH
+     New Zealand             NZ  Nicaragua               NK
+     Nigeria                 NI  Norway                  N
+     Oman (Persian Gulf)     MB  Pakistan                PK
+     Panama                  PA  Papua New Guinea        NE
+     Paraguay                PY  Peru                    PE 
+     Philippines             PH  Poland                  PL
+     Portugal/Madeira/Azores P   Qatar (Persian Gulf)    DH
+     Ras Al Khaimah (UAE)    RK  Reunion Islands         RE
+     Rumania                 R   Rwanda                  RW
+     Saint Kitts (WI)        KC  Saint Lucia             LC
+     Saint Pierre + Miquelon QN  Saint Vincent           VQ
+     San Marino             RSM  Saudi Arabia            SJ
+     Senegal                 SG  Seychelles Islands      SZ 
+     Sharjah (UAE)           SH  Sierra Leone            SL 
+     Singapore               RS  Solomon Islands         HQ
+     Somalia Republic        SM  South Africa            SA
+     South West Africa       WK  Spain / Canary Islands  E
+     Sri Lanka               CE  St Helena               HI
+     Sudan                   SD  Surinam                 SN
+     Swaziland               WD  Sweden                  S
+     Syrian Arab Republic    SY  Taiwan                  TW
+     Tanzania                TA  Thailand                TH
+     Togo                    TO  Tonga                   TS
+     Transkei                TT  Trinidad & Tobago       WG
+     Tunisia                 TN  Turkey                  TR
+     Turks + Caicos Islands  TQ  USSR (Russia)           SU 
+     Uganda                  UG  Umm Al Qaiwan (UAE)     QA
+     United Arab Emirates    EM  United Kingdom / N Ire. G  
+     United States of Amer.  US  Upper Volta, Rep of     UV 
+     Uruguay                 UY  Venezuela               VE
+     Viet Nam                VT  Virgin Islands (Brit)   VB 
+     Western Samoa           SX  YemenArab Rep. (San'a)  YE
+     Yemen, People's Dem Rep AD  Yugoslavia              YU
+     Zaire                   ZR  Zimbabwe                RH
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    -2-
+
+
+
+

@@ -1,0 +1,17 @@
+
+   This file details the contents of the SUPPORT.ARC of Citadel-86.
+
+INSTALL3.MAN  | This file is the main installation manual for Citadel-86;
+              | absolutely essential for novice sysops setting up a new system.
+OPER3.MAN     | Operating Instructions for Citadel-86 (Sysop Manual).
+NETWORK3.MAN  | C86Net and Citadel-86.  Necessary if a system is joining C86Net.
+UTIL3.MAN     | Documentation for the utilities of Citadel-86.
+NETHACK3.MAN  | Technical documentation of C86Net.  For masochists and
+              | programmers only.
+COUNTRY.MAN   | Country code documentation.
+HACK.MAN      | Technical documentation of Citadel.  Very, very out of date.
+              | Historically important only.
+AABUYME.MAN   | Advertising.
+HISTORY.MAN   | Short history of Citadel.
+WARRANTY.MAN  | IMPORTANT: Warranty for Citadel-86.
+

@@ -26,7 +26,7 @@
 #
 STDINC=\tc\include
 LIB_INC=\tc\lib
-CC=\tc\bin\tcc -D -ml -O -wpro -wuse -j2
+CC=\tc\tcc -D -ml -O -wpro -wuse -j2
 INC=-I$(STDINC) -I$(LIB_INC)  
 HEADERS=ctdl.h sysdep.h slist.h
 
@@ -45,7 +45,8 @@ PORT=	arch.obj areas.obj \
 	rooma.obj roomb.obj route.obj \
 	shared.obj \
 	tools.lib \
-	virt.obj virt2.obj vortex.obj
+	virt.obj virt2.obj vortex.obj \
+	slist.obj kstrk.obj
 
 .c.obj:
    $(CC) -c -d $(INC) $<
@@ -127,10 +128,6 @@ netedit.obj: $(HEADERS)
 
 netitl.obj: $(HEADERS)
 
-ctdlansi.obj: $(HEADERS)
-
-ansisys.obj: $(HEADERS)
-
 citvid.obj: $(HEADERS) citvid.h
 
 citvid2.obj: $(HEADERS) citvid2.h
@@ -139,8 +136,13 @@ virt.obj: $(HEADERS) ctdlvirt.h
 
 virt2.obj: $(HEADERS) ctdlvirt.h
 
+slist.obj: $(HEADERS) 
+
+kstrk.obj: $(HEADERS)
+
 confg.exe confg: confg.obj confg2.obj syscfg.obj cn.lib info.obj mailfwd.obj \
-		shared.obj virt.obj tools.lib dom-init.obj
+		shared.obj virt.obj tools.lib dom-init.obj slist.obj \
+		dom-core.obj dom-data.obj domains.obj 
 	tlink @cc
 	del confg.map
 
@@ -151,7 +153,7 @@ confg2.obj: $(HEADERS)
 syscfg.obj: $(HEADERS) c86door.h
 
 cn.lib: arch.obj libnet.obj liblog.obj libcryp.obj libroom.obj\
- libtabl.obj libmsg.obj liblog2.obj ..\port\libtime.obj libbio.obj formhdr.obj
+ libtabl.obj libmsg.obj liblog2.obj libtime.obj libbio.obj formhdr.obj
     del cn.lib
     tlib /c cn +arch +libnet +liblog +libcryp +libroom +libtabl +libmsg \
     +liblog2 +libtime +libbio +formhdr

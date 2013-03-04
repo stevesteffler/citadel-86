@@ -1,0 +1,50 @@
+ File Handling Summary
+ ---------------------
+
+   A directory room is distinguished by its prompt.  A ']' or a ':' indicates
+the current room is a directory room.
+
+ Getting lists of files:
+
+ For a list of available files in this room, including file comments:
+
+   <.R>ead <E>xtended [file-specs] [date-specs]
+
+ For a short listing of available files in this room:
+
+   <.R>ead <D>irectory [file-specs] [date-specs]
+
+   Modifiers for getting lists of files are <P>hrase (search the comment field
+for the given phrase) and <G>lobal (read directories throughout the entire
+system rather than just the current room).
+
+ Uploading files:
+
+   The basic format is
+
+       <.E>nter [protocol specifier] <F>ile
+
+   The various protocols ^nodetitle has available are in the help file named
+PROTOCOL (see below); default is <X>modem.  ^nodetitle may, at the option of
+the sysop, check the integrity of your uploads if they are ARC, ZOO, ZIP, or
+LZH files.
+
+ Downloading Files:
+
+   The basic format is
+
+  <.R>ead [protocol specifier] [<B>inaryfile or <T>extfile [<F>ormatted]]
+
+   The default protocol is ASCII.  Use <B>inaryfile unless you have a good
+reason to use <T>extfile, such as using its <F>ormatted option, when you want
+to view a textfile with it formatted to your screen width.
+
+
+ %PROTOCOL What protocols are available?
+ %TOC How to read a directory listing.
+ %DOWNLOAD Information on downloading from ^nodetitle.
+ %UPLOAD Information on uploading to ^nodetitle.
+ %ADVANCED Back to the advanced commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+

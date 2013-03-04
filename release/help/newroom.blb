@@ -1,0 +1,5 @@
+  Most rooms are public.  A few are for private discussions, and do not
+initially show up on the <K>nown- rooms list, and are ignored by the <G>oto
+command.  (Once visited by a particular person, they behave normally, making it
+simple to keep up with private discussions.)
+

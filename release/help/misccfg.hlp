@@ -1,0 +1,42 @@
+ Miscellaneous Reconfiguration
+ -----------------------
+   These options are just don't fit anywhere else.
+
+   <A>ddress      <C>omplete Reconfiguration
+   <B>iography    <Z>Alternate .RE Display
+
+ Net Address Forwarding:
+ Select using 'A' (.ECA). See .Help FORWARD for detailed information;
+essentially, you
+can tell ^nodetitle to Forward your local Mail> to another system if you don't
+plan to be on this system very often, but expect to receive Mail from local
+users.
+
+ Biography:
+ Select using 'B' (.ECB). See .Help BIO. Basically, this lets you enter a
+short biography of yourself for other folk to read.  Biographies are accessed
+using <M>eet User.
+
+ Complete Reconfigure:
+ Select using 'C' (.ECC). This lets you completely reconfigure your account.
+
+   Also, .Enter Configuration ? and .Enter Configuration <CR> will print a
+menu and a summary of your current configuration.
+
+ Old-Style .RE Display:
+ Select using 'Z' (.ECZ). This option lets you control the behavior of
+.Read Extended-Directory in directory rooms.  Give it a try, just hit .ECZ
+and then do a .RE in a directory room.  Hit .ECZ again and another .RE will
+let you see the difference.
+
+PASSWORD
+   Use the .Enter Password command to change your password.  If you try to
+change your password more than once during a login session, you will be forced
+to wait for half a minute as an anti-password-hacking measure.
+
+ %FORWARD More information on C86Net Mail, especially for .ECA.
+ %BIO User biographies on ^variantname.
+ %RECONFIG Reconfiguration Menu.
+ %COMMANDS Back to the commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.

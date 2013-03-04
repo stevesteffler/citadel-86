@@ -1,0 +1,122 @@
+#NET-HINTS
+Don't forget to check and set the other values on this
+menu; otherwise you'll get results (or lack thereof)
+which you won't expect.
+
+#DPARAMS
+%a - baud    %b - bps
+%c - port    %d - user name
+%e - user number
+%f - ANSI answer
+%h - COM<port#> %k - width
+%l - DCE     %m - MNP
+
+#EPARAMS
+ %a - Current baud rate
+ %b - Current bps
+ %c - Port #
+ %d - Current user name
+ %e - Current user number
+ %h - COM<port#>
+ %i - Current room name
+ %j - Directory attached to room
+
+#PPARAMS
+ %a - Current baud rate     %b - Current bps
+ %c - Port #                %d - Current user name
+ %e - Current user number   %h - COM<port#>
+ %i - Current room name     %j - Room's directory
+ %k - User's screen width   %l - Effective baud rate
+ %m - echoes MNP if MNP connection
+ %g - file list (don't forget to use this!)
+
+#CPARAMS
+ %g (the file to be processed) may be used if
+necessary, but is not required.
+
+#ORPARAMS
+ Direction is Transmit for downloading messages to users, Receive
+to upload messages from users.  Selector is the mnemonic the user
+is to use.  FILENAME is the name of the final file sent to the
+user, which is important with some offline readers.
+
+#TESTDATA
+  This is test data so you may gain an idea of what your screen will look
+like during operation.  Use the ARROW keys to select color parameters
+to change.  Press the SPACE BAR to advance through the various colors
+you may use for each parameter (BACKSPACE will cycle in reverse).
+Touch ESC when finished.
+
+#DOMAINSHOW
+   Don't forget to specify the "%s"
+somewhere in this field.
+
+#BW_DESC
+   Using your editor, place each repugnant word on a
+ separate line.
+
+#BN_DESC
+   Using your editor, place each repugnant user name on a
+ separate line.  These are case-insensitive but must be
+ otherwise exact.
+
+#ROUTING_DESC
+   Using your editor, place each routing decision on a
+ separate line.  Format of each record is
+   
+    <target system> : <via system>
+
+#TRIM_DESC
+   This option asks Ease to trim any Citadel
+data files which may be larger than they
+should be.  Since DOS occasionally screws
+up ... PLEASE be sure your system is backed
+up before using this option!
+
+#MSG2_HELP
+  This is the directory in which your mirror
+message file (CTDLMSG.SYS) will reside. A
+mirror message file should be maintained on a
+physical disk if the message file is assigned
+to a RAM DRIVE. If the directory you enter
+does not exist on your system, it will be
+created for you. If this entry is left blank
+it will not be used.  An example of a
+directory entry is: MIRROR.
+
+#HOLD_HELP
+  This is the directory in which interrupted
+messages will be saved.  This is an optional
+value, and if it is left blank then messages
+which are interrupted by call-waiting, line
+noise, etc. will not be saved. If the
+directory you enter does not exist on your
+system, it will be created for you. An example
+of a directory entry is: HOLDAREA.
+
+#BIOS_HELP
+  This is the directory in which biographies
+will be saved.  This is an optional value,
+and if it is left blank then biographies, and
+the <M>eet command, will not be functional.
+If the directory you enter does not exist on
+your system, it will be created for you. An
+example of a directory entry is: BIOS.
+
+#INFO_HELP
+   This is the directory to save room
+information in.  This is an optional value,
+and if it is not set then room information
+will be disabled on your system, thus saving
+space on your disk.
+
+#DAYS_SETTING
+  This is days setting.
+
+#PORT_LOCK
+  This ADVANCED parameter is used to "lock"
+your com port at the baud rate specified by
+#SYSBAUD.  Use this only if you know how to
+tell your modem about this and it knows what
+to do.
+

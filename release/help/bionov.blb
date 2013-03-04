@@ -1,0 +1,6 @@
+  Citadel-86 will format your biography to the readers' screen width.
+Carriage-return
+characters are treated as blanks unless followed by a blank, so paragraphs
+should be indented or separated by blank lines with at least one space
+on them.  If you want to delete your current biography, simply save a
+blank biography.

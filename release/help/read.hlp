@@ -1,0 +1,220 @@
+ Advanced Reading Options
+ ------------------------
+    ^variantname's Advanced Reading commands contain a number of useful
+options which can greatly enhance your pleasure if you take just a couple
+of minutes to find out what they can do.  Study the following carefully...
+
+ Basics
+   You should already be familiar with the basic single stroke Message
+Reading commands and the general idea of "dot" commands.  The generic
+format of the .Read commands for viewing Messages is
+
+   <.R>ead [Option ...] [Read Command [Message Limit Command] ] <CR>
+
+   Or, in English, ".Read" followed by zero or more "Options" followed by
+a single, optional "Read Command" (default is <N>ew messages) and optional
+"date-spec".  We'll explain these one at a time, starting with the "Read
+Commands" (since you should find them familiar anyways), then the "date-spec",
+and finally the "Options".  Don't worry, this WILL make sense ...
+  
+ Read Commands
+   Here are the four basic Read Commands for messages; each should be
+ended with a C/R:
+  
+  <.R>ead <F>orward
+    will print all messages in room from beginning.
+
+  <.R>ead <N>ew messages
+    will print all new messages in room.
+
+  <.R>ead <O>ld-reverse
+    will print all old msgs in reverse order in room.
+
+  <.R>ead <R>everse
+    will print all messages in reverse chronological order.
+
+   These four should be familiar from the single stroke command set, and
+they are exactly the same.  However, as you'll see, they are NOT superfluous.
+
+ MESSAGE LIMIT COMMAND
+
+    The optional Message Limit Command of .Read allows you to deal a little
+more sanely with large numbers of messages.  You have three alternatives
+to work with:
+
+ 1. Date-Spec
+   A "date-spec" is simply some date of your choosing, expressed in normal
+Citadel format.  For instance, July 4th, 1989 would be 89Jul4 (or 89Jul04).
+If the current year was 1989, you could shorten that to Jul4.  In fact, the
+month can be shortened even farther if it remains "unique" within the range
+of months.  For instance, you can't type "Ju" because ^nodetitle won't know
+if you mean July or June.  However, you can type "N4" to mean November 4th,
+because there is no other month with the first letter of November.
+
+   But what does this have to do with reading?  When you use it with one of
+the Read Commands, you are telling ^variantname to either Read only those
+messages since or before that date, depending on the exact Read Command you
+are using.  For example,
+
+  .Read New 88Jan4
+
+     will print all the new messages in the room entered SINCE
+January 4, 1988, while
+
+  .Read Old-reverse 88Jan4
+
+     will print all the old messages in the room entered BEFORE
+January 4, 1988, and in reverse order.
+
+   In general, Read New and Read Forward used with a date-spec will display
+messages written since the given date, while Read Reverse and Read Old-reverse
+will display messages written before the given date.
+
+ 2. Day Count
+   You can simply specify a number as a Message Limit Command.
+^variantname will then simply use that to mean "in the last x days."  For
+example,
+
+    .Read New 5
+
+asks ^nodename to show all the new messages in the current room posted in the
+last 5 days.
+
+ 3. Message Count
+   ^variantname will also accept a Message Limit Command of the form '#<number',
+which means "show at most x messages", and the x messages shown will be the
+last 'x' messages that would have been shown using the command options without
+this particular option.  EXAMPLE:
+
+     .Read New #5
+
+ would show you the last 5 new messages in the current room.  (NOTE: This
+option does not work well with any of the Options in the next section.)
+
+ Options
+   The Options actually fall into three groups, from which you can mix and
+match nearly any combination (don't worry, those which don't make sense will
+be blindingly obvious).  The groups are Search Options, Transfer Options,
+and the Global Option.
+
+   You have three Search options:
+ o <U>ser.  This lets you search for messages from a particular user, and,
+if this is a network system, for messages from a particular system.
+ o <P>hrase.  This lets you search for messages containing a given phrase.
+ o <L>ocal.  This lets you search for messages originating on ^nodetitle.
+
+   Both the User and Phrase options are used in the same way: specify them
+while you are typing in the command, and after you hit a carriage return you
+will be prompted for each in turn.  Local, on the other hand, doesn't require
+any further input, since it only means the system should search for messages
+which were written on this system (and thus the command only makes sense in
+Shared rooms).
+
+   A couple of examples.  Suppose you wanted to find all the New messages
+written by Joe Blow.  You'd type (at the room prompt)
+
+   .Read User New <CR>
+
+   The system would then prompt for a name, to which you'd type "Joe Blow"
+(sans quotes), and the system would go searching the New messages for those
+written by good old Joe.  Or suppose you wanted to find a message from Joe
+when he was writing on a local system named "Mundane" (so the message
+header looks like "... Joe Blow @ Mundane ...").  Then, after you typed
+.Read User New <CR>, you'd respond to the User prompt with "Joe @ Mundane"
+(notice you didn't have to type in the entire name to find "Joe Blow" --
+this applies as well to the system name).
+
+   Suppose you wanted to find all the messages,
+new or not, containing the Phrase "archaeology".  You'd type
+
+   .Read Phrase Forward <CR>
+
+   The system would then prompt for the phrase, to which you'd type
+"archaeology" (case-insensitive search, by the way), and the system would
+happily search all the messages in the current room for such messages.
+
+   ^variantname also supports transferring messages via several transfer
+protocols besides basic ASCII.  Since this is an Option, that's where the
+command would go.
+
+   You may use either of the two built-in transfer protocols
+of ^variantname (<X>modem and <Y>modem [but in SINGLE FILE mode only, not
+BATCH]).  Additionally, ^nodetitle supports the following
+protocols via external drivers which you may use to download messages:
+^dlprotocols
+
+   A basic example, downloading all the New messages in a room via Xmodem:
+
+   .Read Xmodem New
+
+   You would then be asked if you were ready, and if you answer Yes, the
+system would drop into Xmodem download mode, in which all those New messages
+will be transferred as a text file, formatted to your current screen width
+setting.  (Answering No aborts the transfer).
+
+   Naturally, you can combine any of the transfer protocols with any of the
+other options already discussed.  For instance,
+
+   .Read Ymodem User New
+
+   would result in the system prompting for a User name to search on and
+then try to start a Ymodem Single download, resulting in a transfer of all
+messages which written by the user you typed in using Ymodem.
+ 
+   The Compressed option (.Read Compressed) allows you to download messages
+into a file which is then compressed using a compression program you select.
+This option can, and should be, used in conjunction with other options,
+particularly the Protocols mentioned above.  When you touch the carriage
+return after typing in your command line, you'll be prompted for the compression
+style you wish to use from a list, and the resultant file will be sent in that
+format.
+
+   Please note that not all installations will support this option since it
+requires work on the sysop's part.
+
+   Finally, the Global Option.  You may read the entire board in one swell
+foop if you wish.  The Global modifier is used to do this.  The typical use
+for this command would be
+
+   .Read Global New <C/R>
+
+ which would give you all the new messages and mark all the rooms as being
+read by you -- Forward, Old, and Reverse when used with Global do not.
+However, the Global modifier may be used in combination with other modifiers.
+For instance, if you want to find all the messages accessible to you that
+contain the phrase "Todd has chickenpox", you would type
+
+   .Read Global Phrase Forward <C/R>
+
+ and type that phrase in when prompted.  And if you wanted the messages
+compressed
+
+   .Read Compressed Global Phrase Forward <C/R>
+   
+   Don't forget, all of the above can be combined in a number of useful
+combinations.  Don't be afraid to do a little experimentation!
+
+ Miscellaneous
+ -------------
+   Finally, there are two miscellaneous options.
+
+     .Read Status
+
+   will print the number of messages in system, etc. 
+
+     .Read More ...
+
+   when used to read messages will reverse the value of your Message Paging
+configuration option (see the TERM help file).  So, if you have Message Paging
+turned off and you use .Read More, the Message Paging will occur.  Similarly,
+if you have Message Paging turned off and use .Read More, Message Paging will
+be turned on for the duration of the read messages operation.  This is useful
+when you don't want to reconfigure for a single operation.
+
+ Use .Read ? to get a complete list of read options.
+
+
+ %ADVANCED Back to the advanced commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+

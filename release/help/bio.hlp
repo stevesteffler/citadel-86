@@ -1,0 +1,15 @@
+ Biographies
+ ~~~~~~~~~~~
+   Users can read and create biographies on ^nodetitle as a way of getting
+to know users.
+
+   To read someone's biography, use the <M>eet User or <.M><username>
+commands.  Just type in the user's name and the system will display the
+biography if it exists.
+
+   If you want to enter a biography, or edit one already entered, type
+<.E>nter <C>onfiguration <B>iography (.ECB).
+
+ %HELPOPT The complete list of help files.
+ %MAINHELP Back to first level help.
+

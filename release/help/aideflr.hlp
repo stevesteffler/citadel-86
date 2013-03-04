@@ -1,0 +1,55 @@
+  Aides have access to floor maintenance commands.  NOTE: the term 'current
+floor' means the floor that the room you are currently in is associated with.
+
+ *****
+  <;A>ide <C>reate floor
+ *****
+  This command creates a new floor.  The room that you are currently in becomes
+a member of the new floor; consequently, you may not create floors in the 
+Aide>, Mail>, or Lobby.
+
+ *****
+  <;A>ide <D>elete empty floors
+ *****
+  This command will delete any and all empty floors in the system.
+
+ *****
+  <;A>ide <F>loor Moderator
+ *****
+  This command sets up the moderator for this floor.
+
+ *****
+  <;A>ide <I>nvite users
+ *****
+  This command will invite user(s) to the current floor.
+
+ *****
+  <;A>ide <M>ove rooms
+ *****
+  This command moves rooms from other floors to the floor that you are 
+currently on.  The Lobby, Mail>, and Aide> rooms cannot, naturally, be moved
+off the base floor.
+
+ *****
+  <;A>ide <K>ill floor
+ *****
+  This command kills the current floor.  When this command is used, you will
+be asked if all rooms that are on the current floor should be moved
+to the base floor.  Normally they should be moved to the base floor; if you
+answer 'N', all rooms on the current floor will be KILLED, along with the
+Floor.  Naturally, the base floor cannot be killed.
+
+ *****
+  <;A>ide <R>ename floor
+ *****
+  This command lets you rename the current floor.  You may not rename the 
+base floor.
+
+ *****
+  <;A>ide <W>ithdraw user
+ *****
+  This command kicks user(s) off the current floor.
+
+ %AIDE Basic Aide commands.
+ %MAINHELP First level help.
+

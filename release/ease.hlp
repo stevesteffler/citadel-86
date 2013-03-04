@@ -1,0 +1,184 @@
+^&
+  Hello!  Welcome to Citadel-86's EASE utility, a program for
+automating the installation and modification of Citadel-86 systems.
+The reason you're seeing this is because Ease cannot detect
+anything which indicates a system already exists here, and so Ease
+is going to lead you through a step-by-step installation.  If Ease
+is wrong about this assumption, you will have the option to abort
+the entire process with no damage done after answering all
+questions.
+
+  In order for Ease to be successful, a copy of CONFG.EXE, located
+in RUNTIME.ARC, must be made available either in your current
+directory or somewhere on your DOS PATH.  Before Ease will even
+start the installation process it will try to find out if you have
+made CONFG.EXE available.  If it can't find it, Ease will abort.
+Remember this!
+^%
+
+^&
+  This installation process consists of answering a series of
+questions regarding your system.  These questions fall into the
+following categories:
+
+ o Miscellaneous
+ o System File locations
+ o Various sizes
+ o System policy
+ o Hardware
+ o Video
+
+  These answers taken together define what your system will look
+like and how much space it will take up.
+^%
+
+^&
+
+  Ease does NOT automate all aspects of installation, however.  You
+may have to perform one or more of the following to have a complete
+and easy-to-use Citadel-86 installation:
+
+ o Prepare 1 or more DOS BAT file (see INSTALL3.MAN)
+ o Copy the Help files into the correct directory
+ o Prepare a RESULTS.SYS file for autobaud support of your modem
+^%
+
+^&
+                      Miscellaneous Parameters
+
+  The next few questions cover a number of miscellaneous parameters.
+These concern the identity of your system and a couple of other
+minor doodads.  While important, you can easily change these to
+whatever you want at a later time using Ease, so don't get too hung
+up on most of these.
+
+  INSTALL3.MAN, probably in Section II.5.b, covers these parameters,
+their uses and meanings, in far greater detail than Ease can, so if
+you harbour more interest in these details than Ease can answer,
+please check INSTALL3.MAN for those details.
+^%
+
+^&
+                       System Files Locations
+
+  The next few questions concern the locations of the basic system
+files used by Citadel-86.  These are the Help Files, the Accounts,
+the Rooms, the Message base, and the Floors.  All but the Help
+files are automatically generated and maintained by Citadel-86
+itself.
+
+  These files must all be located either in the current working
+directory of any disk on your system, or in a direct subdirectory
+of that working directory. You may not specify locations anywhere
+else but in those locations for these files (but don't panic!  This
+restriction only applies to these files!).
+
+(Continued)
+^%
+
+^&
+
+  There is no reason you can't specify the same directory for all
+the files, and in fact many installations do use a common directory
+for most of the system files.  However, we do recommend the Help
+files be kept separate from the rest of the system files for
+aesthetic reasons.
+
+  If, sometime in the future, you come to dislike the locations you
+selected for some or all of these files, Ease will let you easily
+and painlessly select new locations for them.
+^%
+
+^&
+                             File  Sizes
+
+  The next several questions concern the size you want your system
+to be.  The 'size' of a Citadel-86 is actually a collection of
+different values applying to a variety of things, some of which are
+optional.  The basic five values which are always used and most
+influential in determining the size of the installation is the size
+of the message base, the number of accounts and rooms the system
+will support, the number of messages per room, and the number of 
+messages which each user will have access to in Mail>.
+
+  All of these values may be changed later.  However, only the
+number of rooms, messages per room, and messages in Mail> may be
+shrunk later.  Once you have selected the size of the message base
+and the number of accounts in the system, you may not (at least not
+at present) shrink them.
+^%
+
+^&
+  For reference, the number of bytes your CtdlRoom.Sys will take up
+can be calculated using the formula:
+
+ # of bytes = Rooms * (50 + (6 * Messages per room))
+
+  The number of bytes your CtdlLog.Sys will take up will be
+
+ # of bytes = Accounts * (52 + (5 * Rooms) + (6 * Messages in Mail>))
+
+  See INSTALL3.MAN if you want more detailed information on
+parameter sizes and how they affect your system's size.
+^%
+
+^&
+                               Policy
+
+  The following numerous questions concern the basic policies of
+your systems. These, of course, may be changed at any time via Ease
+as suits your whim and folly.  Each question will respond to either
+the space bar by changing the answer from Yes or No to the
+opposite, or to the appropriate letter by selecting it.
+^%
+
+^&
+                               Hardware
+
+  The following collection of questions lets you tell Citadel-86 how
+to handle the serial port and the modem you've (presumably)
+attached to it.  Basically, you will assure Ease you are operating
+on a IBM PC or clone, which Com port your modem is attached to, the
+maximum baud your modem is capable of, how to detect the baud rate,
+and finally what kind of modem you have.
+
+  The latter we've spent some time on in hopes of easing your
+installation of Citadel-86.  We've built up a list, short at the
+moment but growing, of modems successfully used with Citadel-86,
+and the appropriate DIP switch settings, initialization strings,
+and useful hints.  Hopefully, you'll find it much easier to make
+your modem behave if you can find your modem on Ease's list.
+^%
+
+^&
+                               Video Options
+
+  This section, the last section of the installation process, lets
+you quickly, accurately, and painlessly decide what colors you'd
+like to use with Citadel-86.  While those of you with monochrome
+screens probably do not care, those lucky enough to have color may
+appreciate not having to stare at white on black when using their
+systems.  This should be fairly self-explanatory, and you can of
+course always return to change colors later.
+^%
+
+^&
+  And that's it!  In a moment Ease will ask your permission to
+create a new Citadel-86 installation for you.  However, this is not
+the last use for Ease you'll ever find.  Once you have a working
+installation, Ease may be used to enable other options, such as
+C86Net, Events, Doors, etc.
+
+  Also, we should reflect on what Ease won't do for you.  For
+instance, it won't actually run Citadel-86 for you.  You must do
+that, by getting CTDL.EXE (from RUNTIME.ARC or wherever you happen
+to be keeping CTDL.EXE).  Ease also does not do the following:
+
+ o Create BAT files for your system - see INSTALL3.MAN.
+ o Create or copy help files to the right directory.
+ o Create a RESULTS.SYS - see INSTALL3.MAN.
+
+  But we hope Ease has been a major factor in your creation of a new
+system!
+^%
+

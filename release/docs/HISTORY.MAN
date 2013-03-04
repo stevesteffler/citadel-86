@@ -1,0 +1,107 @@
+/************************************************************************/
+/*				History.doc				*/
+/************************************************************************/
+
+/************************************************************************/
+/*				History 				*/
+/*									*/
+/*  85Jun13 HAW History updated for networking. 			*/
+/*  85Apr27 HAW Citadel-86 history added.				*/
+/*  82Dec07 CrT Substantial editing re V2 etc.				*/
+/*  82Nov   dwm Created.						*/
+/************************************************************************/
+
+/************************************************************************/
+/*				Audience				*/
+/*									*/
+/*  Just general folks. 						*/
+/************************************************************************/
+
+/************************************************************************/
+/*				Purpose 				*/
+/*									*/
+/*  Reveal our glorious past.						*/
+/************************************************************************/
+
+			Citadel
+		   Bulletin Board System
+
+Citadel was written in mid-December 1981 by CrT.
+Miraculously, it ran three days unattended over
+New Year's, collecting some remarkably favorable reactions.
+During the months that it ran at 633-3282 (ODD-DATA),
+Citadel became one of the more popular BBs in town, and
+there was some disappointment when a hardware failure forced the system
+down in February of 1982.  But in January CrT had published the 
+source code in BDS C, putting it in the public domain.	
+
+David Mitchell brought up the next incarnation of the Citadel 
+program in April of 1982, running on hardware provided by Richard 
+Knox.  Called the Island Communication System, it is located on 
+Bainbridge Island in Puget Sound.  ICS has about 30 regular users 
+and about 120 log entries.  Newcomers find it easy to learn, and 
+often leave messages praising it.  Some of the system's daily 
+users are in Boston.
+
+Citadel is descended from DandD.pas, an adventure game editor/driver.
+It is arranged as a series of rooms, starting with the LOBBY.  In each
+room the user can read existing messages and leave more.
+There may be up to 128 rooms in the current implementation.
+The system was brought up
+with only one room, the LOBBY.	Additional rooms were created by 
+the users, with room names appropriate to the topics covered.
+
+This is being written (82Dec07) as the Version 2 beta-test goes out.
+Version 1 got a friendly reception and had relatively few bugs.  We'll
+see if this is a trend or fluctuation...
+
+Environment:  Citadel has had a checkered past.  It first ran
+on a 64K Heath H89 with Magnolia CP/M, Hayes Smartmodem (plus
+an acoustic on another port) and BDS C V1.32.
+Further development was done under BDS C 1.4x
+on a TRS-80 with Omikron CP/M, a Teletek FDC-1, and a Furgeson
+Big Board.  At present the ICS implementation runs on the FDC-1,
+while development is done on the Big Board.
+Version 2 was tested on the original H89, now with dual 8" SSDD drives :-)
+and a printer, Magnolia CP/M V2.223 :-( , and BDS C 1.46.
+
+Starting with the 82Jan posting on Seattle's MailBoard (thanks John!),
+various fragments of Version 1 seem to have percolated around the country.
+This version 2 release should supercede them and save people the frustration
+of trying to make sense out of them.
+
+David Mitchell
+CrT
+
+85Apr27
+   Having obtained Citadel 2.10 from CUG through SuperComp, and then having
+helped upgrade it to Citadel 2.40 using, at various times, a H89 and a Z-100,
+Citadel-86 for MS-DOS 2.xx was developed in order to ... um.  Well, in any
+case, the first version of Citadel-86 went up on the 8088 side of a Z-100
+in the Fall of '84, using MS-DOS 2.13.
+
+   As the months passed and as the whims hit the translator, Citadel-86 came
+closer and closer to being functionally identical to Citadel 2.40, and in
+January '85 the final downloading stuff was added, thus coming close 'nuff
+to Citadel 2.40's main programs for the translator. During March and April
+of '85, the utilities of Citadel 2.40 underwent translation and by mid-April,
+the last of these utilities had been translated and at least superficially
+tested, thus completing the Citadel translation process (thank ghod).
+
+   Now all that remains is isolating and killing the final few bugs, some
+of which the translator is certain are resident in the compiler in use
+(otherwise he'd have to admit to having made mistakes, lord forbid!).
+
+   Oh, and by the way, the name Citadel-86 was the suggestion of a certain
+Lord Castleregh, and was selected after a polling process of the first
+Citadel-86 system (Test System).
+
+						Hue, Jr.
+
+85Jun13
+   Ha Ha Ha. Here we are, thinking we only have a few more bugs to hit? Silly
+me, I decided to add in the auto-networking stuff on a whim. WHAT have I
+created? Whom knows ...
+
+						Hue, Jr.
+                                                                                                 

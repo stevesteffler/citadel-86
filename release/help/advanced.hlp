@@ -1,0 +1,51 @@
+ Advanced Topics
+ ---------------
+   This is where you can learn about the more abstruse abilities of
+^variantname.  If you don't know what a "dot" command is, start with
+the DOT help file (should be the first selection) -- dot commands are
+the only way to access most "advanced" commands.
+
+ %DOT Generic format for advanced commands.
+
+Here's what you can actually do with dot commands.
+
+ %READ Advanced usage of .Read.
+ %SKIP Skip, both basic and advanced.
+ %ENTER Advanced usage of .Enter.
+
+Interested in file leaching?
+
+ %TOC How to get listings of files.
+ %UPLOAD How to upload to ^nodetitle.
+ %DOWNLOAD How to download from ^nodetitle.
+ %FILES Summary of file handling.
+ %PROTOCOL Protocols available.
+
+How about "compressed" files?
+
+ %WHATCOMP What is a compressed file, anyways?
+ %COMPCOMM ^variantname and compressed files.
+
+Wondering what floors are all about?
+
+ %FLOORS Well, here's what's up.
+
+Do you like to use an offline reader?  Try this help file.
+
+ %OFFLINE Offline readers.
+
+And what about that blasted network, anyways?
+
+ %NET-MAIL How to send Mail via the C86Net.
+ %DOMAINS What are domains, anyways, and what can they do?
+ %NETROOMS Room sharing.
+ %FORWARD How to forward your local Mail> to another system.
+
+Finally, here's a summary of most or all dot commands:
+
+ %SUMMARY The list.
+
+ %COMMANDS Back to the Commands help file.
+ %HELPOPT Complete list of Help Files.
+ %MAINHELP Back to the first level of the Help system.
+

@@ -1,0 +1,3634 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                          OPERATIONS MANUAL
+
+                          CITADEL-86 V3.32
+
+                        Copyright 1989, 1990
+
+                             by Hue, Jr.
+
+                       C-86 Test System Sysop
+
+                               90Jul01
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      TABLE OF CONTENTS
+
+     I.  Introduction   . . . . . . . . . . . . . . . . . . 1
+     II. Help Files . . . . . . . . . . . . . . . . . . . . 1
+          II.1. Location  . . . . . . . . . . . . . . . . . 1
+          II.2. File Types  . . . . . . . . . . . . . . . . 1
+          II.3. Optional Customization  . . . . . . . . . . 1
+          II.4. Customizable Structure  . . . . . . . . . . 2
+          II.5. Help File Variables . . . . . . . . . . . . 3
+          II.6. Required Customization  . . . . . . . . . . 4
+          II.7. Optional Help Files . . . . . . . . . . . . 4
+          II.8. Adding Help Files . . . . . . . . . . . . . 5
+          II.9. New Users . . . . . . . . . . . . . . . . . 5
+          II.10. Delivered  . . . . . . . . . . . . . . . . 5
+     III. Sysop Privileged Functions  . . . . . . . . . . . 7
+          III.1. Introduction . . . . . . . . . . . . . . . 7
+          III.2. Access . . . . . . . . . . . . . . . . . . 7
+          III.3. Access Restrictions  . . . . . . . . . . . 7
+          III.4. Sysop Capabilities . . . . . . . . . . . . 7
+          III.4.a <A>bort . . . . . . . . . . . . . . . . . 8
+          III.4.b <B>aud Rate Selection . . . . . . . . . . 8
+          III.4.c <C>hat Enable/Disable . . . . . . . . . . 8
+          III.4.d <D>ebug Switch  . . . . . . . . . . . . . 8
+          III.4.e <E>cho To Screen  . . . . . . . . . . . . 8
+          III.4.f <F>ile Grab . . . . . . . . . . . . . . . 9
+          III.4.g <I>nformation . . . . . . . . . . . . . . 9
+          III.4.h <M>odem Mode  . . . . . . . . . . . . . .10
+          III.4.i <N>etworking Commands . . . . . . . . . .10
+          III.4.j <O>ther Commands  . . . . . . . . . . . .10
+          III.4.k <R>einitialize Modem  . . . . . . . . . .10
+          III.4.l <S>et Date  . . . . . . . . . . . . . . .10
+          III.4.m e<X>it To MS-DOS  . . . . . . . . . . . .10
+          III.5. Undocumented Sysop Menu Commands . . . . .11
+          III.6 User Administration . . . . . . . . . . . .11
+          III.6.a <A>dd User  . . . . . . . . . . . . . . .11
+          III.6.b <D>oor Privileges . . . . . . . . . . . .11
+          III.6.c <E>ndless User (permanent account). . . .11
+          III.6.d <K>ill Account  . . . . . . . . . . . . .12
+          III.6.e <N>etwork Privileges  . . . . . . . . . .12
+          III.6.f <P>rivileged Switch . . . . . . . . . . .12
+          III.6.g <T>wit Status . . . . . . . . . . . . . .12
+          III.6.h e<X>it  . . . . . . . . . . . . . . . . .12
+     IV. User Levels  . . . . . . . . . . . . . . . . . . .12
+          IV.1. Introduction  . . . . . . . . . . . . . . .12
+          IV.2. Normal Users  . . . . . . . . . . . . . . .12
+          IV.3. Aides . . . . . . . . . . . . . . . . . . .12
+          IV.3.a Message Deletion . . . . . . . . . . . . .13
+          IV.3.b Moving Messages  . . . . . . . . . . . . .13
+          IV.3.c Message Route Identification . . . . . . .13
+          IV.3.d Room Elimination . . . . . . . . . . . . .13
+          IV.3.e Empty Room Deletion  . . . . . . . . . . .14
+          IV.3.f Room Editing . . . . . . . . . . . . . . .14
+          IV.3.g Message Insertion  . . . . . . . . . . . .14
+
+
+
+
+
+
+
+
+
+
+
+
+          IV.3.h Floor Creation   . . . . . . . . . . . . .14
+          IV.3.i Room Moving  . . . . . . . . . . . . . . .14
+          IV.3.j Floor Renaming   . . . . . . . . . . . . .14
+          IV.3.k Floor Killing  . . . . . . . . . . . . . .14
+          IV.3.m Aide Command Summary   . . . . . . . . . .14
+          IV.3.n Possible Extra Privileges  . . . . . . . .15
+          IV.4 Sysops . . . . . . . . . . . . . . . . . . .15
+          IV.4.a Message Journaling   . . . . . . . . . . .15
+          IV.4.b Directory Journaling   . . . . . . . . . .15
+     V.  Rooms  . . . . . . . . . . . . . . . . . . . . . .15
+          V.I Room Attributes   . . . . . . . . . . . . . .15
+          V.I.1. Room Archival   . . . . . . . . . . . . . 16
+          V.I.1.a Room Archival: Advanced Usage  . . . . . 16
+          V.I.2. Backbones   . . . . . . . . . . . . . . . 16
+          V.I.3. Directory Status  . . . . . . . . . . . . 16
+          V.I.4. Information Editing . . . . . . . . . . . 17
+          V.I.5. Innominate Status   . . . . . . . . . . . 17
+          V.I.6. Lure Users  . . . . . . . . . . . . . . . 17
+          V.I.7. Moderator   . . . . . . . . . . . . . . . 17
+          V.I.8. Name Change   . . . . . . . . . . . . . . 17
+          V.I.9. Only Invitational   . . . . . . . . . . . 18
+          V.I.10. Privacy Status . . . . . . . . . . . . . 18
+          V.I.11. Temporary Status  . . . . . . . . . . . .18
+          V.I.12. Shared Status   . . . . . . . . . . . . .18
+          V.I.13. Upload/Download Status  . . . . . . . . .19
+          V.I.14. Withdraw Invitations  . . . . . . . . . .19
+          V.I.15. Network Downloadable  . . . . . . . . . .19
+          V.II. Other Room Editing Commands . . . . . . . .19
+          V.III. Three Exceptions . . . . . . . . . . . . .19
+     VI. Files - Upload/Download Capabilities . . . . . . .19
+          VI.1. Origin  . . . . . . . . . . . . . . . . . .19
+          VI.2. Creation  . . . . . . . . . . . . . . . . .20
+          VI.3. User Commands   . . . . . . . . . . . . . .20
+          VI.3.i. Content Listing . . . . . . . . . . . . .20
+          VI.3.ii. File Transfers . . . . . . . . . . . . .22
+          VI.3.ii.a Upload Protocols  . . . . . . . . . . .22
+          VI.3.ii.b Download Protocols  . . . . . . . . . .23
+          VI.4. Advanced Directory Options  . . . . . . . .23
+     VII.<O>ther Commands . . . . . . . . . . . . . . . . .24
+          VII.1. General Purpose  . . . . . . . . . . . . .24
+          VII.2. Other Commands   . . . . . . . . . . . . .24
+          VII.2.a. Deletion . . . . . . . . . . . . . . . .24
+          VII.2.b. Outside Commands . . . . . . . . . . . .24
+          VII.2.b.i. Restrictions . . . . . . . . . . . . .24
+     VIII.Miscellaneous . . . . . . . . . . . . . . . . . .25
+          VIII.1. Wha...?   . . . . . . . . . . . . . . . .25
+          VIII.2. Chatty Questions  . . . . . . . . . . . .25
+          VIII.3. Chat Capture   . .  . . . . . . . . . . .26
+          VIII.4. File Transfers while in Chat Mode . . . .26
+          VIII.5. ESCaping  . . . . . . . . . . . . . . . .27
+          VIII.6  Typing at Keyboard W/User is in Control .27
+             VIII.6.a Sysop Autodial  . . . . . . . . . . .27
+             VIII.6.b Chat Mode . . . . . . . . . . . . . .28
+             VIII.6.c Echo Mode . . . . . . . . . . . . . .28
+          VIII.7. Denizens Of The Status Bar  . . . . . . .28
+          VIII.8. Modem Disabling . . . . . . . . . . . . .28
+          VIII.9. BADWORDS.SYS  . . . . . . . . . . . . . .29
+          VIII.10. Massive Privileges . . . . . . . . . . .29
+
+
+
+
+
+
+
+
+
+
+     IX.  SEA's ARC files . . . . . . . . . . . . . . . . .29
+          IX.1 DeArcing   . . . . . . . . . . . . . . . . .30
+          IX.2 ARC Integrity Checks   . . . . . . . . . . .31
+     X.   PKWARE's ZIP Files  . . . . . . . . . . . . . . .32
+          X.1 DeZIP   . . . . . . . . . . . . . . . . . . .32
+          X.2 ZIP Integrity Checks  . . . . . . . . . . . .32
+     XI.  ZOO Files . . . . . . . . . . . . . . . . . . . .32
+          XI.1 DeZOO  . . . . . . . . . . . . . . . . . . .32
+          XI.2 ZOO Integrity Checks . . . . . . . . . . . .32
+     XII. LZH Files   . . . . . . . . . . . . . . . . . . .32
+          XII.1 DeLZH . . . . . . . . . . . . . . . . . . .32
+          XII.2 LZH Integrity Checks  . . . . . . . . . . .33
+     XIII. GIF Files  . . . . . . . . . . . . . . . . . . .33
+     XIV. Sysop's Editor  . . . . . . . . . . . . . . . . .33
+          XIV.1 Sysop Editor Notes  . . . . . . . . . . . .34
+     XV. Door Support . . . . . . . . . . . . . . . . . . .35
+          XV.1. Administration  . . . . . . . . . . . . . .35
+          XV.1.a. User Administration . . . . . . . . . . .35
+          XV.1.b. Door Administration . . . . . . . . . . .35
+          XV.2 BAT File Support . . . . . . . . . . . . . .37
+          XV.3 Compatability  . . . . . . . . . . . . . . .37
+          XV.4 Automatic Doors  . . . . . . . . . . . . . .38
+          XV.5 New User Doors . . . . . . . . . . . . . . .38
+     XVI. Citadel-86 As A Door  . . . . . . . . . . . . . .39
+     XVII. External Protocol Drivers  . . . . . . . . . . .39
+          XVII.1 Adding drivers . . . . . . . . . . . . . .40
+          XVII.2 Number of drivers  . . . . . . . . . . . .41
+          XVII.3 USR HST 9600 notes . . . . . . . . . . . .41
+     XVIII. Questions & Answers . . . . . . . . . . . . . .42
+     XIX. #event Examples!  . . . . . . . . . . . . . . . .42
+          XIX.1 Automating Backups  . . . . . . . . . . . .43
+          XIX.2 Scheduled Network Sessions  . . . . . . . .45
+          XIX.3 Anytime Network Sessions  . . . . . . . . .46
+          XIX.4 Download Time Limits  . . . . . . . . . . .47
+          XIX.5 Door Time Limits  . . . . . . . . . . . . .47
+          XIX.6 Automatic Doors   . . . . . . . . . . . . .48
+     XX. External Message Editors   . . . . . . . . . . . .48
+     Appendix A: Contributors . . . . . . . . . . . . . . .50
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     I. INTRODUCTION
+        Hello, this is the Operations Manual for Citadel-86.  In this manual
+     we will attempt to explain the daily machinations of Citadel-86 that you,
+     the sysop, will encounter.  We've tried to cover as much as we can,
+     particularly concentrating on areas in which we've encountered numerous
+     questions, as well as other areas where we've noted sysops are not aware
+     of useful options.
+
+        There is something of a fuzzy line between this manual, OPER3.MAN, and
+     the Citadel-86 Installation Manual, INSTALL3.MAN.  Some folk may think
+     that some subjects belong in the Installation Manual rather than here,
+     and vice-versa.  If you don't find something in here, it wouldn't hurt
+     to peruse the Installation Manual.
+
+        Finally, and for the record, Citadel-86 is a direct port of Cynbe ru
+     Taren's CP/M Citadel 2.10 code, as obtained from the C Users Group (CUG).
+     Without Cynbe's genius, Citadel-86 would not exist.
+
+ 
+     II. Help Files
+
+     II.1. Location
+        The supporting help files of Citadel-86, which are simple text files,
+     should be located in the #HELPAREA drive and directory.  As explained in
+     the Installation Manual, you should copy these files to that directory
+     before operating your system, unless you do not plan to provide help to
+     the users of the system.
+
+     II.2. File types
+        There are three types of Help files, identifiable by their extensions,
+     plus some miscellaneous types.
+
+        .BLB: These files contain miscellaneous messages and warnings for use
+               in certain set locations of Citadel-86.
+
+        .MNU: These files contain menus that are normally printed out when the
+              user touches '?' while using Citadel-86.  Usually, these are just
+              lists of options.
+
+        .HLP: These are general help files that are accessible through the
+              .Help <filename> command.  Generally, these files contain terse
+              instructions on the use of the system, including references to
+              other files that may be of help to the user.
+
+     II.3. Optional Customization
+        The Help files as delivered are of a generic nature, and any of them
+     may be modified using a text editor at the Sysop's option.  The .BLB
+     files are generally English descriptions of operations, and can be
+     modified for greater readability/useability with little danger of any
+     problems.
+
+        On the other hand, the .MNU files should not be modified impulsively,
+     since they consist mostly of menu lists.
+
+
+
+                                    -1-
+
+
+
+
+
+
+        The .HLP files are the best candidates for customization, since they
+     are English descriptions, and, for the most part, are not "hard-coded"
+     into Citadel-86; rather, they are usually referenced by the user after 
+     s/he finds a reference to them.  See section II.3 below, too.
+
+        All help files are formatted just like messages when they are
+     displayed to the user; therefore, you should be sure to follow the normal
+     Citadel formatting rules when rewriting Help files, except that you
+     needn't place a lone space on a blank line to enforce that blank line (a
+     difficult thing to do with many editors).
+
+     II.4. Customizable structure
+        Beginning with Version 3.10 of Citadel-86, the help file system has
+     some capabilities not previously found in Citadel.  Originally designed
+     and implemented by Paul Gauthier of Nova Scotia, Canada, the help system
+     of Citadel can now be menu driven at the option of the System Operator.
+
+        Access to the help system has not changed; both <H>elp and <.H>elp are
+     used to access help files.
+
+        In appearance, a help file using the enhanced capabilities will display
+     in this general format:
+
+        <text text text ...
+                   ... end text>
+
+      [a] <help file 1> <description for help file 1.>
+      [b] <help file 2> <description for help file 2.>
+         ...
+      [x] <help file n> <description for help file n.>
+
+      Press RETURN to exit Help, or select an option [a-x]:
+
+        Essentially, when a user selects a help file to read, Citadel-86 will
+     display the text of the help file for the user, and then a list of help
+     files that the user may select from.  Both the description, as before,
+     and the list of options is completely under the System Operator's control.
+     The ambitious System Operator with an ambitious, coherent view of what a
+     Citadel Help System should be can use this to construct what he wants.
+
+        So how do you make the list of options appear at the end of your
+     favorite help file?  By specifying the names at the end of the help file
+     in question, prefixing each name with a "%" and suffixing each file name
+     with its description.  For the above generic example, you would have
+
+       <text text text ...
+                      ... end text>
+
+       %<help file 1> <description for help file 1.>
+       %<help file 2> <description for help file 2.>
+         ...
+       %<help file n> <description for help file n.>
+
+     and a concrete example would be
+
+
+
+
+
+                                    -2-
+
+
+
+
+
+
+        Hi, I'm a meaningless help file, and here are my options:
+
+      %SNEEZING How to sneeze while using Citadel.
+      %EATING How to eat at Utica College.
+      %SLEEPING How to sleep while baking in the heat of Minnesota.
+
+        Finally, this Help System applies only to the .HLP files (explained in
+     II.2), not to any other types of help.  The .HLP files delivered with
+     Citadel-86 use this feature to some extent, but as of this writing have
+     not been customized to take advantage of this feature to the fullest
+     extent possible.  You should at least review the current help system, and
+     if you feel the urge, modify it to better suit the new user.
+
+     II.5 Help File Variables
+        The Hot Help system can display the values of certain CTDLCNFG.SYS
+     parameters at the option of the sysop.  The procedure resembles the manner
+     in which help files may be 'linked' together to make menus: a special
+     character followed by a string of characters naming the requested variable.
+     Assuming the request is valid, the request is replaced by the actual
+     value of the installation.
+
+        The special character is the up arrow, '^'.
+
+        Not all of the CTDLCNFG.SYS parameters are available for display.
+     In fact, only a few are available.  This is the currently supported list:
+
+       Variable Name  |  CTDLCNFG.SYS counterpart (or whatever)
+       -----------------------------------------------------------
+        ^nodetitle    |  #nodeTitle
+       -----------------------------------------------------------
+        ^nodeid       |  #nodeId
+       -----------------------------------------------------------
+        ^nodename     |  #nodeName
+       -----------------------------------------------------------
+        ^nodedomain   |  #nodeDomain
+       -----------------------------------------------------------
+        ^baseroom     |  #baseRoom
+       -----------------------------------------------------------
+        ^mainfloor    |  #MainFloor
+       -----------------------------------------------------------
+        ^sysopname    |  #sysopName
+       -----------------------------------------------------------
+        ^variantname  |  The software name
+       -----------------------------------------------------------
+        ^ulprotocols  |  List of available upload protocols
+       -----------------------------------------------------------
+        ^dlprotocols  |  List of available download protocols
+       -----------------------------------------------------------
+
+        The last two are constructed from your CTDLPROT.SYS file described
+     in the section concerning external protocol drivers in this manual.
+
+     EXAMPLE
+        Suppose you wished to display the name of the sysop somewhere in your
+     help system to the users.  You would then have something like this in the
+     help file(s):
+
+
+
+                                    -3-
+
+
+
+
+
+     
+        " ... And, of course, the sysop bringing this wealth of information to
+     you today is ^sysopname.  And now on to the next contestant on the
+     ^nodename BBS!"
+
+     II.6. Required Customization
+        There are four files that you should customize for your installation
+     as soon as you feel you are prepared to.  They are
+
+        HOURS.HLP: This file should contain the hours that your system is
+     available to users.
+
+        POLICY.HLP: This file should contain your general policy statement
+     regarding your system and its purpose.  The rules of your system could
+     also possibly appear here.
+
+        NOCHAT.BLB: When you have Chat mode turned off on your system, this
+     file is printed to the users when they attempt to use the Chat command.
+
+        UNLOG.BLB: This file must be customized by Sysops running closed 
+     systems only.  When a user without a password attempts to log into
+     such a system, the system will print this file to the would-be user
+     if it exists.  If the file doesn't exist, then a hard-coded message
+     instructing the user to proceed to Mail> and leave a message for
+     Sysop will appear.
+
+     II.7. Optional Help Files
+        There are 190 (!) Help files that do not need to be present
+     during Citadel-86's operation, but if they are will cause Citadel-86 to
+     alter its behavior slightly when a user is on the system.
+
+        The first three files are BANNER.PRE, NOTICE.PRE, and LONOTICE.PRE.
+     These files, if present in your #HELPAREA directory, will be printed
+     when carrier is detected and baud detected (BANNER.PRE) and before
+     BANNER.BLB (see below), after a successful login and before NOTICE.BLB
+     (NOTICE.PRE) (see below), and on logout before carrier is lost, before
+     LONOTICE.BLB is printed (LONOTICE.PRE) (see below).
+
+        The next file is BANNER.BLB.  If this file is present in the #HELPAREA
+     directory when a user gains carrier, this file will be sent to the user.
+     This allows large beginning banners to be used. If the BANNER.BLB file is
+     not present, then the #nodeTitle parameter of CTDLCNFG.SYS will be sent
+     to the user in its place.  However, BANNER.BLB can be overridden even
+     if present; see below.
+
+        The next file is NOTICE.BLB.  If this file is present in #HELPAREA,
+     Citadel-86 will send it to the user upon a successful login.  However,
+     NOTICE.BLB can be overridden even if present; see below.
+
+        The next file is LONOTICE.BLB.  If this file is present in #HELPAREA,
+     Citadel-86 will send it to the user when the user executes any of the
+     Terminate commands before logging them out.  However, LONOTICE.BLB can be
+     overridden even if present; see below.
+
+        Then there is NEWUSER.BLB.  If this file is present, it will be
+     displayed to a prospective new user before* they are allowed to proceed
+     into initial account creation.
+
+
+
+                                    -4-
+
+
+
+        The next sixty (!) files, unlike the balance of the help files, do not
+     reside in #HELPAREA, but instead in the directory BANNERS, and they are
+     named BANNER.0, BANNER.1, ... BANNER.59.  If these files are present, when
+     Citadel-86 recognizes the baud rate of the caller it will select one of
+     these banners, depending on the second of the minute, and display it to
+     the user.
+
+        The next sixty files, like BANNER.0, BANNER.1, etc., also reside
+     in the BANNERS directory.  These are named LONOTICE.0, LONOTICE.1, etc.  If
+     these files are available when a user logs off, one will be selected
+     randomly (by reading the system clock) and presented to the user before
+     carrier is dropped.  If they are not available, then LONOTICE.BLB in
+     the #HELPAREA directory will be presented.
+
+        The next sixty files are also analogous to the BANNER.0, etc., files,
+     but they are named NOTICE.0, NOTICE.1, etc., and will take the place
+     of NOTICE.BLB if they are present in BANNERS.
+
+        The last three files are BANNER.SFX, NOTICE.SFX, and LONOTICE.SFX.
+     These files, if present, are printed after BANNER.BLB (or BANNER.xx),
+     NOTICE.BLB (or NOTICE.xx), and LONOTICE.BLB (or LONOTICE.xx),
+     respectively.  Used in combination with the BANNERS directory, this lets
+     you put a standard prefix or suffix on your variable carrier banners, login
+     notices, and logout notices without forcing you to edit all of those
+     variable things.
+
+     II.8. Adding Help Files
+        Through the use of the .Help command, users may access any file that
+     you place in the #HELPAREA that has a .HLP extension.  Therefore, if you
+     wish to extensively customize and extend the Citadel-86 Help system, you
+     should encounter few problems.
+
+        When a user enters ".Help ?", however, the file HELPOPT.HLP will be
+     printed to them.  Therefore, you should take care to keep that file up
+     to date if you begin adding Help files.
+
+     II.9. New Users
+        You may configure Citadel-86 to automatically generate and deliver a
+     message in Mail> to a user on his or her initial login via two files
+     placed in the #HELPAREA directory.  When the user has finished the initial
+     login process, he or she will discover the Mail> room has a message
+     in it, and Goto will take them to Mail.  The message will have as the
+     author either Citadel, if there is no sysop designated in your
+     installation, or the name of the sysop (#sysopName in CtdlCnfg.Sys).
+
+        The two files are used for two different situation: new users who
+     designate themselves as novices, and new users who claim to be experts.
+     The names of the files are NOVMAIL.BLB for the Mail to the novices, and
+     EXPMAIL.BLB for the Mail to the experts.
+
+        You may write these files just like any other Help file; Citadel-86
+     will format them appropriately when delivering them to the new user.
+
+        This option is also in effect if you are adding new users via the
+     Add User command of the User Admin Menu (Section III.6).
+
+     II.10. Delivered
+        These are the Help files currently contained in RUNTIME.ARC, which
+     you should have.  While we always try to keep these files up to
+     date, we cannot guarantee that they are in keeping with the release
+     version of Citadel-86 that is in RUNTIME.ARC.
+
+                                    -5-
+
+
+
+
+
+
+
+     .BLB files
+     BANNER.BLB   | Placeholder, printed to user on carrier detect.
+     ENTRY.BLB    | Printed to novice users entering a message.
+     NEWROOM.BLB  | Printed to novice users creating a new room.
+     NOCHAT.BLB   | Printed to users using the Chat command when inactive.
+     PASSWORD.BLB | Printed to novice users during new login process.
+     READDATE.BLB | Printed on entry of ".Read New ?" or Old or Reverse or ...
+     UNLOG.BLB    | Placeholder, for closed systems only (see X.4).
+     WCDOWN.BLB   | Printed to novice users using .RX command.
+     WCUPLOAD.BLB | Printed to novice users using .EF or .EXF or .EF
+                  | command.
+     WXDOWN.BLB   | Printed to novice users using .RW command.
+     WXUP.BLB     | Printed to novice users using .EWF command.
+     YMUPLOAD.BLB | Printed to novice users using .EYF command.
+     YMDOWN.BLB   | Printed to novice users using .RY command.
+     ZMDOWN.BLB   | Printed to novice users using .RZ command.
+     ZMUP.BLB     | Printed to novice users using .EZF command.
+
+     .MNU files
+     AIDE.MNU     | Printed when an Aide enters .Aide ?.
+     AIDEFLR.MNU  | Printed when an Aide enters ;Aide ?.
+     CONFG.MNU    | Printed when a user enters .Enter Configuration ?.
+     CTDLOPT.MNU  | Printed when a Sysop enters ? at the Privileged fn: prompt.
+     EDIT.MNU     | Printed when a user enters ? at the entry cmd: prompt.
+     ENTOPT.MNU   | Printed when a user enters .Enter ?.
+     FLOOR.MNU    | Printed when a user enters ;?.
+     MAINOPT.MNU  | Printed when a user enters ? or .? at a room prompt.
+     NETEDIT.MNU  | Printed when the Sysop enters ? at the Net Edit: prompt.
+     NETOPT.MNU   | Printed when the Sysop enters ? at the Net Cmd: prompt.
+     READOPT.MNU  | Printed when a user enters .Read ?.
+     ROOMA.MNU    | Printed when a remote Aide enters ? at the room edit:
+                  | prompt.
+     ROOMS.MNU    | Printed when a Sysop enters ? at the room edit: prompt.
+     SYSOPT.MNU   | Printed when a Sysop enters ? at the Other commands:
+                  | prompt.
+     USEROPT.MNU  | Printed when a Sysop enters ? at the User Admin: prompt.
+
+     .HLP files
+     AIDE.HLP     | Aide help file.
+     AIDEFLR.HLP  | Aide help file for floor commands.
+     BASICS.HLP   | Some basic hints for the novice.
+     ENTER.HLP    | Help for the Enter commands.
+     EXTENDED.HLP | Explains usage of the "." commands.
+     FILES.HLP    | Upload/Download help.
+     FLOORS.HLP   | Floor help for the normal user.
+     FORGET.HLP   | Help on the ZForget room command.
+     GOTO.HLP     | Help on the Goto command.
+     HELD.HLP     | Help on Holding messages.
+     HELPOPT.HLP  | A directory of Help files.
+
+
+
+
+
+
+
+
+
+                                    -6-
+
+
+
+
+
+
+     HIDDEN.HLP   | Help on Hidden rooms.
+     HOURS.HLP    | Place holder, should contain your hours.
+     LOGINOUT.HLP | Help on Logging in and out of the system.
+     MAIL.HLP     | Help on Citadel-86's Mail system.
+     MAINHELP.HLP | Printed when user enters the Help command.
+     NET.HLP      | Help on C86Net.  This can be killed if you are not
+                  | networking.
+     POLICY.HLP   | Place holder, should contain your policy.
+     READ.HLP     | Help on using the Read commands.
+     SKIP.HLP     | Help on using the Skip command.
+     SUMMARY.HLP  | Complete summary of the "." and ";" commands.
+     YMODEM.HLP   | Help on YMODEM.
+
+
+     III. SYSOP PRIVILEGED FUNCTIONS
+ 
+     III.1. Introduction
+        In any system, there must be someone in charge if the system is to be
+     successful, and that person must have special abilities.  In Citadel-86,
+     anyone who has access to the system console may execute many of the Sysop
+     capabilities, and the root of all these evils (for necessary as Sysop
+     powers are, they often lead to evil) is the Privileged Fn: menu (aka
+     the Sysop Menu).
+
+     III.2. Access
+        The Sysop Menu is accessed by typing a ^L (Control-L) at any room
+     prompt.
+
+     III.3. Access Restrictions
+        Access to the Sysop Menu is dependent on the location of the user at
+     the time of attempted use.
+
+        If the user is at the System Console, then the user does not even have
+     to log in to use the Privileged Functions, once the System is in Console
+     mode.  While this may seem somewhat precarious to the prospective Sysop,
+     keep in mind that most installations do not normally run in public
+     locations.
+
+        If the user is a remote user, then access is very restricted.  First,
+     the system must be using the #sysPassword feature (see Section II.5.C of
+     INSTALL3.MAN) of Citadel-86.  Second, the user in question must be an
+     Aide of the system.  Finally, the user must possess the password
+     specified in the #sysPassword file, because the system will query the
+     Aide for the password when the ^L is pressed.
+
+     III.4. Sysop Capabilities
+        Due to the prejudices of the implementor, Citadel-86's Sysop
+     capabilities are neither variegated, overly powerful, or pretty; the
+     users of the system come before the Sysop.
+
+        Be that as it may, the Sysop Menu is exactly what it sounds like: a
+     menu of choices which the Sysop may select from.  After each command
+     is executed, the Sysop is queried for another.
+
+
+
+
+
+
+                                    -7-
+
+
+
+
+
+
+        This is the current official Sysop Menu.
+
+     (CTDLOPT.MNU)
+
+       <A>bort to main menu
+       <B>aud rate selection
+       <C>hat enable/suppress switch
+       <D>ebug switch
+       <E>cho to screen switch
+       <F>ile grab
+       <I>nformation
+       <M>odem mode
+       <N>etworking commands
+       <O>ther commands
+       <R>einitialize modem
+       <S>et date
+       <U>ser Administration
+      e<X>it to MS-DOS
+
+        And here it is in detail.
+
+     III.4.a <A>bort
+        This command exits from the Sysop Menu, leaving you at the current
+     room prompt in CONSOLE mode.  This command is equivalent to the
+     <M>odem mode command (III.4.i) if the user is a remote caller.
+
+     III.4.b <B>aud rate selection
+        This antiquated command allows you to set the baud rate
+     of the serial port to the value that you indicate.  This command has some
+     occasional usefulness in certain debug situations, so it still exists.
+
+     III.4.c <C>hat enable/disable
+        This command acts as a toggle for Chat enabled/disabled.  When Chat is
+     enabled, the System will display a 'C' somewhere on your Status bar, and
+     users using the <C>hat command will be able to page you.  When the toggle
+     is off, users using <C>hat will be greeted by your NOCHAT.BLB file (see
+     Section I, HELP FILES).  Aides using the .Aide Chat command can, however,
+     override this toggle.  A Sysop who really, truly wants privacy can use
+     the +nochat option on the command line to shut Aides out (see Section
+     II.9.a of INSTALL3.MAN).
+
+     III.4.d <D>ebug switch
+        This toggle command alternately turns debug code off and on.  Under
+     normal circumstances, this toggle should always be off.  There is no
+     telling what it will do from version to version, and in general will be of
+     little, if any, help in isolating problems with your installation; it is
+     more of a programming aide.
+
+     III.4.e <E>cho to screen
+        This toggle controls whether any output goes to the screen when the
+     system is in MODEM mode.  This option is, of course, inoperative while
+     the system is in CONSOLE mode.
+
+
+
+
+
+
+
+                                    -8-
+
+
+
+
+
+
+     III.4.f <F>ile grab
+        This command allows the Sysop to "grab" text files that are anywhere
+     on his disk system into his Held Message buffer.  In essence, this gives
+     the Sysop an equivalent ability to a normal user's composing a message
+     offline and then uploading it.  The Sysop may compose a message using
+     his or her favorite editor, and then <F>ile grab it into the Held
+     Message Buffer.  However, there are more flexible and convenient ways of
+     doing this; see Section XII, Sysop Editor.
+
+        To be more precise, the <F>ile grab command appends the text file
+     (or as much as it can digest) to the Held Message Buffer, thus allowing
+     construction of messages from several sources.  Furthermore, none of the
+     other contents of the Held Message are disturbed.  Therefore, you can
+     begin writing a message using Citadel-86, hold the message, <F>ile grab
+     something, and continue onwards.
+
+     III.4.g <I>nformation
+        This command provides information on the current version of Citadel-86
+     that you are running. The information is provided in the following format:
+
+             Citadel-86 VM.mm
+             Net Version N.n
+             Commands version O.ooo
+             Ctdlcnfg.sys version Q
+
+        "Citadel-86 VM.mm" is the same version that is printed on Carrier Detect
+     to users.  The "M" digit indicates the Major Change that Citadel-86 is at
+     ("1" was simply a version that worked under MS-DOS, "2" was the addition
+     of C86Net, "3" the addition of Floors).  The "mm" digits indicates changes
+     made to Citadel-86 that provides normal users with substantial new
+     capabilities.  Typically, "mm" does not change for new Sysop capabilities,
+     cosmetic changes, or the like; it's really nothing more than a gross
+     indicator of the version.
+
+        "Net Version N.n" indicates the network capability of Citadel-86.  "N"
+     indicates any Major changes to the network (the first version of C86Net
+     did not have a number [boy, was it bad!], the second version was "0", and
+     the current is "1").  Due to the expandable nature of C86Net, "N" will
+     probably never change again.  "n" indicates Facility additions.  The
+     association of "n" to Facility addition is documented in the INCREM.* files
+     (which will be described shortly), and detailed in NETWORK3.MAN.
+
+        "Commands version O.ooo" tells the real story behind what version you
+     are running.  "O" is the Enhancement version, and is incremented whenever
+     Citadel-86 is enhanced with a new command or appearance which does not
+     require a change to the "Citadel-86 VM.mm" version.  "ooo" is the Fix
+     version, and is incremented whenever a bug is fixed or another internal
+     change takes place.  "O.ooo" values are, again, documented in the INCREM.*
+     files.
+
+
+        "Ctdlcnfg.sys version Q" tells what version of CTDLCNFG.SYS the system
+     is at.  Typically, this value is only incremented for Major Releases.
+
+
+
+
+
+
+                                    -9-
+
+
+
+
+
+
+        So what are these INCREM.* files?  These files, available on Test
+     System (ask the Sysop for access to them), and possibly other systems,
+     document the changes made to Citadel-86, albeit very tersely.  The format
+     of the documentation is:
+
+     <version change>        <date>          <description>
+
+        <version change> usually refers to the Commands version, although it
+     can refer to any of the version information in the Sysop's <I>nformation
+     command.  <date> is when the version change was written/released.
+     Description is the terse description of what occurred to force the change
+     in version; when it is "???", it means that the Sysop was programming in
+     his sleep again and forgot what he did (here we take a deep breath ...).  
+     Occasionally you will be referred to other files documenting changes in
+     detail.
+
+        The INCREM.* files constitute the most reliable information on
+     upgrades to Citadel-86, short of asking Test System's Sysop himself.
+     Since he is a very grumpy person (born that way, you see), and is not
+     adverse to biting off the heads of anyone who comes near, it is better
+     to peruse these files once you have access to them.
+
+     III.4.h <M>odem mode
+        This command returns the system to MODEM mode.  If you have logged in
+     at the CONSOLE, it is NOT a good idea to use this command until you have 
+     logged out.
+
+     III.4.i <N>etworking commands
+        This option takes you to a submenu that is only available on systems
+     that are using the Network facilities (see II.5.d of INSTALL3.MAN and all
+     of NETWORK3.MAN).  Since NETWORK3.MAN should explain this menu in detail
+     (although perhaps not with the level of organization desired), we shan't
+     go any farther here.
+
+     III.4.j <O>ther commands
+        This option will deliver you to another submenu that is covered in
+     Section VII, OTHER COMMANDS MENU.
+
+     III.4.k <R>einitialize modem
+        This option allows you to reinitialize the modem.
+
+     III.4.l <S>et date
+        This function lets you set the date of the system.  This is currently
+     disabled.
+
+     III.4.m <U>ser Administration
+        This option leads to another menu system, which is concerned with User
+     Administration duties.  See Section III.6.
+
+     III.4.n e<X>it to MS-DOS
+        Finally, this command should be used to take Citadel-86 down
+     gracefully. The current user is logged out if present, and the system 
+     will then attempt to deactivate itself.
+
+
+
+
+
+
+                                    -10-
+
+
+
+
+
+
+     III.5 Undocumented Sysop Menu Commands
+        There are always one or more undocumented commands floating around in
+     the Sysop Menu.  These are, without exception, debug commands for use by
+     the programmer(s) of Citadel-86, and are not guaranteed to exist from one
+     version to another of Citadel-86.  To expand even more upon this
+     frightening thought, the safety and integrity of your systems are not
+     guaranteed if you start screwing around with these options.
+
+        So don't.
+
+     III.6 User Administration
+        Starting with Citadel-86 V3.14, those Sysop level commands dealing
+     with various user privileges have been moved to their own menu, due to
+     overcrowding of the main Sysop Menu.  These options, as noted above, are
+     reached from the Main Sysop Menu via the <U>ser Administration command.
+
+        (USEROPT.MNU)
+
+           <A>dd new user
+           <D>oor privileges switch
+           <E>ndless User (permanent account)
+           <K>ill account
+           <N>et privileges switch
+           <P>rivilege switch (aide set/clear)
+           <T>wit switch
+          e<X>it to main sysop menu
+
+     III.6.a <A>dd user
+        This option lets you add new users to your system without logging out 
+     of the system yourself.  This is particularly useful for closed systems, 
+     especially when the sysop is performing maintenance from remote and is 
+     utilizing the remote sysop functionality.  The process is as if a new 
+     user were actually logging in, but after the normal questions are asked, 
+     the sysop is asked if the new user should be given door and, if 
+     appropriate, network privileges.
+
+     III.6.b <D>oor Privileges
+        Each account on your system may be set to have, or not have, Door
+     privileges.  A Door is a program, typically run from a BBS, which allows
+     the user to do something.  Citadel-86 Doors capability is detailed in
+     Section XIII of this manual.  A user must have Door Privileges, assigned
+     using this option, in order to use Doors on your system.
+
+     III.6.c <E>ndless User (permanent account)
+        You may set any account on your system to be permanent.  This means
+     that it will not be automatically reused when new users log in and old
+     users don't log in for a long period of time (normally, old accounts,
+     if not used for a long time, will be recycled).  The only problem is
+     if you should set every account to being permanent, then old accounts,
+     even though permanent, will be recycled.
+
+        An important implication is if you set a significant amount of accounts
+     to be permanent, the scroll time on the other (temporary) accounts will
+     become noticeably faster.
+
+
+
+
+
+                                    -11-
+
+
+
+
+
+
+     III.6.d <K>ill Account
+        The time-honored function, Kill account, is accessed by typing K at
+     the Sysop Menu.  Please don't kill the account of the person currently
+     logged in.  Besides being rude, it won't work.
+
+     III.6.e <N>etwork Privileges
+        If you are running a network Citadel-86, you may use this option or
+     the option in the Network Menu (see NETWORK3.MAN) to assign Network
+     privileges to your users.  See NETWORK3.MAN for full details.
+
+     III.6.f <P>rivileged switch
+        The creation of those drudges, Aides, takes place through this
+     command.  Anyone who is forced to become an Aide should also be forced
+     to read AIDE.HLP (conveniently written in pidgin Swahili), which details
+     most of the Aide capabilities.  As noted, Aides given the system password
+     will gain access to this menu.
+
+     III.6.g <T>wit Status
+        First, a caveat: this was added reluctantly and may go away some day.
+     Anyone who has been given Twit status no longer may save messages -- but
+     they won't know it.
+
+     III.6.h e<X>it
+        This option returns you to the Main Sysop Menu.
+
+     IV. USER LEVELS
+ 
+     IV.1 Intro to User Levels
+        Citadel-86 (and related systems) are often popular with users because
+     they do not have the superfluous user levels that many other types of BBS
+     software have.  We believe that this lets the user feel a little more free
+     with the system; the lack of direct control makes them willing to partici-
+     pate in the system earlier.
+
+        However, this does not mean that Citadel-86 completely lacks in user
+     levels.  Citadel-86 uses the same 3-level hierarchy that came with the
+     original CP/M Citadel.  At the bottom is the normal users, with the usual
+     privileges of reading and writing.  Next comes the Aides, who are users
+     with certain caretaker powers.  Finally, the Sysops and remote sysops,
+     who can do a little more.
+
+     IV.2 Normal Users
+        Normal users are created, as you might guess, by simply logging in.
+     They may read, write, and upload to all rooms they have access to.
+
+     IV.3 Aides
+        Aides are created using the <P>rivilege switch on the User
+     Administration Menu (see Section III.4.l).  Aides are users who act as
+     caretakers for the Sysop.  Their abilities and methods are summarized in
+     AIDE.HLP and AIDEFLR.HLP as well as here.  They have access to the
+     private Aide> room.
+
+
+
+
+
+
+
+
+                                    -12-
+
+
+
+
+
+
+     IV.3.a Message Deletion
+        Aides may delete any message in the system with the exception of
+     messages in Mail>.  Messages which are deleted will be moved to the Aide
+     room, and will be preceded by a message from Citadel noting the name of
+     the Aide who performed the deletion.
+
+        Messages in Mail> which are deleted by Aides (Aides only have access
+     to their own Mail> room) remain in Mail> and show up in the Aide> room.
+
+        A message is deleted by <P>ausing the target message during printout,
+     and restarting message output by pressing 'D'.  The message will repeat,
+     and then the system will ask if you wish to Delete the message, Move the
+     message, possibly check the route of the Message (if the message came from
+     the network), Copy the message to another room, or Abort the operation.
+     Selecting D will cause the message to be deleted.
+
+     IV.3.b Moving Messages
+        Aides may move any message from its current room to another room.  The
+     moved message will also appear in the Aide> room, along with a message
+     regarding who moved the message.  Messages in Mail> may not be moved
+     successfully.
+
+        A message is moved just like a message is deleted, by selecting 'M'
+     when the system asks if you wish to Delete, Move, or Abort the operation.
+     The Aide is then asked which room to move the message to.  If one or more
+     messages have been moved since the system was brought up, an empty
+     Carriage Return will put the message in the last room a message was moved
+     to.  The Aide does not need to type the entire name of the room to move
+     the message to; a partial name is sufficient, so long as it is unique
+     within the system.
+
+        Moving a message to an auto-net room does not cause that message to
+     become a net message. Moving a message to an archived room does not cause
+     that message to be archived.  Moving a message to an anonymous room does
+     not cause that message to become anonymous.
+
+     IV.3.c Message Route Identification
+        The route of a net message from another system can be discovered by
+     Aides, again by using the <P>ause-D sequence.  When this is executed on
+     a net message, the Aide will be faced with the additional option of
+     'R'.  Selecting R will cause Citadel-86 to discover what system passed
+     this message on to you.  This can be useful for attempting to detect
+     network vortices (see NETWORK3.MAN for a thorough explanation of C86Net
+     and Vortices).
+
+     IV.3.d Room Elimination
+        Aides may kill any room in the system, with the exception of the
+     Mail>, Aide>, and #baseRoom rooms.  A message recording this fact will be
+     placed in the Aide> room.
+
+        A room is killed by an Aide by being present in that room and execut-
+     ing the .Aide Kill command.
+
+
+
+
+
+
+
+                                    -13-
+
+
+
+
+
+
+     IV.3.e Empty Room Deletion
+        Aides may execute a command that deletes empty, temporary rooms from
+     the system.  A message will be left in the Aide> room listing the rooms
+     deleted by the command.
+
+        The .Aide Delete command is used for this purpose.
+
+     IV.3.f Room Editing
+        Aides may edit the rooms of a system, with the exception of the Mail>,
+     Aide>, and #baseRoom rooms.  See Section V. ROOMS for more on these
+     actions.  To edit a room, either <A>ide or .Aide Edit room will allow you
+     to edit the room.  However, Aides may not set the full range of attributes
+     associated with a room; Section V should cover this in full.
+
+     IV.3.g Message Insertion
+        An Aide may insert the last message deleted into a room.  The .Aide
+     Insert message command allows this.
+
+     IV.3.h Floor Creation
+        Aides may create floors at will.  New floors are placed in the first
+     empty floor slot, and there is no arbitrary limit on the number of floors
+     in a system.  Floor names may only be 19 characters in length, and each
+     must be unique within the system of floor names.  Floors may not be
+     created while in the Aide>, Mail>, or #baseRoom rooms, because the room
+     that a floor is created in will automatically become a room on that floor.
+
+        ;Aide Create-floor creates a floor.
+
+     IV.3.i Room Moving
+        Aides may move rooms from one floor to another, with the exception of
+     the Aide>, Mail>, and #baseRoom rooms.  The Aide should be in a room that
+     is on the floor that the rooms should be moved to.  Once the command is
+     completed, a message will be placed in the Aide> room detailing what rooms
+     have been moved where.
+
+        The command is ;Aide Move-rooms.  The system will prompt for the names
+     of rooms to be moved to the current floor.  Room names must be specified
+     in full.
+
+     IV.3.j Floor renaming
+        The ;Aide Rename-floor allows an Aide to rename a Floor.  The name must
+     be unique amongst the floors.
+
+     IV.3.k Floor Killing
+        Aides may delete Floors.  When this command is executed, the current
+     floor is assumed to be the target; the #baseFloor floor may not be killed.
+     The Aide will be asked if the rooms on the floor should be killed outright,
+     or placed on the #baseFloor.
+
+        The command is ;Aide Kill-floor.
+
+     IV.3.m Aide Command Summary
+
+      .Aide Delete empty rooms
+      .Aide Edit current room
+      .Aide Insert pulled message
+      .Aide Kill current room
+
+
+                                    -14-
+
+
+
+
+
+
+      ;Aide Create floor
+      ;Aide Delete empty floors
+      ;Aide Kill floor
+      ;Aide Move rooms to floor
+      ;Aide Rename floor
+
+     IV.3.n Possible extra privileges
+        Depending on the configuration of the system, Aides may have additional
+     privileges that the users do not.
+
+        First, Aides may be the only users able to create new rooms.
+
+        Second, Aides may be the only users able to use the Mail> room.
+
+     IV.4 Sysops
+        There are potentially two different Sysops.
+
+        First, and always, there is the person at the system console.  Certain
+     Sysop abilities can be executed without being logged in, notably the
+     Sysop Menu functions (Section III: SYSOP PRIVILEGED FUNCTIONS); the rest,
+     what few there are, require that the Sysop be logged in.
+
+        Second, when the #sysPassword parameter is in use, an Aide in
+     possession of the system password may use it to become a remote Sysop.
+     A Remote Sysop has most of the capabilities of an Aide at the System
+     Console, including access to the entire Sysop Menu, and complete control
+     of room editing (see Section V: ROOMS).
+
+        The only other options available to a Sysop that are not available to
+     Aides, outside of the Sysop Menu, follow.
+
+     IV.4.a Message Journaling
+        Sysops may select individual messages to be placed in normal MS-DOS
+     text files for future reference; this is called Journaling. This command
+     is executed by <P>ausing the target message during output, and restarting
+     it with a 'J'.  The system will then ask for the name of a file to place
+     the text of the message in.  If the Journaling command has been used
+     before, then an empty Carriage Return will cause the message to be
+     appended to the last file specified.
+
+     IV.4.b Directory Journaling
+        Sysops may Journal the directories of directory rooms.  The process is
+     the same as Message Journaling.
+                                             
+
+     V. ROOMS
+
+     V.I Room Attributes
+        Rooms are the basic foundation of the Citadel-86 system, acting as the
+     main organizer and container of the messages of the system; the collection
+     of rooms of a Citadel-86 essentially constitutes the character of the
+     system.
+
+
+
+
+
+
+
+                                    -15-
+
+
+
+
+
+
+        Rooms on a Citadel-86 can have a number of attributes associated with
+     them, each working independently, and most do not interfere with each
+     other's usefulness.  With the exception of the first three rooms of a
+     system, there should not be any restriction on what rooms can have what
+     attributes.  So let's discuss what a room can do, besides contain messages.
+
+        In order to set any of these attributes, the room must be edited by
+     an Aide.  If the Aide is accessing the system remotely and has not used
+     the Remote Sysop Password, then the Aide's powers are restricted, while
+     an Aide at the system console or a Remote Sysop's powers are not
+     restricted.  In the following discussion, the option letter used to
+     activate or deactivate an attribute is given along with the explanation
+     of the feature.
+
+     V.I.1 Room Archival
+        <A>rchive status, a Sysop-only option, allows the Sysop to save all the
+     messages that are entered into a room, whether locally or via the network,
+     to a normal MS-DOS text file (formatted for a 80 column user).  When this
+     option is activated, the Sysop is asked for a filename that will contain
+     the saved messages.  This file may reside anywhere on the system.  An
+     initial archive of the room will take place, and thereafter all messages
+     entered into this room will be saved to the file upon entry.  This includes
+     messages received over C86Net.
+
+        Messages that are deleted from the room will NOT be deleted from the
+     archive file, and, similarly, messages that were entered in another room
+     and subsequently moved to the archive room will not be saved to the
+     archive file, except on initial archive.
+
+     V.I.1.a Room Archival: Advanced Usage
+        Typically, the name (and/or location) of the archive file should be
+     changed by editing the room.  However, the impatient or secretive Sysop
+     can change the name of the archive file in another way.  The names of the
+     files used for room archival are kept in the text file CTDLARCH.SYS, which
+     resides in the #ROOMAREA directory.  CTDLARCH.SYS is generated and
+     maintained by CTDL.EXE, and should not be disturbed while CTDL.EXE is in
+     operation (i.e., through <O>utside commands).  When CTDL.EXE is down,
+     however, the Sysop may edit CTDLARCH.SYS to his liking.  Adding entries
+     will be ineffective; changing entries works.  The format is
+
+        <room slot number> <file name>
+
+     The room slot number should not be changed.  The filename, of course, may
+     be changed.
+
+        Do not delete entries from this file, either.
+
+     V.I.2 Backbones
+        Please see NETWORK3.MAN for the use of the <B>ackbone status option.
+     This is a Sysop only option.
+
+     V.I.3 Directory status
+        Please see Section VI.y for details on the upload/download capabilities
+     of Citadel-86 that are made available through the <D>irectory status
+     option of room editing, a Sysop only option.
+
+
+
+
+                                    -16-
+
+
+
+
+
+
+     V.I.4 Information Editing
+        The <E>dit Information option allows any aide to edit the information
+     associated with this room.  If Information already exists for this room,
+     the aide is asked if he or she wishes to edit the already existing
+     Information.  In any case, the Aide is placed in the Citadel-86 message
+     editor and allowed to create new Information for the current room.  If
+     the Aide should <A>bort the entry, then any prior Information on the room
+     is not disturbed; a <S>ave will replace prior Information with the
+     Current Information, including updating the CTDLINFO.SYS file resident
+     in your #ROOMAREA directory.
+
+        Since the first three rooms of a system (#baseRoom, Aide>, and Mail>)
+     cannot be edited, the sysop may manually place appropriate entries in
+     CTDLINFO.SYS if needed.  CTDLINFO.SYS is a text file of entries.  Each
+     entry begins with the line "#room <roomname>" and ends with a blank line,
+     with all information between the first and last line being the Information
+     for the named room.  So, for instance
+
+     #room Mail
+     This is the Mail room, gentleuser.
+
+     would be a perfectly adequate entry, remembering to keep blank lines
+     present in the file.
+
+     V.I.5 Innominate status
+        The <I>nnominate option allows any aide to designate a room to be an
+     Anonymous room.  A room which has been designated Innominate behaves
+     differently from a normal room in the following ways:
+
+       o All messages entered in it locally are saved with the author's name
+     being "****".  Editing a room back to normal ("authored") status does NOT
+     restore those messages' authors.
+
+       o Echo to screen is suppressed during message entry in Innominate rooms.
+
+     V.I.6 Lure users
+        Any aide may use the <L>ure users option to, in effect, invite any
+     user into any room except the Aide room.  The user(s) specified are given
+     access to the room being edited.  If they already had access, no change
+     is made to their status.
+
+     V.I.7 Moderator
+        Any room may have one moderator attached to it.  A moderator is
+     effectively an Aide for that single room, able to edit the room and delete
+     messages.  The user specified does not need any special privileges.  Any
+     Aide may change the moderator setting for a room via the <M>oderator
+     command.
+
+     V.I.8 Name Change
+        Any Aide may change the name of a room via the <N>ame change command
+     while editing a room.  There are a couple of constraints on the name of a
+     room.
+
+
+
+
+
+
+
+                                    -17-
+
+
+
+
+
+
+       o It must be 19 characters or less long.  A zero length name IS viable,
+     but be aware that if the room ever becomes empty, there is no way to
+     access that room.
+
+       o It must be unique within the system.
+
+     V.I.9 Only Invitational
+        A room can be set to one of three status settings insofar that users
+     are allowed access to it.  A room may be Public, in which case all users
+     have access to the room.  If a room is Private, then all users that know
+     the name of the room may gain access to the room simply by typing ".Goto
+     FULLROOMNAME". (See Section V.I.9 for the Public/Private settings.)
+     Or a room may be Invitational.  Users can only gain access to such a room
+     by being invited (i.e., <L>ured -- see Section V.I.5).  Even if they know
+     what the name of the room is, they cannot successfully .Goto it.
+
+        A room can be either Public, Private, or Invitational, but not any
+     combination.  It would perhaps be more logical to combine the <O>nly
+     Invitational command (this one), with the following command, <P>rivacy
+     status.
+
+     V.I.10 Privacy Status
+        Any Aide may set the <P>rivacy status of a room.  Section V.I.8
+     provides an adequate explanation of privacy and rooms.
+
+     V.I.11 Temporary Status
+        Any Aide may set the <T>emporary status of a room.  Any room may be
+     either Temporary or Permanent.  A Temporary room is a room that may be
+     deleted by any of three events when it becomes empty (i.e., no messages
+     in the room):
+
+       o An Aide executes a .Aide Delete empty rooms command;
+
+       o The number of rooms in use in the system reaches #MAXROOMS and another
+     room is created;
+
+       o The system is reconfigured (see Section ??? [installation manual] on
+     the CONFG program).
+
+        A Permanent room may only be deleted by a specific .Aide Kill Room
+     command.
+
+        All Directory rooms are Permanent.  Otherwise, if Permanent status is
+     desired for any room, it must be explicitly set by use of the <T>emporary
+     status command.
+
+     V.I.12 Shared status
+
+        The Sysop may use the <S>hared status command to affect the current
+     room's Network status, including which systems to network with and which
+     should not be networked with.  Please consult NETWORK3.MAN for more
+     details.
+
+
+
+
+
+
+
+                                    -18-
+
+
+
+
+
+
+     V.I.13 Upload/Download status
+        The Sysop may use the <U>/D status command to change the upload/down-
+     load status of a directory room.  See Section VI.y for more details on 
+     this command.
+
+     V.I.14 Withdraw Invitations
+        On occasion, users need to be evicted from a room.  The <W>ithdraw
+     Invitations command allows any Aide to evict users from a room.  This
+     command is certainly not useful for Public rooms, and not entirely
+     effective for private rooms, but can be very useful for Invitational
+     rooms.
+
+     V.I.15 Network Downloadable
+        The Sysop may use the <Z> command to designate whether or not a
+     directory room may be accessed via the network for download purposes.
+     See Section VI.y for more details on this command.
+
+     V.II Other room editing commands
+        There are two other commands that an Aide may use while editing rooms.
+     The first is <V>alues, which gives the current positive attributes of the
+     room.  The second is e<X>it editing, for exiting from the editing process.
+     When substantive changes have been made to a room, a message is left in
+     the Aide> room detailing the changes made.
+
+     V.III Three exceptions
+        Three rooms cannot be modified through editing (or any other process),
+     and these rooms are
+
+       o #baseRoom>.  This room is always a Public, Permanent room.
+
+       o Mail>.  This room is a very special room, but essentially boils down
+     to Public, Permanent, with some Shared capabilities.
+
+       o Aide>.  This room is a Permanent, Invitational room, with Invitations
+     automatically issued to Aides.
+
+     VI.UPLOAD/DOWNLOAD CAPABILITIES
+
+     VI.I Origin
+        According to what rumors we have gathered from Seattle, the origin of
+     Citadel, the original Citadel installations did not have any upload/down-
+     load facilities; they were pure message systems.  Reportedly, "directory
+     rooms" were kludged in at a later time as an afterthought by an early
+     author.
+
+        They must be one of the more successful kludges in history.  Directory
+     rooms, which serve as "windows" to the host operating system's file system
+     in Citadel-86, have proven to be extremely useful constructs, allowing
+     access to specified parts of MS-DOS's file system while not disrupting
+
+
+
+
+
+
+
+
+
+
+                                    -19-
+
+
+
+
+
+
+     Citadel's structure with such excess baggage as "file sections".  The room
+     structure allows easy division of files into their subject areas, and this
+     integration into the room structure offers the additional, and very
+     useful plus, of allowing conversation relevant to those files to coexist
+     within easy reach of the user.  Compare this to, say, Fido or RBBS, which
+     force you to go from a file section to a message section in order to
+     discuss a file, and the advantages of Citadel (at least to this author)
+     become obvious.
+
+     VI.2 Creation
+        A directory room is created by editing an existing room to directory
+     status.  This is an operation that only a Sysop can do, using the .Aide
+     Edit command.  Once at the room edit prompt, the Sysop should select the
+     <D>irectory option.
+
+        Citadel-86 will ask if you wish to activate a directory for this room,
+     and you should of course answer yes.  It will then ask for the name of a
+     directory to associate with this directory room.  You should answer with
+     the name of a normal MS-DOS directory.  You may specify a drive, and the
+     directory may be a subdirectory of the current directory, or it may be
+     an absolute specification; there is no limit.  If you simply hit a
+     Carriage Return, Citadel-86 will assume that you mean the current
+     directory on the current drive.
+
+        If you specify a directory that does not exist, Citadel-86 will ask
+     you if it should be created, and if you answer affirmatively, it will
+     be created.  Otherwise, you will be asked again.
+
+        Finally, the system will ask if the room will accept uploads and allow
+     downloads (these options can be accessed while editing rooms separately
+     by selecting the <U>/D option).  This gives you some control over the
+     behavior of the directory room.  When either of these options are "off",
+     only a sysop can upload or download or read the directory, depending on
+     the option.
+
+        A file room is identified by the character at the end of the room name.
+     Normal rooms have a ">".  Normal directory rooms have a "]", while
+     directory rooms which are also shared with other systems (which has no
+     meaning insofar as the directory goes) have a ":".
+
+     VI.3 User commands
+        The user is provided with two sets of commands for accessing the
+     directory of a room.
+
+     VI.3.i Content listing
+        When a listing of the files in a room is requested, only the visible
+     files are listed.  Hidden files and subdirectories in the directory are
+     not listed.
+
+        There are two commands for displaying a listing of the files accessible
+     in a room.  The first command is
+
+         .Read Directory <file-spec> <date-spec>
+
+
+
+
+
+
+                                    -20-
+
+
+
+
+
+
+        If <file-spec> is empty, then all files are listed; otherwise, only 
+     those files matching <file-spec> are listed.  For a full explanation of
+     <file-spec>, see X.3.c.
+
+        <date-spec> allows the user to specify files matching <file-spec> to
+     also meet a date requirement.  "<" is used to specify files dated before
+     a given date, while ">" is to specify after the given date (inclusive).
+     If the user does not specify a date after the ">" or "<", then the date
+     of their last logon is used.
+
+        Files are listed for the user as <name>
+     <block size>, where block size is the size of the file in 128 byte blocks,
+     which, not coincidentally, is the size of blocks used by XMODEM for file
+     download.
+
+        The second command is
+
+         .Read Extended-directory <file-spec> <date-spec>
+
+        which allows the user to see file descriptions "attached" to files.
+     Files are listed in this format
+
+     <name>  <size> | <description> <file date>
+
+        which is formatted to the user's display.  Each file starts on a new
+     line, thus providing a readable format.
+
+        The descriptions for the files in a room are kept in a normal text file
+     named FILEDIR.TXT, which must reside in that directory.  If the sysop
+     wishes to create file descriptions for a set of files, the format of
+     FILEDIR.TXT is simple, and it is
+
+             <name><one or more spaces><description on one line>
+             . . .
+
+        FILEDIR.TXT must be in alphabetical order (case-insensitive) in order
+     to function correctly.  Each description may be no more than 7K long, and
+     must reside on the same line as the name.
+
+        The FILEDIR.TXT for any given directory room is updated by Citadel-86
+     whenever a file is uploaded to that directory room, thus minimizing the
+     maintenance chores of a Sysop with numerous directory rooms.
+
+        You may place comments in a FILEDIR.TXT simply by placing before each
+     comment line a ';'.  Since these comments are displayed to the user during
+     the use of .Read Extended, this lets the sysop embed informative messages
+     within the file directory, such as "These files are for Amigas only."
+     In FILEDIR.TXT, the above would be ";These files are for Amigas only."
+     You may scatter these comments about wherever you wish in FILEDIR.TXT.
+     Comments are the only exception to the sorting rule mentioned above,
+     Citadel-86 only prints such lines during processing and does nothing else
+     with them.
+
+
+
+
+
+
+
+                                    -21-
+
+
+
+
+
+
+        Finally, if there is a file missing from FILEDIR.TXT (or if
+     FILEDIR.TXT itself is missing), there is NOTHING to worry about.  There
+     will simply be no file description displayed for the affected files.
+     Further, excess entries in a FILEDIR.TXT do no harm to the listing
+     (however, if you are fastidious you should research the Citadel-86 utility
+     CULLDIR.EXE).
+
+        The only weakpoint in FILEDIR.TXT is the fact that the entries must be
+     in alphabetical order.  If they are not, file descriptions will not
+     display at all.
+
+     VI.3.ii File transfers
+        The second set of commands for accessing the directory of a room are
+     those concerned with uploads and downloads.
+
+     VI.3.ii.a Upload Protocols
+        There are three protocols supported for the upload of files, XMODEM,
+     YMODEM, and WXMODEM.  While this subject is covered in the FILES.HLP
+     help file, we'll go over it here, too.  (External drivers for uploads are
+     covered in section XV of this manual.)
+
+        The command format for uploading a file via XMODEM is
+
+             .Enter File     or .Enter Xmodem File
+
+        The command format for uploading a file via YMODEM is
+
+             .Enter Ymodem File
+
+        The command format for uploading a file via WXMODEM is
+             .Enter Wxmodem File
+
+        After typing in any of these commands, Citadel-86 will prompt the user
+     for the name of the new file.  If a file already exists by that name in
+     the directory, the upload is aborted at this point; if the file name is
+     not acceptable for any other reason (for instance, the name is special to
+     DOS, such as CON:, or the user has attempted to specify a drive name),
+     the upload is aborted.
+
+        Once the filename is accepted, Citadel-86 will prompt for a description
+     of the file.  If the subsequent upload is a success, the directory's
+     FILEDIR.TXT is updated with the name and description of the new file.
+     Citadel-86 will then ask if the user is ready to start the upload.  If the
+     user responds negatively, the upload is aborted; otherwise, the chosen
+     protocol starts in receive mode.
+
+        YMODEM's BATCH mode is NOT supported for uploads by Citadel-86, for the
+     reason that it would be very easy for a malicious user to abuse the system
+     through the upload of numerous files.
+
+
+
+
+
+
+
+
+
+
+                                    -22-
+
+
+
+
+
+
+     VI.3.ii.b Download Protocols
+        Four protocols are supported for downloads, XMODEM, YMODEM, WXMODEM,
+     and straight text transfers, which is the default transfer protocol
+     if neither of the other three are specified (unlike the upload command, 
+     where XMODEM is the default).  External protocol drivers for file
+     downloads are covered in Section XV of this manual.
+
+        Command format is
+
+             .Read [protocol] <Binaryfile|Textfile> [Formatted]
+
+        XMODEM is specified using <X>modem.
+
+        YMODEM is specified, of course, using <Y>modem.  When downloading
+     files via YMODEM, only BATCH mode is available, even if only a single
+     file is to be downloaded.
+
+        WXMODEM is specified using <W>xmodem.
+
+        The Binaryfile and Textfile specifications are synonyms, being a
+     holdover from the CP/M days of Citadel.  However, the Formatted option
+     can only be used with the Textfile option.  If a file is requested using
+     the Formatted option, the file(s) requested (which Citadel-86 assumes to
+     be normal MSDOS text files) will be formatted to the user's screen.
+     Otherwise, the file is simply sent on a byte-by-byte basis to the user.
+
+        When an acceptable download command is entered, Citadel-86 will prompt
+     for a filename from the user, which can be a <file-spec> (see VI.3.iii).
+     If more than one file matches <file-spec>, then all those files will be
+     sent using the specified protocol.  In the case of XMODEM, this will
+     probably be less than successful.  A <date-spec> may also be entered
+     at the same time as a file spec, thus allowing the use of BATCH protocols
+     in combinations with file specs.
+
+     VI.3.iii <file-spec>
+        A <file-spec> for Citadel-86 can range from being a single file (like
+     "HELLO.TXT") to an ambiguous file specification in MSDOS format ("*.TXT"),
+     to a list of files mixing both single file specifications and ambiguous
+     file specifications.  For example,
+
+             .Read Extended-directory *.MAN HELP.ME C*.HLP
+
+     would display all the files that match any of those specifications.  Each
+     part of the specification should be separated from the next by one or more
+     spaces.
+
+     VI.4 Advanced Directory Options
+        The listing of directory rooms and their associated MS-DOS
+     specifications is kept in a normal MS-DOS text file named CTDLDIR.SYS,
+     which resides in the #ROOMAREA directory.  While Citadel-86 automatically
+     maintains this file at all times, not requiring any Sysop interference,
+     the inquisitive Sysop can manipulate this file.
+
+
+
+
+
+
+
+                                    -23-
+
+
+
+
+
+
+        The contents of this file is in this format
+
+        <room #> <directory specification>
+
+        The room # field should never be touched.  However, the second field
+     can be changed when Citadel-86 is not up, thus changing the directory
+     associated with the room specified by the room number.
+
+        Really, though, there's not much reason to change this file manually.
+
+     VII. OTHER COMMANDS MENU
+ 
+     VII.1 General Purpose
+        The purpose of the Other Commands submenu of the Privileged Functions
+     Sysop menu is to allow the Sysop access to commands that may be unique to
+     the installation of Citadel in operation.
+
+     VII.2 Citadel-86 Other Commands
+        Citadel-86 supports only two commands from this sub-menu -- a haphazard
+     effort, indeed.
+
+     VII.2.a Deletion
+        The <D>elete File option allows the sysop to delete any file in the
+     MS-DOS file system.  Only a single file at a time may be deleted;
+     ambiguous file names are not supported.
+
+     VII.2.b Outside Commands
+        The <O>utside Commands option allows the sysop to run programs from
+     within Citadel-86 (but not concurrently).  Since it is sometimes
+     inconvenient to take down Citadel-86 (e.g., from remote) in order to
+     execute some utility or program, this option is useful.
+
+        When this option is selected, Citadel-86 will write a temporary
+     CTDLTABL.SYS file (see INSTALL3.MAN, Section II.3.a) to disk, and then
+     prompt you for a command line.  You may then attempt to run any program
+     that you wish from the command line, simply as if you were running from
+     the MS-DOS command level.
+
+        The DOS shell is accessible at this point by simply typing a carriage
+     return.  If you should try to bring this installation up while Citadel-86
+     is up, you will (or should) find that the system won't come up.  This
+     is because Citadel-86 generates a "lock file" during <O>utside command
+     execution.  When you try to bring Citadel-86 up, it will check for the
+     existence of the file CTDLLOCK.SYS, and if found, the system will print
+     an error message and refuse to come up.  In the rare instances that a
+     CTDLLOCK.SYS file exists when it shouldn't (for instance, losing power
+     while executing an <O>utside command), simply delete it and try to
+     bring Citadel-86 up.
+
+     VII.2.b.i Restrictions
+        There are two actions that you should avoid taking while using the DOS
+     shell from within Citadel-86.
+
+
+
+
+
+
+
+                                    -24-
+
+
+
+
+
+
+        First, do not delete any of the Citadel-86 data files.  These are the
+     *.SYS files, such as CTDLMSG.SYS, CTDLLOG.SYS, CTDLROOM.SYS, etc.
+     However, you may delete or change the CALLLOG.SYS file (this was not true
+     in earlier versions of Citadel-86).
+
+        Second, do not run any of the Citadel-86 utilities which change the
+     nature of the Citadel-86 data files.  These utilities include DATACHNG,
+     RECOVER1, EXPAND, RECOVER2, etc.  You may run without fear those utilities
+     which only show various things, like CLOG, CLRAY, etc.  In general, if you
+     are not sure, either take your Citadel-86 down or experiment on a small
+     test system.
+
+     VIII. MISCELLANEOUS SUBJECTS
+ 
+     VIII.1 Wha....?
+        Like anything that grows through accretion rather than planning,
+     Citadel-86 has accumulated a clutch of features that don't really fit
+     into any category.  So, rather than trying to create some categories
+     that don't really fit into the great plan of Someone Out There, we
+     decided to write a chapter with a central theme of mishmash that would
+     contain all those features that don't really fit anywhere in particular.
+     So, with no further shampoo ...
+
+     VIII.2 Chatty Questions
+        When you drop into <C>hat mode to talk to a user, you will be faced
+     with one question before you're actually allowed to communicate with
+     your victim.  The question is:
+
+        Treat modem as dumb caller (if answering chat type 'Y')?
+
+        Denigrating as this may seem, it is an accurate question.  There are
+     two ways in which you may find yourself in Chat Mode.  The first is by
+     answering a Chat request by a user.  Since the user has called your
+     board and is using it, it is very safe to assume the user's terminal
+     program is not echoing the characters coming from your BBS back to it;
+     i.e., the user is 'dumb'.
+
+        The second way you may find yourself is when you are using Citadel-86
+     as a terminal program via the <D>ialout command on the Sysop's Net Menu.
+     When you achieve a connection this way, you will automatically be dropped
+     into Chat Mode with the implicit answer to that question being 'N' -- that
+     is, Citadel-86 is to assume the system on the other end will take care of
+     echoing characters as necessary.
+
+        So why the question, you ask?  Because occasionally you will call a
+     system and then find a reason to get out of chat while the other system
+     is still on-line, do something, and then get back into Chat to continue
+     your session.  Though it is certainly true you can return to the Net
+     Menu, type <D>ialout again and be automatically dropped into Chat,
+     it's easier to just hit <C>hat at any room prompt, answer 'N', and
+     continue on your merry way.
+
+
+
+
+
+
+
+
+                                    -25-
+
+
+
+
+
+
+     VIII.3 Chat Capture
+        You, Chief High Sysop, have the ability to capture chats to disk if
+     you choose to do so.  When you capture a chat, a warning will be printed
+     to both you and the chattee saying that the chat is being captured; when
+     you choose to stop capturing chat, another warning will be printed
+     indicating that the session is no longer being captured.  In this way,
+     you cannot successfully be accused of capturing chat sessions without
+     warning.
+
+        You turn on chat session during a chat by typing ^R (Control-R).  The
+     system will then attempt to open a file named CHAT.TXT, and if it exists,
+     the chat session should be appended to the end of that file.  If the file
+     does not exist, it is created, and the resulting chat placed within.
+
+        Typing a second ^R will result in the file being closed and the chat
+     capture being turned off.  If you leave the chat session, the capture is
+     automatically turned off at that point, and if you wish to continue
+     capturing the chat (say, if you had to pop out for a moment and then
+     returned), you must turn the capture back on again.
+
+        By a chat session, we mean both a normal <C>hat, initiated by either
+     you or a caller, and the chat sessions which are initiated by the <D>ial
+     System command of the Network Menu, on which there should be more details
+     in NETWORK3.MAN.
+
+     VIII.4 File Transfers while in Chat Mode
+        When calling other systems it's not uncommon to discover you wish to
+     grab a file from the other system, or send one of your's to it.  Doing
+     so is quite easy in Citadel-86.
+
+        For either type of file transfer, however, you must make sure you
+     are in (on your own system) a directory room (see Section V if you aren't
+     sure what a directory room is).  This only makes sense, of course,
+     particularly if you're sending a file to the other system.  If you are
+     not currently in a directory room when you discover your need to transfer
+     a file either way, simply touch ESC, get to a room prompt (if you're not
+     at one already), and .Goto the file.  If you have public directory rooms
+     available, you need not even be logged in.  To get back into Chat mode,
+     you may either go back to the Network Menu (^L-N) and type <D>ialout,
+     or simply at the room prompt type <C>hat and answer 'N' to the question.
+
+        In order to download a file from the other system into your system,
+     first set up the other system to send you the file(s) you want.  Then
+     touch the PG DN key on the keypad (NUM LOCK OFF!).  The system should
+     prompt for a protocol to use, to which you answer with the correct
+     letter.  If you have any external protocols installed you may select one
+     of those rather than Citadel-86's XMODEM, YMODEM, or WXMODEM.  You
+     should then be prompted for a filename, and then the transfer will
+     commence.  When finished, you'll be asked for a file description, and
+     then you'll be dumped back into Chat mode.  NOTE: Do NOT try to use
+     YMODEM BATCH when grabbing files from another system!  (Z-100s: Control-F
+     is equivalent.)
+
+
+
+
+
+
+
+                                    -26-
+
+
+
+
+
+
+        To upload a file from your own system to another, first make sure you
+     are in the appropriate directory room (i.e., the directory room which
+     holds the file to send).  Set up the other system to receive your file,
+     and then touch the PG UP key.  Citadel-86 will, as it did for downloads,
+     prompt for a protocol and then the file(s) to be sent.  When the download
+     is accomplished you will be dumped into Chat mode.  (Z-100s: Control-E
+     is equivalent.)
+
+     VIII.5 ESCaping Details of Chat Mode
+        On rare, rare occasion it is necessary to send an ESC while in Chat
+     mode.  Yet, Citadel-86 specifically tells you that an ESC let's you out
+     of Chat!  How do you get around this problem?
+
+        By using the '\' key first.  When you do so, the system will pass the
+     next key you press through without any interpretation, including the ESC
+     key.  (If you need to send a '\', send two of them.)
+
+        And one more detail: when <C>hat is used, an ESC from either the
+     caller or from the Sysop will cause the Chat session to end.  When
+     <D>ialout is used, only the ESC from the system console will cause the
+     system to end the Chat session.
+
+     VIII.6 Typing at the Keyboard When the User is in Control
+
+     VIII.6.a Sysop Autodial
+        If your system becomes at all popular amongst the locals, you will
+     rapidly find yourself in the position where you cannot get onto your
+     machine whenever you like without committing foul and evil acts such as
+     pulling the plugs out of modems and that sort of thing.  Since that tends
+     to lead to bad reputations and negative karma, Citadel-86 gives the Sysop
+     the ability to auto-dial him(or her)self; that is, you can tell the
+     system, while someone else is on, that you are next in line to use the
+     system. (aka "pulling rank".)
+
+        To do so, simply type ^T (Control-T) while the person using the system
+     is on.  The next time that the system looks at the keyboard (which is
+     during <P>auses of output and other moments of the system waiting for
+     input from the user) it will note that the ^T has been pressed and
+     (usually) print out an acknowledgement to the system console only (the
+     user will not be aware that you are anywhere near ground zero).  The
+     status bar, which we'll discuss sometime along the way here, if you
+     are using it, will also show that your ^T has been pushed.
+
+        When the foul user logs out of the system, the system should
+     immediately start beeping at you, once every ten seconds.  If you then
+     hit anything on the keyboard, you get control of the system.  After
+     2 minutes of beeping, the system will return its attention to the modem.
+
+        If you type ^T twice while the user is on, this feature will be
+     cancelled.
+
+        If you type ^T when no one is on the system, the system will go into
+     CONSOLE mode.
+
+
+
+
+
+
+                                    -27-
+
+
+
+
+
+
+     VIII.6.b Chat Mode
+        You can toggle Chat Mode while a user is on and in control simply
+     by typing ^Z at the SysConsole.  Your status bar (see VIII.7) should
+     reflect the change.  Please note typing ^Z during downloads and uploads
+     won't take effect until the operation is finished.
+
+     VIII.6.c Echo Mode
+        You can toggle the Echo Mode (see the <E>cho toggle of the Sysop's
+     Menu) by typing ^E while the user is on.  You'll be able to tell if
+     this has taken effect because the display will stop or start when you
+     type the ^E.
+
+     VIII.7 Denizens of the Status Bar
+        Citadel-86 has a status bar.  This status bar gives you a vague idea
+     of what's going on with the system, using various special messages during
+     system initialization, and then a hint now and then about who's on.  The
+     location of the status bar depends on the machine that Citadel-86 is
+     running on.  If it is a PC Clone, it occupies the second line from the
+     top of the screen.  If it is a Zenith Z-100, it occupies the 25th line of
+     the screen.
+
+        The status bar should always have
+
+        "Citadel-86 Vx.xx: "
+
+     showing.  What shows up after that depends on the state of the system.
+     Special messages appear right after it, but they only show up when the
+     system is coming up.  Here's a generic representation of the status bar
+     when the system is in normal mode:
+
+     "Citadel-86 Vx.xx:<name of user><time of carrier>[<Chat sig>][<^T sig>]"
+
+        "Chat sig" is a capital "C", and only shows up when you have Chat mode
+     on.  ^T sig is a "^T", and only shows up when you are next in line to use
+     the system.
+
+        Additionally, you may also have a clock on your status bar.  This
+     clock, maintained once a minute (except during long reads, downloads, or
+     network sessions), is displayed only if you have the status bar active,
+     and will appear on the far right hand side.  You may disable this clock
+     by adding "#CLOCK none" to your ctdlcnfg.sys (see INSTALL3.MAN).
+
+     VIII.8 Modem disabling
+        You may have noticed that when you took control of the system by
+     pressing ESC, the DTR light on your modem went out.  Or you may not have
+     noticed.  But it did, or should have.  This leads to that age-old
+     philosophical question, "When does this happen?"  Well, DTR comes down
+     (or, more generally, the modem is disabled) when the Sysop takes control
+     of the system and there is no carrier.  If there is carrier, then
+     connection is maintained, even when coming out of the Chat mode initiated
+     by the <D>ialout.
+
+
+
+
+
+
+
+
+                                    -28-
+
+
+
+
+
+
+     VIII.9 BADWORDS.SYS
+        Usually, there is little need to actively censor Citadel users.
+     However, on rare occasion you will run into local ruggies (twits, jerks,
+     etc) who are expressly intent on destroying your system.  Although
+     it is usually more effective to deal with the parents of such village
+     idiots, or with the law when they are friendly to the local BBS
+     community, Citadel-86 does provide a tool for censoring and (we hope)
+     discouraging such children.
+
+        If the file BADWORDS.SYS exists in your #ROOMAREA directory,
+     Citadel-86 will attempt to read it to form a list of forbidden words.
+     Any message entered by a non-aide will not be saved in the message
+     base when it contains one of these bad words.  BADWORDS.SYS should
+     be a simple text file.  All but the first two lines will contain one of the
+     forbidden words (or phrases, if you like).  Please note: odd results can
+     happen with small words, because this works just like the message editor's
+     Replace function.  For instance, if "frog" were listed in that file,
+     any message containing the word "froggie" would also not be saved.
+
+        The first line of BADWORDS.SYS is reserved for an "icky" level.  This
+     level indicates how many times a user may use one of the forbidden words
+     before the system will drop carrier on them.  You indicate this icky
+     level by simply putting the number there, like "5".  If you were to
+     put "0" at the top of the file Ctdl would kick the offender off on the
+     first offense.
+
+        The second line of BADWORDS.SYS, if non-blank, is the name of the file
+     all sub-standard messages will be written to.  If you don't want
+     sub-standard messages saved anywhere, then just leave it blank.
+
+        Any user kicked off the system for offending against BADWORDS.SYS
+     will also be marked in CALLLOG.SYS by the letter 'B' following their
+     name.
+
+     VIII.10. Massive Privileges
+        Sometimes you wish you could give everyone one of the privileges -- or
+     take it away from everyone.  You can do this now in certain circumstances.
+     When you are prompted for a user name, you can reply with either "Citadel"
+     or "*".  Either means you want to apply the privilege to all of the
+     accounts.  You'll then be asked if you want to give the privilege to
+     everyone.  If you demur, then you'll be asked if you want to take it away
+     from everyone.  If you again demur, you've effectively aborted the
+     operation.  Otherwise Citadel-86 will apply or take away the privilege
+     from everyone.
+
+        This works for the following privileges:
+
+         (User Menu -- ^L-U)
+
+         <D>oor Privileges
+
+
+     IX. SEA'S ARC files
+
+
+
+
+
+
+                                    -29-
+
+
+
+
+
+
+     IX.1 DeArcing
+        Citadel-86 allows users to selectively deARC and download files from
+     ARC-generated files if the Sysop so desires.
+
+        There are several considerations for the Sysop to keep in mind as s/he
+     decides whether or not to enable these commands, including
+
+      a) DeARCing files takes valuable system time;
+      b) DeARCing files takes space which the system may not have available;
+      c) Damaged ARC files can sometimes hang a deARCing program; occasionally,
+         they can even damage disk systems (it's happened to me!);
+      d) This ability may be vulnerable to system crashers in unforeseen ways;
+      e) <myriad other disasters for the unprepared> ...
+
+        Citadel-86 has implemented this ability by executing a deARCing program
+     of the Sysop's choice on the file specified by the user.  The files are
+     deARCed into a temporary directory that Citadel-86 creates and deletes as
+     needed.  When deARCing and downloading is finished, Citadel-86 will delete
+     all files that were deARCed, thus not taking up any permanent storage on
+     the system.  However, the Sysop must keep in mind that if there is not
+     enough temporary storage available, the system could still be hung,
+     depending on what the deARCing program does when it hits a disk out of
+     space limit; further, Citadel-86 does not detect when a failure occurs
+     (except for no files matching the deARC mask).
+
+        To enable the command, create a normal DOS text file named DEARC.SYS in
+     your #ROOMAREA directory.  Citadel-86 expects that the contents of this
+     file will be a single line that will name the program that you wish to use
+     for deARCing.  If the program is on your PATH, then you need not specify
+     the path to the program.
+
+        Citadel-86 makes the assumption that your deARC program's final two
+     arguments will be, respectively, the name of the file to be deARCed
+     (including the path, if any) and the "mask" (i.e., "*.*", "*.doc", etc.).
+     This is the standard format for SEA's ARC, and so I hope that it will
+     remain more or less a standard.
+
+        During testing, I have noted that
+
+            pkxarc
+
+     works just fine, as does
+
+            unpack
+
+     Unpack is Borland International's deARC program, which is distributed
+     with Turbo Pascal 4.0 and Turbo C 2.0.
+
+        Oh, the Citadel commands to do this sort of thing?  (Read the help
+     files.)  There is one.
+
+            .Read Archive Binary-files
+
+
+
+
+
+
+
+                                    -30-
+
+
+
+
+
+
+     This will prompt for the name of one ARC file (with or without the ARC
+     extension), and then will prompt for the deARC mask.  A Carriage Return
+     for the deARC mask will result in "*.*".  The system will then ask the
+     user to wait for a moment, and then (attempt to) deARC the file using
+     the mask.  Once finished, it will send all files to the user via ASCII.
+     If the user wishes to use a protocol, they may.  For example, YMODEM
+     BATCH could be used this way:
+
+            .Read Ymodem Archive Binary-files
+
+        Downloading files this way via YMODEM or XMODEM will be tracked by the
+     Download time limits, if you are using them (or at least so I hope).
+
+        'T' and 'F' are synonyms for 'B' in the above.
+
+     IX.2 ARC Integrity Checks
+        Citadel-86 is also capable of integrity checks on newly uploaded ARC
+     files.  In order to enable this capability, the sysop must modify the
+     DEARC.SYS file described in IX.1 by adding a second line.  Much like
+     deARCing files, the second line also specifies a command line to be used
+     for performing a file integrity check.
+
+        However, the sysop MUST specify a program which returns an ERRORLEVEL
+     of 0 when the integrity check succeeds, and non-0 when the check fails,
+     or this feature will fail.  Fortunately, ARC V6 does precisely that, so
+     if you choose to use ARC for file integrity checks, you shouldn't have a
+     problem.  So, as an example, to use ARC as the file integrity check
+     utility, you'd simply have the line
+
+     ARC t
+
+     since 't' is the file test command.
+
+        Do NOT* specify a BAT file as the file check utility!
+
+        The integrity check takes place after the upload has been completed.
+     The name of the file is checked, and if the extension is .ARC, your
+     Citadel-86 will, if enabled, ask the user if the upload should be checked.
+     If the user agrees, the check is performed.  If it succeeds, the user
+     is prompted for a description.  If it fails, the user is asked if the
+     upload should be aborted.  If the user assents, the file is deleted; if
+     they wish to continue, they are then prompted for a description.
+
+        The sysop should bear in mind that some flawed ARC files can
+     cause their computer to hang during a file integrity check if they are
+     using ARC V5.  ARC V6's stability in this regard is not known by this
+     author.
+
+
+
+
+
+
+
+
+
+
+
+
+                                     -31-
+
+
+
+
+
+
+        If you wish to use a test utility which requires command line arguments
+     AFTER the name of the file to be tested, this can be accomplished.  Much
+     like the External Protocol (Section XV), if you place "%g" somewhere in
+     your integrity check command line, it will be replaced with the filename
+     to be tested.  For instance, ARCE's format for testing files is "ARCE
+     <filename> /T".  So a good integrity check command line (i.e., second line
+     in DEARC.SYS) would be
+
+        arce %g /T
+
+        If you do not use '%g' in your integrity command line, then the filename
+     to be test will simply be appended to the end of the command line, just as
+     it is for deARCing.
+
+     X.  PKWARE's ZIP files
+
+     X.1 DeZIP
+        Citadel-86 is also capable of handling the ZIP files generated by
+     PKWARE's PKZIP utility.  Procedures for handling ZIP files are nearly
+     exactly the same as for SEA's ARC files, as are the warnings.  In fact,
+     the only difference is that you must create a new file named DEZIP.SYS,
+     rather than DEARC.SYS, in your #ROOMAREA directory, containing the command
+     to DeZip files.
+
+     pkunzip -x
+
+     seems to work just fine, if, of course, you have PKUNZIP.EXE available
+     somewhere.
+
+     X.2. ZIP Integrity Checks
+        Again, as with SEA ARC files, you may optionally enable integrity checks
+     on uploaded files by modifying DEZIP.SYS with a second line specifying the
+     file check.  PKUNZIP -t seems to work just fine.  This check, if enabled,
+     will be performed on files uploaded with a .ZIP extension.  Again, you may
+     use '%g' to cause the filename to appear in a place other than the end
+     of the resulting command line, although we are not aware of any test
+     utility for ZIP files which uses this sort of command line.
+
+
+     XI. ZOO Files
+
+     XI.1 DeZOO
+        Like ARC and ZIP files, the presence of a DEZOO.SYS will let users
+     de-ZOO files online.  Instructions are the same as for ARC and ZIP.
+
+     XI.2. ZOO Integrity Checks
+        Just like ARC and ZIP files, you can have the integrity of newly
+     uploaded ZOO files checked automatically.  Instructions are the same.
+
+
+     XII. LHARC Files
+
+     XII.1 DeLZH
+        Like ARC and ZIP files, the presence of a DELZH.SYS will let users
+     de-LZH files online.  Instructions are the same as for ARC and ZIP.
+
+
+
+
+                                    -32-
+
+
+
+
+
+
+     XII.2. LZH Integrity Checks
+        Just like ARC and ZIP files, you can have the integrity of newly
+     uploaded LZH files checked automatically.  Instructions are the same.
+
+     XIII. GIF & FRA Files
+        Citadel-86's support of GIF & FRA files resides in the commands .Read
+     Extended (.RE) and .Read Archive Directory (.RAD).  When .RE is used
+     on .GIF and .FRA files, Citadel-86 will extract information concerning
+     the pixel dimensions of the picture and the number of colors used and
+     display those values as part of the file description.  When .RAD is used
+     on .GIF and .FRA files, Citadel-86 will display the GIF version of the
+     file, along with the dimensional and color data mentioned above.
+
+        This section is purely informational for the benefit of the sysop.
+     GIF & FRA file support requires no action from the sysop.
+
+     XIV. Sysop's Editor
+        The sysConsole Sysop has a special message composition ability not
+     available to the general users, and this is called the Sysop Editor.
+     This is the ability of the sysop (i.e., any user at the sysConsole) to
+     enter and edit a message using an editor other than the Citadel entry
+     system.
+
+        In many ways this is similar to simply preparing a message offline
+     using an editor and then using the <F>ile grab option of the Sysop Menu.
+     However, this option is far superior, for several reasons.
+
+        First, it's somewhat faster.  When using an editor to prepare a
+     response for processing by File Grab, in order to get to your editor you
+     must go through Outside Commands, which causes CTDLTABL.SYS to be
+     written, etc. etc.  When using this option, CTDLTABL.SYS is not written
+     (think of this as a warning, too), and further the process of bringing
+     your editor should be thoroughly automated.
+
+        Second, you have far more flexibility.  The option is accessed via an
+     option off of the 'entry cmd: ' prompt.  Thus, you can begin preparing a
+     message using Citadel, switch off to your editor half-way through, return
+     to Citadel for more work or simply a formatted viewing, etc. as much as 
+     your heart desires.
+
+        In order to activate this option, you must add at least one parameter to
+     your CTDLCNFG.SYS.  This one is called '#EDITOR'.  It is followed by a 
+     string naming the editor of your choice.  Your PATH is used to search for
+     the editor, so you need not specify where it is located (although you may
+     wish to if you store your editor in a RAM drive). The editor you use must
+     output a "normal" DOS text file; no attempt is made to filter the text for
+     WordStar, WordPerfect, or other proprietary formats (although I haven't
+     tested any of those to see if, by happenstance, they might work.  Who
+     knows, you might luck out!).  An example might be
+
+        #EDITOR "q"             -- use qedit
+
+
+
+
+
+
+
+
+                                    -33-
+
+
+
+
+
+
+        If your editor needs any options set on the command line, this is the 
+     place to put them.  Suppose your editor, which in this example will be 
+     'wumpus', needs the option "-r" on the command line.  A good parameter
+     entry would then be
+
+        #EDITOR "wumpus -r"
+
+        You might also want to consider using BAT files (specified in the 
+     #EDITOR entry) which will clean up unwanted BAK files, etc...
+
+        You may optionally add a second parameter to your CTDLCNFG.SYS called 
+     "#EDIT-AREA".  If this is present, Citadel-86 will use the area (drive 
+     and directory) you specify for the temporary editing space, instead the 
+     current drive and directory.  This makes it easy to use a fast RAM disk 
+     for Outside editing.  For instance:
+
+        #EDIT-AREA "d:\"
+
+     If you do plan to use a RAM drive, remember that messages can be up to 
+     7.5K long, so plan your RAM drive accordingly, keeping in mind possible 
+     .BAK files generated by your editor, etc.
+
+        Citadel-86 attempts to run your editor by issuing the command line
+
+         "<editor> <editing space>tempmsg.sys"
+
+        When returning from your editor, Citadel-86 will automatically delete
+     the tempmsg.sys file; however, if your editor (like many) leaves .BAK
+     files behind, Citadel-86 will not try to delete it.
+
+        And how do you access it?  By typing an 'O' at the 'entry cmd: ' prompt
+     of the message editor.
+
+        Finally, you may use the EASE utility to make these modifications,
+     rather than directly changing your CTDLCNFG.SYS file.
+
+     XIV.1 Sysop Editor Notes
+        o Editors which must* run from their own directories may be difficult
+     to support.  You might want to try using a BAT file if you really insist
+     on using such editors.
+
+        o Making a small RAM drive and specifying it as the editing space may
+     make this feature faster.  Placing your editor in the RAM drive may make
+     things really fly, if you have the extra RAM to do it.  Remember to 
+     specify the RAM drive in your #EDITOR parameter, though, if you do place 
+     your editor in the RAM drive.
+
+        o When you are ready to return to C-86, simply save the file back out
+     to TEMPMSG.SYS (most editors will do this in some automatic style for you)
+     and exit the editor.  C-86 will then retake control of the system and
+     leave you at the 'entry cmd: ' prompt with your newly modified message,
+     ready for more action.
+
+
+
+
+
+
+
+                                    -34-
+
+
+
+
+
+
+     XV. Doors Support
+        (Parts of Citadel-86 doors courtesy Gary Meadows of Asgard-86.)
+
+        A "door" is a program which may be run from a host BBS program.  There
+     are currently many special door programs available, including door
+     monitors such as DOORWAY, games and utilities, most of which you should
+     be able to run from Citadel-86 (if you find one that can't, let us know).
+     When used correctly, it is intended that Citadel-86 Doors be
+     QBBS-compatible,
+
+
+     XV.1 Administration
+
+     XV.1.a User administration
+        Naturally, a sysop does not want just any old person to use doors.
+     Therefore you may assign and take away door privileges from anyone you
+     please.  You do this via the User Administration menu, using the <D>oors
+     privilege.
+
+     XV.1.b Door administration
+        Doors are created using CTDLCNFG.SYS.  Theoretically, you may assign
+     as many doors as you wish; practically, you may be limited by disk space
+     as well as user patience.
+
+        Door parameters in CTDLCNFG.SYS are a little different from any other
+     parameter in that they do not occupy only one line of the file.  Rather,
+     they occupy three lines.  Here is the generic format of door parameters.
+
+     #door <entry code> <program> <location> <who> <type> <time limit> [room]
+     <description>
+     <command line parameters>
+
+     We'll go through these one at a time.
+
+     "entry code" - An entry code is what the user types to request this door.
+     This parameter may not contain more than four letters, and it is your
+     responsibility to ensure that no duplicates occur amongst your entry
+     codes.
+
+     "program" - This is the name of the program or BAT file which
+     constitutes the door.  You need not specify the suffix of the file,
+     although it is legal to do so.
+
+     "location" - This field should contain the location in your disk system
+     to move to before executing "program name".  If your specification
+     contains a drive designation, the system will make that drive the default
+     drive before executing attempting to change directories to the given
+     directory. If you do not wish the system to change to another directory
+     before executing the program, this field should contain ".", which is the
+     DOS jargon for "current directory".  When the door has finished, the
+     system will return to the directory it was in when Citadel-86 came down
+     to execute the Door.
+
+
+
+
+
+
+
+                                    -35-
+
+
+
+
+
+
+     "who" - This field is a primitive security mechanism.  You may fill in
+     this field with one of four values: "anyone", which indicates that anyone
+     with Door privileges may execute this door, "aide" which allows only
+     aides may use this door, "sysop", allowing only sysops, remote and at
+     the system console, to use this door, "autodoor" (explained in 
+     Section XIII.4), and "newusers" (described in Section XIII.5).
+
+     "type" - this describes the type of door.  Currently, this is limited to
+     one of three values, these being
+
+      o "modem"    - User must be remote (modem) in order to use door.
+      o "console"  - User must be at the system console in order to use door.
+      o "anywhere" - User location does not matter.
+
+     "time limit" - This field lets you specify how long (aggregate) a user may
+     use any given door during a single login period.  You should specify the
+     time in minutes; if you do not wish to place a time limit on a given door,
+     you may instead specify "unlimited".
+
+     "room" - This is an optional parameter.  If it is present, it specifies
+     the name of the room from which this door may be run; the door may not be
+     run from any other room.  So, this provides another security arrangement.
+     If this parameter is not present, then this door may be run from any room,
+     subject to other restraints.
+
+     "description" - This field, which occupies a line of its own, should
+     contain your description of the door.  These descriptions are displayed 
+     to users.  The description should not be more than 79 characters in
+     length.
+
+     "command line parameters" - This important field is used to build a
+     command line for the program.  The format here should be simple to use:
+     type in the command line, minus the program name, as if you were typing
+     it at the command line.  This sounds simple until you realize that some
+     doors need data from the command line which you simply cannot provide
+     from here.  This includes such data as the Com port, the baud rate, etc.
+     Therefore, we have provided to you a simple way to add these sorts of
+     things in.  Wherever in the command line you need to add these things in,
+     you will instead type a percentage sign ('%') followed by a letter.  This
+     %letter will be replaced at runtime by the value associated with that
+     combination.  The following is a list of all such combinations currently
+     supported.
+
+     %a - This is replaced with the current baud rate of the user, or 0 if
+          sysConsole.
+     %b - This is replaced with the current bps rate of the user, or 0 if
+          sysConsole.
+     %c - This is replaced with the port number of the user, or "LOCAL" if
+          sysConsole.
+     %d - This is replaced with the name of the user.
+     %e - This is replaced with the log number of the user.  Unlikely that
+          you'll need it, but just in case ...
+     %f - This is replaced with the ANSI code of the user.  This is not part of
+          the user record, unlike Asgard-86, but provision may be made in a
+          later release for the user to indicate what level of ANSI they can
+          handle.  At the moment, it is set to 0.
+
+
+
+                                    -36-
+
+
+
+
+
+
+        Identification of more useful parameters which Citadel-86 might supply
+     is welcome (and probably easy to add).
+
+        Even if there is no need for information to be on the Description and
+     Parameters, blank lines must exist in their positions.
+
+        So, let's move on to an example.  Suppose we have a door program named
+     MOO. It must be run from the directory C:\MOOING, and the command line must
+     look like
+
+     MOO COMx SPEED=y
+
+     where x is the Com port and y is the baud rate of the user.  Further, you
+     want the users to type .Door COWS in order to run the program, and
+     everyone may use it, but only from remote, but they may use it as much as
+     they like. Your entry in ctdlcnfg.sys would then look like
+
+     #door COWS MOO c:\mooing anyone modem unlimited
+     This program is a must for beefeaters!
+     COM%c SPEED=%a
+
+     Suppose you wanted to add the further restriction that it only can be run
+     from a room named Door Talk>.  Then the entry would read
+
+     #door COWS MOO c:\mooing anyone modem unlimited Door Talk
+     This program is a must for beefeaters!
+     COM%c SPEED=%a
+
+     XV.2 BAT file support
+        Once a user has selected a door (the next section discusses the user
+     interface), Citadel-86 will bring itself down.  THIS IS VERY IMPORTANT:
+     the system will EXIT with an ERRORLEVEL of 4, which is a reserved
+     ERRORLEVEL of Citadel-86.  Therefore, your BAT MUST be prepared to handle
+     exits of ERRORLEVEL 4 by running the C-86 utility C86Door.Exe if you wish
+     to run doors.  For instance,
+
+     :loop
+     ctdl ...
+     ...
+     if errorlevel 4 goto door
+     ...
+     :door
+     c86door
+     goto loop
+
+     C86DOOR does not require any command line arguments.
+
+     User interface is via the <D>oor and <.D>oor <entrycode> commands.
+
+     XV.3 Door compatability
+        Citadel-86 door support is designed to be compatible with the QBBS
+     standard; in other words, C86Door will generate DORINFO1.DEF before the
+     door is activated.  Citadel-86 also contains support for WILDCAT! and
+     Marshall Dudley's DOORWAY.SYS file (so you can run DOORWAY using the SYS
+     parameter).
+
+
+
+
+                                    -37-
+
+
+
+
+
+
+     XV.4 Automatic doors
+        An 'automatic door' in Citadel-86 parlance is a door which is auto-
+     matically run when a specified user logs in.  This can be useful in 
+     several situations, such as with non-C86Net sites which can poll you by
+     calling your system and doing a manual login.  By setting an automatic
+     door to run when that account is used, you may immediately drop the
+     caller into an appropriate network program.  And then, of course,
+     there's your imagination.
+
+        Automatic door administration is somewhat more complicated than normal
+     door administration.  The system operator must insert two (or more
+     entries) into his CTDLCNFG.SYS file.  Naturally, one is the #door entry.
+     As noted above,`you may, or may not use, a fourth value for the 'who'
+     field of a #door entry, and that is 'autodoor'.  If you use that for the
+     'who' value, then the door is completely unavailable to everyone except
+     the account(s) assigned to this door, and then only on login.  So, for
+     instance,
+
+     #door mooing cows \pasture autodoor anywhere unlimited
+     <blank line unless you want a description>
+     <whatever parameters are needed>
+
+        So, how do you assign one or more users to an automatic door?  By using
+     #events (you had better be familiar with events).  The format for an event
+     which will do this is
+
+     #event <days> <time> autdoor quiet <duration> "" "<username>" <entrycode>
+
+        The fields <days>, <time>, and <duration> function as usual, allowing
+     you to control when automatic doors are active on an individual basis.
+     The <class> autodoor tells Citadel-86 that this is an automatic door
+     event. "<username>" is the name of the user which will trigger this
+     automatic door in quotes.  <entrycode> is the entrycode of the door to
+     execute.  So, continuing with the above example,
+
+     #event all 2:00 autodoor quiet 180 "" "Bossy" mooing
+
+     would cause Citadel-86, on all days, but only between 2am and 5am, to
+     execute the door identified as 'mooing' whenever the user Bossy logs in.
+
+        Note that when the door is finished, the user is not disconnected from
+     the system.
+
+     XV.5 New User Doors
+        You may configure Citadel-86 to run a door when a user tries to login
+     as a new user.  To do so, you set up a door entry in your CTDLCNFG.SYS
+     file just as normal, except for the "who" field.  This should contain
+     the value "newusers".  For example,
+
+        #door s valid . newusers anywhere -1
+        New user door
+        ...
+
+
+
+
+
+
+
+                                    -38-
+
+
+
+
+
+
+        This entry defines a door named "s", running a program named VALID
+     in the current directory ("."), of type newusers which can be run
+     from both remote and local.  In reality, the door name is irrelevant,
+     as is the door description.  The parameters field will, of course, be
+     crucial.
+
+        There is one critical difference between newuser doors and other
+     types of doors -- newuser doors are NOT run by taking Citadel-86 down
+     and letting the batch file take over.  Instead, Citadel-86 will
+     directly execute the program.  This is done both for internal technical
+     reasons and for performance reasons.  Very large systems may have
+     difficulties running new user doors for this reason.
+
+        This is a rather advanced option, and may require some work to get
+     working correctly, especially if you are trying to use the DOORWAY
+     driver program.  If you are, please bear in mind that since Citadel-86
+     is directly executing the program rather than letting the C86Door.Exe
+     program do the work, the DOOR.SYS file will NOT be generated.  Since
+     this file is only an option for DOORWAY, this does not cripple you,
+     only makes things more difficult.
+
+     XVI. Citadel-86 as a Door
+        Citadel-86 may be used as a door itself if you wish.  The procedure
+     for setting up a Citadel-86 as a door is
+
+      a) Add the parameter '#ISDOOR' to your CTDLCNFG.SYS file and reconfigure
+      b) Citadel-86 will expect the string "bps=xxx" on its command line when
+     coming up.  If it is not present, the installation will gracefully abort.
+     The "xxx" is the bps of the modem (i.e., "30", "120", etc.), or "0" if
+     the user is at the sysConsole ("LOCAL" is a synonym for "0" in this case).
+     A BAT file containing "ctdl bps=%1" might be a good idea if you can get
+     whatever BBS you're using to put the correct data on the command line of 
+     the BAT file.
+
+        If you're running Citadel-86 as a door from within another Citadel-86
+     (!) a good #door entry might be
+
+       #door xxxx ctdl xxxxx xxxxxx xxxxxxxx xxxxxxxxx [xxxxxx]
+       Another C-86
+       bps=%b ...
+
+        since "%b" will put out the bps of the user (see Section XIII).
+
+     XVII. External Protocol Drivers
+        In addition to the three file transfer protocols supported internally
+     by Citadel-86 (XMODEM, WXMODEM, and YMODEM BATCH), you may also configure
+     your system to support external protocols, such as DSZ, etc.  These
+     external protocols can be used for both file and message transfers,
+     almost appearing to be built-in protocols, differing only in that slight
+     pauses may occur while starting the external driver and an additional pause
+     for message transfers (messages must be saved to disk in a file before
+     transferring them to the user).
+
+
+
+
+
+
+
+                                    -39-
+
+
+
+
+
+
+     XVII.1 Adding drivers
+        You may add one or more protocols to your system by creating a file
+     named CTDLPROT.SYS in your #ROOMAREA directory.  This file is a textfile.
+     Each line of the textfile contains an entry for an external protocol
+     you wish to support for uploading and/or downloading.  The generic format
+     of each entry is:
+
+        [selector] [1/M] [name] [u/d] [command line]
+
+        The 'selector' is the key the user must press in order to access this
+     particular protocol.  For instance, if you want to make ZMODEM available
+     to your users, and you wish them to access ZMODEM via the letter 'Z',
+     then the entry would read "Z ...".
+
+        If you should accidentally select a letter already in use for that
+     particular command (i.e., .Read or .Enter), then your user cannot access
+     the protocol even though you've made it available.  Therefore, you may
+     have to select a different letter as a selector.  You may use any capital
+     letter (small letters are not valid) or a digit.  Please consult your help
+     files to discover what letters are already reserved (SUMMARY.HLP).
+
+        The '1/M' field tells Citadel-86 if this protocol is capable of batch
+     downloads or not (and, therefore, this entry is meaningless but required
+     for upload specifications).  '1' means this protocol can only send one
+     file, while 'M' means it can send 'M'any.  Since ZMODEM is capable of
+     batch transfers, your entry for ZMODEM, to continue our example, would now
+     look like "Z M ..."
+
+        The 'name' of the entry is the name you wish echoed to the user when
+     the user selects a protocol.  If the first letter of the name does not
+     match the Selector of this entry, Citadel-86 will backspace over the
+     Selector and replace it with the name.  This field can NOT consist of
+     two words separated by a space!  In other words, "MooModem Protocol" will
+     NOT work.  If we might continue our example, Zmodem's entry would now
+     look like "Z M Zmodem ..."
+
+        The 'u/d' part specifies if this particular entry is for uploading or
+     downloading a file.  There is absolutely nothing wrong with having double
+     entries for the same protocol, one covering how to upload a file using
+     the protocol and the other downloading, and in fact that is very much the
+     rule.  So, for Zmodem, uploading would look like "Z M Zmodem U ..." and
+     downloading would look like "Z M Zmodem D ...".
+
+        Finally, the 'command line' part of the entry is the actual command
+     sent to DOS in order to receive or send a file.  Obviously, just a simple
+     text line may not be enough, so you, the sysop, are provided with a way
+     to tell the external protocol a number of things.  To specify one of these
+     parameters to a driver, you use the following 'macros':
+
+
+
+
+
+
+
+
+
+
+
+                                    -40-
+
+
+
+
+
+
+                %a - The baud rate of the caller
+                %b - The bps (bytes per second) of the caller
+                %c - The port the your system is configured for (#COM)
+                %d - The name of the current user
+                %g - The list of files for transfer
+                %h - Identical to %c except it will be replaced with
+                     "COMx" where x will be your com value, unless the user
+                     is at the system console, in which case "LOCAL" will
+                     be generated.  Eases use with DOORWAY in conjunction
+                     with External Message Editors (Section XVIII), not real
+                     useful for External Protocols.
+                %i - The name of the current room.
+                %j - The name of the directory if this is a directory room.
+                     C-86 automatically moves to the correct directory within
+                     DOS before executing a protocol; this parameter is of
+                     more use with External Message Editors.
+                %k - The column width of the current user (more useful for
+                     External Message Editors).
+
+        For instance, when using DSZ to for Zmodem, DSZ expects a command
+     line basically like this:
+
+        "dsz port <port num> sz <filenames>"   for downloading and
+        "dsz port <port num> restrict rz <filenames>"   for uploading.
+
+        Therefore, your ctdlprot.sys file will contain the following two lines:
+
+        Z M Zmodem U dsz port %c restrict rz %g
+        Z M Zmodem D dsz port %c sz %g
+
+        DSZ automatically senses the baud rate, so you do not have to tell
+     it that in this example.
+
+        If you do not like creating text files, you may also use the utility
+     EASE to create, edit, and delete your external protocol entries.
+
+     XVII.2 Number of drivers
+        You may only add 15 drivers to your system.  That should be more
+     than enough.
+
+     XVII.3 USR HST 9600 notes
+        Citadel-86 handles the USR HST modem by 'locking' the COM port at
+     9600 and letting the modem handle buffering between the 9600 of the COM
+     port and the speed of the caller.  It does this by using the CTS/RTS
+     lines to throttle your computer when needed.  Some external protocol
+     drivers may not realize this is happening when used on a Citadel-86
+     system with a USR HST 9600, and thus become confused.  This is known to
+     be true with Chuck Forsberg's DSZ program.  It is recommended that USR
+     HST 9600 systems use the following entries for ZMODEM in their
+     CTDLPROT.SYS files:
+
+        Z M Zmodem U dsz port %c handshake both restrict rz %g
+        Z M Zmodem D dsz port %c handshake both sz %g
+
+        If you use a USR HST modem and experience problems with external
+     drivers, keep the above solution in mind when researching your problem.
+
+
+
+                                    -41-
+
+
+
+
+
+
+     XVIII. QUESTIONS & ANSWERS
+
+
+     ---
+      Q. I'm completely lost, even after going through all of the below; what
+     do I do next?
+
+      A. Call your local (hopefully!) friendly C-86 Sysop.  For the most part,
+     they're helpful, friendly people who are more than happy to help a new
+     system get its feet under itself.
+
+     ---
+      Q. How do I create a "directory" room?
+
+      A. Edit the room.
+
+     ---
+      Q. When I try to bring the system up, it will come up momentarily but
+     will then immediately give a crash message.  What happened?
+
+      A. The first step is to look at the files on disk.  If there is a file
+     called CRASH, it was created by Citadel-86, so look at it (this is a good
+     General first step for most problems, too).  Within, there will be a
+     fairly cryptic message which is more for debugging purposes, but can be 
+     useful to the new sysop, too.  If it indicates some sort of displeasure
+     with the CALLLOG.SYS file, this is usually a good pointer to the
+     possibility that you haven't configured MSDOS correctly in the FILES=area.
+     Check to make sure that your CONFIG.SYS file has the required FILES=20
+     line in it, and, if you had to put it in for Citadel, make sure that you 
+     have rebooted your system after adding it to the file.
+
+      If there are still problems, then another observation is that an
+     abnormally high BUFFERS= setting in CONFIG.SYS on systems that don't have
+     a great deal of extra free RAM available will sometimes "steal" from the
+     FILES= setting.  So, it's worth trying setting your BUFFERS= a little
+     lower.
+
+     ---
+      Q. I try to use the <O>utside command in the <O>ther commands section of
+     the Sysop Menu, but Citadel just says "Bad Return value".  What's wrong?
+
+      A. In all probability, you don't have enough free RAM.  Use CHKDSK or
+     some other utility to find out how much free RAM you have.
+
+
+        Please submit other pertinent questions to Hue, Jr. at C-86 Test
+     System for inclusion in this manual.
+
+     XIX. #event examples!
+        The #event facility of Citadel-86 is a powerful tool for the sysop,
+     but like many powerful tools, it is rather obtuse and arcane.  The
+     purpose of this section is to illuminate some of the potential uses of
+     the #event facility. What we show here is NOT the limit of what you can
+     do!  This is just some hints of what we have found useful ...
+
+
+
+
+
+                                    -42-
+
+
+
+
+
+
+        Before jumping into any examples, let's briefly go over the general
+     format of a #event again:
+
+     #event <days> <time> <class> <type> <duration> <warning string> <depends>
+
+        <days> indicates what days this event is effective for.
+        <time> indicates what time of the day (limited to valid days)
+     the event should start (military time).
+        <class> is roughly an indicator of what this #event does.
+        <type> describes, roughly, how Citadel-86 reacts when this event
+     occurs and a user is online.
+        <duration> describes how long this event is in effect.
+        <depends> is a field dependent on the class of the event.
+
+        In general, when you are planning events, you must know when you want
+     it to occur (in terms of both what days and at what time), how long it
+     should last, what it will do during the event (its class), and what it
+     will do when the event occurs if a user is on (its type).  If you want
+     a certain event to happen more than once during a day, then you almost
+     certainly will have to use multiple #event entries, but this hurts
+     nothing.
+
+        So let's plunge into the examples!
+
+     XIX.1 Automating backups
+        This is one of the most basic uses of #events, and can make system
+     backups a process you may completely forget about.  This example will 
+     illustrate how to use #events and BAT files working together to auto-
+     matically backup your system.
+
+        The first step is to bring Citadel-86 down prior to backing up the
+     system. There are two different classes which will bring Citadel-86
+     down, "external" and "relative".  "external" is more common, so we'll
+     start with this one.  An event who's class is "external" will cause
+     Citadel-86 to terminate (exit/come down) at the days and time you
+     designate using the <days> and <time> fields.
+
+        When you are using an event of this class, you have two choices as to
+     Citadel-86's behavior when a user is on, and you select your choice using
+     the <type> field of the event.  If you select type "preempt" then the
+     user will be kicked off the system when at the days and times selected.
+     If you select type "non-preempt", then the system will wait until the
+     user is finished with the system and then come down.
+
+        So let's start a partial example.  Suppose you want your system to
+     come down twice a day, once at 6am and once at 6pm, to do an automated
+     backup, but to wait politely until any user who may be on has logged off.
+     Your CTDLCNFG.SYS would contain the following two #event lines:
+
+     #event all 6:00 external non-preempt 0 "" ?????
+     #event all 18:00 external non-preempt 0 "" ?????
+
+
+
+
+
+
+
+
+                                    -43-
+
+
+
+
+
+
+        OK, so now you're probably asking "Why is duration 0?"  The reason for
+     this is because backing up the system may easily take less than a minute.
+     When Citadel-86 comes up, it always checks the event list to see if it
+     came up "during" an event, so by making this event's duration "0", we
+     ensure the system won't try to back itself up more than once.
+
+        You will also have noticed the "?????" occupying the <depends> field,
+     so let's discuss the depends field value.  An event of class "external"
+     (or "relative") will always have a <depends> field which consists of a
+     single number.  This number is the ERRORLEVEL of your choice which you
+     want Citadel-86 to return to the operating system.  This lets you differ-
+     entiate between differing external events, allowing you to go to 
+     different backup routines at different times.  (Remember, ERRORLEVELs
+     1 - 4 are reserved by Citadel-86.) So, for example, you might have
+
+     #event all 6:00 external non-preempt 0 "" 10
+     #event all 18:00 external non-preempt 0 "" 11
+
+        This should give you a good idea of how to use #events for bringing
+     Citadel-86 down for backups, but doesn't hint about your BAT file, so
+     let's move on to that.  This is a bit tricky, because everyone who uses
+     a BAT file with Citadel-86 (and that should include just about everyone)
+     does their's differently.
+
+        Still, most BAT files should look the same at some point, and that
+     is where it calls the actual CTDL program and where it tests the
+     ERRORLEVEL.  Let's continue with the example above.  That example would
+     lead to this partial BAT file fragment:
+
+     :loop
+     ...               [ whatever ]
+     CTDL ....         [ the ellipsis are simply any arguments you might use ]
+     if ERRORLEVEL 11 goto backup1
+     if ERRORLEVEL 10 goto backup2
+     ...              [ this is other ERRORLEVEL handling and goto labels ]
+     :backup1
+     ...              [ whatever is necessary to do this backup of the system ]
+     goto loop
+     :backup2
+     ...              [ whatever is necessary to do this backup of the system ]
+     goto loop
+     ...              [ rest of file ]
+
+        The reason we show two different backup labels in this example, rather
+     than one, is to illustrate that you can keep multiple backups of the
+     system by using different ERRORLEVELs in your #event entries.  The 
+     precise backups you might want to perform are, of course, dependent on
+     your situation, and therefore we didn't illustrate those mechanics at all.
+
+        So that's how to backup your system at set times and days.  There is a
+     second method available which will allow you to backup your system
+     relative to the time the system came up, i.e., every X minutes.
+
+
+
+
+
+
+
+                                    -44-
+
+
+
+
+
+
+        This type of event is something of an oddball amongst Citadel-86 events
+     because it doesn't follow the rules the other events follow.  This event's
+     class is "relative", and you may select either of the types "preempt" or
+     "non-preempt", but some of the other fields of the event do not act in the
+     same way they do for any other class of events.
+
+        To wit, the <days> field is not used, although it must be present, and
+     the <time> field does not indicate when the event comes into effect, but
+     instead specifies how long before the system is supposed to come down
+     (hours:minutes).
+
+        Otherwise, events of class "relative" are much like events of class
+     "external".  The <depends> field indicates the ERRORLEVEL to exit with,
+     etc.
+
+     XIX.2 Scheduled NETWORK sessions
+        As we noted in Network3.Man, there are two ways Network Sessions can
+     occur: through normal network sessions and through the anytime net.  A
+     normal network session is a session which has been scheduled to begin at
+     a given period of time, last for so long, and then end, involving given
+     systems.  During this time period, users may not access the system. 
+     Anytime net sessions, on the other hand, can be scheduled to have the
+     potential to occur during given time periods, but they may not
+     necessarily occur, depending on the activity level of your system.  This
+     subsection covers normal network sessions.
+
+        The class of this type of event is "network".  The type is usually
+     "preempt", although it is legal to specify "non-preempt" for the type.
+     The days and time fields act as usual, specifying on what days and at
+     what time a network session is to occur, and the duration field specifies
+     how long the session is to last.  The "warning string" field (it follows
+     the duration field) is used in this event to warn any users that the
+     system will kick him or her off 5 minutes prior to the network session
+     beginning if the type is "preempt".
+
+        Finally, the depends field for a network event is special and
+     essential, because it tells Citadel-86 which systems are eligible to be
+     called at this time.  It does this using the networks Member Net
+     capability.  Member Nets are explained in Network3.Man.  Here is a
+     summary:
+
+      o A system may be assigned to any or all of 32 nets (use node editing)
+      o A system not assigned to any is 'disabled'
+      o New systems are automatically assigned to net 1
+
+        When you are constructing an event of class network, your depends
+     field lists which net, or nets, may be called during this network
+     session.  When we say "nets", we mean all systems which are assigned to
+     this net.  This lets you assign different systems to be called at
+     different times, participate in different C86Nets, etc.
+
+
+
+
+
+
+
+
+
+                                    -45-
+
+
+
+
+
+
+        When filling in the depends field, you simply type in the #s of the
+     nets you wish this network session to call, separating them by commas.
+     So, for example, if you want a net session to run from 3am to 3:15am
+     everyday of the week, but to only call net 1, you would have
+
+     #event all 3:00 network preempt 15 "network session" 1
+
+        If you wanted that net session to call all systems on nets 1, 10, and
+     15, you'd have
+
+     #event all 3:00 network preempt 15 "network session" 1,10,15
+
+        (NOTE THE LACK OF SPACES BETWEEN NETS!)
+
+        It's generally not a good idea to have network sessions overlap.
+
+     XIX.3 Anytime Network Sessions
+        An event of class "anytime-net" differs from "network" events in that
+     it does not schedule when a network event is to occur, but only when
+     there is a potential for a network session to occur (note there is a
+     difference between "network event" and "network session").
+
+        This "potential" is the possibility that your system will attempt to
+     contact other systems for network ("and immoral") purposes while an event
+     of this class is in effect.  The possibility will be fulfilled if several
+     conditions are met: the specified systems need to be called, and enough
+     dead time has occurred on your system to cause a callout.  This must
+     sound darned abstract, so let's look at an example:
+
+     #event All 1:00 anytime-net quiet 240 "" 10 3 1,4,9
+
+        Translated to English, this reads "On all days of the week, beginning
+     at 1:00 in the morning and ending at 5:00, an event of class anytime-net
+     will be in effect.  During this time, if the system is idle for more than
+     10 minutes (i.e., no remote callers and no sysConsole users) at any one
+     time, the system will commence a net session IF any systems on nets 1, 4,
+     and 9 need to be called, and this net session should last a maximum of 3
+     minutes, unless of course during one of the calls the time is exceeded,
+     in which case the net session will extend until the call is completed."
+     In other words, the generic format of an event of this class is
+
+     #event <days> <time> anytime-net quiet <duration> "" <dead time>
+     <net time> <nets>      (all one line)
+
+        An event of type "quiet" is an event which does not cause a fuss when
+     it occurs.  Citadel-86 simply notes that it occurs, usually with no sign 
+     to the current user, if any.
+
+        The field duration specifies how long the event is in effect; it does
+     NOT specify how long any net session which occurs during this event
+     should last.
+
+
+
+
+
+
+
+
+                                    -46-
+
+
+
+
+
+
+        Dead time and net time is the amount of time the system is inactive
+     before a net session is triggered and how long to stay in the net
+     session, respectively.  Both are specified in minutes.  We do not have
+     any recommendations at this time for these events.
+
+        The nets field is precisely the same as used in events of class 
+     "network" (Section XVII.2).
+
+     XIX.4 Download Time Limits
+        Download time limits can be set in Citadel-86 via the #event facility.
+     When a #event of the class "dl-time" is in effect, a user may not
+     download for more than X minutes during any given login session.
+
+        The limit is specified in the depends field, not the duration field.
+     The duration field, as usual, indicates how long the event is in effect.
+     The limit is specified in minutes.  So, if you wanted to limit your users
+     to 10 minutes of downloading from 7PM to midnight every day of the week
+     except Saturdays and Sundays, you'd have
+
+     #event Mon,Tue,Wed,Thu,Fri 19:00 dl-time quiet 300 "" 10
+
+        The reason the type is "quiet" is because there's no need to bring the
+     system down or kick the user off.  Citadel-86 simply notes the new event
+     and the limit, while the user never notices a thing.
+
+        Download time limits do not apply to Aides & Sysops.
+
+     XIX.5 Door Time Limits
+        The #event facility may be used to place limits on the total amount of
+     time a user may use doors during a single login session.  As usual, the
+     key to specifying this ability lies in the value of the class field of
+     the event.  An event which controls how long users may use a door looks
+     like this:
+
+     #event <days> <time> door-limit quiet <duration> "" <limit>
+
+        The days, time, and duration fields allow you to specify on what days,
+     starting at what times, and how long an event of this class should last. 
+     You specify the door time limitin the depends field, in minutes.  Simple
+     as that. Suppose you don't want users to accumulate more than 5 minutes
+     of door time between 7 and midnite of any day.
+
+     #event all 19:00 door-limit quiet 300 "" 5
+
+     would do this.  Please note that this is not an infallible event.  If the
+     user decides to run a door which allows more usage when it is up than is
+     allowed here, the door-limit will be exceeded.  If the user does exceed
+     the limit, Citadel-86 will stop the user from running any more doors.
+     But this is not by any means a super-duper overseer.
+
+
+
+
+
+
+
+
+
+
+                                    -47-
+
+
+
+
+
+
+     XIX.6 Automatic Doors
+        An 'automatic' door in Citadel-86 is a door which is automatically
+     executed when a specified user logs in.  This is a highly specialized
+     capability, and so if you're not sure that you need it, don't worry about
+     it.  Basically, this will be of use to sysops who's systems may be
+     subject to periodic polls from automated callers.
+
+        A #event to implement an automatic door is of the form
+
+     #event <days> <time> autodoor quiet <duration> "" "username" doorcode
+
+        As usual, days, time, and duration lets you specify when this autodoor
+     is active.  While we agree such ability might be of little use, it is
+     there and feel confident someone somewhere will find a use for it.  This
+     sort of event uses class "autodoor" and type "quiet".
+
+        Finally, the depends field for this class of event has two values.  The
+     first value is the name of the user which will trigger an automatic door,
+     while the second value specifies which door is to be triggered.
+
+        Example 1: Suppose everytime the user named "Local UseNet" logs in you
+     want to execute the door named "usenet".  You would then require two
+     separate entries in your CTDLCNFG.SYS.  The first one (although they may
+     physically be in any order you wish) is the #door parameter, which would 
+     read something like this:
+
+     #door usenet xxxx xxxxx autodoor modem unlimited
+
+     <whatever necessary options>
+
+     If you are already familiar with doors, you will note the new 'who' type
+     of door mentioned above: "autodoor".  A door entry with such a who value
+     will not be shown in the doors listings shown to users, and cannot be run
+     manually. However, it is not mandatory that a door to be run as an
+     autodoor be so marked.
+
+        The second entry is the #event which will activate the autodoor.  This
+     would be
+
+     #event all 1:00 autodoor quiet 1440 "" "Local Usenet" usenet
+
+        This event is always active (note the duration of 1440), so whoever,
+     or more accurately whatever, logs in using this account will always be
+     thrust into the door named 'usenet'.  Note the use of double quotes
+     around the name of the user who triggers this autodoor: they are
+     MANDATORY.  They are there so  we may distinguish between the name of the
+     user, which may have more than one word, and the name of the door entry,
+     which is always one word.
+
+     XX. External Message Editors
+        Ambitious sysops may provide "external message editors" to their
+     users.  An external message editor is just like the Sysop's Editor
+     (Section XII), except they can be made available to the remote users,
+     if the sysop is ready to do the legwork.  When Citadel-86 executes
+     an external editor, it makes no attempt at redirecting the input from
+     the keyboard to the modem, or the output from the screen to the modem.
+
+
+
+                                    -48-
+
+
+
+
+
+
+     Instead, the sysop must either find an editor which will do such things,
+     or find some program which will do so for them, such as Marshall Dudley's
+     fine DOORWAY program (which, unfortunately, is shareware).
+
+        Anyways, on to the gritty details.  The user interface to the external
+     editors is analogous to that provided for the External Protocols of
+     Section XV & XVII.  When faced with the "entry cmd: " prompt of the message
+     editor, the users may select any external message editor simply by
+     pressing the key assigned by the sysop.  For instance, if the Sysop
+     has decided an external full screen editor should be accessed via the
+     'F' key, the user need only type 'F' at the entry cmd: prompt in order
+     to enter text via the full screen editor.  When the sysop adds external
+     editors to the installation, they should remember to modify the help
+     file EDIT.MNU to reflect the change.
+
+        But how are external editors installed?  Again, analogous to the
+     External Protocols, all external editors are listed in a separate file.
+     The file is called EDITORS.SYS and should reside in your #ROOMAREA
+     directory.  Each line in the file specifies an external editor.  The
+     format of each line is
+
+        <editor name> <command line>
+
+        "Editor name" is the name to be echoed to the user when they select
+     this editor, AND the first letter of this name is the selector letter.
+     Additionally, this can only be one (1) word, unless you surround the
+     name with quotes (").  So if you want your full screen external editor
+     to just be FullScreen, then you could just have
+
+        FullScreen ...
+
+     but if you want it to be two words, you'd have to have
+
+        "Full Screen" ...
+
+     In both cases, the user would type 'F' to gain access to it.
+
+        "Command line" is the command line to be used to run the editor.
+     You may use the macros defined in the External Protocols section
+     (XV & XVII) in order to convey important information to the editor, except
+     for %g.  This includes the new %h parameter.  For instance, if you have
+     found an editor (call it "outside") which will run off your COM port,
+     with the arguments being the Com port, the baud, and the name of the file
+     to edit, you might have
+
+        "Full Screen" outside %c %a
+
+        The name of the file to edit is automatically appended to the end of
+     command line.
+
+        You can NOT override any of the already existing message editor
+     commands.  As of this writing, those are <A>bort, <C>ontinue, <R>eplace,
+     <P>rint, <S>ave, <H>old, <I>nsert, <N>et, <W>ho else, and <O>utside Editor.
+
+
+
+
+
+
+                                    -49-
+
+
+
+
+
+
+        This is definitely an advanced option, particularly if you are
+     trying to run an editor using DOORWAY or similar program.  Approach
+     with caution.
+
+        Ease v1.5 will let you build the EDITORS.SYS file if you prefer to
+     do things the easy way.
+
+     Appendix A: Contributors
+        There have been a number of contributors to Citadel-86 over the years,
+     and it's only appropriate to acknowledge such people.
+
+        It's natural to begin by remembering the original author of Citadel-86,
+     Cynbe ru Taren of Seattle, and the early contributors, such as David V.
+     Mitchell and others we are not aware of.  They are the reason Citadel-86
+     and its many children exist today.
+
+        A partial list of others include the following:
+
+        Hue, Sr. of SuperComp III: for general support, testing, suggestions,
+     and motivation, not to mention providing access to the code!
+
+        John L. Stanley: A great deal of early work with Hue, Jr., to get the
+     bugs out of the early CP/M Citadel 2.10 code, and then the later
+     development of most of the core concepts of C86Net.
+
+        Jay Johnson, for Insert Paragraph and a great deal of general work
+     and ideas, not to mentioned Citadel-68k.
+
+        Dale Schumacher (Dalnefre') of Syntel for additions to the Configure
+     program and fighting with me a lot.
+
+        Paul Gontier of Kat's Alley for the video support code.
+
+        Eric Brown of Primordial Ooze for the Zenith Z-100 modem code.
+
+        Paul Gauthier of Cerebral Cortex for the Hot Helps code, USENET access
+     gateway, OtherNet concept, and pushing Citadel-86 into implementing Anytime
+     Netting, plus a host of minor suggestions.
+
+        Gary Meadows of Asgard-86 for his Door Support code and other
+     suggestions.
+
+        Kip DeGraaf for taking care of the netmaps.
+
+        SSR of Chaos II for forcing USR HST 9600 support into Citadel-86.
+
+        Royce Howland of Edmonton for his CALLSTAT utility.
+
+        BKB of Novu for several useful utilities.
+
+
+
+
+
+
+
+
+
+
+                                    -50-
+
+
+
+
+
+
+        Fred Rose of House of Fred for another utility.
+
+        Phluffy for general ideas and STROLL.
+
+        Andy Rubin of Spies in the Wire for being the first network node
+     outside of Minnesota.
+
+        mary mary for her many ideas, unfailing support and editing these damn
+     manuals!
+
+        And, of course, the cast of thousands responsible for the ideas
+     which have made Citadel-86 into what it is today.
+
+
+                                -- Hue, Jr.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    -51-
+
+
+
+
+
+

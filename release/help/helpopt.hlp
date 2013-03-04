@@ -1,0 +1,53 @@
+ All (or most) Help Files
+ ------------------------
+   You can access any of these directly from a room prompt by typing
+".Help HELPFILENAME".
+
+ o ADVANCED  Advanced command help.
+ o AIDE      Help on Aide commands.
+ o AIDEFLR   Help on Aide Floor commands.
+ o BASICS    Basic help for the novice.
+ o BIO       Biographies on ^nodetitle.
+ o BOARD     Info on ^nodetitle.
+ o CITADELS  A listing of local Citadels.
+ o COMMANDS  Help on Commands.
+ o COMPCOMM  What ^variantname can do with compressed files.
+ o DOORS     ^variantname doors.
+ o DOT       What are dot commands?
+ o DOWNLOAD  How to download.
+ o EDIT      Message editing.
+ o ENTER     Advanced message entry.
+ o FILES     Short summary on File handling.
+ o FLOORS    What are floors?
+ o FLOW      All interesting message display controls.
+ o FORGET    Forgetting rooms.
+ o FORWARD   How to forward your Mail.
+ o GENERAL   Help on some general stuff.
+ o GOTO      Advanced use of Goto.
+ o HELD      Holding messages.
+ o HIDDEN    Hidden rooms.
+ o HOURS     Hours of this system.
+ o LOCALBBS  A listing of local BBS systems, updated who knows when.
+ o LOGINOUT  Logging in and out of ^nodetitle.
+ o MAIL      Private Mail> messages.
+ o MAINHELP  Top level help file.
+ o NET-MAIL  Mail> and C86Net.
+ o NETROOMS  Shared rooms.
+ o NOVFLOW   Short course on controlling message display.
+ o OFFLINE   Offline reader support.
+ o POLICY    The policy of ^nodetitle.
+ o PROTOCOL  Protocols supported on ^nodetitle.
+ o READ      Advanced message display options.
+ o RECONFIG  How to modify your account.
+ o SINGLE    Single stroke commands -- what they can do for you.
+ o SKIP      What can this Skip command do for me?
+ o SUMMARY   Complete summary of dot commands.
+ o TOC       How to get lists of files.
+ o UPLOAD    Uploading to ^nodetitle.
+ o WHATCOMP  What are compressed files?
+
+
+ %HELPOPT Read this list again.
+ %COMMANDS To the Commands level.
+ %MAINHELP First level help system.
+

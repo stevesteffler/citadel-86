@@ -1,0 +1,45 @@
+ What are Compressed Files?
+ --------------------------
+   "Compressed" files, at least here in the BBS world, are actually files
+which contain within themselves one or more files which are usually compressed.
+Compressed files (or library files) are very useful since they make it
+easy to both download a lot of files with little effort and the minimize
+the time required to download the files, particularly since the art of
+file compression has been refined by the folk competing in this field.
+
+   Competing, you say?  Yep.  There are currently four major competitors
+(that we know of) in the BBS world.  Each has a set of utilities which
+produce and manipulate files identifiable by their "extensions" -- the
+".xxx" part of their file name.  For instance, in the filename "STUFF.ARC",
+the extension is "ARC", and that is how you (and ^variantname) identify
+the file.  ^variantname provides support for peeking into and extracting
+from all of these formats.
+
+   So who are the competitors and their products?  Briefly, and with no
+prejudice or bias ...
+
+   ARC is the oldest of the compress utilities still in use.  Produced by
+SEA, it is a ShareWare product, and ARC-produced files can be identified
+by their extension of "ARC".
+
+   The PKZIP set of utilities is probably the newest of compress utilities,
+but is widespread.  Produced by PKWARE, it, too, is a ShareWare product and
+PKZIP-produced files can be identified by their extension of "ZIP".
+
+   The ZOO compressor comes from Rahul Dhesi and is public domain.  Files
+produced by ZOO have the extension "ZOO".
+
+   The Lharc compressor was written by Haruyasu Yoshizaki and is another
+public domain offering.  Files produced with Lharc have the extension
+"LZH".  Lharc is the slowest of the utilities, but is generally the most
+efficient in terms of compressed file size.  However, it has some compatability
+problems between computers (for example, a LZH file produced on an Amiga
+sometimes cannot be selectively decompressed on a PClone -- it'll be an
+all or none operation).
+
+
+ %COMPCOMM How to utilize compressed files on ^nodetitle.
+ %ADVANCED Back to the advanced commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+

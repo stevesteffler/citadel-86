@@ -1,0 +1,76 @@
+ C86Net Mail Handling
+ --------------------
+   You may send Mail to other systems both locally and, possibly, long distance
+from this system.  In order to do this, you must first .goto Mail (if you're
+not there already).  The command is
+
+  .Enter Net-message
+
+   You will then be asked for destination system.  An empty C/R here aborts the
+message, while a question mark ('?') will print out a list of systems that are
+currently on the net; this is a convenience in case you don't quite know the
+spelling of a system's net name or can't remember.
+
+   ******NOTE: Recipient's name for net mail CAN NOT be checked.  Therefore,
+be VERY VERY careful when spelling the recipient's name.  Mail to the 'sysop'
+of another system works, too.  You will* be told after the next successful
+net session with that system if your Mail> didn't have a recipient.  If it did,
+then you'll hear nothing.  If there was no recipient, you will have Mail> from
+Citadel stating that fact.
+
+   In order to use the networking capabilities of Citadel AT ALL, you must
+acquire permission from the sysop.  Leave mail to 'Sysop' to request
+permission if you don't seem to yet have it.
+
+   You may also cause a non-network Mail> message to become a network Mail>
+message simply by touching 'N' at the entry cmd: prompt of Message Entry; you
+will be prompted for the system to send the Mail> to.  If you fail to type in
+a correct node, you will not lose your message, but the message won't be
+netted anywhere.
+
+   Domains are supported in ^variantname for both implicit and explicit
+routing.  "Implicit" just means the system will use the domain system to
+deliver your Mail.  If you can't seem to send net Mail to some node which
+you know is out there, and you happen to know the domain the system resides
+in (most net messages should in fact display the domain the system resides
+in), you can explicitly specify the domain of the system you're shooting
+for by using the .EN command and replying to the system name prompt with
+
+   systemname _ domainname
+
+or, if you don't like underscores, you can use a period.
+
+   systemname.domainname
+
+   For example, if you were on some other system and wanted to get to send
+Mail to this system, you could simply type in
+
+    ^nodename _ ^nodedomain
+
+   and in most cases your Mail would eventually get to this system.
+
+   You may use the <W>ho Else option of Mail> in conjunction with
+the network.  If you want to send a copy of your Mail, whether or not the
+Mail is meant for another system or for a user on ^nodename, to someone on
+another system, simply access <W>ho Else as usual ('W' at the entry cmd:
+prompt), and when asked for Who Else, type "user @ system name".  ^nodename
+will notice the "@" and attempt to identify the name of the system following
+the "@".  If it can't, your Who Else will be rejected; otherwise, a copy of
+the Mail> will be delivered to the user on that system.  You can explicitly
+designate the domain of the target system in Who Else.
+
+   Finally, there is an alternative to the .Enter Net command.  Instead, you
+can use the <E>nter single stroke command, and when prompted for a recipient,
+type "user @ system name".  Just as noted in the paragraph on <W>ho Else,
+if system name can be identified, the Mail will be delivered to the named
+person on that system.  This is more of a convenience option unless you find
+you have a message in your Held buffer which needs to be sent to someone on
+another system, in which case this option becomes necessary.  You can use
+domain designations here, too.
+
+
+ %ADVANCED Back to the advanced commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %DOMAINS What are domains in C86Net, anyways?
+ %MAINHELP First level of help system.
+

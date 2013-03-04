@@ -1,0 +1,19 @@
+ <C>hat with sysop
+ <D>oors
+ <E>nter message
+ <F>orward read
+ <G>oto
+ <H>elp
+ <I>nformation on current room
+ <K>nown rooms
+ <L>ogin
+ <N>ew messages
+ <M>eet User
+ <O>ld messages
+ <R>everse read
+ <S>kip room
+ <T>erminate
+ <U>ngoto
+ <Z>Forget room (see FORGET help file)
+ <?> for menu (anywhere)
+ "." to add options -- see ".Help DOT"

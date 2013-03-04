@@ -1,0 +1,25 @@
+   To read messages since a given date, type
+
+   ".Read <direction option> <date spec | number>"
+
+   If you type nothing for <date spec>, it'll assume from the beginning of
+time.  The format of date spec is just like the Citadel standard for a date:
+
+   yymmmdd   (i.e. 88Jan05 is January 5, 1988)
+
+   However, this may be abbreviated for finger pain alleviation.  If the year
+is omitted, the current year is assumed.  The month must only be unique.  For
+instance, "ja" would indicate january, while "s" would indicate September,
+but "ju" will only generate an error message, since both June and July would
+match that.  The day does not have to be two digits, but it does have to be
+present.
+
+   Alternatively, just typing a number indicates you want messages posted in
+the last X days.  I.e.,
+
+    .Read New 5
+
+asks ^nodename to show all the new messages in the current room posted in the
+last 5 days.  This is very useful in combination with Global reads in order
+to get only the last few days worth of posts.
+

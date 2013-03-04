@@ -1,0 +1,46 @@
+ Generic Extended Commands
+ -------------------------
+
+  You should be familiar with the basic single-key commands.  Most of the commands
+can also take additional parameters.  There are two basic rules to remember:
+
+ (1) Begin multi-word commands with a period and end with CR.
+
+  Examples:
+
+ To read all the messages in a room:
+     .Read Forward
+
+ To list the messages in reverse order:
+     .Read Reverse
+
+ To go directly to the room ANYROOM>:
+     .Goto ANYROOM
+
+
+ (2) Typing a "?" anywhere will print the list of options available.
+
+ Examples:
+
+ To list the main menu:
+      ?
+
+ To list all the enter options:
+      .Enter ?
+
+ To list all known rooms in the system:
+      .Goto ?
+
+ To list all help files:
+      .Help ?
+
+ etc....
+
+   (P.S., you can substitute a SPACE, a comma, or a slash for the period
+on the general rule that you may occasionally miss the period when you throw
+your hand at the right side of the keyboard.)
+
+
+ %SUMMARY Complete list of extended commands.
+ %ADVANCED Back to the Advanced commands menu.
+ %MAINHELP First level help.

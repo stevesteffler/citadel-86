@@ -1,0 +1,411 @@
+#
+# MODEMS, for use with Citadel-86's Ease utility.
+# '#'s are comments, extending to EOL.  Blank lines are SIGNIFICANT!
+#
+# This is a collection of text records.  Structure of the records:
+#
+# Modem Name
+# supported or not-supported
+# Modem init string
+# Reinitialization string
+# Dialout Default Prefix
+# Dialout 300 Prefix
+# Dialout 1200 Prefix
+# Dialout 2400 Prefix
+# Dialout 4800 Prefix
+# Dialout 9600 Prefix
+# Dialout 14400 Prefix
+# Dialout 19200 Prefix
+# Dialout 38400 Prefix
+# Dialout 56800 Prefix
+# Dialout Suffix
+# Lock Port baud.  0=300, etc.  -1 implies disabled.
+# Comment lines, End of Comment is "&&&&&&".
+#
+# A "Generic Hayes" set up
+Generic Hayes
+supported
+AT M0 S0=1
+
+ATDT
+
+
+
+
+
+
+
+
+
+\r
+-1
+
+  This is very general, edit as necessary.
+
+&&&&&&
+# Hayes SmartModem 2400, as donated by Chez' Spaz
+Hayes SmartModem 2400
+supported
+
+AT
+ATDT
+
+
+
+
+
+
+
+
+
+\r
+-1
+  For effective use of the SmartModem 2400:
+ o set STORED PROFILE 0 to the following values using
+the AT command
+ E0 Q0 V1 X3 Y0 &C1 &D2 &G0 &J0 &L0 &P0 &Q0 &R0 &S0 &X0
+S0=1
+ o Set the modem to use PROFILE 0 for all power-up and
+and reset conditions by using the AT&W0 command.
+ o Use a comm program to do the above before attempting
+to use your SmartModem with Citadel-86.
+&&&&&&
+#
+# USR HST 9600
+USR HST 9600
+supported
+AT X4 S15=8 &M4 &B1 &H1 &A0 M0 S0=1
+AT&B1&M4
+AT&M0D
+
+
+
+
+AT&M4D
+AT&M4D
+AT&M4D
+
+
+\r
+4	# 9600 -- can't assume a good chip is in place for greater performance
+ o Your modem cable MUST support CTS.
+ o You'll find your LOCK-PORT parameter is set to 4
+   (9600 baud).  You can up that if you have a good
+   UART chip.
+&&&&&&
+#
+# MultiTech's MT224AH
+MultiTech MT224AH
+supported
+AT S0=1 M0 X4 Q0 B1
+
+ATDT
+
+
+
+
+
+
+
+
+
+\r
+-1
+ o Recommended 8-pin DIP switch settings (accessible in
+bottom of modem):
+     1 - UP (DTR controlled by computer)
+     2 - UP (Verbose mode on - see "ATV")
+     3 - DOWN (Responses enabled - see "ATQ")
+     4 - DOWN (Disable echo of commands - see "ATE")
+     5 - DOWN (Disable auto-answer - we do it manually)
+     6 - UP (Carrier Detect normal)
+     7 - UP (RJ11 Jack selected.)
+     8 - DOWN (Enable Command Mode)
+&&&&&&
+#
+# Everex 2400 -- the modem from hell
+Everex 2400
+supported
+ATE0V0L3S7=25S2=255S5=130
+ATS0=1E0V0L3S7=25S2=255
+ATDT
+
+
+
+
+
+
+
+
+
+\r
+-1
+   DIP switches
+ o 1 and 2 Are Comm select - consult docs
+ o 3 is IRQ (Controls DTR) - probably DOWN
+ o 4 is DCD (Controls Data Carrier Detect), and should
+   be down
+ o 5 Telephone line select, and should be down
+ o ... and have a LOT of patience with this modem.
+&&&&&&
+#
+# Another Everex - ick!
+Everex EMAC-MD2400
+supported
+ATS0=1M0X4Q0B1H0&C1&D2S2=255S7=30
+AT
+ATDT
+
+
+
+
+
+
+
+
+
+\r
+-1
+  Switch 9 Modem Standard  (set to BELL) 
+  Switch 8 AT commands     (set to active) 
+  Switch 7 Phone Line Type (set to RJ11,14) 
+  Switch 6 Carrier Detect  (set to active)
+  Switch 5 Auto Answer     (set to on)
+  Switch 4 Command Echo    (set to on)
+  Switch 3 Result codes    (set to on)
+  Switch 2 Result codes    (words instead of numbers) 
+  Switch 1 DTR signal      (set to active)
+&&&&&&
+# CTS DataComm
+CTS DataComm
+supported
+ATQ0S0=1V0&D2E0S2=255S5=130T
+AT
+ATDT
+
+
+
+
+
+
+
+
+
+\r
+-1
+&&&&&&
+#
+# This is for the MultiTech V32 modem.
+MultiTech V32 External
+supported
+AT S0=1 M0 X4 Q0 B0 E0
+AT
+ATDT
+
+
+
+
+
+
+
+
+
+\r
+-1
+
+This is a tentative setup; it may not be entirely correct.
+
+&&&&&&
+#
+# Gateway Telepath 2000
+Gateway Telepath 2000
+not-supported
+ATN1W2S0=1M0Q0X4&C1S37=0S36=7&Q5
+ATS37=0&Q5
+ATDT
+ATS37=1&Q6DT
+ATS37=5&Q6DT
+ATS37=6&Q6DT
+ATS37=8&Q6DT
+ATS37=9&Q6DT
+ATS37=11&Q6DT
+
+
+
+\r
+5
+
+  Still under development.
+
+&&&&&&
+#
+# AT&T Paradyne 14.4K/Fax
+AT&T Paradyne 14.4K/Fax
+supported
+ATE0Q0V1X4&C1&D2&R0\\Q3S0=1S85=1
+ATS41=0\\N7M0
+ATDT
+AT\\N0S41=10DT
+AT\\N0S41=8DT
+AT\\N0S41=6DT
+AT\\N7S41=5DT
+AT\\N7S41=3DT
+AT\\N7S41=0DT
+
+
+
+\r
+6
+
+  The \N0 in the dialing strings disables Error Control
+  Mode.  Some slower modems may support Error Control
+  Mode (basically MNP) so you may wish to use the Access
+  String of the specific nodes using those modems when
+  dialing them.  But most slower modems don't, so \N0
+  is used for those dialing speeds.
+
+&&&&&&
+#
+# US Robotics Sportster 9600  
+USR Sportster 9600  
+supported
+AT S0=1 X4 &R0 &C1
+AT
+ATDT
+
+
+
+
+
+
+
+
+
+\r
+-1
+
+  This is an experimental entry - it is not confirmed to
+  be perfect.  If there are problems with it, or can be
+  improved, please let me know.
+
+&&&&&&
+#
+# US Robotics Sportster 14.4 & 14.4 FAX
+USR Sportster 14.4K & 14.4K FAX (simple setup)
+supported
+ATE0 M0 &A0 S0=1
+AT
+ATDT
+
+
+
+
+
+
+
+
+
+\r
+-1
+
+  (Experimental) This setup implies no messing with
+  DIP switches.  Also see USRSPORT.LZH on Test System
+  in Latest Citadel].
+
+&&&&&&
+#
+# US Robotics Sportster 14.4K & 14.4K FAX
+USR Sportster 14.4K & 14.4K FAX (advanced)
+supported
+ATE0 M0 &A0 S0=1
+AT
+ATDT
+
+
+
+
+
+
+
+
+
+\r
+6
+
+  (Experimental) Set DIP Switch 4 ON.  Set DIP Switch 5
+  OFF.  Using a COM program, first make SURE you are
+  talking to the modem at 19.2K, then do "AT&F1"
+  (carriage return), "ATE0 M0 &A0 S0=1" (cr), "AT&W0"
+  (cr).  Also see USRSPORT.LZH on Test System in Latest
+  Citadel].
+
+&&&&&&
+#
+# This is for the TWINCOM 14,400 v.32bis/v.32/v.42bis/v.42 fax modem
+TWINCOM 14,400 data+fax
+supported
+AT&C1&D2&Q5N1W1 S95=160 S11=55 S0=1
+AT&C1&D2&Q5 S0=1
+ATDT
+
+
+
+
+
+
+
+
+
+\r
+5
+ 
+ o For calling to an older 2400 baud system use the 
+   following:
+  AT&Q6 S36=3 S48=128 S95=0 N0 W2 S0=1
+  This will lock the baudrate to 2400 for these calls.
+&&&&&&
+#
+# THis is for the ZOOM 14,400 v.32bis/v.32/v.42bis/v.42 fax modem
+ZOOM V.32bis 14,400 data+fax
+supported
+AT&F&C1&D2&Q5&K3 S37=0 S95=44 S11=55 S0=1
+AT&C1&D2&Q5 S37=0 S0=1
+ATDT
+
+
+
+
+
+
+
+
+
+\r
+5
+                                    
+ o For calling to an older 2400 baud system use the 
+   following:
+  AT&Q6 S36=3 S48=128 S95=0 N0 W2 S0=1
+  This will lock the baudrate to 2400 for these calls,
+  and disable negotiation, forcing MNP
+&&&&&&
+MicroCom DeskPorte
+supported
+AT &C1 S0=1 M1 Q0 B1 S11=35 +MS=11,0,300,28800
+AT +MS=11,0,300,28800 &C1
+ATDT
+AT+MS=0,0,300,300DT
+AT+MS=1,0,1200,1200DT
+AT+MS=2,0,2400,2400DT
+AT+MS=9,0,4800,4800DT
+AT+MS=9,0,9600,9600DT
+AT+MS=10,0,14400,14400DT
+AT+MS=11,0,300,28800DT
+
+
+\r
+6
+
+                     Not fully verified.
+
+&&&&&&

@@ -1,0 +1,38 @@
+ Logging in and out
+ ------------------
+   You should log in each time you visit ^nodetitle.  This allows the system
+to remember, for example, your terminal width and (more importantly)
+which messages you have already seen.
+
+   IMPORTANT:  When you get the prompt "Anyroom>" you are considered to be
+visiting "Anyroom". When you leave the room, all messages in it will be
+marked as having been read -- whether you read them or not. If you do not
+visit a given room with new messages this call, the system will remember them
+next call.
+
+  To save time you can log in on one line with:
+      .Login <YOUR PASSWORD>
+
+  There is a 20-second wait on bad passwords longer than one character, to
+discourage password guessing.
+
+ To log out:
+      Terminate
+
+ To log out without the Yes/No confirmation:
+      .Terminate Quit-also
+
+ To log out without exiting ^nodetitle or breaking the modem connection:
+      .Terminate Stay
+
+ This is useful if several people are calling from a single terminal.
+ 
+  To log out without telling the system you've read any messages (as if you
+had never been on the system):
+       .Terminate Abort
+
+
+ %COMMANDS Back to the commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+

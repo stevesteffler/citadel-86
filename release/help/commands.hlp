@@ -1,0 +1,33 @@
+ Help: ^variantname Commands
+ ---------------------------
+   So you want to know about commands, eh?  Well, if you're new to the
+system, just start out with that very first option: NOVICE.  Once you
+think you know what you're doing then you can start exploring the other,
+intermediate stuff.  And after you have a grip on that and have begun
+to realize just why ^variantname is one of the easiest BBSs to use, you
+can explore the advanced stuff.
+
+Basic Topics:
+ %NOVICE OK, novices: THE easy basics of ^variantname.
+ %NOVFLOW Basic message display control.
+ %LOGINOUT Logging in and out of ^variantname.
+
+Intermediate Topics:
+ %SINGLE All single stroke commands list and short explanations.
+ %EDIT All the options available for editing your messages.
+ %GOTO Advanced usage of .Goto.
+ %FLOW The advanced aspects of message display control.
+ %MAIL Private Mail on ^nodetitle.
+ %FORGET Forgetting rooms for your sanity.
+ %RECONFIG How to change your configuration.
+ %HIDDEN What's a hidden room?
+ %DOORS More information on Doors on ^nodetitle.
+ %AIDE Commands available to the poor Aides.
+ %BIO User biographies.
+
+Advanced Topics:
+ %ADVANCED Advanced usage of the system.
+
+ %HELPOPT The complete list of help files.
+ %MAINHELP Back to first level help.
+

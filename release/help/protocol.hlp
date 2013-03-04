@@ -1,0 +1,31 @@
+ External Protocols (both files and messages)
+ --------------------------------------------
+
+   ^variantname supports the following protocols internally for use
+in both downloading and uploading messages and files:
+<X>modem, <Y>modem.
+
+   The following external protocols are supported for Downloading messages
+and files:
+
+     ^dlprotocols
+
+   The following external protocols are supported for Uploading messages
+and files:
+
+     ^ulprotocols
+
+   The only distinction between "internal" and "external" protocols, so far
+as you, the user, are concerned is that external protocols may take a short
+time (1-10 seconds) to load from disk, while internal protocols should begin
+immediately.  You ask for external protocols in the same way you use internal
+protocols -- using the character between the "<" and ">".
+
+
+ %DOWNLOAD Information on downloading from ^nodetitle.
+ %UPLOAD Information on uploading to ^nodetitle.
+ %FILES Summary of file handling.
+ %ADVANCED Back to the advanced commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+

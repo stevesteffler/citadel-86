@@ -1,0 +1,101 @@
+    Only people designated by the Sysop as "AIDES" may perform the following
+functions:
+
+  => Visit the hidden Aide> room.
+  => Delete messages
+  => Delete empty rooms
+  => Edit a room
+  => Kill a room
+  => Move/insert messages
+  => Make messages into net messages
+  => Journal messages (aide at sysConsole only)
+  => Copying files (sysops)
+
+   Most changes are accounted for by the Citadel-86 system and are recorded
+under
+the aide's name in the Aide> room for scrutiny by other aides and Sysops.  If
+a person is found to be abusing their aide privileges, such privilege may be
+removed at the discretion of the Sysop.
+
+ Procedures are as follows:
+
+ TO MAKE AN UNNETTED MESSAGE INTO A NETTED MESSAGE:
+   (1) Hit <P>ause during type-out of the message
+   (2) Hit <D> to continue.
+   (3) The message will print out again for confirmation.
+   (4) The system will then print out
+                "<M>ove <C>opy <D>elete <A>bort <N>et? (D/M/C/A/N) "
+   (5) Press <N> to make the message into a net message.  There will be a
+short delay.
+
+ If you're using the .ECP option, you can do this from a "<^more>" prompt.
+   
+ TO DELETE/MOVE MESSAGES:
+   (1) Hit <P>ause during type-out of the message to be deleted.
+   (2) Hit <D>elete to continue.
+   (3) The message will print out again for confirmation.
+   (4) The system will then print out
+                "<M>ove <C>opy <D>elete <A>bort? (D/M/C/A) "
+
+If that is indeed the message to be deleted OR moved, then type <D> to delete
+that message, or <M> to move that message. Type <A> if you decide that you
+don't want to do anything with that message.
+     (4.a) If you select <M> above, then the system will ask you where:
+"To where (C/R = '<some room>'): " where <some room> is the room where the
+message will be inserted if you simply type a C/R. <some room> is always the
+last room to where a message was moved, or it is the Aide room if the command
+hasn't been used since the system was last brought up. Also, the message moved
+becomes the message that will be used for the <.AI> command (<.AI> is detailed
+later in this file).
+      Your name and a copy of the of the deleted/moved message will be
+automatically
+logged in Aide>.
+
+ If you're using the .ECP option, you can do this from a "<^more>" prompt.
+
+ TO JOURNAL A MESSAGE:
+   (1) Hit <P>ause during type-out of the message to be deleted.
+   (2) Hit <J>ournal to continue.
+   (3) The system will ask for a filename to save or append the given message
+to.
+   An empty return at this point will abort the operation.  Anything else will
+cause the system to attempt to either A) append to the given file or B) create
+the given file if it does not yet exist.  A failure (caused by who knows what)
+will cause the system to quit trying. If successful, the message will have
+been saved in a text file.
+   NOTE: At present, this capability is restricted to Sysops.
+
+ If you're using the .ECP option, you can do this from a "<^more>" prompt.
+
+ TO DELETE EMPTY ROOMS: 
+      The ".Aide Delete" command will eliminate all empty rooms in the system,
+except for permanent and directory rooms.  This will be logged under your
+name in Aide>.
+ 
+ TO EDIT A ROOM: 
+      The ".Aide Edit" command will allow you to edit the room you are in.
+Type a '?' to find out what you can do with the 'room edit' prompt that you
+should get.  All important changes are recorded in the Aide> room.
+ 
+ TO INSERT A MESSAGE:
+      The ".Aide Insert" command will insert the last message you deleted into
+the room you are currently in.  This will be logged under your name in Aide>.
+ 
+ TO KILL A ROOM: 
+      The ".Aide Kill" command will delete the room you are in, regardless of
+contents.  This will be logged under your name in Aide>.
+
+ COPYING FILES:
+      Files may be copied into directory rooms by going to the target directory
+room and typing ".Aide Add-File".  The aide is prompted for a file (can include
+full path), and if the copy is successful, for a file description.
+
+ NOTE: For obvious reasons, these commands cannot be used to modify Aide>
+itself.   "Deleting" a message in Aide> will >not< remove it from Aide>, but
+>will< make it "most recently deleted" for purposes of inserting the message
+elsewhere.
+
+ %AIDEFLR Aide commands for floors.
+ %COMMANDS Back to basic commands.
+ %MAINHELP Back to the top.
+

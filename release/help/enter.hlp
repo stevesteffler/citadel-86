@@ -1,0 +1,30 @@
+ Advanced Usage Enter
+ --------------------
+ Transferring messages:
+   Usually <E>nter is sufficient for entering a message.  However, on occasion
+you may wish to prepare a message on your own computer ("off-line") and upload
+it to ^nodetitle.  You can do this using this general command format:
+
+     <.E>nter [protocol specifier] <M>essage
+
+   "protocol specifier" may be any valid upload protocol (see PROTOCOL, below).
+When you use this command, ^variantname will accept the file you send (up to
+7500 bytes), place it in the message buffer, and place you at the "entry cmd:"
+prompt so you may edit or add to the message before saving it (see EDIT, below).
+
+   If you do not use a protocol specifier, ASCII is expected.
+
+ ROOM CREATION:
+   You can create a room using the .Enter Room command.  Just follow the
+prompts.
+
+ CHANGING YOUR PASSWORD:
+   Use .Enter Password to change your password.
+
+
+ %PROTOCOL Available protocols.
+ %EDIT Message editing command explanation.
+ %ADVANCED Back to the advanced commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+

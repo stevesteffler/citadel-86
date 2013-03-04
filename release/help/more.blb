@@ -1,0 +1,14 @@
+
+  'C' - switch to continuous stream
+  'Q', 'S' - stop output, return to room prompt
+  <carriage return> display next line
+
+ During message display:
+ 
+  'R' - reverse message flow
+  'N' - next message (skip rest of this message)
+  'E' - enter message
+  'D' - delete message (aides only)
+  'J' - journal message (sysops only)
+
+ Anything else should show next page of display.

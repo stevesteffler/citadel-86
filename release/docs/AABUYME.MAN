@@ -1,0 +1,86 @@
+/************************************************************************/
+/*                            aaBuyMe.doc                               */
+/************************************************************************/
+
+/************************************************************************/
+/*                              History                                 */
+/*                                                                      */
+/* 85Apr27 HAW  Modified for Citadel-86.                                */
+/* 82Dec06 CrT  Created.                                                */
+/************************************************************************/
+
+/************************************************************************/
+/*                              Audience                                */
+/*                                                                      */
+/* People considering installing the Citadel BB system.                 */
+/************************************************************************/
+
+/************************************************************************/
+/*                              Purpose                                 */
+/*                                                                      */
+/*  Impart a sense of the flavor, structure and purpose of the system.  */
+/************************************************************************/
+
+    Citadel is a room-structured message system.  The fundamental
+design goal is to provide a congenial forum conducive to interesting
+discussions.  The software is intended to be as unobtrusive, unintrusive
+and unconstraining as possible.  In software as elsewhere, good engineering
+is whatever gets the job done without calling attention to itself.
+
+    The fundamental design metaphor is that of a building consisting of
+a series of independent rooms, each of which hosts a discussion devoted
+to a particular topic.  Messages are stored and retrieved in chronological
+order within each room.  Messages are formatted to the caller's screen width.
+
+     Callers may travel freely between the rooms,
+reading old messages and posting new ones.  New rooms may be created
+at will, and old ones are deleted when they empty of messages.
+
+    People familiar with other electronic message systems may wish
+to compare Citadel rooms with EIES conferences, ArpaNet mailing
+lists, individual "linear" BB systems or whatever;  the parallels
+are not exact but the functions are similar.
+
+    The fundamental Goto, Read and Enter commands have been streamlined
+as much as possible.  The message display format has a minimum of
+unnecessary noise:  the topic is implicit in the message's location
+within a room, no explicit TO field is present, no message ID # is
+printed, no redundant "END OF MESSAGE" blurbs etc.  The most common Goto,
+Read and Enter commands are all single-key.  Citadel automatically
+skips rooms which have no new messages, and old messages in the
+current room.  (Less concise commands are of course available to
+override this.)
+
+    Citadel Version 1 offered no more than the above, and was
+quite well recieved.  Version 2 left the basic structure unchanged,
+but added some additional peripheral capabilites.  Private person-to-
+person mail is now supported.  Private rooms can host restricted
+conferences.  Once visited, private rooms behave exactly like regular
+rooms to the participants, but they are not accessable to others who
+don't know the name of the room.  The sysop can set up some rooms to
+be windows onto designated disk/directories.  These directory
+rooms support the usual message functions, but also allow one to
+to do directory listings by wildcard match, or to upload and download
+files via Ward Christensen's protocol.  Various rough edges have been
+smoothed off.  The message code has been reworked to support automatic
+networking of Citadel nodes.
+
+
+    Citadel-86 is written in Turbo C.  The distributed system can be
+installed and run without recompilation in most cases.  Citadel
+needs MS-DOs 2.xx, at least 300K of disk space, an auto-answer modem,
+and 256K RAM.
+
+    The source files run to about 600K, the .exe files to about 250k.  In a
+functioning system, the message and userlog files together take about
+150K, and one would normally like about 200K for message text, to
+keep the wraparound time longer than a week.  The code is a simple
+public-domain release:  it can be used without fee in commercial
+systems, repackaged and sold, or whatever takes your fancy.  (As
+a matter of good form, a pointer to the parent code would be nice,
+of course.)  The translator takes no responsibility for the correctness,
+reliability, security, use, abuse, contents or clientele of any
+Citadel-86 installation (nor does the author of the original Citadel which
+this comes from).
+                                                   
+

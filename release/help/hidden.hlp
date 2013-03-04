@@ -1,0 +1,21 @@
+ Hidden Rooms
+ ------------
+   Some rooms are hidden.  Initially, they are not listed by the <K>nown- rooms
+command, and <G>oto will not take you to them.
+If you know the name of such a room,
+you can reach it via ".Goto ROOM NAME".
+Once you have visited a hidden room,
+it will behave just like a regular room as far as you are
+concerned: <G>oto
+will automatically take you to this room whenever
+it has new messages and it will show up
+on your <K>nown- rooms list.
+  These rooms are used principally for more or less private discussions. 
+  They may also be used for a primitive roll- your- own adventure game, the
+object being to guess the name of the next room from clues in the current room.
+  These can chew up a lot of system time... 
+
+
+ %COMMANDS Back to the commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.

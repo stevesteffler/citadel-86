@@ -1,0 +1,4030 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                           INSTALLATION MANUAL
+  
+                            CITADEL-86  V3.32
+
+                           Copyright 1989, 1990
+
+                               by Hue, Jr.
+
+                         C-86 Test System Sysop
+
+                            (612) 470-9635
+
+                                90Jul01
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                         Table of Contents
+
+     I. Introduction & Requirements  . . . . . . . . . . . . . . . .  2
+        I.1 ... but first, a caveat. . . . . . . . . . . . . . . . .  2
+        I.2 Introduction . . . . . . . . . . . . . . . . . . . . . .  2
+        I.3 Requirements . . . . . . . . . . . . . . . . . . . . . .  3
+     II. Installation  . . . . . . . . . . . . . . . . . . . . . . .  4
+         II.1 Tickling DOS configurations  . . . . . . . . . . . . .  4
+         II.2 Making your modem do the right thing . . . . . . . . .  4
+         II.3 Citadel-86 Operating Procedures
+                         (and other epic fantasies)  . . . . . . . .  5
+              II.3.a Who's this masked Temporary file, anyways?  . .  6
+         II.3 (con't)  . . . . . . . . . . . . . . . . . . . . . . .  6
+         II.4 Other Data Files . . . . . . . . . . . . . . . . . . .  7
+         II.5 EASE . . . . . . . . . . . . . . . . . . . . . . . . .  8
+         II.6 The ole' configuration file  . . . . . . . . . . . . .  8
+              II.6.a But first, a word on moral values ... . . . . .  9
+              II.6.b Section 1 of CtdlCnfg.Sys . . . . . . . . . . . 10
+                Part 1 of Section 1: Meaningless Miscellanea . . . . 10
+                Part 2 of Section 1: Required Odd Stuff  . . . . . . 12
+                Part 3 of Section 1: Data File Sizes . . . . . . . . 13
+                Part 4 of Section 1: Data File Locations . . . . . . 14
+                Part 5 of Section 1: Policy Options  . . . . . . . . 15
+                Part 6 of Section 1: Modem Handling  . . . . . . . . 18
+                Part 7 Video Options   . . . . . . . . . . . . . . . 22
+              II.6.c Section 2 of CtdlCnfg.Sys . . . . . . . . . . . 22
+              II.6.d Section 3 of CtdlCnfg.Sys . . . . . . . . . . . 32
+         II.7 The Big Step -- Your first experience with CONFG . . . 36
+         II.8 CTDL -- That Childhood Experience  . . . . . . . . . . 37
+         II.9 When the inevitable happens  . . . . . . . . . . . . . 38
+         II.10 Installation -- Advanced Topics . . . . . . . . . . . 38
+              II.10.a Command Line options . . . . . . . . . . . . . 38
+              II.10.b BAT files and program termination ERRORLEVELS. 40
+              II.10.c Making BAT files and command line options
+                                                     work for you  . 41
+              II.10.d Result Code and Call Progress Detection  . . . 43
+              II.10.d.1 Restrictions on Result Codes . . . . . . . . 45
+              II.10.e Extreme options in CtdlCnfg.Sys  . . . . . . . 46
+     III. Zenith Z-100 Notes . . . . . . . . . . . . . . . . . . . . 47
+              III.1 Introduction . . . . . . . . . . . . . . . . . . 47
+              III.2 Scary but Innocuous Behaviors  . . . . . . . . . 48
+              III.3 Result Codes . . . . . . . . . . . . . . . . . . 48
+
+     Appendix -- Exhibit copy of CtdlCnfg.Sys. . . . . . . . . . . . 50
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    -1-
+
+
+
+
+
+
+     I. Introduction & Requirements
+        Hi.  This is the Citadel-86 Installation Manual.  This manual comes in
+     three parts.  In the first part we hope to present a very short intro-
+     duction to Citadel-86 and give you an idea of the requirements of running
+     Citadel-86.
+ 
+        The second part of the Manual will contain a comprehensive (we hope!)
+     discussion of general operation of Citadel-86 and a step-by-step
+     installation guide.
+
+        The third section contains notes specific to the Zenith Z-100, as
+     contributed by both the author of this manual and System Operators
+     using Z-100s as their hardware platform.
+ 
+        If you are looking for documentation covering the day to day operations
+     of Citadel-86, please read OPER3.MAN.  Just ignore the blood spots
+     in there ...
+ 
+     I.1 ... but first, a caveat.
+        Citadel-86 has a number of eccentricities in it; in fact, some people
+     might describe it as one giant eccentricity, and an explanation is,
+     perhaps, in order.  One of the authors of this manual, Hue, Jr., is also
+     the principal porter and caretaker of Citadel-86.  Citadel-86 derives
+     directly from the version 2.10 of Citadel written by Cynbe ru Taren for
+     CP/M, and contains a number of the apparent oddities that originally
+     appeared in Cynbe's code.  Hue, Jr., feeling there may have been
+     certain reasons in Cynbe's mind for what he did, has been somewhat loathe
+     to change how certain things worked.  This may indicate a certain lack of
+     ambition on his part; if so, so be it.  Whatever the case, he has chosen
+     to leave them in, due to his faith in Cynbe knowing what he was doing.
+ 
+     I.2 Introduction
+        Citadel-86 is part of a growing family of BBSes characterized as
+     "room-based" systems.  These systems are characterized as excellent
+     messaging systems in which the message base is partitioned into various
+     'areas', enhancing the focus of the topics on the installation (if
+     well-managed); the areas are usually termed 'rooms' in order to provide a
+     highly familiar metaphor for the common user.
+ 
+        Some room-based systems have an additional structure added on to them,
+     known sometimes as 'hallways' or 'floors', which give addition focus.
+     Citadel-86 has a 'floor' capability, which is optionally available to the
+     users.  Floors allow the sysop and aides to partition the collection of
+     rooms into 'subject floors' (or 'topical floors'), so rooms may be
+     grouped as needed.
+ 
+        Room-based systems normally feature an extremely streamlined set of
+     commands, in which those used the most often are mnemonic 'single-stroke'
+     commands whereby the user supplies the first letter of the command to
+     execute and the system provides the rest of the command.  The speed
+     and ease-of-use of such a command set, in conjunction with the room
+     concept, has combined to make room based systems extremely popular and
+     heavily used in several sections of the United States.
+ 
+        Citadel-86 also has file upload and download abilities, integrated
+     with the room metaphor, and a network capability.
+ 
+
+
+                                    -2-
+
+
+
+
+
+
+     I.3 Requirements
+        There are a number of requirements connected with running a Citadel-86
+     system. The most important one, though, is perhaps the most ignored, and 
+     that is experience with Citadel-86 or similar BBS software from a user
+     standpoint.  It can't be stressed enough that you should have at least a
+     month of day-to-day experience with Citadel-86 as a normal user, learning
+     the various commands relating to messages and files, and in general
+     becoming not only familiar, but comfortable with the Citadel-86 style of
+     bbsing before descending into sysopdom.
+
+        More formally, Citadel-86 is capable of running on two classes of
+     machine.  The first is the Zenith Z-100, an 8085/8088 machine.  The
+     second category contains the IBM PCs, ATs, and close clones (note
+     a Z-100 does NOT constitute a close clone, although it is supported).
+     These two classes are similar enough that we do not need to discuss the
+     requirements for each class separately.  However, please note the
+     two different machines require different executable files (unlike earlier
+     versions of Citadel-86).
+ 
+      o Operating System: PC- or MS- DOS 2.x or 3.x is required.  While not
+        every single version of DOS between 2.x and 3.x range has been
+        tested with Citadel-86, we have not had any reports of problems with
+        those versions of DOS.  Version 1.x of MSDOS is a NO NO!
+ 
+      o RAM: We suggest at least 256K RAM be made available to Citadel-86.
+        This is in addition to RAM for MS-DOS, TSR programs, etc.
+ 
+      o Disk storage: A hard disk is, naturally, highly desirable.  However,
+        you can run Citadel-86 on a two floppy system, but if you must do so,
+        you should also try to make sure you can have a relatively large
+        RAM disk available; due to Citadel-86's structure, disk access is
+        quite frequent.  While hard drives (and RAM drives!) do not mind
+        frequent disk accesses, floppy drives have been known to burn out
+        under constant usage unless certain options concerning RAM drives
+        are taken advantage of within Citadel-86.
+ 
+      o An auto-answer modem and the hardware (cables, etc.) requisite to hook
+        it up to your computer:  While a Hayes or compatible is by far the most
+        popular modem in usage, Citadel-86 can be configured to use several
+        other types of modems.
+ 
+      o A copy of the Citadel-86 software:  Typically, Citadel-86 comes in the
+        form of three archives.  The first is called RUNTIME.ARC, and is
+        absolutely necessary.  It contains the required executables to bring
+        Citadel-86 up, various help files, and a configuration file.  The
+        second is called SUPPORT.ARC, and contains what little documentation is
+        available for Citadel-86.  It is not strictly necessary, but
+        useful (or at least comforting).  The third is called UTILEXE.ARC, and
+        contain the utilities available for Citadel-86.  (If you don't have
+        these, they may possibly be on Test System in a room called
+        Necessities].)
+ 
+      o Some patience!
+
+
+
+
+
+
+                                    -3-
+
+
+
+
+
+
+     II. INSTALLATION
+        In this section we explore the installation procedure for Citadel-86,
+     investigating territory ranging from a general overview of the operating
+     procedures of Citadel-86 to the details of setting up a system.
+ 
+        We'll begin with a very short section on DOS and modem configuration. 
+     Then we get to the red, raw meat of Citadel-86: a description of how to
+     prepare and operate Citadel-86, and a discussion of the data files
+     Citadel-86 needs or generates.  Next will be a walk-through of actually
+     setting up a basic Citadel-86 installation, at the end of which you should
+     have a working Citadel-86 system.
+ 
+        Easy, right?
+ 
+     II.1 Tickling DOS configurations
+        First comes the only required DOS configuration you must perform.  You
+     must place the line "FILES=20" in your CONFIG.SYS file on your boot disk.
+     If such a line already exists (or more than 20 is specified),
+     then you don't need to worry about anything.  If such a line doesn't
+     exist, then please put it into CONFIG.SYS, save the file, and reboot your
+     system so it'll take effect.  IF YOU DON'T, CITADEL WILL BE VERY PEEVISH!
+ 
+        If you don't understand what we're gabbing about, then please consult
+     your DOS manuals.  CONFIG.SYS is an important part of the DOS system; it
+     will do you good to learn what it's about.
+ 
+        We AREN'T going to discuss DOS batch files in here.  We'll leave that
+     for a later advanced section, because Citadel-86 exits with different
+     ERRORLEVELs; the exact levels vary with the reason Citadel-86 exited.
+     We feel it would be better not to cause excess confusion now, because
+     you'll be confused soon enough as it is.
+ 
+        We AREN'T going to discuss Citadel-86 command line parameters here,
+     either.  While such things exist, we deem these to be the subject of an
+     advanced section, and so we leave them for later attention in this manual.
+ 
+     II.2  Making your modem do the right thing
+        The Citadel-86 basic requirements in the area of modems are:
+      o Modem can be hooked up to the computer
+      o Modem can auto-answer the phone
+      o Modem supports true carrier detect (very preferably on pin 8)
+      o Modem can be hung up
+ 
+        That sounds pretty darn basic, and it is.  However, if you want to take
+     advantage of some of the default configurations of Citadel-86 for the
+     modem, here's what we suggest for your modem in terms of characteristics:
+      o Hayes or (semi) compatible
+     or
+      o Carrier detect on pin 8 (normal for most modems)
+      o Carrier hangs up modem when DTR is dropped
+
+
+
+
+
+
+
+
+
+                                    -4-
+
+
+
+
+
+
+        Like we said, Citadel-86 is not restricted to Hayes/compatible
+     modems, although they are of course the most popular modem used.  But
+     other modems, such as TransModems, have been used successfully with 
+     Citadel-86. This makes our job, as the manual writers, substantially 
+     more difficult. Due to the overwhelming popularity of the Hayes compatible
+     modems, we're going to confine most of our advice on modem configuration
+     to Hayes and compatibles.
+ 
+        The first thing to bear in mind is "compatible" is often a
+     slippery term.  Our advice is based on our own experience with our Hayes 
+     compatible modems; if what we say doesn't seem to jibe with your modem's
+     documentation, then use a little imagination and search the manuals.
+ 
+        Hayes modems are not normally correctly configured fresh from the
+     factory, so you must configure yours.  Usually, a combination of two
+     methods are used to achieve the correct configuration.  First, DIP
+     switches on the modem usually control several different functions,
+     including auto-answer mode.  However, on some Hayes compatibles they
+     don't exist; the functions they usually serve are then either accessed
+     via software, or not at all. Second, (as you might have guessed), software
+     can be used to configure the modem, through the use of AT commands.
+ 
+        We strongly suggest you have your modem manual available at this
+     point.
+ 
+        First, you want to make sure your modem will drop carrier when DTR
+     is dropped; the opposite of this is sometimes called the "forced DTR"
+     function, and can be found in the DIP switches.  Make sure the modem
+     does not have "forced DTR" on.
+ 
+        Next, you need to ensure the modem is not "forcing carrier
+     detect". Instead, it should only have carrier detect true when there is
+     actually a caller online; otherwise your Citadel-86 will not work
+     correctly.
+ 
+        Finally, you want to make sure the modem will auto-answer when
+     Citadel-86 is up.  This can be selected either by DIP switch or through
+     software.  If you have a modem with a DIP switch controlling this
+     function, you may want to use software instead, for finer control of
+     how your modem acts.  You'll find later in this manual you can
+     specify a string of commands to be sent to the modem when Citadel-86 first
+     comes up, which you can use to activate auto-answer mode.
+ 
+        The above comments apply equally well to non-Hayes compatible modems,
+     although the details of how to initialize the modem will differ greatly.
+ 
+        More detail on initialization of the modem will appear later in this
+     manual in Section II.6.b: Part 6 of Section 1: MODEM HANDLING.
+
+     II.3 Citadel-86 Operating Procedures (and other epic fantasies)
+        Citadel-86 comes with a whole mess of files.  However, only three of
+     these files are important, because they constitute the beginnings and
+     necessities of Citadel-86.  They are:
+
+
+
+
+
+
+                                    -5-
+
+
+
+      o CtdlCnfg.Sys.  This file will contain your description of how you want
+        your system set up.  Decisions concerning the location of important
+        data files, system policies, and other semi-arcane things are described
+        for Citadel-86's use.  The CtdlCnfg.Sys accompanying your system is a
+        template of a very generic system, and we plan to guide you through it
+        later in this manual.
+ 
+      o CONFG.EXE.  This executable program digests CtdlCnfg.Sys, converting
+        the information contained therein into a form far easier to
+        digest by computer programs.  It is also responsible for generating new
+        data files when necessary (typically only when a new system is first
+        built!) and analyzing old data files.  It produces a highly temporary
+        yet necessary file called CTDLTABL.SYS.
+
+      o CTDL.EXE.  This is the main executable program of Citadel-86.  It
+        expects to find CTDLTABL.SYS (remember the name?).  If it finds it, it
+        reads it, erases it, and then continues to try to bring up the rest of
+        the system, using the information it found in CTDLTABL.SYS.  If
+        there are no severe abnormalities during CTDL.EXE's use, it will write
+        a new version of CTDLTABL.SYS for use the next time you bring up
+        CTDL.EXE.
+ 
+     II.3.a Who's this masked Temporary file, anyways?
+        CTDLTABL.SYS has been passed off so far as a temporary file, generated
+     by CONFG.EXE from digesting CtdlCnfg.Sys, and required by CTDL.EXE.
+     However, for a mere temporary file it merits more discussion.  We said
+     CTDL.EXE expects to find it; you may have figured out if it's
+     not there, then CTDL.EXE won't function properly.  This is correct, and
+     the proper corrective action is to run CONFG.EXE.  DON'T TRY TO USE AN OLD
+     VERSION OF CTDLTABL.SYS THAT YOU MAY HAVE SAVED IN CASE OF A CRASH!  Yes,
+     we know running CONFG.EXE to generate a new CTDLTABL.SYS can take a
+     while if you're running a big system.  We mentioned CONFG.EXE
+     analyzes data files; as it happens, the results of this analysis is
+     also placed in CTDLTABL.SYS, and used to enhance access to various parts
+     of Citadel-86, such as the log.
+ 
+        If you use an old version of CTDLTABL.SYS, the older information can
+     cause Citadel-86 to look for messages that no longer exist, lose track of
+     new rooms and log accounts, and other behaviors a sysop generally
+     finds disruptive to domestic tranquility.  So, really, "Just say no."  Run
+     CONFG.EXE if you lose your current CTDLTABL.SYS through a crash or power
+     loss.  (This can be automated.  See section II.9 for advice on
+     batch files.)
+ 
+     II.3 (con't)
+         Back to the subject.  We now know the purposes of the three primary
+     files of Citadel-86.  CtdlCnfg.Sys contains information only the
+     sysop can supply; CONFG.EXE processes CtdlCnfg.Sys, producing CTDLTABL.SYS
+     and other data files; CTDL.EXE requires CTDLTABL.SYS, and constitutes
+     the main executable of Citadel-86.
+
+         So, in short form, here's how you run Citadel-86:
+      o Modify CtdlCnfg.Sys to taste.
+      o Run CONFG.EXE.
+      o Run CTDL.EXE as many times as desired, as long as each run is
+        terminated normally.
+
+        If you crash, either from a fatal bug or power loss or whatever, just
+     run CONFG.EXE again.
+
+
+
+                                    -6-
+
+
+
+
+
+     II.4 Other Data Files
+        When you run CONFG.EXE for the first time, a number of data files are
+     created, and they're what we're going to talk about in this section. 
+     These files contain the information -- accounts, rooms, messages, and
+     other things -- making up any BBS.  The capacities of these files are
+     selectable by the sysop, and once selected they remain the same size as
+     CTDL.EXE runs (don't panic, though -- they can be changed through the use
+     of Citadel-86 utilities!).  And with no more delay....
+ 
+      o CTDLMSG.SYS.   This file contains all the messages in the system.
+      o CTDLROOM.SYS.  This file contains information about the rooms in your
+                       system.  The size of this file is given later in this
+                       manual.
+      o CTDLLOG.SYS.   This file contains all the accounts for users on your
+                       system.  The size of this file is given later in this
+                       manual.
+      o CTDLNET.SYS.   This file, if it exists, will be 0 bytes long when
+                       initially generated by CONFG.EXE, and will grow as
+                       the network grows (NETWORK3.MAN talks about C86Net).
+      o CTDLFLR.SYS.   This file contains information about the floors in your
+                       system.  It grows as you add floors to your system.
+                       Don't panic, though.  Each floor only takes 21 bytes.
+ 
+        These, however, are not the only data files associated with Citadel-86.
+     CTDL.EXE may, on occasion, generate data files also.  These files, unlike
+     those generated by CONFG.EXE, are not static; however, they are almost
+     always very small.
+ 
+      o CTDLARCH.SYS.  This file contains data about auto-archiving of rooms
+                       (an advanced topic covered in OPER3.MAN.)
+      o CTDLNET.SYS.   This file, created by CONFG.EXE, will be expanded by
+                       CTDL.EXE if you are participating in a network.
+      o CALLLOG.SYS.   This file, an optional text file, is updated as each
+                       caller hangs up.  See #AUDITAREA.
+      o CTDLDIR.SYS.   This file contains data about the directory rooms on
+                       your system, specifically the name of the DOS directory
+                       associated with each directory room on your system.
+      o CTDLMODR.SYS   This file contains data about the room moderators on 
+                       your system.
+      o CTDLFWD.SYS    This file contains information about mail forwarding
+                       by individual users if you are on the net.
+      o FILELOG.SYS.   This file, another optional text file, is updated as
+                       users upload and download files. See #AUDITAREA.
+      o DOORUSE.SYS.   This file, another optional text file, is updated as
+                       users use your doors.  See #AUDITAREA.
+      o Net Files.     CTDL.EXE also generates a variety of small network
+                       files, both temporary and permanent, for internal use.
+                       See NETWORK3.MAN for more information on these files
+                       (Appendix B).
+
+         There are also the collection of help files accompanying Citadel-86,
+     which we talk about in OPER3.MAN.
+
+
+
+
+
+
+
+
+                                    -7-
+
+
+
+
+     II.5 EASE!
+        Released sometime in the last half of June, 1989, Citadel-86 Sysops
+     have an alternative to the normal method of both constructing a new
+     Citadel-86 installation and modifying the system.  This is the EASE
+     utility program, which should be in its own archive, EASE.LZH.
+
+        As we indicated above, Citadel-86's description file is CtdlCnfg.Sys
+     which the Sysop must modify before installing a new system.  Although not
+     a particularly wearisome task in itself, it can still be something of
+     a pain to a new sysop as well as the more experienced sysop.  For this
+     reason, and, hey, just for the fun of it, the EASE program has been
+     provided.  EASE is just what it's named: it will ease both the
+     installation and modification processes.
+
+        At this point we'd like to urge you to do two things if you have EASE.
+     First, read, perhaps swiftly, section II.6 below to get a feel for what is
+     in CtdlCnfg.Sys, but don't try to modify the generic CtdlCnfg.Sys, nor
+     should you try to initialize a new system, despite the suggestions below.
+     Second, copy EASE.EXE, EASE.HLP, EASE2.HLP, MODEMS, CONFG.EXE,
+     CtdlCnfg.Sys and CTDL.EXE into the directory in your system which will be
+     the home directory for your installation.  Once you have done so, simply
+     type EASE and follow the directions.  At the end of EASE, the system will
+     hopefully be initialized with a complete CtdlCnfg.Sys and most of the
+     data files you need, and you'll be ready to start playing -- far faster
+     than the traditional form of installation for Citadel-86.
+
+        To summarize, and if you have a hard drive:
+
+     o Make a directory on the drive where you want your Citadel-86 installation
+       to reside.
+     o CD into that directory
+     o Copy CONFG.EXE, CTDL.EXE, EASE.EXE, EASE.HLP, and the generic
+       CtdlCnfg.Sys file into the directory (or deARC, or whatever it takes
+       to get them into there).
+     o Type EASE at the command line.  Follow the directions.  Be ready to
+       refer to this documentation if you become confused.
+
+        And remember.  EASE is not only for installation, but for modification
+     as well.  Explore!
+
+     II.6 The ole' configuration file
+        So... we're done with the dull, but necessary, overview.  Now we get
+     down to the fun stuff, the screechy details of deciding those system
+     policies that can be enforced through the Citadel-86 software, where
+     certain data files or groups of data files will be kept on your system,
+     and some other details.  We do this by editing the file CtdlCnfg.Sys
+     mentioned earlier in this manual, so you may want to haul out your editor.
+ 
+        Or you may not.  Instead, it might be better to first read through this
+     section along with a printout of CtdlCnfg.Sys, (we've included a copy of 
+     it in this file as well; see pages 35-42) comparing, taking notes,
+     understanding what is required and what questions you will have to answer
+     in order to set up your Citadel-86.
+
+        Or -- and we recommend this -- you may wish to use EASE, the Citadel-86
+     installation and modification program.
+ 
+
+
+
+
+                                    -8-
+
+
+
+
+
+
+        We've decided to divide the CtdlCnfg.Sys file into four sections in
+     this manual.  The first section covers the utter necessities which must be
+     set correctly for Citadel-86 to come up, options you cannot shut off,
+     and some miscellaneous doodads not strictly required for a basic
+     system, but we'd like you to set anyway.  This first section makes up
+     the bulk of the CtdlCnfg.Sys parameters, and is the only one you must
+     fill out in order to bring up Citadel-86; the rest of the sections
+     contain options unnecessary for a basic Citadel-86 (although, of course,
+     they ARE useful!).  If you're using a 'virgin' copy of CtdlCnfg.Sys, the
+     options in the rest of the sections have been set to what we feel are
+     harmless values.
+ 
+         The second section is made up of options useful, but not necessary,
+     for the operation of Citadel-86.
+ 
+        The third section is made up of options related to Citadel-86's C86Net
+     support.
+ 
+        The fourth section covers extremely optional parameters designed to
+     make modem handling very flexible when necessary.  (Don't read this
+     unless you have a captive, well-fed assembly-language programmer nearby.)
+ 
+     II.6.a But first, a word on moral values ...
+        There are two methods values are set in CtdlCnfg.Sys.  One method
+     is related to our reference to the fourth section, above, and will
+     thus be covered in that advanced section.  The other method for setting
+     parameter values, used with the rest of CtdlCnfg.Sys, looks like this:
+
+     #<parameter name> <parameter value>
+ 
+        The '#' MUST be in the left-most column of the file in order for
+     CONFG.EXE to recognize it as a parameter. Indenting this line a space
+     provides an easy way to disable or save an old value when experimenting
+     and causes CONFG.EXE to ignore the line.
+
+        A parameter value will usually either be a numerical value or a string
+     value, and we'll tell you for each parameter whether your selection should
+     be numerical or a string.  When it is numerical, always use decimal (with
+     the exception of the mysterious fourth section).
+
+        String values are always enclosed in quotes.  Most string values are
+     used to indicate where to find certain files, but some string values are
+     special in that certain hard-to-express codes may need to be used in order
+     to accomplish something; this occurs almost exclusively when communicating
+     with odd modems (such as TransModems).  Therefore, certain parameter
+     string values in CtdlCnfg.Sys will allow formatting "directives" to be
+     placed within them, which will be interpreted during the execution of
+     CTDL.EXE to do special things.  The general format of a directive is a
+     backslash ('\') followed by a either a character indicating a specific
+     action, or a sequence of three digits representing an OCTAL value you may
+     need to be in this particular position to accomplish what you wish to
+     accomplish. Here is the list of characters that perform special actions
+     when following a backslash:
+ 
+            n: CR-LF
+            t: Tab character
+            b: Non-destructive Backspace
+
+
+                                    -9-
+
+
+
+
+            r: CR
+            f: Formfeed
+            ": Put out a quote (allows quotes to appear in your strings)
+            \: Backslash
+ 
+     So, if you wanted to insert a CR/LF into a string value, you would type
+ 
+             "...\n..."
+ 
+     If you needed to have the binary value of 6 in a string value, you would 
+     type
+ 
+             "....\006...."
+ 
+        Not all parameter string values accept these formatting directives;
+     those that don't will simply ignore them.  We have marked those parameters
+     accepting them both in this manual and in CtdlCnfg.Sys.  (OCTAL
+     values, you say! Well.... the gentleman who donated the code to do the
+     formatting directives, a certain Dalnefre' of SynTel, is a C hacker, and
+     did it that way.  We feel it might be worth changing sometime in
+     the future, too.)
+ 
+        Please keep in mind that the '\r' has an added implication when placed
+     in a CtdlCnfg.Sys string being sent to the modem.  Citadel-86 will pause
+     for a full second after sending it in most situations.  This allows the
+     sysop to send multiple commands to those modems using carriage returns as
+     command delimiters, since the one second pause will give the modem time
+     to digest the command.  For instance, "ATZ\rATS0=1\r" sent to Hayes-style
+     modems would cause Citadel-86 to send "ATZ\r", pause for a full second
+     during which the modem would reset to its power-up state (or at least for
+     most Hayes clones it will), and then send the "ATS0=1\r", which activates
+     the modem's auto-answer mode.  Please note this special processing of '\r'
+     only applies to modem initialization and reinitialization strings, not to
+     all strings.
+
+        One more note.  Certain of the string values in CtdlCnfg.Sys end up
+     being printed to the users via Citadel-86's formatter.  In these cases,
+     when you use the CR/LF formatting directive ("\n"), remember to have a
+     space follow it -- otherwise, Citadel-86's formatter probably won't send
+     a CR/LF to the caller's terminal!
+
+        Finally, you'll find a couple of parameters affect your installation
+     simply by their very existence in your CtdlCnfg.Sys.  So that makes three
+     ways to set values.
+
+     II.6.b Section 1 of CtdlCnfg.Sys
+        We're finally looking at CtdlCnfg.Sys.  The file starts (or at least
+     our virgin copy does) with a short introduction to itself, which basically
+     tells you to consult this manual if you find it too terse.  A short list
+     of supported formatting directives is also included.
+
+     Part 1 of Section 1: MEANINGLESS MISCELLANEA
+
+        We're going to start Section 1 with some miscellaneous parameters.
+
+
+
+
+
+
+
+                                    -10-
+
+
+
+
+
+     ------
+     #nodeTitle
+        The first parameter you should find is called nodeTitle. It is a string
+     value obeying formatting directives, and is subject to formatting
+     considerations.  nodeTitle is the title of your installation printed when
+     carrier is detected on your system.  More precisely, nodeTitle will show
+     up in the following place on your system:
+ 
+      Welcome to <#nodeTitle>
+       Running ...
+ 
+     However, nodeTitle may not necessarily be printed at this point.  After
+     successfully bringing your system up, please consult OPER3.MAN's section
+     on Help Files for more information on banner options.  EXAMPLE:
+ 
+     #nodeTitle "Test System\n Truly a Heaven in Reverse"
+
+     The #nodeTitle is printed out on .Read Status commands, also.  There is no
+     formal limit on the length of this parameter.
+
+     ------
+     #nodeName
+        nodeName is, in reality, purely a network parameter, and if you have no
+     plans to ever join a C86Net, then there is no need to fill in this
+     parameter.  However, it has always been traditional, even before there was
+     a net for any Citadel system anywhere, to fill in this and the next
+     parameter (and, so, sentimentally we feel this belongs in this
+     Miscellaneous section).   nodeName is a string value which does NOT accept
+     formatting directives (i.e., formatting directives will be ignored).  It 
+     can be no longer than 19 letters long.  It should be a short, mnemonic
+     name for your system.  An EXAMPLE of a reasonable value:
+ 
+     #nodeName "ODD-DATA"            -- The original Citadel
+ 
+     If you ever do join a C86Net, messages from your system appearing on
+     another Citadel-86 node will look something like this
+ 
+        82Nov23 from Cynbe ru Taren @ODD-DATA
+ 
+     except ODD-DATA would be replaced with your value for #nodeName.
+
+     ------
+     #nodeId
+        As mentioned, this parameter is a network parameter that has
+     traditionally always been set, even for non-network Citadels.  If you have
+     no plans to ever be on a C86Net, then you don't have to set this string
+     value parameter to anything important.  If you do plan to join one,
+     though, (we'll go over this in more detail in the section on the network),
+     then you do have to set this parameter correctly.  The format of this
+     parameter is
+ 
+          "<Country code><Area Code><Phone number>"
+ 
+     all of which applies to the phone your system resides on.  Country
+     code is a two letter sequence indicating what country you live in (US is
+     the United States, CA is Canada.  Other country codes may be found in
+     COUNTRY.DOC). Area code is the area code of your system (yes,
+
+
+
+                                    -11-
+
+
+
+
+     we are aware there is a clear bias towards US-style telephony).  And
+     Phone number is, of course, the phone number your system is on.  You
+     can put punctuation (such as parenthesis and dashes), but please be
+     conservative with them.  This string value does not obey formatting
+     directives.  Here's a fairly generic example:
+ 
+     #nodeId "US (612) 470 9635"          -- Some system somewhere
+ 
+     ------
+
+     Part 2 of Section 1: REQUIRED ODD STUFF
+
+     ------
+     #baseRoom
+        OK, now we're out of the miscellanea and into parameters you have
+     to set, starting with baseRoom.  Citadel-86 always has a minimum of three
+     rooms, the Aide> room for housekeeping, the Mail> room for private
+     correspondence, and the <baseRoom>, which is the room a caller is
+     always initially placed in.  (Historical note: the old CP/M Citadel called
+     this room the Lobby>; we've only made the name of the Lobby> selectable by
+     the sysop.)  This parameter is a string value obeying formatting
+     directives and goes through the Citadel-86 formatter, and you must limit
+     yourself to 19 characters or less for this value. And one more note --
+     Citadel-86 will append the '>' to this name when it prints the room prompt
+     for this room, you don't have to put it in yourself. If you wished to
+     emulate the old CP/M Citadel, you'd set baseRoom thus:
+ 
+     #baseRoom "Lobby"
+ 
+     There is no default for this parameter.
+
+     ------
+     #MainFloor
+        MainFloor is analogous to #baseRoom.  Any Citadel-86 V3 has a base
+     floor, just as it has an Aide> room, etc.  This parameter allows you to
+     name this base floor.  This parameter is a string value which cannot be
+     longer than 19 characters, and specifies the name of your base floor.  So,
+     if you want to name your base floor MAIN FLOOR, you'd have
+
+     #MainFloor "MAIN FLOOR"
+
+     There is no default value for this parameter.
+
+     ------
+     #CRYPTSEED
+        Citadel-86 automatically encrypts all sensitive data files.  While the
+     algorithm used can, of course, be broken by the determined, particularly
+     since the code is available for perusal, the encryption does provide
+     protection against casual eyes, mistakes, and amateur system breakers.  We
+     do encourage you to take precautions of your own, such as not opening
+     directory rooms into sensitive data areas.
+
+        CRYPTSEED is an encryption seed Citadel-86 uses to encrypt your
+     data; if someone should acquire of all of your data files but for
+     CtdlCnfg.Sys, then they still won't have access to your system until they
+     figure out what your CRYPTSEED is.  DON'T EVER CHANGE THIS VALUE WHILE
+     RUNNING A CITADEL-86, OR EVERYTHING WILL BECOME MESSED UP!
+
+
+
+
+                                     -12-
+
+
+
+ 
+        We do not know of any value you can select which will "deactivate"
+     the encryption process (to be frank, we don't understand the encryption
+     algorithm ourselves).  Pick a value at random; the value should be a
+     value less than 65536.  Here's an example:
+ 
+     #CRYPTSEED    69            -- a little hubris for the shy
+
+     ------
+     #UNLOGGED-WIDTH
+        This parameter is used for users who have not logged in yet to specify 
+    the width of their screens.  If not present, it will default to 40.  
+    Remember this applies to your login banners.
+
+    #UNLOGGED-WIDTH 79          - makes it all look normal
+
+
+     Part 3 of Section 1: DATA FILE SIZES
+
+    ------
+     #MESSAGEK
+        MESSAGEK defines how much disk space you wish to allocate for messages
+     on your installation.  There is no way to define how many messages you
+     want in your system, or how fast they turnover.  All the messages in your
+     system will reside in CTDLMSG.SYS, and thus the number of messages in your
+     system at any given moment will depend on the length of the messages being
+     entered into the system by your users.  The turnover rate of your messages
+     will depend on how busy your system is.  As an example, Test System has a
+     611K message base, which holds 2100 messages +/- 300, of which some are of
+     fairly good length.  Turnover seems to between 3 weeks and a month, since
+     80-160 messages are entered a day.  However, Test System is also a busy
+     system.
+
+        The sysop of an installation should also keep in mind that very large
+     systems, with many new messages, can be intimidating to new users, so
+     large message spaces should be approached with caution.  Remember, there
+     is a utility for expanding the message base, but not for shrinking it.
+ 
+        This is a numerical value which you specify in 'K', which is actually
+     1024 bytes/K.  So, for example, to specify a 250K message file
+ 
+     #MESSAGEK 250               -- 250K message base
+
+     ------
+     #MSG-SLOTS
+        This numerical parameter specifies how many messages per room will
+     be used on this system (the lone exception is the Mail>, which is covered
+     by the following parameter).  If you wanted to use Citadel-86's
+     traditional number of messages per room, you'd have
+
+     #MSG-SLOTS 58
+
+     ------
+     #MAIL-SLOTS
+        This is a numerical parameter specifying how many messages per log
+     record you wish to reserve for Mail.  The Mail> room is the only
+     room in the system whose data is not kept in CTDLROOM.SYS.  Instead, the
+     file CTDLLOG.SYS contains the "Mail>" room, reserving for each account
+
+
+
+
+                                    -13-
+
+
+
+
+
+     enough room for MAIL-SLOTS Mail messages.  Therefore, this parameter gives
+     you the ability to decide the maximum number of Mail> messages per user 
+     they can access.  Please remember if a user gets more messages
+     in Mail> than there are MAIL-SLOTS between two successive logins, then
+     they will lose the earlier messages sent to them.  Another consideration
+     is many users like to review old Mail when engaged in an in-depth
+     private conversation.  Therefore, setting MAIL-SLOTS to a low value may
+     not be the attractive alternative it first seems.  However, it should
+     go without saying a high MAIL-SLOTS value may eat up more room than
+     necessary on your drives.  The section on LOGSIZE will give an exact
+     formula for how much space your log will take up.  If you wanted to use
+     what Citadel-86 used before V3, you'd have
+
+     #MAIL-SLOTS 58
+
+     ------
+     #MAXROOMS
+        This numerical parameter specifies the maximum number of rooms your
+     system will support.  Since the baseRoom, Aide>, and Mail> room are
+     necessary, the smallest value you can give is 3.  The largest number is
+     65536 (probably).  If you wanted to have a 64 room system, you'd have
+
+     #MAXROOMS 64
+
+        You can use the following formula to estimate the number of bytes a 
+     room file will take up on your system:
+
+          # of bytes = MAXROOMS *(50 + (6 * MSG-SLOTS))
+
+     ------
+     #LOGSIZE
+        This numerical parameter gives you the ability to decide
+     how many accounts will be available on your system.  If you run a system
+     in which more accounts are used than there are accounts reserved, then new
+     accounts are generated by killing old accounts.  Accounts are recycled
+     by finding the account who's last use is the oldest of all the accounts
+     in the system, under the assumption such an account is no longer active.
+
+        All space is reserved immediately for these accounts.  The size of
+     this file can be estimated from the formula
+     
+          # of bytes = LOGSIZE * (82 + MAXROOMS + (6 * MAIL-SLOTS))
+
+     so if you are operating in a restricted environment, plan accordingly.
+ 
+        If you need to, you can expand the size of the log through the use of
+     the DATACHNG utility, but the log cannot be shrunk.  This is a numerical
+     value.  Here is an example:
+ 
+     #LOGSIZE 180                -- Usually adequate.
+
+     Part 4 of Section 1: DATA FILE LOCATIONS
+
+        Now we discuss where you want the data files to be located on your
+     system.  These parameters are all specified in the same way, as a string
+     value (which does not obey formatting directives, naturally) telling
+     Citadel where on your system the given data file or files associated with
+     the given parameter is located.
+
+
+                                    -14-
+
+
+
+
+
+
+        Simply use the MSDOS relative directory specification.  You can
+     ONLY specify a subdirectories of the current directory on the disk you
+     specify (if you don't specify a disk, then the current disk will be
+     assumed).  So, some sample valid specifications would be "c:", "a:system",
+     "b:msgs", and "i:bark".  Some sample INVALID specifications include
+     "c:\citadel\msgs" (an absolute specification, rather than relative),
+     "a:\audit" (ditto), and "i:.." (".." is technically not a subdirectory,
+     but a parent directory).
+ 
+        If CONFG.EXE cannot find the directory you specify, it will
+     attempt to create the directory, after asking permission.
+
+     ------
+     HELPAREA
+        This parameter specifies where all of your Help files will be located.
+     These files are *.HLP, *.BLB, and *.MNU.  Normally, you should create this
+     directory and place the help files in the directory before bringing up
+     Citadel-86, since help files are usually online at all times.
+ 
+     #HELPAREA "c:helps"         -- helps subdirectory on drive C:
+ 
+     ------
+     LOGAREA
+        This parameter specifies the location of your CTDLLOG.SYS file (this 
+     file is sized by your LOGSIZE parameter).
+ 
+     #LOGAREA "c:system"         -- put it in a general system dir
+ 
+     ------
+     ROOMAREA
+        This parameter specifies the location of CTDLROOM.SYS, CTDLARCH.SYS,
+     and CTDLDIR.SYS.
+
+     #ROOMAREA "system"          -- another general system dir
+
+     ------
+     MSGAREA
+        This parameter specifies the location of CTDLMSG.SYS.
+
+     #MSGAREA "c:msg"            -- give msgs there own place in the sun
+
+     ------
+     FLOORAREA
+        This parameter specifies the location of CTDLFLR.SYS.
+
+     #FLOORAREA "floors"
+
+     Part 5 of Section 1: POLICY OPTIONS
+
+        Now we enter the POLICY part of the CtdlCnfg.Sys file.  The parameters
+     discussed here represent the parts of your policy enforceable via
+     the Citadel-86 software.
+
+
+
+
+
+
+
+                                    -15-
+
+
+
+
+
+
+     ------
+     #AIDESEEALL
+        This parameter is a toggle giving you some power over the scope of
+     your aides' "vision".  If you set this parameter to 1, then your aides
+     have access to all public AND private rooms (but not invite rooms, unless
+     the have been invited).  If this parameter is set to 0, then aides only
+     have access to public rooms, plus those private and invite rooms
+     they've been invited to.  So, if you want your aides to see all public and
+     private rooms, you would have
+ 
+     #AIDESEEALL 1               -- See all but invite rooms
+ 
+     if you don't want your aides to be so nosy, then you'd have
+ 
+     #AIDESEEALL 0               -- See only public rooms.
+ 
+     ------
+     #LOGINOK
+        The LOGINOK parameter controls whether your system is an "open" or
+     "closed" system.  If you set LOGINOK to 1, the system will allow anyone to
+     log in as a "new" user; i.e., it will ask a caller who uses an
+     unrecognized password if they wish to login as a new user.  If LOGINOK is
+     set to 0, the system will simply tell the caller without a valid password
+     there is no record of their password, and they should leave Mail> to the
+     sysop (but see OPER3.MAN's section on the various Help Files for another
+     option); the only way to enter new users into the system is from the
+     system console. If you want an open system, for example, you would have:
+ 
+     #LOGINOK 1                  -- let the riff-raff in!
+
+     ------
+     #ENTEROK
+        ENTEROK controls whether a caller who is not logged in can enter
+     messages or not.  If ENTEROK is 1, then a caller who has not logged in
+     can enter messages; if it is 0, then they must log in first, except for
+     Mail to the sysop.  Setting ENTEROK to 0 can reduce vandalism; setting
+     it to 1 gives your callers the privilege of anonymity.
+ 
+     #ENTEROK  0                 -- log in first, folks!
+ 
+     ------
+     #READOK
+        READOK controls whether an unlogged caller can read messages.  If
+     READOK is 1, then they may.  If READOK is 0, then an unlogged caller can
+     only read the policy statement available in the Mail> room (POLICY.HLP),
+     and the help files.  Setting READOK to 0 can discourage unwelcome callers
+     from using scarce system time.
+ 
+     #READOK 0                   -- gotta login to read these gems...
+
+
+
+
+
+
+
+
+
+
+                                    -16-
+
+
+
+     ------
+     #ROOMOK
+        ROOMOK controls who can create new rooms on your system.  If ROOMOK is
+     1, then any logged in user of the system may create new rooms.  If ROOMOK
+     is 0, then only aides may create new rooms on your system.
+ 
+     #ROOMOK 1                   -- a liberal policy
+ 
+     ------
+     #ALLMAIL
+        ALLMAIL controls who can use the Mail> room.  If ALLMAIL is 1, then
+     any user may use Mail> to send private messages to any other user on the
+     system.  If ALLMAIL is 0, then only Aides may use the Mail> room in a
+     general manner; regular folk can only use Mail> for messages to Sysop.
+     Setting ALLMAIL to 0 may be appropriate on tightly focused systems
+     operating in a small environment.
+ 
+     #ALLMAIL 1                  -- the normal policy
+ 
+     ------
+     #DoorPrivs
+        DoorPrivs lets you decide if new users should automatically be given 
+     door privileges or if they should ask you for them.
+
+     #DoorPrivs 1               -- they get them automatically
+
+     #DoorPrivs 0               -- they have to ask.
+
+     ------
+     #ANON-MAIL-LENGTH
+        When this numeric parameter is present, all anonymous Mail> to sysop is
+     limited to the specified number of characters.  When a message is sent
+     exceeding this limit, the user loses carrier and the message is appended
+     to a file named ANONMAIL, just in case the Mail was valid.  This option
+     is useful when a vandal is attempting to scroll the message base and is
+     being very persistent, to the point where even closing open logins just
+     causes him to leave anonymous Mail to sysop, since that's the last
+     vulnerable point in the system once login access is lost.  This would let
+     you let limit anonymous Mail> to 300 characters.
+
+     #ANON-MAIL-LENGTH 300
+
+     If this parameter is not present or the value is 0 then there is no
+     limit on anonymous Mail.
+
+     ------
+     #LOGIN-ATTEMPTS
+     This parameter lets you control how many unsuccessful attempts an
+     unlogged user can indulge in before the system will drop carrier on them.
+     For instance, the following lets a user try four times before carrier is
+     dropped.
+
+     #LOGIN-ATTEMPTS    4
+
+
+
+
+
+
+
+
+
+                                    -17-
+
+
+
+
+     ------
+     #FILE-PRIV-DEFAULT
+     File privileges may be set for new users en masse.  #FILE-PRIV-DEFAULT,
+     a numeric parameter, lets you set whether the average new user can have
+     file privileges.  Use 1 to indicate they may, 0 to indicate they may not.
+
+     #FILE-PRIV-DEFAULT  1
+
+     means you're a generous soul.  If this parameter is not present, it will
+     default to 1 (on).  You may also assign file privileges individually
+     using LOGEDIT or the <U>ser Administration menu hanging off of the Sysop
+     Menu.
+
+     File privileges do not apply to uploads.
+
+     ------
+     Part 6 of Section 1: MODEM HANDLING
+        We now enter into defining the essential details of your communications
+     hardware.
+
+     ------
+     #IBM
+        You use this parameter to tell your Citadel-86 if your system is
+     running on an IBM PC/XT/AT or compatible, or if it is running on a Zenith
+     Z-100 (set it at 0). If you have an IBM, you'd have
+ 
+     #IBM 1                      -- Big Boo
+ 
+     ------
+     #COM
+        This parameter is meaningful only for IBMs, and selects which COM port
+     the modem is attached to (on Z-100s only J2 ports are supported).  For
+     IBMs, only COM ports 1, 2, 3, and 4 are supported.
+ 
+     #COM 1                      -- If you are using COM1.
+
+     ------
+     #SYSBAUD
+        The SYSBAUD parameter is used to tell Citadel-86 what baud rates your
+     hardware will support.  Citadel-86 cannot normally be configured to run
+     high baud rates while excluding lower baud rates (i.e., operate
+     correctly at 1200 baud but not at 300 baud).  Here's the mapping:
+
+       0 => 300
+       1 => 300/1200
+       2 => 300/1200/2400
+       3 => 3/12/24/48
+       4 => 3/12/24/48/96
+       5 => 3/12/24/48/96/14.4
+       6 => 3/12/24/48/96/14.4/19.2
+ 
+     #SYSBAUD 1                  -- A 3/12 system.
+
+
+
+
+
+
+
+
+
+                                    -18-
+
+
+
+
+     ------
+     #modemSetup
+        This parameter is used to initialize your modem.  It is a string value
+     parameter obeying the formatting directives; however, you should be
+     warned Citadel-86 automatically appends a "\r" to the end of this
+     string before sending it to the modem.
+
+        And when is modemSetup sent to the modem?  It is automatically sent
+     while Citadel-86 is initializing, and it will also be automatically
+     sent to the modem whenever the <R>einitialize command is selected from the
+     Sysop Menu (i.e. privileged function:).
+
+        The value you use for this string should cause the modem to be
+     put into a mode where it will function suitably with Citadel-86.  This
+     includes auto-answer and response to DTR, at the very least.  Other
+     options you may wish to consider include turning the modem speaker
+     off (if you have one); consult your modem manual for details.  The example
+     we have here is biased towards Hayes/compatible modems.  You may have to
+     do some research if you're using an odd modem.  Our example turns
+     auto-answer on and turns off the speaker on a Hayes modem; note the lack
+     of "\r".
+ 
+     #modemSetup "AT S0=1 M0"           -- Surely an exercise in aesthetics...
+ 
+     ------
+     #REINIT
+        As faster and faster modems appear on the scene, some of these modems 
+     are displaying odd characteristics which did not appear in the early
+     300/1200 modems.  Chief amongst these is that some modems, after 
+     accepting a call at a baud rate lower than the modem's highest, will not 
+     accept calls at higher baud rates without being reinitialized at the 
+     highest baud rate.  If your modem is one of these types, then you will 
+     wish to use this parameter.
+
+        Also, we have observed that some modems, although capable of accepting 
+     calls at high baud rates directly after low baud calls have been 
+     accepted, are not as reliable in the area of Result Codes as we might 
+     like.  Since Citadel-86 can use Result Codes (see Section II.9.d), we
+     would like to see this improved, and, fortunately enough, we have 
+     observed using #REINIT with such modems actually increases their 
+     reliability.  So, even if you have a good modem, you may wish to use this 
+     parameter.
+
+        When this parameter is present, it causes Citadel-86 to reinitialize 
+     the modem at its highest rate with the string you specify in this 
+     parameter.  This parameter accepts format directives.  For most Hayes 
+     compatible modems, the string "AT" is usually more than acceptable.
+
+     -#REINIT "AT"                      -- disabled, but recommended value
+
+
+
+
+
+
+
+
+
+
+
+
+                                    -19-
+
+
+
+
+     ------
+     #DISABLE-MODEM
+     #ENABLE-MODEM
+        Usually, when Citadel-86 needs to "disable" your modem (that is,
+     cause it not to answer the modem), it "drops" the DTR pin (electrical
+     stuff, don't worry about it), which usually causes the modem to stop
+     answering the phone.  The modem is disabled whenever you, the sysop,
+     uses the system at the system console.
+
+         Some sysops, however, would prefer the modem go "off-hook"; that is,
+     the modem should hold your phone line open and thus cause a busy signal
+     for all callers while you're on.  These optional string parameters,
+     when present, are sent to the modem when disabling and enabling the
+     modem, thus making it easy to force a busy signal when you're on if
+     you know what command to send to your modem.  For example, "ATH1" will
+     put most Hayes-type modems "off-hook", and "ATH0" will put them back
+     on-hook.  In the following, we've disabled the parameters since we don't
+     particularly recommend the use of these parameters ourselves, but the
+     values are what we'd probably recommend if we used them.  Note the use
+     of "\r" at the end of each!  Citadel-86 will not! automatically append
+     the carriage return needed to force the modem to process the command, so
+     you must do that yourself!
+
+     -#DISABLE-MODEM "ATH1\r"
+     -#ENABLE-MODEM  "ATH0\r"
+
+     ------
+     #LOCK-PORT
+        This advanced parameter is used for "locking" your com port at the
+     baud rate you specify.  This parameter is primarily useful when you
+     are using a USR high speed modem (HST, Dual-Standard, etc.) and you want
+     to have the callers, when they are calling in with compatible modems, to
+     enjoy the highest possible throughput, which is achieved by having the
+     modem talk to the computer at a specific (and high) baud rate, regardless
+     of what the caller is connected at.
+
+        As we said, this is an advanced option.  If you plan to use it, you
+     must make sure your modem knows about it and is fed the correct modem
+     commands so it knows what baud rate it should talk at.  You should use
+     the #REINIT parameter to tell it this information.
+
+        The parameter you specify to #LOCK-PORT should be a number indicating
+     what speed you want the computer to talk to the modem.  Use the same
+     scheme as for #SYSBAUD, i.e., 300 = 0, ... 4 = 9600, 5 = 14400, and
+     6 = 19200.  For example, if you have a good enough serial port to handle
+     19,200 baud with your USR modem, you would want
+
+     #LOCK-PORT 6
+
+     in your CtdlCnfg.sys.
+
+
+
+
+
+
+
+
+
+
+
+                                    -20-
+
+
+
+
+     ------
+     Part 7 of Section 1: VIDEO OPTIONS
+     ------
+     OLDVIDEO
+        This parameter is difficult to categorize, so we'll just lay the cards 
+     out on the table.  Basically, every once in a long while we run across 
+     some computer that hangs when Citadel-86 is run, and it has something to 
+     do with the video portion of Citadel-86.  (We haven't actually seen this 
+     happen in quite a while, but ...)  Therefore, if you place #OLDVIDEO in 
+     CtdlCnfg.Sys, Citadel-86 will use its old video routines for display, 
+     rather than the new.
+
+     -#OLDVIDEO         -- disabled
+
+     ------
+     FOREGROUND
+     BACKGROUND
+     STATUS-FOREGROUND
+     STATUS-BACKGROUND
+        These four parameters allow you to specify what colors will show up at 
+     the system console.
+
+     FOREGROUND specifies the color of the characters themselves, except on 
+     the status bar.
+
+     BACKGROUND specifies the background of the screen, except on the status 
+     bar.
+
+     STATUS-FOREGROUND specifies the color of the characters of the status 
+     bar.
+
+     STATUS-BACKGROUND specifies the background color of the status bar.
+
+        You have the following colors to select from.  This first list of 
+     colors may only be used as FOREGROUND selections:
+
+        DARK GRAY, LIGHT BLUE, LIGHT GREEN, LIGHT CYAN, LIGHT RED, LIGHT 
+        MAGENTA, YELLOW, WHITE.
+
+        This second list of colors may be used as either FOREGROUND or as 
+     BACKGROUND selections:
+
+        BLACK, BLUE, GREEN, CYAN, RED, MAGENTA, BROWN, LIGHT GRAY.
+
+        Please note on some color monitors not all colors are 
+     available, and on monochrome monitors you should probably select 
+     highly contrasting colors for Foreground/Background pairs.  Here is an 
+     example:
+
+     #FOREGROUND RED
+     #BACKGROUND BLUE
+     #STATUS-FOREGROUND LIGHT GREEN
+     #STATUS-BACKGROUND BLACK
+
+        Also note Citadel-86 is accompanied by a utility program named 
+     SCREEN.EXE which will help you select colors easily.  Please see the 
+     Utilities manual when you are ready to play with your screen colors.
+     The EASE utility is also capable of helping you select screen colors;
+     in fact, SCREEN is classed as an optional utility, and you may not have
+     it.
+
+                                    -21-
+
+
+
+
+     ------
+     CLOCK
+        The status bar of Citadel-86 contains a clock, updated every minute, 
+     in the far right-hand corner.  Some folk may not want this clock, 
+     however, while others only want to see the clock only when a user is on 
+     the system.  Therefore, the parameter #CLOCK is available to control the 
+     behavior of the status bar clock.  The value you place after #CLOCK
+     controls the behavior of the status line clock.  Here are the supported 
+     values:
+
+     o "None" - If this is present, then you never have a status bar clock.
+     o "Inuse" - If this is present, the clock is only displayed when the 
+                 system is active.
+     o "Always" - This causes the clock to be active all the time.
+
+        So, for instance, if you want the clock to never be on display,
+
+     #CLOCK None                - No clock
+
+     would do the trick for you.  If this parameter is not in your 
+     CtdlCnfg.Sys, "Always" is considered the preferred value.
+
+     ------
+        If you are a novice setting up Citadel-86 for the first time, please 
+     SKIP to Section II.7.  This is the end of Section 1 of CtdlCnfg.Sys,
+     parameters which must be set for Citadel-86 to run correctly.  The other
+     three sections of a virgin copy of CtdlCnfg.Sys (which we assume you are
+     working with) have been given default values that shouldn't cause any
+     problems with running a Citadel-86.
+ 
+        If, on the other hand, you're just exploring what's available, continue
+     on your merry way!
+ 
+     II.6.c Section 2 of CtdlCnfg.Sys
+
+        Now we enter into the realm of options which may prove useful to you in
+     your particular environment, but which are not necessary for the correct
+     operation of a Citadel-86.  We're going to begin by discussing a general
+     time-driven event-handler facility.  Then we'll talk about some other
+     miscellaneous parameters.
+ 
+     ------
+     #event ...
+        This is what we're calling a "time-driven event-handler", which we're
+     going to define as the ability to cause Citadel-86 to do certain things
+     at times you specify.  So, for instance, you can have the system
+     come down at certain times of the day to back itself up, or have it go
+     into networking mode several times a week -- or several times a day.  Or
+     do whatever your imagination suggests.  Any number of these #event
+     parameters may appear in your CtdlCnfg.Sys file.
+
+        This is the generic format of these parameters.
+
+     #event <days> <time> <class> <type> <duration> <warning string> <depends>
+
+
+
+
+
+
+
+                                    -22-
+
+
+
+
+        Here is an explanation of each parameter field in the above.
+
+     <days> can be any of the values "Mon", "Tue", "Wed", "Thu", "Fri", "Sat",
+     "Sun", or "All", or any combination of the first seven.  If used in
+     combination, separate each with a ',', but NO spaces are allowed.  This
+     part of #event is used to specify on what days this event is to take
+     place.  So, if you want something to happen only on Wednesdays and
+     Saturdays, then you'd have
+
+     #event Wed,Sat ....
+
+     The 'All' value means, of course, all days of the week.
+
+     <time> is the military specification of what time of day this event is
+     supposed to happen (unless the class of this event is 'relative' -- see
+     below).  For instance, 11 AM would be
+
+     #event .... 11:00 ....
+
+     while 11 PM would be
+
+     #event .... 23:00 ....
+
+     and 12:30 AM would be
+
+     #event .... 00:30 ....
+
+     Only one time can be specified in this field.  If you need the same event
+     to happen at multiple times, then use separate #event entries.
+
+     <class> indicates the class of the event, which is roughly what kind of
+     event it will be.  C-86 supports seven classes of events at this time:
+     network, external, relative, dl-time, anytime-net, door-limit, and 
+     autodoor.
+
+     'network' -- this indicates Citadel-86 should drop into networking
+     mode on the day(s) at the time indicated by the <days> and <time> fields.
+
+     'external' -- this indicates Citadel-86 should come down on the
+     day(s) at the time specified by the <days> and <time> fields.  The
+     ERRORLEVEL Citadel-86 should generate when it comes down will be
+     discussed later in the subsection on the <depends> field.  This class
+     should be used in conjunction with a carefully written batch file.
+
+     'relative' -- this indicates Citadel-86 should come down X minutes
+     after it has come up (this is used to replace the TIMEOUT and HOUROUT
+     parameters of pre-V3 Citadel-86).
+
+     The number of minutes (X) should be expressed in the <time> field; the
+     <days> field has no meaning (although it should be filled in) when class
+     is 'relative'.  The ERRORLEVEL to be generated by Citadel-86 when it comes
+     down will be discussed later, but for now we'll state it occupies the
+
+
+
+
+
+
+
+
+
+                                    -23-
+
+
+
+
+
+     <depends> field.  For instance, if you want your system to come down 6
+     hours after it comes up, do something, and then come back up (at which
+     point you should realize it'll come back down again 6 hours after that,
+     unless another event comes first), you would have an event like:
+
+     #event Sat 6:00 relative .... 7
+
+     in your CtdlCnfg.Sys (note Sat is meaningless, but some valid field
+     has to be there), and your batch file would have something like this:
+
+     :loop
+     ctdl
+     ...
+     if ERRORLEVEL 7 goto doseven
+     ...
+     :doseven
+     REM this is a generic program call, fill in with what you'd really do
+     generic
+     REM other things..
+     ....
+     REM now bring Citadel-86 back up
+     goto loop
+     ....
+
+     'dl-time' -- This indicates a "download time limit" should be
+     activated.  When this class of event is active, the total amount of time
+     a user may use in downloads during the period of time this #event is active
+     is limited by the value in the <depends> field, specified in MINUTES.
+     This class value should only be used with the 'quiet' type (see below).
+     When this event ends, download time limits return to an unlimited status
+     automatically.
+
+     'anytime-net' -- This class is used to activate the Anytime-Netting
+     Callout feature.  This feature is detailed in NETWORK3.MAN; basically,
+     events of this class specify the period of time in which calling out
+     to other systems specified in the <depends> field of the event for 
+     anytime network purposes is acceptable.  The start time specifies when
+     the system may becomes eligible for calling out, and the <duration> field
+     indicates how long this eligibility is to last.  You may also specify how 
+     long the system is to be idle before anytime netting is to be attempted, 
+     and how long such net sessions should last, using the #event parameter.
+     NETWORK3.MAN contains the closest thing to a full discussion of this
+     feature, and we strongly recommend you read Network3.Man before using
+     this class of #event.  This class should only be used with the <type>
+     value 'quiet' (see below).
+
+     'door-limit' -- This class is used to place time limits on how long the 
+     current user may spend using doors on your installation.  The <days>,
+     <time>, and <duration> (see below) fields are the same as for most other 
+     classes, meaning you can designate which ever days and times you want 
+     doors to be limited, and for how long.  The <class> field should, of
+     course, contain 'door-limit" as its value.  The only valid <type> value
+     (see below) for this class of event is 'quiet'.  This #event is ignored 
+     when the user is a sysop, either remote or at the sysConsole.  This 
+     #event is overridden by automatic doors (see below).
+
+
+
+
+
+                                    -24-
+
+
+
+
+
+     'autodoor' -- This class is used to set up 'automatic doors' to be 
+     triggered when specified users log in.  The days, time, and duration 
+     fields are the same as usual, thus allowing you to deactivate and 
+     activate it at scheduled times.  See the <depends> definition below for 
+     the format of <depends> in connection with this class.  The only valid 
+     type value is 'quiet'.
+
+     'chat-on' -- This class is used to enable Chat Mode (that is, allow
+     users to signal the sysop for a chat) at a specified time.  Days and
+     time are the same as usual.  However, the duration field does NOT
+     imply that at the end of the event Chat will be automatically turned
+     off.  However, by setting the duration field appropriately you may
+     ensure Chat is turned on in case your system is brought up after the
+     event but during a time you'd prefer chat to be on.  For example, if
+     you wanted Chat to be on starting at 7PM, and were sure you wanted it
+     on until 10PM, you might have a #event that looked like this:
+
+        #event all 19:00 chat-on ... 180 ...
+
+     This would not only turn Chat on at 7PM, but, if your system was down
+     due to a power shortage (for example) until after 7PM and then brought
+     up, the duration of 180 minutes would still turn Chat on.  If you had
+     used 0, then Chat would not have been turned on if your system was down
+     at 7PM.  This class should only be used with the <type> value 'quiet'
+     (see below).
+
+     'chat-off' -- This class is the same as 'chat-on' except, of course,
+     chat is turned off at the specified time.
+
+     'redirect' -- This class lets you redirect an incoming file from the net
+     to a specific directory, which can be useful for automatic network
+     domain map updates and the like.  The only valid <type> field value for
+     this class is 'quiet.'  The <depends> field will contain, in order, the
+     name of the incoming file to trigger on, the directory to place the
+     file in, and the system from which this will be accepted (other systems
+     sending same-named files will only result in the file being put in the
+     normal file reception area, as will files from rogues if you are using
+     network passwords).
+
+     <type> defines what type of event this will be, which essentially means
+     how Citadel-86 reacts when the event time comes around.  There are three
+     types of events supported at this time: preempt, non-preempt, and quiet.
+
+     'preempt' -- this indicates when it's time for this event to occur
+     the current user (if one is on) will be kicked off the system.  A warning
+     will be issued to the user 5 minutes before the event is to occur (or if
+     they call in after the 5 minute mark has passed, they will get the warning
+     immediately). This type should be used for events which MUST occur at a
+     given time, such as networking.
+
+     'non-preempt' -- this indicates the system is willing to wait until
+     the current user is off the system before executing the current event.  If
+     the time of the event is passed by, the event will still be executed when
+     the caller logs off.
+
+
+
+
+
+
+                                    -25-
+
+
+
+
+
+     'quiet' -- this indicates the event should occur with no notice given
+     to the user.  Currently, this only makes sense with the 'dl-time',
+     'door-limit', 'autodoor', 'anytime-net', 'chat-on', and 'chat-off'
+     class values.
+
+     <duration> defines how long the event will last, in minutes.  If duration
+     is 0, then if you happen to bring the system up at the exact time the
+     event is to take place, the event WON'T take place; for all other values
+     of duration, the event will take place. Duration should probably be 0 for
+     external events you only want to happen once, happen quickly, and
+     bring the system right back up, such as a backup event in which your BAT
+     file backs up the system and then brings it back up.  This can go so fast
+     your system will be back up in less than 1 minute, so you don't* want
+     duration set to 1 -- you want it at 0, otherwise the event could be
+     executed more than once.  However, for network events you certainly want
+     it set correctly.  A 45 minute network event would look like this:
+
+     #event ... ... network preempt 45 ....
+
+     <warning string> is only valid for 'preempt' and 'dl-time' events.  It
+     is sent to the user for the warning and for the "you've been kicked off"
+     messages.  It should be enclosed in quotes.  Here's what the messages
+     look like for preemptive events:
+
+     "<beep>WARNING: System going down at <time> for <warning string>."
+
+     "<beep>Going to <warning string>, bye!"
+
+     So, for networking,
+
+     #event .... "networking" ...
+
+     works just fine.  The message, when used for download time limit events,
+     looks like this:
+
+     "I'm sorry, that would exceed the current cumulative
+               download time limit of <warning string>."
+
+
+     <depends> is a parameter whose meaning depends on the class of the event.
+     If the class of the event is 'external' or 'relative', then this value is
+     the ERRORLEVEL Citadel-86 is supposed to generate as it comes down,
+     and should be used in BAT files for further processing.  The upper
+     effective limit on this parameter is whatever MSDOS allows in BAT files,
+     we think.  Before leaping into this, however, please review the section
+     on BAT files in this Installation Manual, paying particular attention to
+     already-reserved ERRORLEVELS.
+
+     If the class of this event is 'network', then <depends> specifies which
+     net(s) this network event is going to participate in.  While we are not
+     going to discuss in detail what Citadel-86's "multinet" capability is
+     right now, here is a summary: Citadel-86 supports handling multiple
+     C86Nets.  Each network is identified by a number; all of the nodes in
+
+
+
+
+
+
+
+                                    -26-
+
+
+
+
+
+     your system can be associated with 0 or more of these nets. Thus, using
+     the <depends> field can allow you to network with certain systems at one
+     time and/or day, and other systems on other times and/or days. The
+     <depends> field must have at least one of the nets identified here, and
+     may have more if a particular network session is servicing more than one
+     network at a time.  If more than one net is to be serviced, place a comma,
+     and ONLY a comma, between each net identifier. So, if you wanted to
+     specify nets 1, 6, and 14, you'd have
+
+     #event .... 1,6,14
+
+        If the class of the event is 'dl-time', then the depends field specifies
+     the maximum number of minutes which may be spent in downloading while
+     this event is in effect.
+
+        If the class of this event is 'anytime-net', then depends consists of
+     three values: <dead time> <session length> <member net list>.  Dead time 
+     is how long the system is to be idle before attempting netting, session 
+     length is how long such net sessions should last, and member net list is 
+     just like the normal network session member list.
+
+        If the class of the event is 'autodoor', then the format of the 
+     depends field is
+
+        "username" doorentrycode
+
+     The reason for the quotes around the username is some users have 
+     multi-word names.  doorentrycode is the entry code for the #door to be 
+     triggered when user "username" logs in.
+
+        If the class of the event is 'door-limit', then the depends field 
+     specifies the time limit on doors in minutes.
+
+        If the class of the event is 'chat-on' or 'chat-off' then there are
+     no values for the depends field.
+
+        if the class is 'redirect' then the <depends> field will contain
+     <filename> <directory name> <system name>, for the name of the file
+     which will be redirected, the directory to put it in, and the system from
+     which the file will be accepted and redirected (same-named files from
+     other systems will be placed in the normal area, #FILE_RECEPT_AREA).
+
+        And that's it for the #event parameter(s).  We hope our explanation
+     is understandable; we sure had a hard enough time writing it!  Oh, and
+     there are examples of real-world #event entries in Section XIX (we think) 
+     of the Operations Manual.
+
+     ------
+     #sysPassword
+        This parameter gives you access to the Remote Sysop capabilities of
+     Citadel-86.
+ 
+        A "Remote Sysop" is an Aide, not at the System Console, who knows
+     the Remote Sysop Password.  A Remote Sysop's capabilities include complete
+     access to the Sysop Menu (yes, including such silly things as changing
+     the Baud Rate -- See OPER3.MAN) and when editing rooms the Remote Sysop
+
+
+
+
+                                    -27-
+
+
+
+
+
+     can do what a normal Sysop can do.  A Remote Sysop gains access to the
+     Sysop capabilities in exactly the same way as a normal Sysop does, by
+     sending a ^L to the system -- but a Remote Sysop has to supply a password.
+
+        This parameter, a string value which does not obey formatting
+     directives, does NOT (repeat NOT!) specify the Remote Sysop Password.
+     Rather, it specifies the NAME of a file containing, on one line, the
+     Remote Sysop Password (this allows you to hide your Remote Sysop Password
+     somewhere on your system).  This filename may specify any file anywhere
+     on your system, including different drives and subdirectories.
+ 
+        The password itself must be at least 15 letters long, and is, unlike
+     most passwords, case-sensitive.  WARNING: If you change the password
+     in the file, you must run CONFG again (CONFG ONLYPARAMS -- see the Section
+     on Command Line parameters).
+
+        If this parameter is not specified, or the file is not found, then the
+     Remote Sysop facility is not active.
+
+        We really don't recommend you use this facility, due to the abuse
+     possible if some juvenile delinquent breaks two passwords.  However, if
+     you insist on using this facility, and placed your password in a file in
+     a directory on drive G, in a file named PWD in a directory on the root
+     called HIDING, you'd have the following in your CtdlCnfg.Sys file.
+ 
+     #sysPassword "g:\hiding\pwd"       -- Note the lack of '\\' sequences
+
+     ------
+     #door ...
+        This parameter is used to make a door available to the user.  This
+     subject is treated fully in Section XI of the Citadel-86 Operator's
+     Manual (OPER3.MAN).
+
+     ------
+     #ISDOOR
+        This parameter allows you to run Citadel-86 as a door itself.  When 
+     you configure a Citadel-86 using this parameter, it will no longer 
+     attempt to initialize the modem when coming up, because it will expect a 
+     user to be there already.  For further details, see the Operations Manual 
+     Section XII.
+
+     ------
+     #AUDITAREA
+        This parameter is just like the MSGAREA, et al.  It is a string value
+     parameter specifying a drive and directory which will hold three audit
+     files.  If this parameter is not present in your CtdlCnfg.Sys file, then
+     the audit files will not be created or updated by Citadel-86.
+ 
+        The audit files are known as CALLLOG.SYS, DOORUSE.SYS, and FILELOG.SYS.
+     They are simple ASCII text files containing notes regarding system usage.
+
+        CALLLOG.SYS contains three types of notes.  The first type lists when
+     the system has come up and down.
+
+
+
+
+
+
+
+                                    -28-
+
+
+
+
+
+        The second type records who has called, listing login and logout times,
+     one line per person, in the following format:
+ 
+     <person>   :   <login time> - <logout time> <baud rate>
+
+        Occasionally such a line will have an extra character appended onto it,
+     and they have the following significance.
+ 
+        '+'  Means this user logged in as new.
+        '-'  Means this user used .TS to logout.
+        'T'  Means this user timed out on the system.
+        'E'  Means this user hit the error limit on the system and was
+             kicked off.
+        'B'  Means the system kicked the user off for too many offenses against
+             BADWORDS.SYS.
+
+        The third type of message in CALLLOG.SYS are notes regarding network
+     sessions, both normal and anytime-net.  These record on a single line
+     the start and end times of the net sessions.  This particular message can 
+     be disabled by using the #CLEAN-CALLLOG parameter.
+
+        FILELOG.SYS format is somewhat different.  Generically, it looks like
+     this:
+
+     <user name> @ <baud rate>
+        file1 (n bytes) <roomname> <U or D> <start to end> <length> <protocol>
+                                                                        [FAILED]
+        file2 (n bytes) <roomname> <U or D> <start to end> <length> <protocol>
+                                                                        [FAILED]
+        ...
+
+        This format keeps the number of user names down.  "n bytes" is the size
+     of the file.  "roomname" is the room involved.  "U or D" refers to whether
+     the named file was Uploaded or Downloaded.  "start to end" refers to start
+     time and end time of the file session, while length is the amount of time
+     involved.  Protocol will be one of the three XMODEM, YMODEM, or WXMODEM.
+     "FAILED" will only appear on the line if the transfer failed.
+
+        DOORUSE.SYS simply lists who used what doors for what amount of time
+     at what time of the day.
+
+        If you want to have a call log, you would have something like this in
+     your CtdlCnfg.Sys file:
+ 
+     #AUDITAREA "c:audit"         -- This can only be a subdirectory
+
+     ------
+     #MIRRORMSG
+        The structure of Citadel-86's message base causes frequent disk access.
+     While this is not particularly deleterious for a hard disk, this kind of
+     activity has been known to actually destroy floppy drives. Therefore, it
+     makes sense to put the message base into a RAM drive. However, this leaves
+     systems vulnerable to message base loss due to power failure. Because of
+     this, Citadel-86 has the ability to support two identical message bases at
+     once.
+
+
+
+
+
+                                    -29-
+
+
+
+
+
+        The first message base functions as the primary; messages are written
+     to and read from this base. This message base is specified by the MSGAREA
+     parameter.  The second message base, however, is subject only to writing,
+     thus saving wear and tear on the media involved.  Since the primary
+     message base (the one both written to and read from) is subject
+     to a lot of wear and tear, this message base should be placed in a RAM
+     disk. The MSGAREA parameter mentioned earlier specifies the area for the
+     primary message base.  It is your responsibility to make sure a copy
+     of CTDLMSG.SYS is in the RAM disk when you bring Citadel-86 up; Citadel-86
+     will not do that for you.
+
+        The secondary message base, since it is only written to, should reside
+     on permanent media, such as a floppy.  The parameter MSG2AREA, a string
+     value not responsive to formatting directives, specifies the area
+     where the secondary message base should reside.  Since both message bases
+     are written to simultaneously, they should remain identical.
+
+        If you wish to use this option, MIRRORMSG should be set to 1;
+     otherwise, it should be set to 0.  If MIRRORMSG is set to 1, then MSG2AREA
+     should specify where the secondary message base should reside.  For
+     instance
+ 
+     #MIRRORMSG 1                -- yeah, why not?
+     #MSG2AREA "b:msg"           -- on floppy, of course
+
+     ------
+     #HOLDAREA
+        Citadel-86 has the optional capability to save messages inadvertently
+     interrupted during composition for later completion.  The reason we say
+     "optional" is the method used to save such messages is to save them as
+     files on disk, and in a restricted environment such an ability may not be
+     desirable. Thus, this feature is only available on systems in which
+     #HOLDAREA is defined.  #HOLDAREA is another directory specification,
+     exactly like those of Section 1 of CtdlCnfg.Sys.  All interrupted messages
+     will be stored there until the next time the user logs in.  These files
+     are currently about 8K bytes long.
+
+     #HOLDAREA "hold"
+
+     ------
+     #sysopName
+        This parameter is used to tell your system who the sysop is.  The only
+     real effect of this parameter is all Mail> to sysop is automatically
+     routed to the account that you specify in this parameter's string value.
+     (This will also affect net Mail> to sysop.)  If you're not using this
+     parameter, or the account does not exist, then Mail> to sysop will end up
+     in the Aide> room.
+
+     #sysopName "Me!"
+
+
+
+
+
+
+
+
+
+
+
+                                    -30-
+
+
+
+
+
+     ------
+     #SYSOP-ARCHIVE
+        This optional string parameter is used to tell your system where to
+     archive the system operator's Mail.  The string specifies which file the
+     Mail> should be archived to.  If the parameter #sysopName is not specified
+     or if this parameter is not specified then Sysop Mail will not be
+     archived.
+
+     #SYSOP-ARCHIVE "c:\citadel\moocow"
+
+     ------
+     #EDITOR
+     #EDIT-AREA
+        These two parameters allow the sysop to specify a
+     Sysop Editor for use at the System Console.  Full information on
+     this feature is contained in OPER3.MAN Section X.  Essentially, the Sysop 
+     may use the editor of his/her choice for message composition when at the 
+     System Console, and these two parameters allow the System Operator to 
+     specify what editor to use and where to place the temporary file.
+
+        #EDITOR is the name of the editor, along with any necessary options.
+     It does not obey formatting directives.  If #EDITOR is not present in 
+     CtdlCnfg.Sys, then the Outside Editor is not available.
+
+        #EDIT-AREA is entirely optional, and does not disable the Outside 
+     Editor if it is not present.  The System Operator may use this parameter 
+     to specify some area of his disk system for the placement of the 
+     temporary file containing the message text other than the current drive 
+     and directory (this is useful for RAM disks, etc.).
+
+     #EDITOR "q"        -- qedit
+     #EDIT-AREA "d:\"   -- in the root of drive D:
+
+        See OPER3.MAN for full information.
+
+     ------
+     #CLEAN-CALLLOG
+        If this parameter exists in your CtdlCnfg.Sys, then network sessions 
+     will not appear in your CALLLOG.SYS.
+
+     ------
+     #ANONYMOUS-SESSIONS
+        If this parameter exists in your CtdlCnfg.Sys sessions in which remote
+     callers fail to login to be recorded in CALLLOG.SYS (if auditing is
+     enabled -- see #AUDITAREA).  Normally, user sessions in which the caller
+     never successfully logs in are not recorded.  This option lets you
+     override this behavior.  This override does NOT apply to anonymous uses
+     of the sysConsole.
+
+
+
+
+
+
+
+
+
+
+
+
+                                    -31-
+
+
+
+
+     ------
+     #CONSOLE-TIMEOUT
+        The optional parameter #CONSOLE-TIMEOUT allows you to specify CONSOLE
+     timeouts.  The value you give will be interpreted as the number of seconds
+     the system is quiescent in CONSOLE mode before timing out (that is,
+     return to MODEM mode).  If this parameter is not present in your
+     CtdlCnfg.Sys, or if its value is -1, then Console Timeouts are disabled
+     on your system.  Example:
+
+     #CONSOLE-TIMEOUT 600
+
+     The system will timeout after 10 minutes when in Console mode.
+
+     ------
+     #CONSOLE-DELAY
+        This parameter is for use on hardware with very fast video display
+     systems, such as fast AT class machines.  Such hardware can make it
+     difficult for the sysop to use their own system at the sysConsole.  This
+     parameter lets you tell Citadel-86 to delay x milliseconds after each
+     character when the user is at the sysConsole.  For example, to tell the
+     system to hesitate for two milliseconds after each character:
+
+     #CONSOLE-DELAY 2	-- 2 millisecond delay after each character
+
+     This option does not affect remote users at all.  Use this parameter
+     only if you find you need it.  If it's not present then there is no delay,
+     of course.
+
+     II.6.d Section 3 of CtdlCnfg.Sys
+
+        This section covers the parameters of CtdlCnfg.Sys concerning the
+     Citadel-86 networker.  We have no intention of covering the network itself
+     in this section; we tried to cover that in NETWORK3.MAN, and direct you
+     to there if you're interested.
+
+     ------
+     #NETWORK
+        This parameter controls whether or not you're in the network at all.
+     Set it to 1, and you are.  If it is set to 0, then you are not (initial
+     setting for our virgin copy).  If you are planning to participate in the
+     network, then please be sure you understand the section on the
+     #event parameter, because you use #events to tell your system when
+     to communicate with other systems on the networks.
+ 
+     #NETWORK 1                  -- This system participates.
+
+     ------
+     #nodeDomain
+        This is the name of the domain your reside in.  You may only reside
+     in one domain.  This domain string is sent with each net message
+     originating on your system (mostly as a way to facilitate users finding
+     out how to send net mail to your system) (assuming you are netting,
+     otherwise this is meaningless), and will be displayed, generically, like
+     this:
+
+     <date> @<time> from <author> @<nodeName> <nodeDomain display>
+
+
+
+
+
+                                    -32-
+
+
+
+
+
+     The reason we say "nodeDomain display" is that it's possible for some
+     systems to customize the display of the nodeDomains of the messages
+     passing through.  Assuming they aren't customizing, an example of a
+     display using the above and assuming the #nodeDomain is "wa" (or WA --
+     this is case-insensitive) would look like this:
+
+        82Nov23 from Cynbe ru Taren @ODD-DATA _ wa
+
+     Here's what ODD-DATA's CtdlCnfg.Sys entry for #nodeDomain would then
+     look like:
+
+     #nodeDomain "wa"		-- just another string parameter
+
+        See NETWORK3.MAN for more information on domains in Citadel-86.
+
+     ------
+     #DomainDisplay
+        This optional string parameter, if present, effects how domain
+     designations of messages from foreign systems are displayed on your
+     system.  There is a special format to this string: somewhere within the
+     quotes it must contain a "%s".  This "%s" will be replaced by the domain
+     of the message.  For instance, if you wanted to override the default
+     behavior of putting a " _ " between the node ID and it's domain with
+     having the domain being placed between brackets, you'd put
+
+     #DomainDisplay " [%s]"
+
+     in your CtdlCnfg.Sys.  Notice the leading space.
+
+     ------
+     #RouteMail
+        This parameter controls whether or not you categorically refuse to 
+     route network mail.  If you do choose to route mail, you can still 
+     control routing via individual flags for each node; see the RoutMail 
+     utility.
+
+     #RouteMail  1              -- allows route mail to happen
+
+     ------
+     #MailHub
+        This parameter lets you redirect mail which is domain oriented to
+     another system which presumably has a better chance of delivering the
+     Mail to the system in the domain you don't know much about.  See
+     NETWORK3.MAN for far more detail than we provide here.  An example
+     might be
+
+     #MailHub "Data Drum"	-- current Illinois domain server
+
+     ------
+     #ServeDomain
+        This parameter lets you decide if you want to be a domain-server.
+     See NETWORK3.MAN for more detail.
+
+     #ServeDomain "xx"
+
+
+
+
+
+
+                                    -33-
+
+
+
+
+
+     ------
+     #NewNetPrivs
+        This numerical parameter let's you decide if new users should 
+     automatically have net privileges or not.  If 1, then they do; 0, they
+     don't.
+
+     #NewNetPrivs 0                     -- let's be paranoid!
+
+     ------
+     #NETAREA
+        This string parameter specifies where all the net files will be located
+     on your system.  The "net files" are CTDLNET.SYS and various temporary
+     files having the suffixes ML, RFL, VTX, and SFL, plus some files with
+     numeric suffixes (like R3.0).  NETAREA is just like LOGAREA, MSGAREA,
+     etc., specifying drivename, if necessary, and only a subdirectory of the
+     current directory of the relevant drive.
+ 
+     #NETAREA "netstuff"         -- let's put it in a directory called
+                                 -- netstuff.
+
+     ------
+     #DOMAINAREA
+        This string parameter specifies where all the domain files will be
+     located.  See NETWORK3.MAN for more information on domains.
+
+     #DOMAINAREA "domains"	-- make it a separate directory from NETAREA
+
+     ------
+     #SHARED-ROOMS
+        This numeric parameter reserves room in each node record for the number
+     of shared rooms you think you'd like to share.  Each takes up 6 bytes, so
+     plan according in view of the number of nodes you'll have on your node
+     list and the number of rooms you might want to share with other systems.
+     If you want to change this value later, use a utility!
+
+     #SHARED-ROOMS 4            -- conservative
+
+     ------
+     #NET_RECEPT_AREA
+        This parameter specifies a directory on your system containing
+     all files sent to your system by some other system during
+     networking, using the Send File facility (this is not the same as
+     requesting files over the network).  NET_RECEPT_AREA is a string value
+     unresponsive to string formatting directives, of course, and it may
+     specify any directory on your system, not just a subdirectory to your
+     current directory.  So, supposing you wanted to specify
+     C:\CITADEL\HOLDING as the directory for incoming files from the net,
+     you'd have in your CtdlCnfg.Sys
+ 
+     #NET_RECEPT_AREA "c:\CITADEL\HOLDING" -- directory
+ 
+     ------
+     #NET_AREA_SIZE
+     #MAX_NET_FILE
+        These two parameters allow you to control how much space you wish to
+     devote to files coming into your system from the net via the Send File
+     command (i.e., other systems sending you files without you asking).
+ 
+
+
+                                    -34-
+
+
+
+
+
+        NET_AREA_SIZE allows you to tell Citadel-86 how much space to devote to
+     the directory specified in NET_RECEPT_AREA.  When a system attempts to
+     send you a file, Citadel-86 will get the size of the file, and then check 
+     to see how much space is already being taken up by files in
+     NET_RECEPT_AREA.  If the difference of NET_AREA_SIZE and the files already
+     in NET_RECEPT_AREA is less than the size of the incoming file, then your
+     system will not accept the file.
+
+        MAX_NET_FILE allows you to control how big a file you will ever accept.
+     If the size of the file being sent to you exceeds the value you specify
+     here, then your system will not accept the file being sent.
+ 
+        Both of these values are in terms of K.  So, for instance, if you only
+     wanted to allow files of up 24K into your system, and only wished to
+     devote up to 44K to NET_RECEPT_AREA, you'd have:
+ 
+     #NET_AREA_SIZE 24
+     #MAX_NET_FILE  44
+
+     ------
+     #callOutPrefix
+     #callOutSuffix
+        These two parameters control modem dialing during networking.  These
+     are both string value parameters obeying formatting directives, and
+     should be used to convey commands to the modem.  When dialing, Citadel-86
+     constructs a phone number to send to the phone company, and sends the
+     following to your modem:
+ 
+      <callOutPrefix><phone#><callOutSuffix>
+ 
+     callOutPrefix should alert the modem to dial, while callOutSuffix should
+     do anything necessary to finish the dialing sequence (usually, just send
+     a C/R to the modem).
+
+        If you have a Hayes modem, we recommend you use the following values
+     for these two parameters.
+ 
+     #callOutPrefix "ATDT"            -- Tells a Hayes modem to dial out using
+                                      -- touch tones
+     #callOutSuffix "\r"              -- puts a carriage return at the end
+
+        If you have a high speed modem, such as an USR HST, please see the
+     next section for special variants of #callOutPrefix when you network
+     with systems capable of the same high speeds.
+
+     ------
+     #DialOut300
+     #DialOut1200
+     #DialOut2400
+     #DialOut4800
+     #DialOut9600
+     #DialOut14400
+     #DialOut19200
+        The new modems coming out today sometimes require different prefixes
+     to dial and connect at different speeds.  For instance, the USR HST
+     requires "AT&M0D..." for most dialing, but "AT&M4D..." to call USR HST
+     modems at high speeds.  Therefore, Citadel-86 contains a flexible dialout
+
+
+
+                                    -35-
+
+
+
+
+
+     prefix scheme.  The above CtdlCnfg.Sys parameters are now available.
+     They allow you to customize your dialing by letting you define special
+     dial out prefixes for certain baud rates.  Those you don't define will be
+     replaced by #callOutPrefix.  If you don't have a high speed modem requiring
+     different dial out strings for different modem speeds, then you needn't
+     worry about this section.
+
+     ------
+     #SCAN-NET-MESSAGES
+        This CtdlCnfg.Sys parameter, if it's present, causes all incoming net
+     messages to be scanned against BADWORDS.SYS.  Those which fail to meet your
+     standard of decency are placed in the file DISCARD and a message will be
+     left in your Aide> room.
+
+     ------
+     II.7 The Big Step -- Your first experience with CONFG
+        You should have a complete, if only minimally, CtdlCnfg.Sys on your
+     disk now (you DID save that file to disk when you were finished, didn't
+     you?), so now it's time to process it into something CTDL.EXE finds
+     palatable.
+
+        You do this with CONFG.EXE.  First, make sure CtdlCnfg.Sys is
+     located on your default disk; if you are running on a floppy-only system
+     make sure you have the correct floppies in the drives.
+
+        Run CONFG.  It will come up with some sort of identification banner,
+     and then begin processing your CtdlCnfg.Sys.  Normally, it will echo each
+     parameter as it processes it.  If it runs into a parameter it doesn't
+     recognize, or a parameter value out of range, it will come to
+     a stop and tell you about it (or at least it should).  Make note of the 
+     problem and edit your CtdlCnfg.Sys accordingly.  If it seems critical, or
+     you don't understand what's wrong, review this manual, and if that
+     doesn't help, some active research (local Citadel-86 sysops, etc.) may
+     be called for.  (Good luck.)
+
+        Once you get past this step, CONFG will grumble with the disk for a
+     moment (or two on a floppy system), and then ask you some questions.
+     This first set of questions depends on whether you created the system
+     directories (assuming you specified some of the system files belong in
+     their own directories) or not.  If you didn't, CONFG will ask you if it
+     may create the directories needed for the system files; this gives you a
+     chance to make sure you didn't screw something up.  If you didn't, then
+     answer 'Y' (or 'y') for each question regarding directories.
+
+        Once CONFG has decided the directories are setup correctly, it
+     will try to open your system files (i.e., the message file, the log file,
+     etc.), and since this is the first time you've run CONFG, it won't find
+     them, and therefore it will complain about this, and tell you it is
+     creating each of them.
+
+        This is the first and last time you should ever have to see the
+     questions about the directories, or the messages about missing system
+     files.  If you do ever see them again, and don't know why, you may have
+     problems.
+
+
+
+
+
+
+                                    -36-
+
+
+
+
+
+        Next, CONFG will ask if you wish to initialize your system files.
+     Since this is the first time, answer 'Y'.  NEVER answer 'Y' again unless
+     you know what you're doing, because answering 'Y' tells CONFG to ERASE all
+     the data in your data files.
+
+        Since you answered 'Y' (this doesn't happen when you answer 'N'),
+     CONFG will ask if you wish to erase and initialize your message file
+     (in case you didn't mean to say yes before).  Type 'Y', and then sit back
+     and watch as CONFG creates the message base.  CONFG displays the number of
+     'sectors' (128 byte chunks) to clear, and then counts them off as they are
+     cleared.  If you are going to have a large (300K or more) message base 
+     and have fairly slow disk drive(s), this is probably the time to get that
+     cup of coffee.
+
+        Once it is finished with the message base, it'll ask if you wish to
+     erase and initialize the room file, and then the log file.  Since you are
+     still creating your system, answer 'Y' to them and watch as CONFG clears
+     each file.
+
+        If CONFG encounters any problems during this process, it will tell you
+     about it and exit without finishing.  It's up to you to figure out what's
+     wrong at this juncture.
+
+        Once it finishes with these files, it tells you it is creating
+     CTDLTABL.SYS (remember that file?), and exits after a few more seconds.
+
+        You should now have a CTDLTABL.SYS on your current default disk, which
+     also happens to be the disk your Helps reside on.
+
+
+     II.8 CTDL -- That Childhood Experience
+        And now we get to that long awaited moment.  DO IT.  Run CTDL, however
+     you have to do it.  (Is your modem on?)
+
+        If everything is put together right, you have enough memory, and
+     everything is configured right, CTDL will be read in, grumble at your disk
+     or disks for a moment, initialize your modem, rumble a little more,
+     and then come up with YOUR welcome banner.
+
+        If that's what happened, sit back!  Didn't it feel good?  Feel the
+     warm, golden glow?  (Quick, knock on some wood.)  And now you should
+     probably turn to OPER3.MAN, the everyday care and feeding of Citadel-86.
+     The remainder of Section II covers advanced installation topics which you
+     shouldn't concern yourself with right now, with the exception of Section
+     II.8 which covers what to do in case of unexpected power losses and
+     crashes. You should certainly read the advanced topics of Section II at
+     some time in the future, because we talk about automating your
+     installation with batch files, command line arguments, and other beasties;
+     however, right now you're just getting used to being a Citadel-86 sysop.
+
+        Delving into other topics when you're not familiar with the basic
+     features of the sysop side of Citadel-86 could turn into a messy disaster
+     neither you, nor we, would wish to deal with.  So turn to OPER3.MAN.
+
+
+
+
+
+
+
+                                    -37-
+
+
+
+
+
+        If CTDL DIDN'T come up, there are a large variety of reasons for the
+     failure.  If your system seemed to make it up but came down relatively
+     gracefully (i.e., left you at the system prompt), check your disks for a
+     file named CRASH. It may give you (or the person you turn to for help!)
+     a hint on what might be wrong. If it seems to think there's an error with
+     a file, perhaps you forgot to configure MS-DOS correctly.  If CTDL itself
+     complains about "no ctdltabl.sys!", then either the file isn't on your
+     default disk when you called CTDL, or CONFG didn't successfully finish.
+
+     II.9 When the inevitable happens
+        Citadel-86, just like any other software, is not immune to such things
+     as crashes, power failures, hardware failures, and the like.  When this
+     happens, you must take corrective actions, because normally such
+     occurrences will leave your system missing (or with a mangled version
+     of) the valid version of CTDLTABL.SYS.
+
+        In order to rebuild this vital file, you must run CONFG again.  CONFG
+     will digest your CtdlCnfg.Sys, and then survey and summarize for CTDL the
+     current contents of your data files.  Once it is finished, you may
+     (usually) run CDTL.
+
+        Let's go over exactly what will happen.  When you run CONFG, it should
+     go through CtdlCnfg.Sys, just as it did in Section II.7, echoing each
+     parameter as it encounters it.  Once finished, however, it's behavior will
+     differ. It should not ask you if it may create the appropriate directories
+     (since they should already exist), and it should not complain about not
+     being able to find any of your system files (these should still exist,
+     too!).  However, it WILL ask you if you wish to erase and initialize your
+     system files.  This time reply N (with vigor!).  CONFG will immediately
+     begin analyzing your data files, and after several minutes, depending on
+     the size of your system, it will produce a CTDLTABL.SYS; your system will
+     be fit to run again.
+
+        Obviously, there are benefits to automating this process, particularly
+     for handling power outages.  Consult the section on batch files and the
+     section on command line options for details on effectively automating your
+     system in such cases.
+
+
+     II.10 Installation -- Advanced Topics
+        By now you should have a pretty good feel for Citadel-86 procedures,
+     but may wish to look into automating Citadel-86.  The first two
+     subsections discuss subjects pertaining to that minor miracle; the third
+     section will try to bring the first two together, with some representative
+     examples of DOS BAT files.
+
+     II.10.a Command Line options
+        A 'command line option' is a string of letters you type directly
+     following the program name.  Each command line option should be separated
+     from the program name and any other command line option by at least one
+     space.  Command line options are used to tell a program to do something it
+     might not do if the option wasn't there.  In abstract, from drive C: of
+     MS-DOS:
+
+
+
+
+
+
+
+                                    -38-
+
+
+
+
+
+     C><program name> <command line option 1> <c.l.o. 2> ...
+
+        Both CONFG and CTDL have a set of command line options which you can
+     use to make them do special things.  We'll treat each program separately.
+
+     CONFG
+        The CONFG program will respond to two options, which may appear
+     together or individually on the command line.
+
+        The first parameter is called ONLYPARAMS.  When CONFG finds this
+     parameter on the command line, CONFG will NOT try to process your data
+     files.  Instead, it will limit itself to reading and processing your
+     CtdlCnfg.Sys file.  This ability is useful when you wish to change one of 
+     the CtdlCnfg.Sys parameter values without going through the entire
+     process of reading your data files. You MUST have a completely valid
+     CTDLTABL.SYS available for CONFG to read; otherwise, this option will be
+     ignored and your data files will be processed.
+
+        The second parameter is any string of letters not matching any
+     other command line option for CONFG.  If this 'option' (you can just use
+     some random string of characters) is on the command line, then CONFG will
+     not ask whether or not you wish to erase and initialize your data files.
+     Instead, CONFG will assume your answer was 'N' (i.e., you simply wish
+     to perform a reconstruction).  Thus, CONFG will never query the keyboard 
+     for attention, and can run unattended, so long as all the data files are
+     in their places.
+
+     CTDL
+        The CTDL program officially supports several options, and unofficially
+     several more which may or may not be detailed here.  An 'official' option
+     is an option we anticipate supporting for a while; an 'unofficial'
+     option is an option used for experimentation, and will someday be moved
+     into the CtdlCnfg.Sys parameter file (or just thrown away).
+
+        The first command line option is called +netlog.  This option applies
+     only to networking systems.  When employed, it will cause a log of all
+     network sessions to be written to the file NETLOG.SYS in your NETAREA
+     directory.
+
+        +nochat completely shuts the Chat option off.  Normally, an aide can
+     force a chat when Chat is turned off.  This command line option prohibits
+     aides from forcing Chat when Chat is turned off.  This option does nothing
+     when Chat mode is on.
+
+        +vortex activates the Vortex Detection and Management feature.  For
+     more information on this feature, see NETWORK3.MAN Section III.3.j.
+
+        bps= is of use to those sysops using the #ISDOOR parameter.  See the 
+     Operations Manual Section XII for full details on the use of Citadel-86 as
+     a door.
+
+        +anon causes sessions in which remote callers fail to login to be
+     recorded in CALLLOG.SYS (if auditing is enabled -- see #AUDITAREA).
+     Normally, user sessions in which the caller never successfully logs in
+     are not recorded.  This option lets you override this behavior.  This
+     override does NOT apply to anonymous uses of the sysConsole.
+
+
+
+
+                                    -39-
+
+
+
+
+        +vandaloff disables the vandalism checking which occurs when an
+     unlogged user sends Mail to sysop.  This checking consists of seeing if
+     the message contains the same character occuring in a row more than
+     8 times (e.g., "iiiiiiiii").  When this option is present, the checking
+     is disabled.
+
+        A command line option not matching any of those listed so far
+     is known as the 'crash' option.  It will cause CTDL to leave a message in
+     your Aide> room informing you Citadel-86 apparently came up from a
+     crash at the time of the message.  This is useful for batch files.
+
+     II.10.b BAT files and program termination ERRORLEVELS
+        MS-DOS BAT files depend heavily on the concept of ERRORLEVELs, and we
+     encourage you to read the MS-DOS manuals for a full explanation of BAT
+     files. The CTDL program, on termination, will set the MS-DOS ERRORLEVEL
+     level to a value you can use to write useful BAT files; you may also
+     cause other ERRORLEVELS to be set, as explained earlier in this manual.  
+     The values indicate the reason Citadel-86 terminated, and the ones
+     reserved by Citadel-86 are discussed here.  Feel free to use other
+     ERRORLEVELS at your discretion.
+
+     0 -- A normal exit.  This indicates the sysop took the system down
+          via e<X>it on the Sysop's menu (see OPER3.MAN for an explanation
+          of the sysop menu).
+     1 -- Exit due to detecting the existence of CTDLLOCK.SYS, which indicates
+          this installation is already "up."  Normally, this means
+          you used the <O>utside commands (see the Sysop's Manual) to go to
+          the MSDOS shell, leaving Citadel-86 up but inactive, and attempted to
+          bring your system back up, rather than typing 'exit'.  This is a
+          failsafe so you do not accidentally bring Citadel-86 up within
+          itself.  Occasionally, you may be using <O>utside commands to do
+          something when you are forced to reboot (power outage, program
+          crash, etc.), in which case the CTDLLOCK.SYS file is no longer
+          accurate.  In cases like these, the correct procedure is to delete
+          CTDLLOCK.SYS and then attempt to bring Citadel-86 up again.
+
+     2 -- This was a crash exit.  Citadel-86 is capable of recognizing a number
+          of fatal internal errors; when any of them are encountered,
+          Citadel-86 will hangup the current caller and immediately terminate
+          with this value.  If a crash of this sort occurs, CONFG should be
+          run before attempting to run CTDL again.  Some (not all) of these
+          fatal errors include non-existence of CTDLTABL.SYS (very, very
+          common, due to power failures), missing system files (such as the
+          message file, etc.), and corrupted internal data, which indicates 
+          the possibility of a bug in CTDL.  Some of these crashes will leave
+          the files CRASH and AUDIT behind, which can give hints on what's
+          wrong (particularly CRASH).
+
+     3 -- A remote sysop exit.  Since an Aide can be given access to the sysop
+          menu from remote (see Section II.6.c on the parameter #sysPassword), 
+          s/he is capable of taking your system down from remote.  A number of
+          sysops indicated it might be useful to distinguish between a
+          sysop exit and a remote sysop exit, so this ERRORLEVEL is supported.
+
+     4 -- This is a Door exit, indicating the current user has requested
+          access to a Door (program) which you have provided via the #door
+          parameter.  When your BAT file receives this Errorlevel, it need only
+
+
+
+
+                                    -40-
+
+
+
+
+
+          do two things (essentially): run the program C86DOOR, and then loop
+          back around to bring Citadel-86 up.
+
+        One more note.  When you write a BAT file, make sure you handle
+     the ERRORLEVELS in a "top to bottom" manner.  DOS will not process the
+     ERRORLEVELS correctly otherwise.
+
+     II.10.c Making BAT files and command line options work for you.
+        No program is ever bug-free.  However, it is nice to pretend one
+     is, and an effective way to pretend a particular program has achieved
+     such a goal is by never having it require your attention when you are
+     attending to other things.
+
+        Citadel-86 tries to emulate this sort of utopian software by returning
+     a value to MS-DOS when it terminates gracefully, as we described above,
+     which allows you to construct BAT files handling most contingencies.
+
+        Basically, we have to handle 'emergency' situations, which consist of
+     coming up from a reboot and handling a graceful crash, and handling
+     non-emergencies, which are coming out of C-86 in response to timeouts,
+     sysop exits, remote sysop exits, and Door exits.
+
+        First, let's look at the emergencies.  Typically, an emergency never
+     happens at a convenient time; instead, you're off on vacation, at work,
+     or feeding the cat.  Therefore, the software has to handle the emergencies
+     on its own, within limits.
+
+       In both of our emergency situations, the system must go through a CONFG
+     call. When we looked at the command line options of CONFG, we saw a
+     nonsensical argument on CONFG's command line tells it not to ask for
+     operator input regarding whether the system should be erased, but rather
+     to simply re-analyze the data in preparation for a CTDL call.  Therefore,
+     part of our BAT file strategy will contain the line
+
+     CONFG gleeeeepy
+
+     which we may end up placing in its own BAT file.
+
+        Looking into the section on ERRORLEVELs, we should have also noticed 
+     one of the events causing a graceful crash is the absence of
+     a CTDLTABL.SYS file.  Thus, we can classify a power down as simply another
+     graceful crash -- after we make some modifications to your boot disks
+     AUTOEXEC.BAT.  But first let's look at just how we should handle these
+     'graceful crashes'.
+
+        We said a graceful crash produces an ERRORLEVEL of 2.  With this
+     in mind, we can put in one of our BAT files some lines looking roughly
+     like this:
+
+     CTDL
+     ...
+     if ERRORLEVEL 2 Fixit
+
+     Fixit, in this case, is another BAT file which will fix the system for us.
+     I.e., it runs CONFG and gets the system back up on its feet.  What should
+     it look like?  Well, first we want to start the file as mentioned above:
+
+
+
+
+                                    -41-
+
+
+
+
+
+     CONFG Gleeepy
+
+     Once CONFG finishes, we need to restart CTDL.  As it happens, MSDOS BAT
+     files do not 'stack' up; if A.BAT calls B.BAT, when B finishes it does
+     NOT return to A, but instead falls out to MS-DOS.  This makes it easy to
+     write BAT files to accomplish our purposes.  Suppose we call our main BAT
+     file RUNIT.BAT (the file containing the 'if ERRRORLEVEL 2 Fixit' line
+     in it).  Then we can simply finish the FIXIT.BAT file with
+
+     RUNIT CRASH
+
+     We'll explain the CRASH command line option later.
+
+        What about the rest of those ERRORLEVELs?  Well, let's solidify your
+     RUNIT.BAT a little more.
+
+     CTDL
+     if ERRORLEVEL 5 goto timeout
+     if ERRORLEVEL 4 goto door
+     if ERRORLEVEL 3 goto remote
+     if ERRORLEVEL 2 Fixit
+     if ERRORLEVEL 1 goto lockfile
+     if ERRORLEVEL 0 goto alldone
+
+        (Note the descending order we use here.  This is necessary due to the
+     method MS-DOS uses to handle 'if' statements.)  This was simple -- we just
+     put off all the work.  However, most of the work is yours, because it is
+     really up to you to figure out what you wish to do when your system
+     times out (CtdlCnfg.Sys's #event parameter -- we simply assumed you
+     used a 5 in the <depends> field of an external #event parameter) and when
+     your remote sysops bring your system down.
+
+        So let's flesh out the rest of this sample RUNIT.BAT.
+
+     :loop
+     CTDL %1 ...
+     shift
+     if ERRORLEVEL 5 goto door
+     if ERRORLEVEL 4 goto timeout
+     if ERRORLEVEL 3 goto remote
+     if ERRORLEVEL 2 Fixit
+     if ERRORLEVEL 1 goto lockfile
+     if ERRORLEVEL 0 goto alldone
+     :door
+     C86door
+     goto loop
+     :remote
+     REM put here what you want remote terminations to cause to happen.  If you
+     REM want to rerun CTDL, you'd have 'goto loop'.
+
+     :timeout
+     REM put here what you want timeouts to do (backups or whatever)
+
+
+
+
+
+
+
+
+                                    -42-
+
+
+
+
+
+     ...
+     REM we assume you'd want to restart Citadel-86 afterwards.
+     goto loop
+     :lockfile
+     REM here you tried to bring Citadel-86 when it already seems to be up.
+     goto unknown
+     :alldone
+     REM And now the sysop at the console took us down, so we'll die.
+
+        Most of this should be pretty easy to understand.  The '...' on the
+     CTDL command line simply means whatever options you choose to put on the
+     line. However, the '%1' may be puzzling.  As the MS-DOS manual indicates,
+     %1 is the first argument on the command line of this BAT file.  Now,
+     let's look back at the FIXIT batch file, where we put RUNIT CRASH.  This
+     will force the parameter CRASH to appear on your CTDL command line, which 
+     CTDL will interpret as a 'nonsense' argument, therefore causing a 'crash'
+     message to appear in your Aide> room.  Since it was the FIXIT batch file
+     ultimately causing this message to appear, this is good behavior.
+
+        But what of the SHIFT following the CTDL command line?  This causes
+     the RUNIT command line arguments to shift 1 to the left.  Since there were
+     no more arguments to RUNIT, any executions of CTDL subsequent to the SHIFT
+     call, while within this BAT file, will not result in messages in the Aide>
+     room.  And why might there be any more calls to CTDL after the first one?
+     Look at the commands following the timeout label.
+
+        This is just an example.  Have fun.
+
+     II.10.d Result Code and Call Progress Detection
+        One of the problems with the external serial interface of the IBM PC
+     and its clones is its inability to directly detect the speed a modem
+     has made connection with a caller via the RS232 interface.  Therefore,
+     Citadel-86 can detect baud rates by reading the result codes most Hayes
+     modems spit out.  This section details what you must do to use this
+     capability.
+
+        There are two things you must do to attempt to use your modem's
+     result codes for autobaud detection (please note some modems are so
+     awful you can't use their result codes to accomplish autobaud detect).
+     First, your modem must be configured to return result codes.  Typically,
+     you do this using the #modemSetup parameter of CtdlCnfg.Sys, and the Hayes
+     command is usually "ATQ0".  However, you should consult your modem's
+     manual during these machinations and incantations.
+
+        Further, you may need to decide if you want the result codes to be
+     returned in Verbose mode or Non-Verbose mode (ATV1 and ATV0).  While
+     Citadel-86 can use either mode if correctly configured (to be explained),
+     you may have some preference.
+
+        The second task is to inform Citadel what the result codes will be.
+     Not all "Hayes compatible" modems return the same result codes for the
+     same results.  Therefore you must provide them.  How?
+
+
+
+
+
+
+
+
+                                    -43-
+
+
+
+
+
+        By constructing a simple text file named RESULTS.SYS.  It must reside
+     in your #ROOMAREA (CtdlCnfg.Sys) directory, and it must be a normal MS-DOS
+     text file.  Within it you place lines of the following format:
+
+     #<result code identifier> <result code value>
+
+     A "result code identifier" is one of a list of Citadel-86 supported
+     identifiers for result codes, while "result code value" is the string
+     your modem will return for that identifier.  The identifier is contained
+     from the "#" sign to the first space (and there should only be one space,
+     no more), while the result code value is contained from the character
+     following the space to the end of line (thus allowing spaces in the result
+     code value).
+
+        For example, one of the identifiers is RESULT-300, which Citadel-86
+     uses to identify a 300 baud caller, and most Hayes compatible modems
+     we are aware of return CONNECT when a caller connects at 300 baud.  In
+     order for the autobaud to use that value to identify a 300 baud caller,
+     you would place the following line in your RESULTS.SYS file:
+
+     #RESULT-300 CONNECT
+
+     We, of course, assume you have your modem configured for Verbose
+     mode.  If you are using Non-Verbose mode, and your modem returns 1 for a
+     300 baud connect (a typical string for Hayes compatible modems, again),
+     then you would place
+
+     #RESULT-300 1
+
+     in the RESULTS.SYS file.  But what if you weren't sure if your modem is
+     going to be in Verbose or Non-Verbose mode during operation, for some odd
+     reason?  Well, it is perfectly valid to have BOTH of those strings in
+     RESULTS.SYS, and each will be used as needed!
+
+     #RESULT-300 1
+     #RESULT-300 CONNECT
+
+     Now that may sound somewhat trivial, but it is only an example.  A valid
+     real-world example involves MNP capable modems.  Some of these modems
+     return differing result codes, dependent on whether the caller is using
+     an MNP modem or not.  for instance, a normal caller at 2400 baud will
+     cause the modem to return CONNECT 2400, but a MNP caller at 2400 baud will
+     cause the modem to return CONNECT 2400 RELIABLE.  Here is where the 
+     ability to place both of those results in RESULTS.SYS (or even all 4 if
+     you want to cover both Verbose and Non-Verbose modes) can come in real
+     handy.
+
+     #RESULT-2400 CONNECT 2400
+     #RESULT-2400 CONNECT 2400 RELIABLE
+
+
+
+
+
+
+
+
+
+
+
+                                    -44-
+
+
+
+
+
+     AUTOBAUD IDENTIFIERS
+        The following are valid autobaud identifiers, and any of them may
+     appear more than once with different values as desired.
+
+     #RESULT-300
+     #RESULT-1200
+     #RESULT-2400
+     #RESULT-4800
+     #RESULT-9600
+     #RESULT-14400
+     #RESULT-19200
+     #RING
+
+        #RING is used to identify rings, which can be useful.  The autobaud
+     identifiers are used when a caller has been detected.  Other results, such
+     as the Call Progress results which are about to be discussed, are
+     discarded during autobaud detection in favor of searching for Autobaud
+     strings.
+
+     CALL PROGRESS IDENTIFIERS
+        Some modems can support call progress detection when configured
+     correctly.  (Call progress detection is the ability to recognize no
+     dialtone, busy signals and other such minutae.)  Citadel-86 can use those
+     result codes if available to speed dialing during both networking and
+     during use of the <D>ialout option of the Network menu.  The format of
+     these identifiers are the same as the Autobaud identifiers.  The list of
+     valid identifiers:
+
+     #DIALTONE
+     #NO-DIALTONE
+     #OK
+     #NO-CARRIER
+     #BUSY
+
+        The values you specify for #NO-DIALTONE, #NO-CARRIER, and #BUSY,
+     when detected during callout, will cause Citadel-86 to conclude the
+     call was unsuccessful and therefore abort it.  As with the Autobaud
+     identifiers, you may specify any of these parameters multiple times to
+     cover multiple situations.  For example, if your modem returns BUSY when
+     a busy signal is detected, you would place
+
+     #BUSY BUSY
+
+     in your RESULTS.SYS.
+
+     II.10.d.1 Restrictions on Result Codes
+        Unmodified Zenith Z-100s are incapable of reading and using Hayes 
+     result codes due to hardware implementation of the serial port.  
+     Modifications can be made to the cable connecting the Z-100 to the modem
+     and to your CtdlCnfg.Sys allowing the use of Hayes Result codes.
+     Please see the special section in this manual regarding Z-100
+     peculiarities.
+
+
+
+
+
+
+
+
+                                    -45-
+
+
+
+
+
+     II.10.e Extreme options in CtdlCnfg.Sys
+        Some of the modem I/O routines in Citadel-86 can be changed by the
+     adventurous sysop via the CtdlCnfg.Sys file.  Normally, Citadel-86 uses
+     built-in modem routines designed to handle the normal situations of Z-100s
+     and the two COM ports of PClones.  However, they can be replaced through
+     manipulation of CtdlCnfg.Sys.
+
+        When do you want to use these options?  NEVER, really.  But you
+     probably do when you have an unusual, but not unique, modem setup.  If you
+     feel your modem connection is really, really odd, you may wish to acquire
+     the source code for Citadel-86 and perform some hideous hacks of your own.
+     These options are useful when you wish to do something unusual with your
+     installation.
+
+        All right, what ARE these 'routines,' anyways?  They came from the CP/M
+     version of Citadel, where they were the entirety of Citadel's modem I/O.
+     To quote the old documentation that accompanied them, they "...implemented
+     a virtual machine with a single accumulator", which is another way of
+     saying a primitive psuedo-assembly language was made available to
+     the sysop for designing their own modem I/O.  The reason they
+     exist in Citadel-86 is partly inertia and partly their flexibility: the 
+     two types of machines Citadel-86 supports, Zenith Z-100s and most
+     PClones, have radically different serial interfaces.  Using the
+     appropriate routines saves some (probably only a trivial amount of) code
+     room.
+
+        OK, let's get concrete.  Each routine available to you is composed
+     of two parts, the name of the routine and the code which implements it.
+     Abstractly, it looks like this:
+
+     #start <routine name>
+     #code <instruction> <optional instruction data>
+     #code <instruction> <optional instruction data>
+     ...
+
+        Usually, the last #code instruction will specify a RET.
+
+        Here is the list of routines currently supported:
+
+     HANGUP     -- This routine MUST force your modem to hangup.
+     INITPORT   -- This routine should initialize your port AND your modem.
+                   (NOTE: If INITPORT exists, #modemSetup should NOT exist.)
+     CARRDETECT -- This routine MUST return (see the RET instruction) a 0 when
+                   there is no carrier, and a non-0 value when there is
+                   carrier.
+     SET300     -- This routine should set your modem's port to 300 baud.
+     SET1200    -- This routine should set your modem's port to 1200 baud.
+     SET2400    -- This routine should set your modem's port to 2400 baud.
+     SET4800    -- This routine should set your modem's port to 4800 baud.
+     SET9600    -- This routine should set your modem's port to 9600 baud.
+     SET_HIGHER -- This routine should set your modem's port to your choosing
+                   (this option may not be supported in the future).
+     ENABLE     -- This routine must ENABLE your modem for answering the phone.
+     DISABLE    -- This routine must DISABLE your modem from answering the
+                   phone.
+
+
+
+
+
+                                    -46-
+
+
+
+
+
+        The instructions available to you simulate a very simple machine with
+     one accumulator and a scratch array.  You'll find the instructions crude,
+     primitive, and limiting.  The scratch array is addressed from 0, and has
+     40 elements.  Here they are:
+
+     LOAD x   -- This instruction loads the accumulator with the value in
+                 location x of memory (!).
+     ANDI x   -- This instruction performs a logical AND of the accumulator
+                 with x and places the result in the accumulator.
+     ORI x    -- This instruction performs a logical OR of the accumulator with
+                 x and places the result in the accumulator.
+     XORI x   -- This instruction performs a logical XOR of the accumulator
+                 with x and places the result in the accumulator.
+     STORE x  -- This instruction stores the accumulator in the specified 
+                 address of memory(!).
+     LOADI x  -- This instruction loads the accumulator with the value of x.
+     RET   x  -- This instruction forces the routine to return to the caller
+                 with the value of the accumulator (in this case, 'x' is just
+                 a dummy value).
+     INP x    -- This instruction causes the accumulator to be loaded with the
+                 value currently present at port x.
+     OUTP x   -- This instruction causes the accumulator to be sent to port x.
+     PAUSEI x -- This instruction causes the Citadel-86 installation to pause
+                 for x/10s of a second.
+     ARRAY[]= x -- This instruction stores the accumulators value in the
+                   specified location of the scratch array.
+     ARRAY[] x  -- This instruction loads the accumulator with the value in the
+                   specified location of the scratch array.
+     OUTSTRING "x" -- This instruction causes the string "x" to be sent to the
+                      modem.
+
+     OPR# "x" low high -- This instruction causes the string "x" to be
+                          displayed, followed by a request for a number.  Low
+                          and high specify the lowest and highest acceptable
+                          values.  The accumulator receives the value specified
+                          by the user.
+
+        In SUPPORT.ARC there should be a file named PSUEDO.DOC.  It contains a
+     listing of all the default routines used by Citadel-86.  If you have ANY
+     plans at all for using your own routines, first examine those in
+     PSUEDO.DOC, both to understand what is used for a default, and for working
+     examples of how to write valid routines.
+
+        And, lastly, REALLY WE HOPE YOU DON'T HAVE TO ENGAGE IN THIS SILLINESS.
+
+     III. ZENITH Z-100 NOTES
+
+     III.1 Introduction
+        This section contains notes concerning the hardware configuration
+     of Zenith Z-100s as it applies to Citadel-86.  Most, perhaps all, of
+     these contributions were contributed by Sysops using the Zenith Z-100
+     as their hardware, and the authors of this manual would also like to
+     take this opportunity to thank Eric Brown, System Operator of Primordial
+     Ooze, for providing the serial interface code for Borland's Turbo C
+     (the current C dialect in use today for Citadel-86) for Z-100 hardware.
+
+
+
+
+
+                                    -47-
+
+
+
+
+
+     III.2 Scary but Innocuous Behaviors
+        First off, whenever Citadel-86 is brought up on a Zenith Z-100, the
+     System Operator will note his or her screen is decorated with a
+     series of four "WILD INTERRUPT" messages.  The experienced Z-100 owner
+     will recognize these as the normal prelude to a full system crash.
+     However, in the case of Citadel-86, this is not true.  It would appear
+     Borland's Turbo C, when compiled and linked for Large model (which
+     is what we use for Citadel-86), causes the Z-100 to generate these
+     messages but does no actual harm to the system.  Several Z-100 BBSs have
+     been running for months now, and have suffered no problems, so, when you
+     see these messages, ignore them.
+
+     III.3 Result Codes
+        The following was contributed by K-9, System Operator of the Dog House
+     BBS, for which we thank him.
+ 
+     Written by K-9,
+     The Dog House BBS
+     612/460/6056
+ 
+     11/28/87
+ 
+      When you are using a communications program written for the PC on a Z-100
+     certain RS-232 characteristics that are different will prevent their use.
+     To overcome the difficulties the communications routine used with the
+     Z-100 had to be different than with a PC.  As a result when the AUTO-BAUD
+     DETECT feature was released the Z-100s weren't supported.  Thanks to 
+     information I had on the differences in the port and Hue, Jr.s prowess
+     with the coding the feature is now supported on Z-100s.
+
+      To connect an autodial modem to jack J2 and support AUTO-BAUD DETECT you
+     need to know how the Z-100 RS-232 port functions.
+ 
+      To make any autodial modem dial, you type commands which are sent out
+     your port to the modem; ideally, both what you type and the verbal
+     responses which come back from your modem should appear on your screen.
+     While a Z-100 won't prevent commands you type from getting to your modem,
+     it won't display anything from the modem until the modem indicates it has
+     linked up with a remote system, ie. has Carrier Detect high.
+ 
+      Actually, what causes a Z-100 to act this way is that a Z-100 won't let
+     anyting come into it's J2 port while your modem is applying a negative
+     signal to pin 8 on the port.  Data is allowed to enter only when no signal
+     or a positive signal is applied to pin 8.
+
+      What is normaly attached to pin 8 is an output from the modem called
+     Carrier Detect (CD or DCD, for short); carrier detect is negative when
+     the modem isn't linked with a remote system, and positive when it is.
+     While Citadel needs these outputs for AUTO-BAUD DETECT, the unpleasant 
+     side-effects are untolerable.
+ 
+      The solution is to modify your cable so that the modem's DCD output is no
+     longer attached to pin 8 on your J2 connector, but is available to Citadel
+     on pin 6, instead.  This modification won't damage anything, and won't
+     have any adverse effect on performance of the computer.
+
+
+
+
+
+                                    -48-
+
+
+
+
+
+      The procedure is different depending on whether or not the modem is a 
+     Hayes Smartmodem compatible.  The exact mechanics of making this modi-
+     fication depends on your cable and modem.
+ 
+      1.  Begin with by attaching the cable between the modem and the J2 port
+     at the modem end.  Open up the connector.  Find the wire that goes to 
+     pin 8 (there are tiny numbers on the face of the plug).  Cut that wire
+     close to the back side of the plug.  If you are using a Hayes Smartmodem
+     or US Robotics Password you can skip the next two steps.
+ 
+      2.  Find the wire that goes to pin 6.  Cut it, leaving a length of about
+     1 inch still attached to the pin.
+ 
+      3.  Strip the insulation from the end of the wire that did go to pin 8.
+     Also, strip the wire still attached to pin 6.  Twist the two wires
+     together and then solder (preferably) or tape them together.  Make sure no
+     bare wires are exposed.
+ 
+      4.  Re-attach the cable to the modem.  You are finished with the hardware
+     modification if you have the modem switch settings set proper.  Normal
+     switch setting recommendations for the modem still apply.  Only change you
+     will need to make with the modem is to enable result codes which are
+     normally disabled and have digits vs. verbose (word) responses enabled.
+     The CtdlCnfg.Sys file as distributed with V3 supports the digit codes.
+
+      You can also change the result codes via your modem initialization string
+     by setting the following values:
+ 
+      The Q value should be changed to 0 (Q0) to mean result codes will be sent
+ 
+      The V value should be changed to 0 (V0) to send result codes as digits
+ 
+      There are some additional changes which need to be made to the
+     CtdlCnfg.Sys file to use AUTO-BAUD DETECT.
+ 
+      Good luck!
+ 
+      K-9
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    -49-
+
+
+
+
+
+                                ctdlCnfg.sys
+
+
+        This is the configuration file for the Citadel-86 bulletin board
+     system. It is read in by confg.exe which sets up a "ctdlTabl.sys" file
+     recording the configuration parameters.  (CtdlTabl.sys is read by the
+     other Citadel programs.) This file must be edited to be appropriate to
+     the local environment. Lines not beginning with "#" are ignored by CONFG
+     and may be deleted once the file is successfully configured -- they are
+     purely documentary.  For more detail, consult the CITADEL-86 SYSOP MANUAL.
+ 
+     GENERAL STRING FORMATTING CONTROLS:
+     The following are supported:
+             "\n": CR-LF
+             "\t": Tab character
+             "\b": Non-destructive Backspace
+             "\r": CR
+             "\f": Formfeed
+             "\"": '"'
+             "\\": Backslash
+             "\<xxx>": The octal* ASCII value is output
+
+        SECTION 1: NECESSITIES AND MISCELLANEA
+ 
+     SYSTEM TITLE
+        nodeTitle is printed after the "Welcome to" and before the "Running..."
+     lines of the banner that pops up on carrier detect, UNLESS BANNER.BLB
+     exists, in which case the entire "Welcome to <nodeTitle>" line is
+     replaced with the contents of BANNER.BLB.  nodeTitle is a string value
+     that accepts formatting directives and goes through the Citadel
+     formatter.
+
+#nodeTitle "Our Name"         -- An obvious imposter
+ 
+     SYSTEM NAME
+        nodeName is purely for networking purposes.  Messages which
+     originated on your system will have headers looking like:
+
+           82Nov23 From Cynbe ru Taren @ODD-DATA
+
+     This should be a short (for the sake of the reader!) mnemonic
+     identifying your node for humans.  It does not use formatting directives.
+ 
+#nodeName "ODD-DATA"          -- The original Citadel (kow-tow, everyone)
+ 
+     SYSTEM ID
+        nodeId is also purely for networking purposes.  Messages which
+     originate on your system will be marked with the nodeId, but it will
+     not normally be printed out.  It is primarily for the use of the
+     networking support software, and forms a globally unique name and
+     address for your system.  It consists of a country abbreviation
+     followed by area code and system phone number.  This string value does not
+     use formatting directives. Country abbreviation for the US is "US", for
+     Canada is "CA".  (For others, see COUNTRY.DOC.)
+
+
+#nodeId "US 612 470 9635"
+
+
+
+                                    -50-
+
+
+
+
+     SYSTEM BASEROOM
+        baseRoom is the homeroom of the Citadel in operation, the place you
+     go when there are no more rooms with unread messages left.  This is
+     usually known as the Lobby> on most systems.  It's simply a nice,
+     easy way to customize and give character to your system..
+ 
+#baseRoom "Glops"
+ 
+     SYSTEM BASE FLOOR
+        MainFloor is the home floor of the Citadel in operation, the floor
+     where baseRoom, Aide, and Mail are located.  It's another nice, easy
+     way to customize your system
+
+#MainFloor "Da Basement"
+
+     SYSTEM ENCRYPTION SEED
+        CRYPTSEED is a number used in encrypting the data files.  Change
+     it once when you install the system, but not thereafter -- or you
+     won't be able to read the existing files any more.
+
+#CRYPTSEED 333                --
+
+     UNLOGGED USER'S SCREEN WIDTH
+        This parameter is used to specify an unlogged user's screen width 
+     (including banner display).  If not present, defaults to 40.
+
+#UNLOGGED-WIDTH 79
+
+     DATA FILES SIZE: MESSAGE BASE
+        MESSAGEK sizes "ctdlmsg.sys", the file message text is stored in. The
+     size of this parameter together with the rate at which message text is
+     entered determines message lifetime.
+
+#MESSAGEK 300                 -- 300Kbyte ctdlmsg.sys
+
+     DATA FILES SIZE: MESSAGES PER ROOM
+        MSG-SLOTS defines the maximum number of displayable messages per room
+     on your room, except for the Mail> room.
+
+#MSG-SLOTS 58                 -- 58 is kind of traditional
+
+     DATA FILES SIZE: MESSAGES PER MAIL ROOM
+        MAIL-SLOTS defines the maximum number of displayable messages for each
+     user's Mail> room.
+
+#MAIL-SLOTS 58                -- Yet another tradition...
+
+     DATA FILES SIZE: ROOM FILE
+        MAXROOMS defines the maximum number of rooms on your system.
+
+#MAXROOMS 64                  -- This is usually enough
+
+
+
+
+
+
+
+
+
+
+                                    -51-
+
+
+
+
+
+     DATA FILES SIZE: LOG FILE
+        LOGSIZE is the number of entries that you want in your log. Once
+     you've selected a log size and have configured, you may NOT shrink
+     the log except by destroying the log totally. There is a utility
+     available for expanding the log, called DATACHNG.
+
+#LOGSIZE 180                  --
+ 
+     **DATA FILE LOCATIONS**
+        The next several parameters allow you to specify where certain system
+     files are to appear on your system.  Please note that only subdirectories
+     of the disk you specified are legal.  Disk specifications are legal.
+ 
+        This parameter specifies where you want your help files located in your
+     system.
+
+#HELPAREA "helps"             -- All help files located in subdir
+                              -- "helps"
+ 
+        This applies to the CTDLLOG.SYS file.
+
+#LOGAREA "a:log"              -- in subdir "log" on drive a:
+ 
+        This applies to the CTDLROOM.SYS, CTDLBAD.SYS, and CTDLARCH.SYS files.
+
+#ROOMAREA "system"            -- in subdir "system"
+ 
+        This applies to the CTDLMSG.SYS file.
+
+#MSGAREA ""                   -- current directory of default disk
+
+        This applies to the CTDLFLR.SYS file.
+
+#FLOORAREA "floors"           -- its own subdirectory for no particular reason.
+
+     AIDE SCOPE:
+        The AIDESEEALL parameter controls the scope that Aides have on the
+     installation.  If this parameter is set to 0, then Aides are only allowed
+     to see public rooms and private rooms that they are told about;
+     private room creation will leave an entry in the Aide> room indicating
+     that a room was created, but not the name.  An Aide at the SysConsole
+     will, however, see all rooms.  If this parameter is set to 1, then all
+     Aides will see all rooms on the system, public or private.
+ 
+#AIDESEEALL 0                 -- Aides see nothing
+ 
+     NEW USER CONTROL:
+        LOGINOK controls whether users without a password can login from
+     remote. If LOGINOK is 1, they may; if LOGINOK is 0, then the only place
+     that new accounts may be entered is from the system console.
+ 
+#LOGINOK 1                    -- user-established accounts
+
+
+
+
+
+
+
+
+                                    -52-
+
+
+
+
+
+     MESSAGE ENTRY CONTROL:
+        If ENTEROK is 1, callers that are not logged in may enter messages.  If
+     0, then they must login first before they can enter messages (except for
+     Mail> to the Sysop.  Note that Anonymous rooms are not an exception.
+
+#ENTEROK 0                    -- login first
+ 
+     READING CONTROL:
+        If READOK is 1, then unlogged callers can read messages.  If READOK is
+     0, then users must login before reading messages.
+ 
+#READOK 0                     -- login first
+ 
+     ROOM CREATION CONTROL:
+        If ROOMOK is 1 then regular folks can create new rooms, else only those
+     with aide privilege can do so.
+ 
+#ROOMOK 1                     -- general room-creation privileges
+ 
+     MAIL CONTROL:
+        If ALLMAIL is 1, all get privileges; 0 means only aides have the
+     privilege.
+ 
+#ALLMAIL 1                    -- Everybody can send mail
+
+     INITIAL DOOR PRIVILEGES
+        If DoorPrivs is 0, then users must ask for door privileges; otherwise, 
+     they automatically have them on initial login.
+
+#DoorPrivs 0                    -- A prudent policy; also, the default.
+
+     INITIAL FILE PRIVS
+        Use this parameter to decide if people have file download privs
+     when they first logon or if they have to request them.
+
+#FILE-PRIV-DEFAULT   1		-- yes
+
+     COMPUTER HARDWARE TYPE:
+        Setting IBM to 1 implies the system is a PClone, and to use some
+     internal routines for accessing modem.  If IBM is 0, then substitute
+     other special routines specific to the Z100 for accessing modem.
+ 
+#IBM 1                        -- IBM clone
+ 
+     COM PORT:
+        The COM parameter allows the sysop who is using an IBM to select
+     either COM1 or COM2 as the communications port. This parameter is
+     meaningless for Z-100s.
+
+#COM 1                        -- COM1 is the selection
+
+
+
+
+
+
+
+
+
+
+                                    -53-
+
+
+
+
+
+     SYSTEM BAUD RATES:
+        SYSBAUD defines the baud rates supported by this installation.  Use
+     these values to indicate what maximum baud rate your system runs at:
+
+        0 - 300 baud
+        1 - 1200
+        2 - 2400
+        3 - 4800
+        4 - 9600
+        5 - 14400
+        6 - 19200
+
+#SYSBAUD 1                    -- A 3/12 system.
+ 
+     MODEM INITIALIZATION:
+        modemSetup specifies what should be sent to the modem after
+     initializing the port. While Hayes/compatibles are recommended, other
+     types of modes have been successfully used with Citadel-86, such as
+     TransModems.
+
+#modemSetup "AT S0=1 M1"
+ 
+     MODEM REINITIALIZATION:
+        REINIT lets you reinitialize the modem after each call at the highest
+     baud rate the modem will recognize.  If this parameter is not present, 
+     then the modem will not be reinitialized.  Formatting directives are 
+     recognized.
+
+-#REINIT "AT"
+
+     MODEM MANAGEMENT
+        Citadel-86 normally drops DTR (for novices, on most modems this causes
+     the modem to drop carrier and disables auto-answer until DTR is brought
+     back up) when it doesn't want a caller calling in.  This typically
+     happens when the system operator logs in at the console or the system
+     is digesting messages from a network session.  You can modify this
+     behavior by defining the two strings below, and they come into action
+     only when the system operator logs in at the console (i.e., when you
+     touch ESCape).  The first string, #DISABLE-MODEM, is sent to the modem
+     when you touch the ESC, while the second, #ENABLE-MODEM, is sent when
+     you put the system back into MODEM mode.  They let you do such things
+     as take the modem off-hook (generate a busy signal) when you are using
+     the system.  One note: the system will NOT add carriage returns to these
+     strings automatically, so make sure you do!
+
+-#DISABLE-MODEM "ATH1\r"	-- This would take the modem off hook
+-#ENABLE-MODEM "ATH0\r"		-- This would put the modem on hook
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    -54-
+
+
+
+
+     PORT LOCKING
+        You can have your installation "lock" the serial port at a given
+     speed and let the modem handle details concerning buffering, etc.  On
+     some modems such as USR HSTs, etc., this can result in a measurable
+     increase in through-put; for some modems, you HAVE to do this in order
+     to use the higher speeds.  HOWEVER, you have* to know what you're doing
+     or you shouldn't do this.  This parameter has a numeric value which
+     specifies the baud rate to lock the port at, just like #SYSBAUD.  You
+     should consider using #REINIT to instruct the modem about your port
+     locking, so that everytime the modem is told to hung up it is reminded
+     about the port locking.
+
+-#LOCK-PORT  4			-- This would lock it at 9600 baud
+
+
+     OLD VIDEO
+        As noted in INSTALL3.MAN, some systems don't like Citadel-86 video 
+     support.  If your system doesn't, enable the following parameter.  Note 
+     the lack of value after the name -- that's on purpose!
+
+-#OLDVIDEO              -- disabled.
+
+
+     SYSTEM SCREEN COLORS
+     	FOREGROUND
+     	BACKGROUND
+     	STATUS-FOREGROUND
+     	STATUS-BACKGROUND
+        These parameters allow control of the foreground and background colors 
+     of the screen, including the status bar.  See INSTALL3.MAN for a full 
+     list of supported colors.  The generic setup should cause the status bar 
+     to have black letters on a gray background, while the rest of the screen 
+     is white letters on a black background.  See the Ease utility for an
+     easy way to select colors.
+
+#FOREGROUND WHITE
+#BACKGROUND BLACK
+#STATUS-FOREGROUND BLACK
+#STATUS-BACKGROUND LIGHT GRAY
+
+     STATUS BAR CLOCK
+        Normally, the status bar has a clock which is updated each minute.  
+     You may control its behavior by using one of the values "None", "Inuse",
+     or "Always" in the #CLOCK parameter.
+
+-#CLOCK Always                     -- disabled.
+
+
+        SECTION 2: INTERESTING OPTIONS
+ 
+     TIMED EVENT HANDLER:
+        See the manual for this one.  Here is the generic format:
+
+-#event <days> <time> <class> <type> <duration> <warning string> <depends>
+
+
+
+
+
+
+
+                                    -55-
+
+
+
+
+
+     REMOTE SYSOP FACILITY:
+        #sysPassword specifies the file that contains a string that will act
+     as the password to the remote sysop abilities.  If this parameter is not
+     specified, or if the file is not found, or is unreadable, then remote
+     sysop abilities are disabled.  Only Aides can access remote sysop
+     abilities, and they must* know the exact password, including the case
+     of the individual letters.
+ 
+-#sysPassword "c:\pwd"        -- Inactive (note the leading hyphen)
+ 
+
+     AUDIT:
+        This parameter specifies where the files CALLLOG.SYS, FILELOG.SYS, and 
+     DOORUSE.SYS end up on your system.  Note that the directory specified has
+     to be a subdirectory of a current directory.
+
+-#AUDITAREA ""                 -- put CALLLOG.SYS in the current directory
+                               -- (inactive -- note leading hyphen)
+
+     ANONYMOUS CALLERS
+        This parameter, if enabled, logs ANONYMOUS callers from remote in
+     your CALLLOG.SYS as "<No Login>".
+
+-#ANONYMOUS-SESSIONS
+
+
+     RAM DRIVE HANDLING:
+        These two parameters control whether or not and where a secondary
+     message file will reside.  If you use this parameter, it should
+     reference a permanent media file, and the MSGAREA parameter should
+     reference a RAM drive.  MSGAREA will always be both read and written to,
+     while this one will only be written to; thus, this parameter should
+     reference the media more sensitive to wear and tear.  MIRRORMSG should
+     be 1 if you wish to use this ability; MSG2AREA then referrnces the
+     location of the secondary message base.
+ 
+#MIRRORMSG 0                  -- Turn it off for novices
+#MSG2AREA ""                  -- so this is irrelevant while MIRRORMSG
+                              -- is 0
+
+     INTERRUPTED MESSAGE AREA:
+        This parameter specifies where to save interrupted messages for
+     later completion.
+
+-#HOLDAREA "held"             -- inactive
+
+     SYSOP MAIL ROUTING:
+        This parameter specifies the account that Mail> to sysop should be
+     routed to.
+
+ -#sysopName "Me!"            -- inactive
+
+
+
+
+
+
+
+
+
+                                    -56-
+
+
+
+
+
+     OUTSIDE EDITOR:
+        These parameters specify what editor the Sysop may use for System 
+     Console message composition, and what area of the disk system to use for 
+     temporary files.  If the first is not present, then the <O>utside Editor 
+     is not available; if the second is not present, the current drive and 
+     directory are used for temporary files.  See OPER3.MAN and INSTALL3.MAN 
+     for full details.
+
+-#EDITOR "whatever"             -- disabled!
+-#EDIT-AREA ""                  -- ditto!
+
+     Citadel-86 as a Door:
+        This parameter lets you tell the installation that Citadel-86 is a 
+     door itself.  In this situation, the modem is not initialized, etc...
+     See OPER3.MAN Section XII for details.
+
+-#ISDOOR                        -- disabled, no value for this parameter.
+
+     CONSOLE TIMEOUT
+       If you are in the habit of forgetting to logoff when you're at the
+     console, thus effectively making the system useless until you notice
+     your indiscretion, you can use this numeric parameter to decide how
+     many SECONDS the system can be inactive while in CONSOLE mode before
+     logging the person off at the system console
+
+-#CONSOLE-TIMEOUT  600		-- this would be a 10 minute timeout period
+
+     CONSOLE DELAY
+         Having problems keeping up with Citadel-86 at the console when you're
+     logged in there because the screen is just so dratted fast?  This
+     parameter is just like .ECD: you can have the system pause for xxx
+     milliseconds after each character is put out when the user (whoever it
+     may be) is at the system console.
+
+-#CONSOLE-DELAY  1		-- This would make for a one second delay
+
+     SYSOP MAIL
+        You can archive sysop mail.  This string parameter specifies the file
+     Sysop Mail should be archived to.  This includes both Mail> to "sysop"
+     and mail to the name specified in #sysopName.
+
+-#SYSOP-ARCHIVE "sysop"	-- mail archive filename
+
+     ANONYMOUS MAIL CONTROLS
+        Anonymous mail to sysop is occasionally used to abuse systems.  This
+     numeric parameter is used to control the maximum length of anonymous
+     mail.  If an anonymous mail leaver exceeds that length, the user loses
+     carrier and the mail, instead of being placed in mail, is placed in a
+     file named ANONMAIL and a message is left in Aide informing you of this
+     fact.
+
+-#ANON-MAIL-LENGTH  300		-- anonymous folk will have to be brief
+
+
+
+
+
+
+
+
+                                    -57-
+
+
+
+
+
+     PASSWORD HACKERS
+         Village Idiots being a pain?  This numeric parameter lets you tell
+     the system to drop carrier on anyone who screws up their password X
+     times.
+
+#LOGIN-ATTEMPTS  5
+
+
+        SECTION 3: NETWORK PARAMETERS
+
+     NETWORK SELECT:
+        You use this parameter to decide whether or not you are a networking
+     system.  If you set this parameter to 0, then the rest of the parameters
+     in this section are meaningless, because you are not a networking
+     system.
+
+#NETWORK 0                    -- Disable for novices
+
+     YOUR DOMAIN
+        What domain are we located in?  One to a customer, please.  See
+     NETWORK3.MAN for more information on domains.
+
+#nodeDomain "xx"
+
+     MAIL ROUTING:
+        If #RouteMail is 0 then you categorically refuse to route mail for 
+     anyone to anywhere; if 1, then you will route, although you may place
+     individual limits on certain systems.
+
+#RouteMail 1                    -- default, too
+
+     MAIL HUB
+        A mail hub is a system you send all domain-oriented mail to when
+     you don't know how else to get to the given domains.  This string
+     parameter is the name of a system on your primary nodelist.
+
+-#MailHub "xxxxx"		-- local backbone?  another backbone?
+
+     NEW USER NET PRIVILEGES:
+        #NewNetPrivs specifies whether or not new users automatically have
+     net privileges.
+
+#NewNetPrivs 0                -- Nope.
+
+     DOMAIN DISPLAY
+        This very optional parameter lets you customize how the domains on
+     messages from other systems are displayed.  The default is shown
+     in our example.  Note the '%s' MUST be present.
+
+#DomainDisplay " _ %s"
+
+     DOMAIN SERVING
+        You want to be a domain server?  This is how you volunteer; set this
+     parameter to tell what domain you want to serve, and see NETWORK3.MAN on
+     administrative procedures.
+
+-#ServeDomain "xx"		-- make sure you know what you're doing
+
+
+
+                                    -58-
+
+
+
+
+
+     NET FILES LOCATION:
+        You use this parameter to specify where the various network-related
+     files will be located.  It is a string parameter that you use to specify
+     the drive and directory to put these files.
+
+#NETAREA "c:net"              -- an example ONLY
+
+     DOMAIN FILES LOCATION
+        This parameter lets you decide where to put domain-related temporary
+     files.  We recommend you make this different from #NETAREA.
+
+#DOMAINAREA "c:domains"
+
+     MAXIMUM SHARED ROOMS:
+        This parameter selects the maximum number of shared rooms per system.
+
+#SHARED-ROOMS 1
+
+     RECEPTION AREA FOR FILES:
+ 
+        The NET_RECEPT_AREA parameter specifies the directory that files sent
+     to this installation Via the Send File feature of the net will be placed
+     in.  Do NOT end it with a '\'!
+
+#NET_RECEPT_AREA "C:\citadel\recept" -- Just an example
+
+     RECEPTION DIRECTORY SIZE:
+        The parameter NET_AREA_SIZE allows the sysop to specify how much room
+     should be allocated for the NET_RECEPT_AREA parameter.  This allows the
+     sysop to ensure that his system isn't swamped by files sent by other
+     systems. The NET_AREA_SIZE parameter should be in K. (Remember, this
+     should be in hex.)
+
+#NET_AREA_SIZE 500
+ 
+     INCOMING FILES SIZES:
+        The MAX_NET_FILE parameter allows the sysop to decide how large of a
+     file the system will accept from another system when the file is sent
+     by the other system (this does NOT apply to Requesting a file, only to
+     accepting a file Sent with the Send Net feature). This parameter is
+     also in K.
+
+#MAX_NET_FILE 300
+
+     MODEM DIALOUT:
+        callOutPrefix determines what is output to the modem prior to
+     the phone number to be dialed.  It must send all commands necessary
+     to put the modem into dial out mode.  Additionally, it must contain
+     what is neceessary in the way of special commands dealing with PBX's,
+     etc.
+
+        #callOutSuffix determines what is output to the modem after
+
+
+
+
+
+
+
+
+                                    -59-
+
+
+
+
+
+     #callOutPrefix and the phone number has been output.  Graphically,
+
+            <#callOutPrefix><phone#><#callOutSuffix>
+
+     is the sequence in which data is out when the networker tries
+     to dial out.  Since nothing is automatically appended to the
+     number when it is being output to the modem during networking,
+     the typical value for an installation using a Hayes/compatible is
+
+            #callOutSuffix "\r"
+
+     since Hayes/compatibles require a C/R to end a command string.
+
+     This may not hold true for other brands of modems.
+
+#callOutPrefix "ATDT"         -- Normal Hayes installation w/ TT.
+#callOutSuffix "\r"           -- Typical Hayes suffix
+ 
+     SPECIAL CALL OUT STRINGS
+        Sometimes, for special baud rates, you want to use a different dialout
+     string than what you're using #callOutPrefix.  These parameters can
+     be used for that.
+
+-#DialOut300 ""
+-#DialOut1200 ""
+-#DialOut2400 ""
+-#DialOut4800 ""
+-#DialOut9600 ""
+-#DialOut14400 ""
+-#DialOut19200 ""
+
+     SCANNING INCOME NET MESSAGES
+        Tired of profanity coming in on the net?  If this parameter is
+     enabled, then incoming net messages are scanned against BADWORDS.SYS,
+     and those failing the test are discarded with an appropriate note in
+     the Aide> room.
+
+-#SCAN-NET-MESSAGES
+
+        SECTION 4: SPECIAL REQUIREMENT HANDLING
+
+        NOTE: If you think you have an odd modem setup, such as a
+     non-standard cable for allowing direct access to a high-speed pin, then
+     consult the Citadel-86 SYSOP MANUAL, Section II.5.d, which details what
+     abilities are available in this section of CTDLCNFG.SYS.  If that
+     section is not clear, or doesn't seem to handle your particular problem,
+     try to contact Hue, Jr. on the C-86 Test System (612) 470-9635 for help,
+     or his successors.
+ 
+#alldone x x                  -- end of file
+
+
+
+
+
+
+
+
+
+
+                                    -60-
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+ Doors
+ -----
+   Doors is a means by which you may run outside programs through ^variantname.
+Control of the computer is actually handed over to the external program, and
+when it is finished, control is returned to ^variantname.
+ 
+  Doors may be activated by the use of the <D> or <.D> command.  Typing
+<D> will cause ^nodetitle to list all the doors available and then
+prompt for the entry code of the desired door.  The display format will
+be:
+ 
+  <entrycode>     :  <description> 
+ 
+ Alternatively, you may type '.D entrycode' to bypass the list and
+immediately enter the appropriate door.
+ 
+   After a slight delay, the external program will be brought online.  Some
+doors may spew out a few garbage characters before coming up; don't worry unless
+you lose carrier.
+ 
+   When you exit the door program, you will be returned back to ^nodetitle.
+
+   Here is a list of currently available doors on ^nodetitle.
+
+^doorlist
+ 
+ %COMMANDS Back to the commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+

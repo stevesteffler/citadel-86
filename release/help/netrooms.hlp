@@ -1,0 +1,32 @@
+ C86Net Shared Rooms
+ -------------------
+   ^variantname can network (also known as 'Share') designated rooms.
+Shared rooms can be identified by their room prompts, which differ from
+the normal room prompts ('>', ']'); networked room prompts are ')' for normal
+network rooms, and ':' for directory network rooms.
+
+   Network rooms carry both normal messages and network messages.  Normal
+messages are entered as they are in any other room, and will remain on the
+system that they were entered on.  Net messages, on the other hand, are not
+only present on the current system, but also are sent during networking to
+other systems that are participating in the networking effort for this room.
+The basic format for entering a NETWORK MESSAGE is
+
+ .Enter Network-Message
+
+  Then you are allowed to enter your message (supposing that you have network
+privileges). The message header will have attached to it "@<this system name>"
+to let you and everyone else know that this is a net-message.
+
+   There is a Read option connected with the Network, the Local-only option.
+
+      .Read Local ...
+
+   causes the system to display only those messages which originated on
+^nodetitle.  See .Help READ for a little more detail on the .Read command.
+
+
+ %ADVANCED Back to the advanced commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+

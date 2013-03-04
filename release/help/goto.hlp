@@ -1,0 +1,26 @@
+ Moving between rooms
+ --------------------
+   If someone has entered a message in a room since you were last in that
+room, ^variantname will consider it to be new to you, and <G>oto will take
+you to each such room in turn.
+
+   To go to a room containing new messages use:
+      Goto
+
+   If there are no more rooms with new messages, you will be left in the
+^baseroom>.
+
+   To go to a particular room "ROOMNAME":
+      .Goto ROOMNAME
+
+   To list all known rooms:
+      .Goto ?
+
+or just
+      Known rooms
+
+
+ %ADVANCED Back to the advanced commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+

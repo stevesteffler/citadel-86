@@ -1,0 +1,2246 @@
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+                            NETWORK MANUAL
+                            
+                          CITADEL-86: V3.32
+
+                         Copyright 1989, 1990
+
+                             by Hue, Jr.
+
+                        C-86 Test System Sysop
+
+                               90Jul01
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                             TABLE OF CONTENTS
+
+     I. Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+     II. Compatibility Ishes . . . . . . . . . . . . . . . . . . . . . . 2
+     III. Functionality  . . . . . . . . . . . . . . . . . . . . . . . . 3
+          III.1 Normal User Capabilities . . . . . . . . . . . . . . . . 3
+          III.2 Aides and Citadel-86's net . . . . . . . . . . . . . . . 4
+          III.3 Sysop Capabilities . . . . . . . . . . . . . . . . . . . 5
+                III.3.a Node Creation  . . . . . . . . . . . . . . . . . 5
+                III.3.b Node Administration & Member Nets  . . . . . . . 6
+                  III.3.b.i Special Access Strings . . . . . . . . . . . 6
+                  III.3.b.ii Baud setting  . . . . . . . . . . . . . . . 6
+                  III.3.b.iii Condensed Names  . . . . . . . . . . . . . 7
+                  III.3.b.iv External Dialers  . . . . . . . . . . . . . 7
+                  III.3.b.v New Node ID  . . . . . . . . . . . . . . . . 7
+                  III.3.b.vi Kill System . . . . . . . . . . . . . . . . 7
+                  III.3.b.vii Change Local/LD setting  . . . . . . . . . 7
+                  III.3.b.viii Change Name . . . . . . . . . . . . . . . 7
+                  III.3.b.ix Network Passwords . . . . . . . . . . . . . 8
+                  III.3.b.x Room List  . . . . . . . . . . . . . . . . . 8
+                  III.3.b.xi Member Nets . . . . . . . . . . . . . . . . 8
+                  III.3.b.xii Spine Settings . . . . . . . . . . . . . . 8
+                III.3.c User Administration  . . . . . . . . . . . . . . 9
+                III.3.d Normal Shared rooms  . . . . . . . . . . . . . . 9
+                III.3.e File Requests  . . . . . . . . . . . . . . . . .10
+                III.3.f Sending Files  . . . . . . . . . . . . . . . . .10
+                III.3.g Miscellaneous Net Menu Options . . . . . . . . .10
+                III.3.h Advanced Room Sharing Options: Routing . . . . .11
+                III.3.i Advanced Room Sharing Options: Virtual Rooms . .15
+                III.3.j Advanced Room Sharing Options: Vortices  . . . .16
+                III.3.k Normal Network Sessions  . . . . . . . . . . . .18
+                III.3.l Anytime Network Sessions . . . . . . . . . . . .18
+     IV. Domains in Citadel-86 . . . . . . . . . . . . . . . . . . . . .20
+        IV.1 What are Domains? . . . . . . . . . . . . . . . . . . . . .20
+        IV.2 So how does Citadel-86 utilize Domains? . . . . . . . . . .20
+        IV.3 Practical Notes and Procedures for all systems  . . . . . .21
+        IV.4 Practical Notes and Procedures for Domain Servers . . . . .23
+        IV.5 RoutMail  . . . . . . . . . . . . . . . . . . . . . . . . .25
+        IV.6 Costing . . . . . . . . . . . . . . . . . . . . . . . . . .26
+        IV.7 NodesX.*  . . . . . . . . . . . . . . . . . . . . . . . . .26
+        IV.8 Technical Notes . . . . . . . . . . . . . . . . . . . . . .27
+     V. STadel mail routing  . . . . . . . . . . . . . . . . . . . . . .27
+          V.1 Outgoing mail routing  . . . . . . . . . . . . . . . . . .28
+          V.2 Incoming route mail  . . . . . . . . . . . . . . . . . . .29
+          V.3 STadel considerations  . . . . . . . . . . . . . . . . . .30
+          V.4 Notes  . . . . . . . . . . . . . . . . . . . . . . . . . .30
+     VI. CTDLCNFG.SYS Parameters . . . . . . . . . . . . . . . . . . . .31
+     Appendix A: Other room-based Networks . . . . . . . . . . . . . . .32
+     Appendix B: Temporary Files . . . . . . . . . . . . . . . . . . . .32
+     Appendix C: Main C86Net . . . . . . . . . . . . . . . . . . . . . .32
+     Appendix D: RoutMail.Exe  . . . . . . . . . . . . . . . . . . . . .33
+
+
+
+
+
+
+
+
+                                    -1-
+
+
+
+
+
+
+     I. Introduction
+        This manual talks about the functionality and usage of the Citadel-86
+     Network.  This is not a technical discussion of the transmission protocols
+     used in the Citadel-86; for such a discussion, please consult NETHACK3.MAN.
+
+        We want to discuss what the Citadel-86 Network is capable of, and what
+     you, the sysop, must do to use these capabilities.  As a relevant part of
+     this discussion, we'll also tell you what it can't do.
+
+        As a useful acronym/identifier, we are going to refer to the Citadel-86
+     Network as C86Net throughout this documentation.
+
+     II. Compatibility Ishes
+        So, let's start with the vague topic of what we're compatible with.
+     First the bad news: No, we do not talk directly to FidoNet.  Nor do we
+     talk to a number of other networks, such as USENET, BITNET, etc.  C86net
+     was designed, first, as a learning experience (so beware!), and, second,
+     with room-based systems in mind.  Rather than attempting to use something
+     designed with other purposes in mind, we decided to have fun.
+
+        It is not impossible to talk to those networks in the future through
+     the judicious use of the #event parameter and the labors of a captive
+     programmer, and, in fact, the ability to talk to USENET is available.  
+     Since Paul Gauthier @Cerebral Cortex has disappeared, we're not sure
+     who you should contact.  If you're interested in trying to connect to
+     another net, investigate the MSGADD and MSGOUT utilities (see UTIL3.MAN).
+
+        Now move to the good news.  Since STadel, as originally maintained by
+     David Parsons of Pell, and now maintained by a cast of thousands, was
+     originally derived from Citadel-86, it has maintained compatibility with
+     C86Net, so you should be able to network with STadels in your area.
+
+        Amiga Citadel-68K, as maintained by Stallion (aka Jay Johnson) of The
+     Phoenix, since it was also derived from Citadel-86, is compatible with
+     C86Net.
+
+        NeoCitadel, as maintained by Hue, Sr. of SuperComp III, is compatible
+     with C86Net.
+
+        There are also various offspring from the above mentioned software
+     which retains some C86Net compatability, such as AmiDel, Fortress,
+     <fnord>adel, etc.
+
+        We should mention that when we say that software is compatible with
+     C86Net, this means that a minimal network session can take place between
+     the two pieces of BBS software.  Not all of the software mentioned here
+     supports all of the functionality of C86Net.  Consult the documentation
+     of the respective software for details.
+
+
+
+
+
+
+
+
+
+
+
+                                    -2-
+
+
+
+
+
+
+     III. Functionality
+        So let's talk about what C86Net is capable of (this is the same as
+     discussing what Citadel-86 is capable of).  First, to simplify this
+     discussion, let's set up an "inheritance hierarchy" of users.  The
+     bottom-most level will have certain capabilities on the network, the next
+     level will have those capabilities plus several of their own, etc.
+     Here's what we'll use:
+
+              Sysops
+                |
+              Aides
+                |
+           Normal Users
+
+        Each level, starting with the Normal Users, adds more capabilities.
+     So we'll start with the lowest level, describing these capabilities.
+
+     III.1 Normal User Capabilities
+        Normal users have three capabilities on the network.
+
+        First, they may send Mail> to users on other nodes of the network.
+     C86Net Mail> can be sent by any user with network privileges to any local
+     node, or if the user has Long Distance (LD) credits, to any LD node.
+
+        The Mail> is entered by going to the Mail> room and typing .Enter
+     Net-Message at the room prompt.  The user is then asked for the name of
+     the system.  A '?' will elicit a list of systems that Mail may be sent to;
+     an empty line will abort the .EN command.  If the user enters a legal node
+     name, then the user is asked for the name of a user on the target system.
+     An empty line will again abort the .EN command; any other input will be
+     assumed to be the name of a user on the target system.  The user may then
+     enter their message.
+
+        In Section IV we banter about the Sysop and Domains in C86Net.  However,
+     we need to mention this here: the user can explicitly route mail to a
+     domain.  The mechanism is to use .EN and when prompted for a system name,
+     type
+
+        <system name> _ <domain name>
+
+        Your system will then attempt no verification of system existence at
+     all; it will merely follow procedures mentioned below in Section IV in the
+     attempt to get the Mail to the specified domain.
+
+        Due to both the volatility of the user bases of room-based systems and
+     space considerations, user names cannot be validated during message entry.
+     Therefore, Citadel-86 will try to validate the user name during the
+     network session.  If the user has entered an invalid name for the target
+     system, he will be notified via Mail> from Citadel of his/her mistake.
+
+
+
+
+
+
+
+
+
+
+                                    -3-
+
+
+
+
+
+
+        A normal user's second ability is to enter messages in shared rooms.
+     Shared rooms will be discussed in full in Section III.3; to summarize,
+     they are rooms in which messages from your system can be sent to other
+     systems, and messages from those system can be received. Normally, a user
+     uses the command .Enter Net-Message to enter a message that should be sent
+     to rooms on other systems; a normal Enter message will cause the message
+     not to be networked to other systems (however, a shared room can be set
+     up so that all messages are networked -- see Section III.3).
+
+        A shared room can be recognized by the blood-shot eyes of the sysop,
+     and also by the fact that rather than having a '>' at the room prompt, it
+     has a ')'.  A room that has a ':' for a room prompt is also shared, and
+     also has a directory attached to it (which has nothing to do with the
+     network).
+
+        In both of the above cases, a normal message may be converted into a
+     net message (when in an appropriate room) when saving the message by
+     typing 'N' rather than 'S'.  A non-net message can not be directly
+     changed into a net-message.
+
+         The third normal user ability is Local Mail> Forwarding.  This
+     feature is useful in densely networked areas where users tend to have
+     accounts on several systems, but do not have time to call all the systems
+     daily.
+
+         Local Mail> Forwarding allows the user to specify that Mail> sent
+     to the user locally should be forwarded to another system.  Mail> sent
+     to the user will then be converted to C86Net Mail>, with one copy being
+     sent to the user's account on the system specified, and one copy being
+     left in the Mail> on the local system, in case the user should login at
+     a propitious moment.  The user may optionally specify the Mail to be 
+     forwarded to a different alias on another system.
+
+         In order for a user to have access to this feature, the user must
+     must have net privileges.  If the user specifies forwarding to a LD
+     system, the user must have LD credits, or the Mail> will not be forwarded
+     (thus making forwarded Mail> their financial responsibility, rather than
+     the sender's).
+
+         Mail> Forwarding is accessed via the .Enter Configuration
+     Address command.  The user will be asked for a system to forward his/her
+     Mail> to.  If they wish, they may use a domain-specified system.  A
+     blank line will cancel Mail> Forwarding.  Then the user will be prompted
+     for an alias to deliver the Mail> to.
+
+         Mail from the Sysop to Citadel will never be Forwarded.  However,
+     unlike earlier versions of Citadel-86, incoming Network Mail will be
+     forwarded.
+
+
+     III.2 Aides and Citadel-86's net
+        The Aides of a Citadel-86 system gain only one extra capability that a
+     Normal User doesn't have, and this is called the Local Systems
+     Announcement. This is the ability to send a Mail> item via the network to
+     a user on all systems which are local to your system.  This is useful for
+     informing all local sysops of an important development.
+
+
+
+                                    -4-
+
+
+
+
+
+
+        An Aide does this by going to the Mail> room and using the .Enter
+     Net-Message command.  When the system asks for a node name to send the
+     Mail> to, the Aide should then answer with '&L'.  The Mail> that the Aide
+     subsequently enters will then be sent to the user that they indicated on
+     all local systems.
+
+     III.3 Sysop Capabilities
+        Sysop capabilities in Citadel-86 regarding the network are numerous,
+     and we will organize them into sections.  Note that Domain Management
+     is in Section IV, not in this Section (III).
+
+     III.3.a Node Creation
+        Before anything useful can take place on the network, you must have
+     other systems (also known as nodes) to call. Therefore, we'll begin with
+     adding systems to your netlist.  This netlist is called the "primary"
+     nodelist (see Section IV for information on what a "secondary" node list
+     is.)  We add systems to a primary nodelist via the Network Menu, which is
+     available to sysops from the Sysop menu as the 'N' option.  Once you have
+     entered the Network Menu, type 'A' to add systems.  Your system should
+     begin by asking for the name of the system to add, which you should type
+     in.  Next it will ask for its Node Id.  It is important that you get this
+     right.  The format of the node Id is
+
+      <Country Code> <Area code> <Phone #>
+
+        Country Code is the country code of your system's location, which
+     should be listed in COUNTRY.MAN; US is the United States and CA is Canada.
+     Area code is the area code of the system, and Phone # is the number used
+     to call that system under normal circumstances.  Citadel-86 will usually
+     use the node Id for calling other systems, which is why it's important to
+     get this right. However, if you are in a special circumstance where using
+     the node Id to call a system will simply not work (such as an intra-campus
+     phone system), there are ways around the problem.  See Section III.3.c.
+
+        An example of a valid node Id would be
+
+     US (612) 470-9635
+
+        Notice the use of punctuation.  Punctuation is stripped out of node
+     Ids when dialing other systems, but punctuation should still be used
+     conservatively.
+
+        You will then be asked the baud rate of the new system.  Usually, you
+     should answer with the highest baud rate that the new system supports; if
+     your system doesn't support their highest speed, then your system will
+     dial that system at the highest speed that your own system supports.
+     Sometimes, though, you will have to answer this question with a lower baud
+     rate, due to the fact that on some lines the network won't work at high
+     speeds.  We are not entirely sure why, although we suspect that it's simply
+     the phone system's fault.
+
+        Finally, you'll be asked if the system is local or not.  This question
+     also affects how your modem will dial this system during networking, and
+     here's how:
+
+
+
+
+
+                                    -5-
+
+
+
+
+
+
+        If you answer that this is a local node, then the modem will be dialed
+     using
+
+        <#callOutPrefix><phone#><#callOutSuffix>
+
+        (If you don't know what #callOutPrefix and #callOutSuffix are, please 
+     review the Citadel-86 Installation Manual, or see Section V of this
+     manual.) Essentially, we just dial the system as a local call.  But if
+     you answer that the system is not local, then the modem dials with
+
+        <#callOutPrefix>1<area code><phone#><#callOutSuffix>
+
+        This is just a normal LD call in the States.  All of this can be
+     overridden, as stated above: see Section III.3.b.i.
+
+     III.3.b Node Administration & Member Nets
+        Nothing stays the same, including nodes on your netlist.  Therefore,
+     there is an editing ability for nodes.  You may access this via the
+     Network Menu. Once at the Network Menu prompt, type 'E' for Edit Node.
+     The system will ask for the name of the node to edit, so type the name of
+     the node that you need.  Once you type a valid name, you will be given a
+     short summary of that node's condition, and then a Node Edit prompt will
+     show up.  From this prompt you may do the following:
+
+      A - Override the dialing format described in III.3.b
+      B - Change this system's baud rate
+      C - Change the condensed name of the system
+      E - External Dialer access for this node
+      I - Change this system's Id
+      K - Kill this system from the net list
+      L - Change the Local setting
+      M - Change which nets that this system is a member of
+      N - Change this system's name
+      P - Activate security measures for this node
+      R - View which rooms you are sharing with this node
+      S - Spine settings
+
+        Let's take these one at a time.
+
+     III.3.b.i Special Access Strings
+        'A' from the Node Editing prompt lets you change the Access string for
+     calling this node.  If you give this string any value, the procedure for
+     calling this node will change to the following:
+
+        <#callOutPrefix><access string><#callOutSuffix>
+
+     which makes it very easy to construct special dialing sequences for nodes
+     in special situations.  Use this with some caution.  If you want to
+     use an external dialing program (for instance, to use PC Pursuit to
+     call another node), see later in this section.
+
+     III.3.b.ii Baud setting
+        'B' allows you to reset the baud rate for this system.
+
+
+
+
+
+
+                                    -6-
+
+
+
+
+
+
+     III.3.b.iii Condensed Names
+        'C' allows you to change the "condensed" name of the system.  A 
+     'condensed' name is a name of your choosing of no more than 2 letters, 
+     which is nothing more than a useful shorthand for you.  You may use this 
+     shorthand in almost any situation in which you'd type the name of the 
+     system, such net mail, Dial out, etc.
+
+     III.3.b.iv External Dialers
+         Citadel-86 supports (V3.32), in a rudimentary way, external dialers.
+     An external dialer is a program capable of using some method other than
+     normal dialing to call another system.  A well known example is PC Pursuit.
+
+         To tell your installation that in order to reach some system on its
+     primary nodelist it must use an external dialer, use the 'E' option while
+     editing that node.  The system should then ask if you want to set up this
+     node to be dialed via an external program.  If you answer Yes, the system
+     will then prompt you for information on dialout.
+
+         This "information" is system dependent.  For Citadel-86, the informa-
+     tion should be the command line which will cause the external dialer to
+     try to make connections with this node.  I'm sorry, but at this point
+     you're on your own as to what goes in this string -- it'll depend on how
+     the external dialer you have works, etc.  And, no, I'm not writing any
+     external dialers for PC Pursuit, Starlink, etc., either, and I don't have
+     any to distribute. Citadel-86 will simply send your command line to DOS
+     for execution.
+
+        The external dialer you use should leave the system with carrier high
+     and ready to network (i.e., connection has been made with the system
+     you want to talk to) if it succeeds, otherwise not have carrier.
+
+        If anyone develops or otherwise finds an external dialer for Citadel-86
+     or Citadel-68k which works well, a few sysops might be really really happy
+     if you mention it in Sysop Stuff.
+
+     III.3.b.v New Node ID
+        'I' allows you to change the Node Id of this system.  When you use this
+     option, you will be asked if you are changing the meaning of this node
+     entirely, that is, you are making this record refer to another system
+     entirely. This is for the purpose of Mail forwarding and room sharing,
+     so answer this correctly.
+
+     III.3.b.vi Kill System
+        'K' causes this system to be deleted from your node list.
+
+     III.3.b.vii Change Local/LD setting
+        'L' lets you change the Local/LD setting for this node.
+
+     III.3.b.viii Change Name
+        'N' allows you to change the name of this node.
+
+
+
+
+
+
+
+
+
+                                    -7-
+
+
+
+
+
+
+     III.3.b.ix Network Passwords
+        'P' allows you to setup security arrangements between this node and
+     yourself.  Security arrangements consist of two passwords, one of which
+     applies to your system, while the other applies to the node that you are
+     editing.  If neither your system nor the node that you are editing are
+     using passwords, then security is not active.  If either system is using
+     them, then security is active, and passwords must match during networking
+     in order for room sharing to be successful.
+
+     III.3.b.x Room List
+        'R' allows you to see a list of the rooms that you are currently
+     sharing with this node.
+
+     III.3.b.xi Member Nets
+        'M' allows you to change the nets that this system is associated with.
+     Citadel-86 allows you to associate any node on your node list with 0 or
+     more nets, up to 31.  When a node is created, it is automatically
+     associates with net 1 as a matter of convenience.
+
+        The utility to assign a node to different nets is that, in conjunction
+     with the #event parameter (covered in Section III.3.k), you may then
+     network with different nodes at different times and/or days. This gives
+     you a lot of flexibility to participate in different nets at different
+     times. If necessary, you can assign a node to more than 1 network.
+
+        If you take a node off of all the nets, then the node is disabled,
+     which means that Mail> cannot be sent to that node.
+
+     III.3.b.xii Spine Settings
+        'S' lets you set the Spine settings.  The meaning of Spine in C86Net
+     depends on whether the system is LD or not.
+
+        First, LD systems.  Normally, a C86Net node, when calling a local
+     system, will after transferring data to the receiving node, will perform
+     a 'role reversal' with the other system, which allows the receiver to
+     transfer messages to the caller, thus saving time during networking.
+     However, due to the existence of Long Distance charges, role reversal is
+     not performed on Long Distance calls.  The Spine settings lets you
+     override this behavior.  When you elect to use the 'S' command while
+     editing a node, the system will first ask if you wish to be a Spine for
+     the system you are editing.  If you answer Yes, Citadel-86 will perform
+     role reversal with this system during calls.  If you answer No, then the
+     Citadel-86 will ask if that system will be a Spine for you, and if you
+     answer Yes, then your system will never call that LD system again,
+     instead relying on it to role reversal during calls.
+
+        If the system you will be dealing with is local to you, and you set it
+     as a spine (or yourself), then the system designated as a spine is
+     guaranteed to try for one successful network call during each network
+     session, even if the caller has no valid reason for calling.  This allows
+     the existence of systems with bad modems in the network.
+
+        There is an alternative, perhaps better, method for editing nodes.
+     See Appendix D for details.  This is important, since the above does
+     NOT cover all flags associated with nodes, but the option covered in
+     Appendix D does.
+
+
+
+                                    -8-
+
+
+
+
+
+
+     III.3.c User Administration
+        For any user to use the room sharing or net Mail> abilities, they must
+     have "Network privileges".  There are two ways that Network privileges are
+     assigned. The first is via the CTDLCNFG.SYS parameter #NewNetPrivs, which
+     allows you to decide whether or not new users automatically have net
+     privileges (see Section V).  The second method is via the Network menu.
+     The Network Menu is available to sysops from the Sysop menu as the 'N'
+     option.  Once you have entered the Network Menu, type 'N' to set Network
+     privileges and follow the prompts.  (A similar capability also exists in 
+     the User Admin sysop menu.)
+
+        If you (or other users) wish to send Mail> via the net to LD systems,
+     then you must assign one or more LD credits to the appropriate accounts.
+     You do this from the Network Menu as well.  Type 'C' at the Network Menu
+     prompt and follow the prompts.  Each Mail> message to a LD system costs
+     exactly one credit; there is no accounting on a byte count basis.
+
+     III.3.d Normal Shared rooms
+        Sysops have the ability and responsibility of administering shared
+     rooms; this section covers normal shared rooms.
+
+        A shared room, as noted above, is a room which will send to and receive
+     from other systems certain messages which were entered in the room.
+     Normal shared rooms transmit their messages using the point-to-point model
+     of networking.  For each system that you are sharing this room with, your
+     system will call that system and send only the net-messages that were
+     originally entered on this system.  There is no routing for normal shared
+     rooms.  If you have a pressing need for routed rooms, see Section III.3.i.
+
+        To make a shared room, go to (or create) the room that you wish to make
+     a shared room, and edit the room.  At the room editing prompt you should
+     type 'S', which is the command for Shared rooms.  The system should now
+     ask if you want to make the room a shared room, so answer 'Y'.  Now you
+     will be asked to enter the systems that you wish to share this room with.
+     If the room was already a shared room, then you do NOT have to re-enter
+     any systems that you are already sharing this room with, but only the
+     systems which were not sharing the room before.
+
+        Once you have finished entering the systems to share this room with
+     you will be asked to enter the names of the systems to remove from room
+     sharing.  Answer appropriately.
+
+        Finally, you will be asked if you want this room to be an autonet room.
+     If you answer 'Y', then the system will ask if only people with net
+     privileges will have their messages automatically made into net messages,
+     or if everyone will have this privilege.  If you answer that only
+     people with net privileges will have the ability, then only they can
+     enter net messages in the room, and all other messages will be normal.
+     If you answer that everyone's messages should be converted, then that's
+     what will happen, regardless of their privilege setting.
+
+        In order to have a successful shared room, all systems with which you
+     wish to share this room with must have a room with an identical name, and
+     must know that you want to share this room.  There is no such thing as
+     involuntary sharing of rooms.
+
+
+
+
+                                    -9-
+
+
+
+
+
+
+     III.3.e File Requests
+        Sysops have the ability to request file(s) from other systems.  In
+     order to do this, you must know the name of the room and the name of the
+     file(s) that you wish from the other system.
+
+        You may access this facility from the Net Menu by pressing 'R'.  You
+     are then asked for the system's name, the name of the room on the system
+     that has the file(s) that you want, and the name of the file(s).  You may
+     specify an ambiguous name for files, but your specification must be one
+     that the target system understands, rather than what your system
+     understands, so this may vary.
+
+        You will then be asked for a location to place the files when your
+     system receives them.  You may specify anywhere on your disk system, but
+     you should try to ensure that you have enough room for the files.
+
+        As a Citadel-86, your own directory rooms can be accessed via the
+     network for file transfer unless you otherwise designate.   To do so, go
+     to the room that you wish to be impervious to the net, edit the room, and
+     type Z, which will give the option of disabling this room for net
+     downloading.
+
+     III.3.f Sending Files
+        Sysops have the ability to send file(s) to other systems.  There are
+     two aspects to this ability.
+
+        First, sending a file.  This facility is accessed via the Net Menu by
+     pressing 'S'.  You will be asked for the name of the system to send the
+     files to, and the name of the files to send.  You may specify any location
+     on your system for the files, and your specification may be ambiguous, so
+     that you send multiple files to the target system.
+
+        Second, receiving files.  You can control how much space you wish to
+     devote to files that are sent to you via the net and the maximum size of
+     any file you receive, as well as the location for the files to end up at,
+     through parameters in CTDLCNFG.SYS.  Please review The Citadel-86
+     Installation Manual or read Section V for more details on this.
+
+     III.3.g Miscellaneous Net Menu Options
+        There are a couple of Net Menu options that haven't been covered yet.
+     They are:
+
+        'V'iew the net list.  This option lets you view all the systems on your
+     netlist.  The format is
+
+     <name>  <nodeId>   <need to call>  <baud> <disabled flag>
+
+        "need to call" and "disabled flag" only appear if they are true.
+
+        'D'ial out allows you to dial other systems manually for BBSing
+     purposes. After causing your modem to dial that number, the system will
+     drop you into chat mode.  You can dial systems that are disabled, thus
+     allowing you to list systems which are not C86Net compatible.
+
+        'L'ocal list lets you list all systems on your primary node list
+     which are marked as "local".
+
+
+
+                                    -10-
+
+
+
+
+
+
+        'I'nitiate Net session lets you schedule an anytime net session to
+     begin as soon as you log off.  While this is not as convenient as just
+     typing "^A" while the system is in MODEM mode, it's useful when you
+     are calling in from remote and want to trigger a net session as soon
+     as you logoff.  This is a toggle switch; hit it again to turn off the
+     net session you just scheduled.
+
+     III.3.h Advanced Room Sharing Options: Routing
+        C86Net (and thus Citadel-86) has support for Room Sharing routing.
+     This is an advanced option, and should be approached with caution.
+
+        Routing in C86Net is used to transfer messages from one group of one
+     or more systems to another group of one or more systems.  Commonly, this
+     is between two different toll areas in order to reduce costs while
+     maintaining communications; however, there is no reason that with careful
+     planning routing cannot be used within a toll area.
+
+        Normal room sharing and room sharing routing can be, and usually are,
+     used together.  Graphically:
+
+      R1         |  R2
+         p1
+         | \     |
+         |  p3- - - -p4
+         | /     |     \
+         p2             p5
+
+                 |
+
+        In this diagrom, p1, p2, and p3 communicate with each other using the
+     Normal room sharing facility, as does p4 with p5.  However, p3 and p4
+     communicate using the routing facility; p5 then communicates with p1, p2,
+     and p3 indirectly via p4 (and vice versa, of course).  This is a simple
+     situation; complex situations can also be handled:
+
+      R1         |  R2       | R3   |  R5
+         p1                                    p11
+         | \     |           |      |         /
+         |  p3- - - -p4- - - - -p6- - - - -p10
+         | /     |     \     |  |   |         \
+         p2             p5      |              p12
+                 |           |--|---|
+                        /----   |   ----\
+                       /    R4  |        \
+                      /         p7        \
+                     /         /  \        \
+                    /        p8    p9       \
+
+        p6, for instance, only performs routing, while p3, p4, p7, and p10 will
+     perform both normal and routing.
+
+
+
+
+
+
+
+
+
+                                    -11-
+
+
+
+
+
+
+        So how do we explain this in a coherent manner?  First, let's remember
+     that all of this applies on a room by room basis; a system that is
+     performing routing for one room may be performing normal room sharing for
+     another room.  Now let's define some classes of nodes.  The first class,
+     PEONs, encompass the majority of nodes sharing any room, since most nodes
+     do not need to route messages.  The second class of nodes, BACKBONES, are
+     capable of routing.
+
+        PEON: This is a node that thinks it is participating in a normal
+     shared room.  A PEON node never "knows" that the room is being routed by
+     another node, and so the administration of this room is very easy for PEON
+     nodes.  This is because the node(s) that may be performing the routing
+     role for this room always talks to PEON nodes using the normal room
+     sharing schemes.
+
+        Let's formalize the rules of PEON room sharing (this is just a review
+     of Section III.3.f).  A PEON node regards the room being shared as part of
+     a point-to-point network, and therefore always calls all systems that it
+     is directly sharing the room with whenever it has new net-messages that
+     were entered on this PEON node to send.  Incoming net-messages are never
+     passed on to anyone else.  Systems that are compatible with C86Net but
+     don't support the advance room sharing routing schemes should be easily
+     able to participate as a PEON node in a room that is being routed by
+     someone else.
+
+        BACKBONES: A BACKBONE for a room is a node which is capable of routing
+     messages from one node to one or more other nodes.  Let's set down the
+     rules of routing as precisely as possible for BACKBONEs.
+
+     a) Each node a system is directly sharing a given room with will be either
+        a PEON (explained above) or another BACKBONE, and the system will know
+        (be told by the sysop) which each node is.  The type of node (PEON or
+        BACKBONE) determines which messages will be routed to that node during
+        a network session, and will be detailed in b) and c), below.
+
+     b) When the system shares a room with a PEON node, a BACKBONE assumes that
+        the given system directly shares this room with all other PEONs which
+        are sharing this room with this BACKBONE.  Therefore, the BACKBONE will
+        not pass any messages from any PEON to any other PEON node.  From the
+        narrow perspective of a collection of PEON nodes, a BACKBONE behaves
+        exactly the same way, and in fact those PEON nodes do not need to "know"
+        about the BACKBONE status of the routing system, since it is not routing
+        messages from any of the PEON nodes to any of the other PEON nodes.
+
+        When sharing a room with a PEON, a BACKBONE also assumes that the PEON
+        has neither direct or indirect contact with any other BACKBONE systems
+        besides itself except through* itself.  Therefore, a BACKBONE will pass
+        on all messages received from any and all BACKBONE systems to all PEON
+        systems connected with this room.
+
+     c) When a BACKBONE system shares a room with another BACKBONE system, it
+        assumes that, first, it does not have any communication with the PEON
+        systems sharing this room directly with you (do not confuse this with
+        any and all PEON nodes in its area, though), and secondly it does not
+        communicate with any of the other BACKBONES which you communicate with.
+
+
+
+
+
+                                    -12-
+
+
+
+
+
+        Therefore, when a BACKBONE is sharing a room with another BACKBONE, it
+        routes all messages from all PEONs and all BACKBONEs to the BACKBONE
+        it is sharing with.  This routes messages from local PEONs as well as
+        allowing a series of BACKBONES to route messages to far-flung areas.
+
+        A diagram is undoubtedly in order at this point.  This portrays the
+     the sharing of a single room.
+
+
+        P1-----                                          P10
+       /|      \                                        /       Px= PEON x
+      | P2------B1-------B2-------B4---------B5-------B6        Bx= BACKBONE x
+       \|       /\               /  \         \         \
+        P3-----/  \             P6---P7        \    P8   P11
+                   B3                           \  / |
+                  /  \                           B7  |
+                 P4---P5                           \ |
+                                                    P9
+
+        In the above diagram, any message left on any system in the given room
+     will be seen on all systems in the diagram (eventually).  Let's follow
+     the progress of a message from P1, Peon 1.  The message will reach P2 and
+     P3 via direct room sharing (Section III.3.f), as well as B1 [see b) above].
+     Since the message comes from a PEON, by the rules set forth in c) above
+     the message from P1 will be passed on to both B2 and B3 when we come into
+     contact with them.
+
+        P4 and P5 will receive the message of P1 from B3 due to b) above, to
+     wit: "... a BACKBONE will pass on all messages received from any and all
+     BACKBONE systems to all PEON[s] ..."
+
+        B4 will receive the message originating on P1 from B2, as noted in c)
+     above, and in like manner will pass it on to B5, and also to P6 and P7
+     as B3 did for P4 and P5.  B5 will pass on P1's message to B6 and B7, and
+     they in turn will pass them on to P10 and P11, P9 and P10, respectively.
+
+        There are two types of BACKBONEs, differentiated by their calling
+     characteristics.  This is a bit of sticky point: a system may be both
+     types of BACKBONE for any room as required (and in practice many are
+     both).  Essentially, the type of BACKBONE a system is for a room defines
+     the system's relationship with another node.
+
+        When a system, for some room, is defined as a PASSIVE BACKBONE for some
+     node, this means that this system will not call the other system during
+     net sessions when the only reason to call would be to share this room.
+     PASSIVE means "do nothing", and that's what a PASSIVE BACKBONE does: it
+     waits for the other node to call.
+
+        And, conversely, when for some room a system defines itself as an
+     ACTIVE BACKBONE for some other node, it is guaranteeing that it will call
+     (or poll) that node for messages once during a net session, no matter if
+     it has new messages to share or not.
+
+        Why would a system want to be both ACTIVE and PASSIVE for a single room?
+     Suppose we had this:
+
+       B1------B2-------B3------B4
+
+
+                                    -13-
+
+
+
+
+
+
+        By allowing a system to assume either PASSIVE or ACTIVE roles, depending
+     on the system in question, we can for instance allow B2 to be ACTIVE in
+     relation to B1, while PASSIVE in relation to B3.  This allows the costs of
+     netting to be more evenly spread.  Then B3, itself ACTIVE in relation to
+     B2, can be PASSIVE in relation to B4.  In this way, no one carries the
+     costs of calling two backbones (and B1 gets off scot-free!).
+
+        The type of BACKBONE a system is does not affect what messages will be
+     routed.  For instance, messages from B1 will reach B4, and those of B4
+     will reach B1.
+
+        So, now you're wondering how to actually get these setup, right?  This
+     is accomplished by editing the room.  First, use 'S' to enter all systems
+     sharing this room DIRECTLY with, including all of your local PEON nodes,
+     and all the BACKBONES that you will be talking to, but NOT any non-local
+     PEON nodes (i.e., PEONS that will receive your region's messages via
+     routing). After finishing that, hit 'B' at the Room Edit prompt.
+
+        You will then be asked three questions: which nodes do you want to be
+     PASSIVE BACKBONES for, which nodes you wish to be ACTIVE BACKBONES for,
+     and which nodes you wish to return to PEON status.
+
+        Here are three last thoughts on routing.  First, you may wish to
+     consider using the Member nets to separate nodes into two different
+     classes, and then network at different times for the different classes.
+     For instance, in the Twin Cities we network from 3 to 3:45 in the morning
+     for local room sharing.  At 3:45 all but one of the systems returns to
+     normal operating mode.  That remaining system drops from the first 
+     networking session, which was for net 1, and then goes right into another
+     network session again, but this time for net 2, which keeps it from 
+     trying to talk to anyone else but for a system in New York, which
+     functions as an ACTIVE BACKBONE for several rooms (the lone system in the
+     Twin Cities functions as a PASSIVE BACKBONE). This networking session 
+     lasts for 15 minutes, which is normally more than enough time to complete
+     this single call. Therefore, we usually have a successful nightly
+     connection with New York.
+
+         Our second thought relates to network configurations and routing.  So
+     far, all of our diagrams have had two BACKBONES (or at least a HOST and a
+     BACKBONE) communicating.  While this is normal, it is also possible to
+     have a configuration like this when all nodes are local to each other:
+
+               p1
+               | \                   p1 = p3 = p4 = PEON
+               |  B2 - - - - p4      B2 = ACTIVE BACKBONE for p4
+               | /
+               p3
+
+
+
+
+
+
+
+
+
+
+
+
+                                    -14-
+
+
+
+
+
+
+        When all the nodes are local, B2 will communicate with p4 using the
+     normal room sharing protocol rather than using the routing protocol.
+     This is useful when p4 has C86Net compatible software that does not
+     support routing, along with a modem that will not dial out.  If p4 were
+     to have software that supported room sharing routing, but still had the
+     bad modem, then p4 could of course be classified (classify itself) as a
+     HOST or PASSIVE BACKBONE for B2. Since an ACTIVE BACKBONE always calls
+     other BACKBONES, in either case then B2 should make at least one call to
+     p4 for pickup and delivery.  If p1 and p3 simply had p4 classified as a
+     PEON node, then there is no guarantee that p4 would receive nightly calls
+     from all systems.
+
+        Third and finally, it is not always necessary that one BACKBONE know
+     that another system is a BACKBONE.  For instance,
+
+
+                  /----P1-----\
+     . . . -----B1------|------B2----- . . .
+                  \____P2_____/
+
+
+     is thoroughly valid if both B1 and B2 think of each other as PEONs, even
+     if they act as BACKBONEs.  The PEONs would, of course, treat B1 and B2
+     as fellow PEONs, not knowing any better.  Since B1 thinks of B2 as a PEON,
+     it would not route any of the messages from P1 and P2 to it (and B2 would
+     get those messages directly), but it would route messages from other
+     BACKBONEs to B2 as well as P1 and P2.  B2 would accept all messages from
+     B1 as PEON messages and thus not route them to P1 and P2, but it would
+     route them to BACKBONEs connected to B2.  This might prove useful in some
+     situations.
+
+        Confusing?  For us, too.
+
+     III.3.i Advanced Room Sharing Options: Virtual Rooms
+        Let's begin with motivation: A certain PASSIVE BACKBONE discovered
+     that while a certain room that he was backboning certainly belonged on
+     the network, he didn't want that particular room on his system, because
+     it didn't fit the atmosphere of the system.  Furthermore, the traffic
+     in that room was so heavy that it was scrolling his message base faster
+     than he liked (due to the fact that the messages in shared rooms are
+     stored in the message base, just like any other message).
+
+        Thus, the need for 'Virtual rooms' was discovered.  A Virtual room,
+     much like Virtual memory, is a room that isn't really there, even though
+     you route messages.  Messages, rather than being stored in your message
+     base, are stored as files on your disk system, not taking up room
+     in your message base, although they do consume room on your disk system.
+     So, you have the ability to perform routing services for other systems,
+     while not cluttering your message base with them.
+
+
+
+
+
+
+
+
+
+
+                                    -15-
+
+
+
+
+
+
+        Virtual Rooms administration is completely contained in the
+     utility VIRTADMN.EXE, which cannot be run through Citadel-86's
+     <O>utside Commands menu; you must take Citadel-86 down in order to
+     run VIRTADMN.  VIRTADMN should be fairly self-explanatory for the
+     experienced sysop when used in interactive mode.  The following
+     structure is created and maintained by VIRTADMN:
+
+                        <C-86's home level>
+                                |
+                             VIRTUAL    <ctdlvrm.sys, ctdlvnet.sys>
+                                |
+                        ------------------
+                        |   |   |   |   |
+                        0   1  .......  N
+                                        |
+                                       --------
+                                       |      |
+                                     PEON  BACKBONE
+
+        The numbered directories within the VIRTUAL directory correspond
+     to the virtual room slot numbers; since Virtual Rooms can be deleted,
+     this sequence can be broken.  Each of these directories contain the
+     pair of directories PEON and BACKBONE.  The PEON directory contains
+     the messages from PEON nodes, which should be routed to Backbone
+     systems, while the BACKBONE directory contains messages from Backbone
+     systems that need to be routed to other Backbones and Peons.  Like
+     normal backboning (III.3.i), your system may serve as a Passive Backbone
+     for some systems and Active Backbone for other systems for any given
+     room.
+
+        Naturally, as the network sessions pass, you will find that the
+     files containing the messages will accumulate, cluttering up your disk
+     drive.  The solution is to run VIRTADMN using the +batch command line
+     argument.
+
+        See UTIL3.MAN for full details on VIRTADMN.
+
+     III.3.j Advanced Room Sharing Options: Vortex Detection and Correction
+
+        "Vortex" is a piece of jargon someone on C86Net came up with to 
+     describe the phenomenon of messages 'repeating' themselves in shared
+     rooms.  For instance, a message from Thom Brown might reappear three times
+     in a shared room on Test System.  The redundancy is both tedious and room
+     consuming, and so is a negative influence on the network.
+
+        A vortex is usually a result of poor topology management of a C86Net.
+     If you are not familiar with C86Net backbones and other such things,
+     please read III.3.i Advanced Room Sharing Options: Routing.  The problem
+     lies in having a "loop" of systems, usually BACKBONE systems.  For
+     instance, this configuration would cause a vortex:
+
+                     Node A
+                    /   |         Where all nodes are backbones
+                 Node--Node
+                   B    C
+
+
+
+
+                                    -16-
+
+
+
+
+
+
+     Messages generated on Node A would be sent to Node B.  Node B would then
+     pass them on to Node C, which in turn would pass them right on back to
+     Node A.  If those backbones had other backbones hanging off of them,
+     messages coming in from those would effectively "bounce back" to them.
+     There are obviously a number of variants on this mistake that can cause a
+     vortex.
+
+        Another cause of vortexing is system crashes during networking, such as
+     power outages, in which messages will be sent by one system to another,
+     but that fact is never recorded, thus causing them to be resent during the
+     next network session.
+
+        So how does Citadel-86 handle vortices?  Any message on the network can
+     be uniquely identified by its point of origin (node ID) and the message
+     number it was assigned on the point of origin.  Both data are carried by
+     the message wherever it goes.  We also assume that message numbers are
+     assigned in strictly ascending order.
+
+        Therefore, the way to handle vortices is not very complex.  For each
+     system which we share rooms with, either directly or indirectly (that is,
+     via routing), we keep a file of room indicators and associated message
+     numbers and dates.  For each room in this file, the associated message
+     number is the number of the highest message received from this node for
+     this room, and the date is the date of the last message received.  Once
+     an entry is established for a room in the node's file, it's a simple
+     matter to detect vortexing messages: if the current message comes from a
+     node which we recognize, we simply compare the current message's number to
+     the highest we have received for this room, and the date similarly.  If 
+     both tests are failed, we discard it.
+
+        Messages which are discarded will also cause an error message to pop up
+     in the Aide> room, telling you what system was involved in the net session
+     when the vortex occurred, and what systems' messages were involved in the
+     vortexing.  The message(s) discarded may possibly also show up in a file 
+     named DISCARD.
+
+        The files we just mentioned which will contain the highest received
+     message numbers will appear in your #NETAREA directory as "#.vtx" files,
+     where # is the position in the nodelist that node occupies.
+
+        In order for vortexing to work for any given node, it must be present
+     in your node list and include a correct node ID.  It does not matter if
+     you receive the messages directly via normal room sharing or indirectly
+     via routing BACKBONEs.
+
+        By default, vortex management is off.  If you wish to have vortex
+     detection and correction active, place "+vortex" on your command line.
+     There are several reasons why you might not wish to have it active, such
+     as not enough disk space (a large node list will result in a large number
+     of .vtx files, although the files themselves are usually very small), not
+     worth the time, etc.
+
+
+
+
+
+
+
+
+                                    -17-
+
+
+
+
+
+
+        Citadel-86 Vortex handling does not cover Virtual Rooms, or nodes not
+     on your nodelist.  All such messages are regarded as non-vortexed.
+     However, non-Virtual Room messages from unknown nodes will cause the names
+     and IDs of unknown nodes to be written to the screen during netting and,
+     if you have +netlog on your command line, to your NETLOG.SYS.
+
+        Finally, we should note that vortex handling differs from how we used 
+     to handle it.  The prior version utilized only message #s, not message 
+     dates, so when a system's message base was regenerated, it was necessary 
+     that all systems on the net delete the .VTX entry for that node.  This 
+     should no longer be necessary.
+
+     III.3.k Normal Network Sessions
+        Network sessions are set up using the #event parameter of CTDLCNFG.SYS;
+     please review The Citadel-86 Installation Manual if you are not familiar
+     with this parameter.  Using #event for networking is straightforward and
+     easy to do.  Here are some rules to follow
+
+        a) Classify nodes that you want to network with into groups that
+           share characteristics that will reflect on what time of the day
+           (or day of the week) you may want to network with them, and assign
+           them to the same net.
+        b) Coordinate with them suitable times for network activity.
+        c) Write appropriate #event parameters for your system that will
+           allow netting with the systems.
+
+        The generic format for a normal network event is
+
+     #event <days> <start time> network preempt <duration> <message> <networks>
+
+        Days, start time, and message are explained in the Installation Manual.
+     While the network field is required, preempt is only a suggested field
+     for this #event, on the assumption that you do not wish users to interfere
+     with your netting.  Duration defines how long the network session is
+     to last (specify in minutes).  Finally, "networks" is a list of nets who's
+     members are eligible to be called during this network session.  If you
+     specify more than one, you must separate them by commas, with no spaces.
+
+        Here is an example for networking every night at 3AM for 45 minutes for
+     systems on net 1.
+
+     #event All 3:00 network preempt 45 "Networking" 1
+
+        This is an example for netting from 4:45 to 4:55 on Tuesdays and
+     Saturdays for nets 3, 9, and 10.
+
+     #event Tue,Sat 4:45 network preempt 10 "Networking" 3,9,10
+
+     III.3.l Anytime Network Sessions
+        Citadel-86 also allows "anytime netting."  Anytime netting is the
+     ability to receive and complete network calls from other systems at any
+     time of the day or night, and to call, initiate, and complete network 
+     sessions with other systems after a given amount of "dead time" has
+     occured on a system.
+
+
+
+
+
+                                    -18-
+
+
+
+
+
+
+        In the area of reception, an installation using the network will
+     (or should) always recognize a network call from another C86Net system,
+     regardless of whether the other system is calling out in Normal Network
+     Session mode or in Anytime Netting mode.  There is currently no way to
+     deactivate (i.e., force Citadel-86 not to recognize a network call) for
+     specified parts of the day.
+
+        In the area of calling out, Citadel-86 Sysops control this ability
+     via the use of #events.  A Citadel-86 will not call out during the day for
+     anytime netting unless they are specifically told to do so via the #event.
+     The generic format of a #event that controls anytime netting is:
+
+     #event <days> <start time> anytime-net quiet <duration> <message> 
+                                <dead time> <net length> <nets>
+
+        (all on one line)
+
+        This format is similar to that used for Normal Network Sessions.
+
+     There are five changes. 
+     
+        First, "anytime-net" specifies that for the #event starting at
+     "start time" and ending at "start time + duration", the system is
+     allowed to call those systems specified by the "nets" field.
+     
+        Second, "quiet" is the only valid type specification for events
+     of the "anytime-net" classification. 
+     
+        Third, "duration" does not specify how long the net session will
+     last, but instead specifies how long the system is eligible to make
+     calls to other systems.
+
+        Fourth, a field named "dead time" has been included right after the 
+     "message" string.  You use this field to specify (in minutes) how long 
+     your system should experience inactivity before attempting to call other 
+     systems (specified in the "nets" field).  You might want to set this 
+     fairly high during daytime hours, if they are busy, so that your users 
+     have a better chance of getting on during the day, but set it lower 
+     during the night time hours, which might be less busy.
+
+        Fifth, a field named "net length" has been added right after the "dead 
+     time" field.  This field specifies (in minutes) the maximum amount of 
+     time your system should spend trying to call other systems during an 
+     anytime net session.  This is much like the "duration" field in a normal 
+     network event, because a net session might last much longer for such 
+     things as large file transfers, etc.
+
+        Anytime netting is, of course, compatible between Citadel-86 systems.
+     C-68k has yet to implement it.  It may be compatible with STadel.
+
+        Due to the above, you should group all of the systems that can accept
+     anytime net calls into one net (and that you are willing to call at any
+     time of the day), and then specify only that net for the #event parameter.
+
+
+
+
+
+
+                                    -19-
+
+
+
+
+
+
+        Odd thoughts:
+
+        o If there is no need to call anyone, the system will not enter into
+          net sessions after dead time limits are reached.
+        o If you are a spine for another system, you will not call that system
+          during anytime netting unless you have a "real" reason to call that
+          system.  If you absolutely must* poll another system on a daily (or
+          weekly, or whatever) basis, you must use a Normal Network Session to
+          do so.
+        o During Normal Network Sessions, you may have noticed, there may
+          be delays between calls of up to 5 minutes.  This has been disabled
+          for anytime netting, resulting in only 2 second delays between calls.
+
+        Finally, ^A while the system is in MODEM mode will tell the system to
+     attempt to execute an Anytime Net session at the next opportunity (i.e.,
+     when the current user, if any, logs off).
+
+     IV. Domains in Citadel-86
+
+     IV.1 What are domains?
+        Domains are a way to partition a collection of BBS nodes into discrete
+     sets for purposes of both easing user addressing and internal delivery
+     details.  A solid real world example of domains is the US Postal Service.
+     The primary domain is hierarchical.  The top of the hierarchy is encoded
+     in their "zip codes".  The zip codes are used to quickly discover which
+     geographical area of the country a given piece of Mail is meant for and
+     the mail is then physically delivered to that area, or more accurately to
+     a "server", or large Post Office, for that area.
+
+        Once in the appropriate area of the United States, the next level of
+     hierarchy is the street address (which is being replaced by the 9-digit
+     zip codes).  There is redundancy at this level when the envelope bears the
+     name of the city of the recipient.
+
+        Another example is the phone system, where area codes are the domains.
+     Everybody's phone is the member of one and only one domain.
+
+        In a BBS network there is not a necessarily readily apparent method for
+     dividing the nodes into domains; it is up to the nodes on the network to
+     agree to an acceptable network division, based on whatever criteria seems
+     best fitted to the situation.  (If you are on main C86Net, you'll notice
+     some pressure being exerted for systems to be parts of domains based on
+     their physical location.  For instance, systems in Minnesota will, for
+     the most part, belong to domain "MN".)
+
+        Each domain on the network will then have at least one "server" system
+     associated with it.  Most Mail meant for a system in that domain
+     originating in another domain will go through the server for that domain.
+     Some Mail won't due to special arrangements between systems.  For the
+     purposes of this document we can ignore those special cases.
+
+     IV.2 So how does Citadel-86 utilize Domains?
+
+        Citadel-86 utilizes domains in three important ways.
+
+
+
+
+
+                                    -20-
+
+
+
+
+
+
+        First, it uses them to facilitate Mail routing between different
+     locations.  Most mail traveling outside of its own area will bear an
+     address consisting of a name and domain.  The main backbones of the C86Net
+     carrying the mail will know how to get to the domains registered with the
+     network, and thus the Mail will get delivered.
+
+        Second, it uses them to make maintenance of large nodes of lists on
+     installations far easier and convenient.  A large node list makes it
+     easier for users to send mail without having to necessarily worry about
+     knowing what domain a system resides in, but can slow down systems.
+     Therefore, Citadel-86 supports both "primary" and "secondary" lists of
+     nodes.
+
+        The primary node list is the list you construct using either the
+     RoutMail utility or Citadel-86's Network Menu 'A' option (see Section
+     III.3.a).  Nodes you list on your primary nodelist are valid targets for
+     direct Mail delivery, route mail handling, direct room sharing, file
+     requests, and file sends.
+
+        A secondary node list consists of one or more files containing system
+     names and their associated domains.  These files, located in #NETAREA,
+     are named NODES0.FST, NODES1.FST, etc.  Secondary lists are in a special
+     format (see UTIL3.MAN on 2ndFmt.Exe) which lets Citadel-86 quickly look
+     up names.  On the main C86Net, acquisition of one of these lists can be
+     automated in cooperation with your local domain server.  Secondary lists
+     let users send mail without undue inconvenience, while not burdening
+     installations with large primary node lists, by looking up a system
+     name in the secondary list and automatically assigning the proper domain
+     name to it, rather than forcing the user to explicitly state what it
+     is.
+
+        Third, Citadel-86 allows users to send mail explicitly to systems
+     which the current installation knows nothing about.  Users may specify
+     a system and domain address which the current system knows nothing
+     about, yet C86Net will still try to deliver the Mail on the assumption
+     other systems on the net may have a better idea how to get to the
+     given system.  Users use this explicit method by typing .EN at the
+     Mail> prompt and entering the address as "system _ domain" or
+     "system.domain".
+
+     IV.3 Practical Notes and Procedures for all systems
+
+        This section describes what every Citadel-86 must do to effectively
+     participate in domains.  First we'll discuss some CtdlCnfg.Sys
+     parameters and then some suggested procedures.  Notes on being a
+     domain server reside in the section following.
+
+        #nodeDomain is a string parameter which identifies which domain you
+     are a part of.  You can only belong to one domain at a time.  Before
+     setting this parameter you should check with your local backbone
+     (which is presumably who you originally made contact with C86Net) so
+     you can be part of the domain s/he is serving and get service in that
+
+
+
+
+
+
+
+                                    -21-
+
+
+
+
+
+
+     way.  If there is no backbone local to you, you may want to become the
+     local server (if you can afford making calls or can con some other
+     backbone into making calls to you).  The #nodeDomain is transmitted
+     with each message originating from your system so other systems on
+     the net will know how to send Mail to you (using your system and
+     domain to do the addressing).
+  
+        #MailHub provides a facility for forwarding domain mail to systems
+     which know who serves what domains, so that most of the systems on the
+     network need not know who is serving what domain.  Most of the time this
+     parameter should be defined to be your local backbone.  Backbones can use
+     this, too, to forward to other backbones which may be more knowledgeable
+     about the state of the network.
+
+        #DOMAINAREA identifies where the temporary files associated with
+     domain mail are stored.  We strongly suggest you not make this the
+     same as #NETAREA!
+
+        #DomainDisplay is strictly an optional parameter which you can skip 
+     over and/or do nothing about if you don't feel like it.  It is provided
+     so you can customize what the display of domains will look like on your
+     system when your system is displaying foreign messages to users.
+
+        There is a trick to this parameter (and you C programmers will, of
+     course, instantly recognize it): This string parameter must have included
+     in it somewhere the character sequence "%s".  When this parameter is used
+     to display a domain, the "%s" is replaced by the domain name.
+
+        If you don't use this parameter, then the default behavior is to 
+     display the nodeName/nodeDomain sequence like this:
+     ... @nodeName _ nodeDomain. In other words, the default value of
+     #DomainDisplay is
+
+         #DomainDisplay " _ %s"
+
+     (Note the leading space.)  This presents an aesthetically pleasing
+     appearance and is also compatible with the user interface for specifying
+     how to send net mail to an unknown system in another domain.  But, of
+     course, some people like to have a different appearance to the domains of
+     other messages.  For instance, enclosing the domain name in brackets is
+     popular:
+
+         #DomainDisplay " [%s]"
+
+     The maximum length of this parameter is 10 characters.
+
+        The suggested procedure for non-domain servers is to inform your
+     local domain server of your existence and ask them to pass on that
+     info to the current domain coordinator (currently Kip @Arcadia).
+     Alternatively, if this is impractical, inform Kip directly.
+
+        Sections IV.4 and IV.5 concern Domain Servers.  IV.6 will be of
+     interest to everyone, though.
+
+
+
+
+
+
+                                    -22-
+
+
+
+
+
+
+     IV.4 Practical Notes and Procedures for Domain Servers
+
+        First we'll discuss CtdlCnfg.Sys parameters of concern to domain
+     servers, then special files needed by domain servers, followed by a note
+     on utilities of use to domain servers, and finally some thoughts on
+     procedures.
+
+        If you are going to be a domain server (i.e., a system which will accept
+     Mail meant for some domain and is responsible for knowing how to get to all
+     systems in that domain), you must tell your installation about this.  You
+     do this by putting a line like this in your CtdlCnfg.Sys:
+
+        #ServeDomain "<domainname>"
+
+     For instance, Test System has
+
+        #ServeDomain "MN"
+
+        Every piece of Mail addressed to MN will be processed by Test System,
+     based on the target name ("Backfence", "Nowhere Land", "DogLink", for
+     example), for delivery to their target systems.
+
+        You can serve more than one domain by placing additional #ServeDomain
+     parameters in your CtdlCnfg.Sys.
+
+        "Name Resolution", or the identification of which system the mail should
+     be delivered to by its name (rather than the far more reliable node ID) is
+     a necessity if the Mail is to go through.  Therefore, you should make sure
+     the names on your primary node list, which is used to reroute the incoming
+     domain mail to your local systems, are simple -- i.e., they are the likely
+     form in which incoming Mail will be addressed to.  For instance, "Troy
+     City" is a lot easier to deal with than "Troy City NY", and the mail will
+     be far more likely to be delivered.
+
+        This is equally applicable to your own #nodeName.
+
+        If you're in one of those rare situations where two names seem equally
+     applicable for some system (such as "C-86 Test System" and "Test System"),
+     you can use ALIASES.SYS to make an alias.  The format of this file is
+     simply
+
+     <alias> <realname>
+
+     where realname is the name in your primary node list, or your own
+     #nodeName if you need an alias for yourself (like Test System does).
+
+        Domain Handlers need one special file which local systems don't need.
+     CtdlDmhd.Sys, located in your #NETAREA directory, is basically a directory
+     of domain servers.  This file is used by Domain Handers to decide how to
+     get domain mail to the server for each domain.  For those domain servers
+     a system connects directly with, this is very easy.  For such a domain
+     for which mail meant for that domain has come into existence (either via
+
+
+
+
+
+
+
+                                    -23-
+
+
+
+
+
+
+     netmail from some other system or created on this system), the system
+     checks CtdlDmhd.Sys to find the domain server.  It then looks in its
+     primary node list to see if it knows more about the domain server in
+     question.  When it finds it, it also finds the direct connection, and
+     the next time you connect with that system, the mail is delivered.
+
+        The problem is a bit more tricky for domains that are farther away.
+     In this case, the system operator needs to tell his/her system about
+     these other systems and how to get to them.  For full detail, see below
+     the section on the RoutMail utility (IV.5).  Please note you do NOT need
+     every node listed in CtdlDmhd.Sys also present in your primary node list
+     unless you are one of the major backbones on the net.  The major
+     backbones are responsible for knowing about most or all the domain
+     servers (which is why we ask domain servers to try to keep Kip up to
+     date), but outlying domain servers and other systems which serve as
+     conduits to other domains needn't worry too much about far-away domains
+     so long as they have their #MailHub setup correctly.
+
+        Each line of CtdlDmhd.Sys contains information about one of the domains
+     and its server.  The structure of each line is
+
+        <domain name><space><system name>:<system ID>
+
+        For instance, the line describing C-86 Test System as the MN domain
+     server would look like
+
+        MN C-86 Test System : US 612 470 9635
+
+        Please note, however, that this is equally valid:
+
+        MN Test System : US 612 470 9635
+
+        The name field is only used for human reference; the node ID field is
+     critical to Citadel-86 for management, so make sure you get it right.
+
+        A '#' will act as a comment in this file, if you like to comment a
+     file like this.
+
+        If you are connecting to the main C86Net network, then in all
+     probability you can arrange to have this file updated automatically
+     via the backbone you connect with.  See documentation on the 'redirect'
+     #event and the Aff.Exe utility.
+
+        However, since CtdlDmhd.Sys distribution can be automated, it may be
+     useful to have a second file like CtdlDmhd.Sys.  Therefore, you can set
+     up a file named CtdlDmhd.Lcl in your #NETAREA.  Same format as above.
+     The purpose for this support is to allow installations to have a local,
+     hand-tailored version of CtdlDmhd.Sys that won't be overwritten by the
+     automated distribution system.  Most systems will have no use for this
+     capability, but maybe a few will.  Don't sweat it.
+
+
+
+
+
+
+
+
+
+                                    -24-
+
+
+
+
+
+
+        The Aff utility, now that we've mentioned it, is a utility which will
+     let you automatically set up file sends depending on whether a given
+     file's time stamp indicates it should be sent to a system or not.  See
+     UTIL3.MAN for more details.  You should strongly consider using this
+     utility to update other domain servers you connect to with new
+     CtdlDmhd.Sys files, and your local systems with new NodesX.* files
+     (both Nodes0.fst and Nodes0.raw).
+
+        A log file is occasionally generated, called DOMAIN.LOG.  This
+     file will usually only contain messages concerning undeliverable
+     Mail>.  "Undeliverable mail" is mail addressed to a domain served
+     by this system, but the name of the system was unrecognizable.  In
+     this case, DOMAIN.LOG will have an entry with the name of the system
+     the name is meant for.  If the name appears to be misspelled, or is
+     a valid alternative to some system, bringing the system down and
+     placing an appropriate entry in ALIASES.SYS.  When the system comes
+     back up, it'll rescan the outstanding mail, find the Mail in question,
+     find the alternate name and map it to the real name, and set up the
+     mail for delivery.
+
+        Those systems which do not have #MailHub settings (very rare)
+     will see a second type of message in DOMAIN.LOG.  This message is
+     generated when incoming domain mail is addressed to a domain the
+     system does not know how to reach.  This can be fixed by adding
+     appropriate entries to CtdlDmhd.Sys (or just deleting the mail, if
+     you're in a bad mood).  Such undeliverable mail, however, will
+     usually accumulate at one system on the network.
+
+        Finally, concerning procedures, Kip @Arcadia _ MI will be acting as
+     the central domain registration and management point for domain
+     information, so you should contact him if you either want to act as
+     a domain server or if you happen to connect to some different domain
+     servers and think you may be the only connection to them.  Through
+     fortuitous use of the 'redirect' #event on your part and the Aff
+     utility on the part of whoever your local domain server is (or major
+     backbone or however you get to Arcadia), you can have each new version
+     of Ctdldmhd.sys forwarded to you.
+
+     IV.5 RoutMail
+
+        The ROUTMAIL utility is fully described in UTIL3.MAN.  The domain
+     server, however, really only needs this to know this: you can use
+     ROUTMAIL to automatically update your primary nodelist with all the
+     domain servers on the net (using CtdlDmhd.Sys), and any links you need
+     in order to get to them (which will typically already be in place
+     anyways).  In order to perform this operation, you need CtdlDmhd.Sys
+     and the latest RoutMail map (obtainable from the backbone which leads
+     to Arcadia from where you live).  Once you have them, you need only
+     type "ROUTMAIL +domains <map file name>", and the system should
+
+       a) Add all the domain servers to the list
+       b) Add whatever other systems are needed to get to the domain servers
+       c) Set the routing pointers so your system knows how to get to
+           other domain servers without calling them directly.
+
+
+
+
+
+                                    -25-
+
+
+
+
+
+
+        Please note only major backbones or domain servers which directly
+     connect to several domain servers will need to use this domain.
+     Those servers which are on the more outlying parts of the net can
+     probably let #MailHub serve their needs quite well for those domains
+     they don't connect with directly.
+
+        If you do look at ROUTMAIL more closely, you'll notice you can define
+     routes to other systems (by pointing at the next system on the path to
+     them).  You can use this ability in conjunction with domain mail to deliver
+     Mail to a local system, if, for instance, the system is on limited hours
+     and someone else is better able to get to that system.  It won't interfere
+     with domain mail.
+
+     IV.6 Costing
+
+        Specific "costs", measured in LD credits, can be set on a domain by
+     domain basis.  This is done via the file CtdlCost.Sys, which is a text
+     file located in your #NETAREA directory.  The file is a collection of
+     entries, each one setting the "cost" to be inflicted on users wishing to
+     reach systems in those domains.  The format is simple:
+
+        <domain name><space><cost>
+
+        For example, to set a cost of 2 credits to send mail to domain IL, you'd
+     have
+
+        IL 2
+
+        There is also a "special" domain name, "Unknown".  This one lets you
+     set a domain cost for those domains which users can specify but are not
+     listed in this file.  If you want to set this at 1, you'd have
+
+        Unknown 1
+
+        Citadel-86 sysops can use Ease to manage this, rather than directly
+     edit the file.
+
+        Users are assigned LD credits via the Sysop's Network menu (^L-N),
+     using the <C>redit option.
+
+        It's feasible to set costs at 0 for domains (and in fact is recommended
+     for your own domain [#nodeDomain]), but for those outside of your
+     immediate area you should check with your backbone(s) to make sure they
+     don't mind.
+
+        This stuff only applies to mail generated on your own system, not on
+     incoming network mail.
+
+     IV.7 NodesX.*
+
+        This section more fully describes the NodesX.* files.  The "X" is
+     really a digit.  All files described herein should reside in your
+     #NETAREA directory.
+
+
+
+
+
+
+                                    -26-
+
+
+
+
+
+
+        The NodesX.FST files are the files Citadel-86 considers as the
+     secondary node lists which should be searched if a user specifies a
+     system not in the primary node lists.  These are specially formatted
+     files (generated using 2ndfmt.exe) which lets Citadel-86 quickly
+     search for a given file name.
+
+        The reason they are numbered (Files0.fst, Files1.fst, etc.) is to
+     give sysops more flexibility.  Main C86Net will be trying to supply
+     a Nodes0.Fst on an automatic basis to all interested systems.
+     However, some systems may find they want to connect some systems
+     not generally available.  Or not.  There is not necessarily any real
+     use for this additional flexibility.
+
+        The NodesX.RAW files are the files from which the NodesX.FST files
+     were generated.  While the FST files are good for searching for names,
+     they are horrid for display purposes, and displaying lists of system
+     names is important to users, sometimes.  Therefore, those system
+     which want to provide the service of responding in a full manner to
+     .EN? and the like should arrange to have the NodesX.RAW files
+     delivered along with the NodesX.FST files, on the same automated basis.
+
+     IV.8 Technical Notes
+
+        This section describes domain mail storage.  Domain mail is stored
+     in the #DOMAINAREA directory.  Within this directory will exist a
+     file named MAP.SYS and zero or more directories.  Each directory
+     will contain the domain mail which still needs to be delivered
+     to the domain server for that domain (whether through direct delivery
+     or indirect delivery).  Domain mail is encrypted.
+
+        MAP.SYS is simply a mapping from the names of the directorys to
+     the name of the domains they serve.  The third field of each line
+     is simply the next file name to use in that directory for incoming
+     mail.
+
+     V. STadel mail routing
+        Citadel-86's RouteMail is not directly compatible with STadel's
+     mail routing.  However, Citadel-86 is capable, with proper
+     coaxing, of generating and accepting STadel-compatible (more or
+     less) route mail and delivering the mail to the intended system
+     and recipient.
+
+        The procedure is not completely trivial and, due to the nature
+     of STadel route mail, it is time consuming.  Areas in which there
+     are several Citadel-86 installations may benefit from designating
+     a single system as the 'gateway' into the STadel mail routing and
+     forcing all the other systems which need to route into the STadel
+     network to go through the gateway system.  This is not to imply
+     all mail traffic between STadels and Citadel-86s should be
+     restricted to a single bottleneck; systems local to each other should
+     certainly retain their current direct links.  However, when a
+     non-local STadel is the target of some mail, directing the mail to go
+     through the 'gateway' system may minimalize the work of all the
+     sysops except the gateway sysop.  But this is only a speculative
+     suggestion.
+
+
+
+
+                                    -27-
+
+
+
+
+
+
+        As a general note, there is no theoretical reason STadels cannot
+     be listed in the net maps devoured by RoutMail, thus allowing
+     automated updating of the node lists of the network as necessary,
+     including the correct routing information.  However, as a practical
+     matter this will be delayed due to the unsettled nature of the STadel
+     configuration.  This has been brought on by the change in PC Pursuit
+     rate structures, and the result may not become apparent anytime soon.
+     STadel links not dependent on PC Pursuit, such as the Twin Cities -
+     Edmonton link via secret, are not affected (except as of this
+     writing secret seems to have disappeared into the void).
+
+        There are some limitations to the gateway.  The most important one
+     which leaps to mind is that since STadel does not support the 'W'ho
+     else feature of Citadel-86, any use of mail routing involving 'W'ho
+     else (both explicit routing and Mail Forwarding) will result in
+     delivery of the mail only to the primary recipient of the mail on
+     the target system, and no one else.
+     
+        The following subsections detail what actions are necessary
+     for supporting a gateway between C86Net RouteMail and STadel mail
+     routing.
+     
+     V.1 Outgoing mail routing
+        In order to understand what we need to do in order to have an
+     effective gateway, a rudimentary explanation of STadel mail routing
+     is in order.  In brief, a mail message which is to be routed has a
+     modified recipient field.  Rather than just being "Joe Blow", such
+     a message is of the form "<system>![<system>!...]<username>".  In
+     English, an STadel mail message is routed using the recipient field,
+     which will consist of one or more system names separated by
+     exclamation points.  The last name will be the recipient's name.
+     An example might be "Msg Port!The_Land!sysop".  This also applies to
+     domains.  For instance, "undermind.ga!cmc" is a valid address.
+
+        The important point is STadel is dependent on the exact node
+     Names* to be specified.  To use one infamous example, "Backfence" is not
+     the same as "Backfence [MN]"; nor is it likely STadel sysops
+     will be willing to use some of the more convoluted names in
+     use on some Citadel-86 installations.  So, in order to use STadel
+     mail routing, the exact names must be available in some form or
+     another.  This is where things become laborious.  The sysop who
+     wishes to have a gateway available into the the STadel net must do
+     one of two things: either change all nodes in his nodelist so 
+     the Name field matches whatever the STadels are using to designate
+     your system, or create a file in your #ROOMAREA directory named
+     ALIASES.SYS.  Each line in the file is in the form of
+
+        <STadel name> <node name from your node list>
+
+        Citadel-86 will use this list to translate as necessary from your
+     own nodelist to the STadel list (and vice versa, in the next section).
+     For instance, if you have the Minnesota system Class of 68s in your
+     nodelist, and must route to it via STadels (rather
+     than via C86Net RouteMail), you would have to have the line
+     
+        Class68 Class of 68s
+
+
+
+                                    -28-
+
+
+
+
+
+
+        The first word in the line is the name of the STadel node in STadel
+     lingo, and can ONLY consist of one word.  If the STadels are using
+     spaces (very rare) in the some system name, then replace the spaces with
+     underscores ('_').  The balance of the line contains your name for the
+     node -- that is, the name assigned in your nodelist.
+
+        Note that if you really don't want to maintain an ST-ALIAS.SYS file,
+     all you need to do is modify your nodelist to use the same names
+     as STadel sysops are using.  In this instance, you'd change 'Class
+     of 68s' to 'Class68'.  This is highly recommended.
+
+        These notes are also valid in the situation in which
+     a Citadel-86 is routing to another Citadel-86, but must use one or
+     more STadels in the route to it.  For instance, Test System in the
+     Twin Cities and Circus in Edmonton are both Citadel-86 systems, but
+     the link between the two systems is Secret Service ('secret'), an
+     STadel.  In order for Test System to route to Circus (either for itself
+     or for other systems), it must either have Secret Service listed as
+     'secret' in its node list, or it must have an entry in ST-ALIAS.SYS
+     which would look like
+
+        secret Secret Service
+
+     (assuming secret's name in Test System's node list is 'Secret Service'),
+     and it must have Circus listed as 'Circus' in its nodelist (not
+     'Circus_Edm') or an entry in ST-ALIAS.SYS:
+
+        circus Circus_Edm
+
+        Also, in order for a system to be a gateway into STadel mail routing,
+     the nodes(s) which will be used to gain access to the STadel mail routing
+     must be marked as STadels (note this does not at all imply ALL STadels
+     must be marked, however -- only those which the gateway system will be
+     using to route into the STadel mail network).  This new field defaults
+     to OFF when an entry is added to the nodelist, so if you need to use a
+     system as the STadel gateway, you'll have to change that field.  Use
+     RoutMail +manual to do so (make sure you have v1.7) -- the field should
+     show up in the lower right hand column of values.
+
+        Finally, domain mail can be routed in STadel land.  It'll simply
+     be sent as "<system>.<domain>!<user>".
+
+     V.2 Incoming route mail
+        There are similar problems in handling incoming mail, to wit, name
+     mismatches.  Once again, ST-ALIAS.SYS is used to help resolve these
+     problems.  It cannot be guaranteed that STadels will use the same
+     spellings as Citadel-86 systems will for nodenames, so entries in
+     ST-ALIAS.SYS will be scanned when necessary in order to find the
+     'real' names (that is, the name the C86 is using) of systems
+     when trying to decode incoming mail for delivery to those systems.
+
+
+
+
+
+
+
+
+
+                                    -29-
+
+
+
+
+
+
+        This problem may include your OWN system.  Mail delivered to your
+     own system directly by an STadel will almost certainly be of the form
+     <system name>!<recipient>.  The problem is your system won't
+     realize the mail is meant for your system unless it recognizes
+     "system name" as being the same as your #nodeName parameter.  However,
+     once again, STadels may not spell your #nodeName as you have yourself,
+     or you may change yours' at some point.  Therefore, it is perfectly
+     valid to have an entry in your ST-ALIAS.SYS specifying how the STadels
+     are spelling your #nodeName.  Simply make sure you spell your entry
+     exactly how you spelled your #nodeName.  For instance, Test System's
+     "formal" #nodeName is " C-86 Test System".  But STadels may choose to
+     simply have "Test System".  The entry in ALIASES.SYS would then
+     be
+
+        Test_System C-86 Test System
+
+     (Note the lack of leading space.  Don't sweat it.)
+
+     V.3 STadel considerations
+        There are some other problems to be considered, and we're not
+     sure we're aware of all of them.  The main problem is how to ensure
+     mail being routed into the STadel mail system will make it to the
+     target system.  STadel is apparently capable of some simple
+     rerouting when necessary, but it is not automatic.  When attempting
+     to set up a gateway in your area, you will probably have to work
+     closely with the STadel sysop.  The reason for this is Citadel-86
+     will only generate target paths that look like this:
+     
+        <gateway system name>!<target system name>!<username>
+
+        This could prove a problem when the target system is actually
+     several 'hops' away on the network, and in fact would result in
+     the loss of the mail.  However, as I understand it, STadel sysops
+     have some ability to cause such mail to be rerouted, in other words,
+     replace the given path with a path more likely to succeed.  When
+     working to set up a gateway which will be used for extensive mail,
+     make sure to mention this concern to the other sysop.  This problem
+     is not of as great a magnitude, however, when dealing with isolated
+     STadels which simply wish to piggy-back onto C86Net RouteMail.
+
+         Note that domain mail probably doesn't suffer from this problem.
+
+     V.4 Notes
+
+        o Remember to set the STadel node in your list you'll be using to
+     gate the STadel system as an STadel, using RoutMail +manual.  Not all
+     STadels you net with, directly or indirectly, need this setting
+     (although it doesn't hurt), only those which you'll be using to route
+     mail to other systems.
+
+        o Remember, each system in your nodelist has two flags associated
+     with it, indicating whether you're willing to route mail to it.  They
+     apply to STadel routing as well as C86Net RouteMail.   Make sure they
+     are turned on for those nodes you're willing to route to/from.
+
+
+
+
+
+                                    -30-
+
+
+
+
+
+
+        o Make sure the STadel sysop knows about your concerns regarding
+     rerouting on his side.
+
+        o There may be limited error detection available in Citadel-86 vis
+     a' vis undeliverable mail.
+
+     VI. Other CTDLCNFG.SYS Parameters
+        There are several parameters in CTDLCNFG.SYS that help you control what
+     Citadel-86 will do with the network.  All of these parameters were covered
+     in the Citadel-86 Installation Manual, but we shall cover them again here.
+
+        The #NETWORK parameter is the basic parameter that decides if you are a
+     networking system or not.  A numeric value of 1 indicates that you are;
+     0 indicates no.
+
+        The #RouteMail parameter allows you to select or deselect mail 
+     routing.  If you set this parameter to 0, then you categorically refuse 
+     to route any mail anywhere.  The default of this parameter is 1, however.
+
+        The #NewNetPrivs lets you decide whether or not new users automatically
+     gain net privileges on login.  1 indicates yes, 0 indicates no (a good
+     paranoid value).
+
+        The #NETAREA parameter indicates where CTDLNET.SYS and nearly all
+     temporary (the only exception being domain files) network files should
+     reside on your system.  It is just like #MSGAREA, etc., specifying a
+     directory for the location.  CTDLNET.SYS may be large, depending on how
+     many nodes you have and the values of two parameters that follow this
+     one, but the temporary files very rarely exceed 1K, and usually are
+     short-lived (except for the *.VTX files, which are always there, if they
+     are there at all).
+
+        #SHARED-ROOMS indicates the maximum number of rooms that you think
+     you'll ever share with another system simultaneously.
+
+        #NET_RECEPT_AREA designates the area on your system that files that
+     were sent to you with the Send File facility (Section III.3.h) should be
+     placed. This may be anywhere on your system.
+
+        #NET_AREA_SIZE specifies the maximum number of bytes that may occupy
+     the #NET_RECEPT_AREA directory at any one time, which provides you with
+     a way of keeping your system from being flooded.
+
+        #MAX_NET_FILE specifies the maximum size of any single file to be
+     received from the network via the Send File option (see Section III.3.h).
+     If you don't want monster files sent to you, here is your solution.
+
+        #callOutPrefix is a string value that tells the modem to prepare to
+     dial out.  For Hayes/compatibles, this is usually "ATDT".
+
+        #callOutSuffix is a string value that tells the modem that all the
+     information that it needs to dial has been sent to it.  For
+     Hayes/compatibles, this is usually "\r".
+
+         #DialOut300, #DialOut1200, #DialOut2400, #DialOut4800, #DialOut9600,
+     #DialOut14400, and #DialOut19200 can each be used to override the value
+     of #callOutPrefix.  This is useful with USR HST modems and their ilk.
+
+
+                                    -31-
+
+
+
+
+
+
+     Appendix A: Other room-based Networks
+
+     HengeNet: This network is for the StoneHenges.  The last news I heard
+     was that the homebase of the Stonehenges, CKMCMS, was down.
+
+     CitaNet: The exact nature of this network is not clear, but seems to be
+     semi-manual and is used by the K2NE (Commodore 128) systems, along with
+     one or two Citadel-86 systems and possibly others.  Homebase for this net
+     is Vince Quaresima of The Jersey Devil ((609) 893-2152).
+
+     Citadel-286: These systems have some sort of network.  Homebase is
+     probably Farokh Irani of Electronic New York ((914) 735-9362).
+
+     MacCitadel: These systems have a network of some sort.  MacCitadel's
+     home base is ??????????????
+
+     Appendix B: Temporary Files
+
+        Citadel-86 generates and destroys temporary files in order to service
+     C86Net.  All of these files are placed in the directory specified by the
+     CTDLCNFG.SYS parameter #NETAREA, and most should not last past the next
+     networking session once generated.
+
+        Most are of the form <numeric>.<ext>.  The numeric value is the
+     position that the relevant node occupies in CTDLNET.SYS; ext indicates the
+     purpose of the temporary file.  The current ext values currently used are:
+
+      ML  = Mail file
+      RFL = Request Files
+      SFL = Send Files
+      VTX = Vortex Detection Files
+
+        Thus, the file 12.ML contains the data necessary to send net Mail> to
+     the twelfth system on your netlist.
+
+        Additionally, from time to time files of the form "R<num>.<num>" will
+     appear and disappear from the directory.  The R means they are Route Mail 
+     temporary files; the first 'num' refers to the node the mail is being 
+     sent to on its way to its destination (the routing node), while the 
+     second num is just a sequence (housekeeping) number for internal use.  
+     Please avoid deleting these files, and don't try to read them - they are 
+     private mail and should be treated as such.
+
+        Domain Mail also requires temporary files, but they are confined to
+     #DOMAINAREA, so don't worry about them too much unless some persist.
+
+     Appendix C: Main C86Net
+        The main C86Net is an international net with nodes scattered 
+     throughout the United States and Canada.  Homebase for the main C86Net is 
+     Test System @ (612) 470-9635, but there may be a system near you on the 
+     net, particularly in the northern half of the United States.
+
+        If you are looking to get the latest map of the network for mail 
+     routing purposes, query Kip DeGraaf @ Arcadia (Kalamazoo, Michigan).
+
+
+
+
+
+                                    -32-
+
+
+
+
+
+
+     Appendix D: RoutMail.Exe
+        The RoutMail utility, as noted in UTIL3.MAN, can be used to edit the
+     node list as well as ingest mail routing maps.  Simply type
+
+        ROUTMAIL +manual
+
+     and you will be presented (sooner or later) with a list of nodes which you
+     may select using cursor keys.  Selecting one allows you to edit all (?)
+     parameters associated with a node, except for the rooms shared.  Note
+     that the node editing capabilities in Ctdl.Exe are NOT complete any longer,
+     and some thought is being given to placing all responsibility for node
+     editing in RoutMail.  In particular, the routing and STadel flags are
+     only accessible via RoutMail as of this writing (this may change in the
+     future, however).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    -33-
+
+
+
+

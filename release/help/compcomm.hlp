@@ -1,0 +1,73 @@
+ Compressed File Manipulation
+ ----------------------------
+   ^variantname has four capabilities related to compressed files.  The
+first is explained more fully in the UPLOAD help file, so we'll just mention
+it here: ^nodetitle may be configured to optionally test compressed files
+after uploads (by invoking external programs).
+
+   Second, you may peek into the Table of Contents of any compressed file
+(that is, any file with an extention of ARC, ZIP, ZOO, or LZH).  The
+command for this is
+
+    <.R>ead <A>rchive <D>irectory
+
+   You will be prompted for the name or names of files to peek into, and
+you may use file-specs and date-specs when you answer this (as explained
+in the DOWNLOAD help file).
+
+   Third, you may be able to ask ^variantname to compress messages before
+sending them to you using the <C>ompress option on .Read.  For instance,
+
+     .Read Xmodem Compressed New <CR>
+
+would result in the new messages in the current room being sent to you using
+the compression method you specify (you're prompted after the carriage return),
+using Xmodem for the transfer.  Naturally, other protocols may be specified.
+A single file will reside in the resulting compressed file.
+
+     .Read Global Xmodem Compressed New <CR>
+
+would send a compressed file of all the new messages on the system to you.
+
+   Fourth, you may be able, depending on how the sysop has configured the
+system, to extract one or more files from the compressed files for download.
+Normally, when faced with a compressed file you'd simply want to grab the
+whole thing.  However, sometimes it's desirable to extract a file or two
+from a compressed file.  Perhaps a READ.ME file is enticing, perhaps you
+just need to get an updated file.  In any case, being able to extract one
+or more files from a compressed file can be useful.  The command for this is
+
+    <.R>ead <A>rchive <F>ile
+
+   You will be asked which compressed file you will be decompressing from.
+You may only specify one file here, but you needn't mention the extension;
+if ^variantname can't find what you type, it'll append a .ARC, .ZIP, .ZOO,
+and .LZH (in that order) until it finds the file or runs out of extensions.
+If ^variantname finds the file and ^nodetitle is configured to support
+decompressing files of that type, it will then ask you for
+a "deARC mask".  All this means is that you may now tell the decompress
+utility which files to decompress.  You can answer with a list of files
+(separate each file name from the next with a space) or use normal "wildcard"
+characters or a mixture of both.
+
+   ^variantname will now try to extract the files you asked for from the
+compressed file.  Be patient, especially if the computer the BBS is on is
+slow.  When the decompressor is finished, and if it found any files to
+send to you, ^variantname will start sending the files.
+
+   But using what transfer protocol?  Using the basic .RAF command from above,
+^variantname would use ASCII for the transfer, which may not be appropriate
+if you were trying to get executable files.  Therefore, you may modify the
+.RAF command with any of the protocols supported on ^nodetitle (see PROTOCOL,
+below).  For instance, to transfer a bunch of files from a compressed file
+using YMODEM (BATCH mode), you'd use
+
+    <.R>ead <Y>modem <A>rchive <F>ile
+
+
+ %PROTOCOL What protocols are available.
+ %WHATCOMP What are compressed files?
+ %ADVANCED Back to the advanced commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+

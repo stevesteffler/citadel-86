@@ -1,0 +1,47 @@
+ Usage Reconfiguration
+ -----------------------
+   These options control how you use the system and what you see.
+
+    <E>xpert            <F>loors
+    <O>ld msg on new    <T>ime
+    <M>ail forwarding   <Y>Prompt Edit
+
+ Expert:
+ Select using 'E' (.ECE). This controls how many hints and prompts you'll see.
+
+ Floors:
+ Select using 'F' (.ECF). This tells the system if you want the additional
+structure of
+floors added onto the basic structure of rooms.  There's a help file that
+already covers this (.Help FLOORS, or find it in the Help System), so please
+consult that file for more information.
+
+ Old msg on New Request:
+ Select using 'O' (.ECO). This tells the system if you want to see
+the last Old message in a given room first when you request <N>ew messages.
+This is useful as a "memory jogger" of what was happening in the room last
+time you were here.
+
+ Time Display:
+ Select using 'T' (.ECT).  Do you want to see the time each message was
+generated, or are you content with just the date?
+
+ Mail Forwarding:
+ Select using 'M' (.ECM).  You may forward mail sent to this account to another
+account on ^nodetitle (to forward your mail to another see the help file
+MISCCFG) using this command.
+This includes mail received from another system for this account.  The one
+exception is mail sent by the Sysop to Citadel, in which case all accounts
+will receive the mail and forwarding is not necessary.
+
+ Edit Prompt:
+ Select using 'Y' (.ECY).  This controls whether the room name is printed
+before the words 'entry cmd: ' (the message entry prompt) as a hint where you
+are entering a message.  This prompt will remind you where you are in case
+you've accidentally changed rooms when entering a message (this happens
+occasionally).
+
+ %RECONFIG Back to reconfiguration.
+ %COMMANDS Back to the commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.

@@ -1,0 +1,22 @@
+ Holding messages
+ ----------------
+   The <H>eld option of the 'entry cmd:' prompt allows you to put the message
+you are working on in a temporary buffer and returns you to the roomname>
+prompt (unless you are using Pause-Enter -- see FLOW.HLP).  You may
+then continue to use ^variantname as you normally would, which in this
+case would probably be to review earlier messages so that the
+message that you've <H>eld can be more incisive; or to change rooms
+if you feel the message should be elsewhere.  Only one message can be held
+at a time.
+
+To continue a message in the held buffer, type:
+       .Enter Held-Message
+
+If you should involuntarily lose carrier while composing a message, the
+system will save your message in your held message buffer and return it to
+you when you call back in.
+
+ %FLOW Message display controls (see Pause-Enter).
+ %COMMANDS Back to the commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.

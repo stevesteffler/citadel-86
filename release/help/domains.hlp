@@ -1,0 +1,39 @@
+ Domains in C86Net
+ -----------------
+
+   A "domain" is nothing more than a collection of systems residing under
+a single name for purposes of making it easier to create and deliver Mail
+to them.  Most systems on the network belong to some domain, and as time
+passes, more systems will become part of a domain.  For instance, ^nodename
+is in domain "^nodedomain".
+
+   You can tell the domain of another system on the net, in most cases, by
+looking at a net message from the system in question.  Using this system as
+an example, a message from another system in a domain will have a header that
+looks something like this:
+
+    ... @ ^nodename _ ^nodedomain
+
+   (Sysops can customize the display to their tastes, however, so you might
+have to use your imagination.  For instance, they might have
+
+    ... @ ^nodename [^nodedomain]
+
+   But you get the idea.)
+
+   So what's this worth to you, eh?  Well, suppose you want to send Mail to
+a system on the net that you just saw a message from in a shared room.  You
+went to mail, but just simply typing its name without the domain gained you
+nothing but grief: perhaps the system hasn't made it onto this system's 
+node (i.e., system) list, yet.  Well, you can get around this by typing .EN
+at the Mail> prompt, and then typing the system's name followed by an '_'
+followed by its domain name.  (You can use '.' instead of '_' if you really
+insist).  Just make sure you get the spelling right.
+
+   You may need LD credits to send Mail out via domain-addressing, though.
+
+ %ADVANCED Back to the advanced commands help menu.
+ %NET-HELP General info on sending network mail.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+

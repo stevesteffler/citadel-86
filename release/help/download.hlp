@@ -1,0 +1,80 @@
+ File Downloading
+ ----------------
+   Downloading a file from ^nodetitle is a trifle more difficult, or at least
+obscure, than uploading, due to the fact messages is the main focus of
+^variantname.  The generic format is
+
+  <.R>ead [protocol specifier] [<B>inaryfile or <T>extfile [<F>ormatted]]
+
+   or, in English, .Read possibly followed by a protocol name, followed
+by either <B>inaryfile (at which point ^variantname will prompt for one or
+more filenames to download) or <T>extfile (in which case, if you didn't
+specify a protocol, the system will wait to see if you type <F>ormatted,
+causing it to try to Format the file to your screen width; any other response
+will be saved for the filename prompt).  Icky?  Well, not really.  Always
+use .Read [protocol] Binaryfile unless you know you want to read a text file
+formatted to your screen width.
+
+   The protocol specifier is optional, but if you don't specify one, it will
+default to ASCII.
+
+   ^variantname supports the following protocols internally for downloading:
+
+      <X>modem, <Y>modem (BATCH mode).
+
+   Additionally, ^nodetitle has the following protocols available for download
+usage as external drivers:
+
+      ^dlprotocols
+
+   To use any of these protocols for a download, simply type their letter where
+"protocol specifier" was mentioned before.  For example, to download one or
+more files to the system using Ymodem, you'd type
+
+    <.R>ead <Y>modem <B>inaryfile
+
+   The system will prompt for one or more names.  If the file(s) don't exist,
+you'll be notified of your blunder.
+
+   Some protocols do not allow BATCH downloads (Xmodem and perhaps
+some of the external protocols), so if you try to specify more than one file
+for a download with those protocols, the system will balk and scream.
+
+   ^variantname has the capability to limit downloads during sysop-specified
+periods of the day, so you may be faced with a rejection if you go over a
+limit.  If that happens, the message you get may tell you when you can try
+again.  If not, check .Help HOURS, or just call back in a few hours.  Or
+leave a note to the sysop.
+
+   There are two options in file downloading which you may find useful.
+First, you may use multiple file-specs when you are prompted for a file.
+For instance,
+
+      *.DOC *.TXT
+
+   would download all the files with extensions DOC and TXT in the protocol
+you specified earlier in this command.
+
+   Second, you may use date-specs to specify files, either with or without
+file-specs.  See the TOC help file for more on date-specs, but simply typing
+in
+
+        >
+
+   would let you download all files dated since your last login using the
+protocol you used.  No, no, don't type that at the room prompt.  You'd type,
+for example,
+
+      .Read Ymodem Binaryfiles
+
+   and then type the ">" at the filename prompt.
+
+
+ %TOC How to read a directory listing.
+ %UPLOAD Information on uploading to ^nodetitle.
+ %PROTOCOL What protocols are available?
+ %FILES Summary of file handling.
+ %ADVANCED Back to the advanced commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+

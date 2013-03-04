@@ -1,0 +1,82 @@
+ Message Editing
+ ---------------
+   Once you have discovered you wish to participate in a discussion, you
+will need to learn how to use the ^variantname message editing facilities.
+After using <E>nter to begin entering a message, you will be faced with the
+following:
+
+   <some sort of blurb if you are not an expert>
+   90Jan23 from Your Name   <<--- This is a "message header"
+
+   and the cursor will be on the next line.  At this point you may start
+typing your message in.  ^variantname does not perform word-wrap during
+message entry; however, if your terminal program automatically wraps down
+to the next line as you type, then you needn't worry about losing what you're
+typing; ^variantname is not "line-oriented".  In fact, nearly all users
+quickly learn not to pay attention to "lines," they just type away, paragraph
+occasionally, and soon have a message.  If your terminal program will
+wrap back up a line when you backspace past the beginning of a line, ^variantname
+will be delighted to let you do that, making error correction far easier than
+on BBSes which insist on performing word-wrap, which is why ^variantname has
+never implemented word-wrap.
+
+   If you want to paragraph your message, simply type a carriage return and
+indent the starting line of the paragraph (but no other line of the paragraph).
+If you want to skip a line between paragraphs to increase readability, touch
+carriage return, space, carriage return and indent (or not -- ^variantname
+will do block paragraphs).
+
+   Once you are finished with the initial composition of the message, touch
+carriage return twice.  You should see
+
+    entry cmd:
+
+   You now have an array of choices to pick from:
+
+ <P>rint lets you preview your message.  The text will be formatted to your
+screen width (and when, or if, you save it your message will be formatted
+for other reader's screen widths).  This lets you find errors in your message
+for later repair.
+
+ <R>eplace string lets you change the contents of your message.  You will
+be prompted for a string to replace and then the string to replace.  So suppose
+you've noticed you've misspelled "muckraking" as "muckrking".  You'd answer
+the first prompt with "muckrking" and the second with "muckraking".  There are
+two tricks to be aware of with Replace: first, it searches BACKWARDS through
+your message for the string to replace (and only replaces the one it finds),
+and the search is case INSENSITIVE.
+
+ <G>lobal Replace is just like <R>eplace except all instances of your target
+string will be replaced by your replacement string.  Makes it easy to fix all
+those "thier" misspellings.
+
+ <A>bort will let you abort the message you've just composed.
+
+ <C>ontinue will print the last couple of words of your message and let you
+continue entering text just as if you had never stopped.
+
+ <S>ave lets you save your message.
+
+ <I>nsert Paragraph lets you insert a paragraph marker at a given spot, just
+in case you forgot.  You will be prompted for a string, which will indicate
+where you want the paragraph break to occur.
+
+ <H>old message lets you place the message you're working on in a temporary
+buffer so you can go back and review other users' messages, change rooms,
+etc.  To access the message you hold, use .Enter Held at any room prompt.
+(NOTE: you can only Hold one message at a time.)  This is an extremely
+useful option in serious discussion rooms.
+
+   Finally, if you are in a shared room (or Mail>), you may find the option
+<N>et or <N>ormal message useful.  It acts as a toggle for your message,
+changing its network status.  Sometimes you may not want to make you message
+shareable between systems when ^nodetitle thinks it is; <N> will fix this.
+Similarly, sometimes you may wish to make your message shareable when it
+isn't already (you can tell by the presence/absence of "@^nodename" in your
+message header).
+
+ %EDITORS More information about other editors.
+ %COMMANDS Back to the commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+

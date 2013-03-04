@@ -1,0 +1,16 @@
+ Forwarding your local Mail>
+ ---------------------------
+   In densely networked areas, users may specify Mail>
+sent to them locally on one system be forwarded to another system.  This is
+useful for systems you only call once a week -- you may have the Mail>
+forwarded to another system you call daily.
+
+   To do so, the .Enter Configuration Address will allow you to specify a system
+to forward your Mail> to.  Any system, including domain-specified systems,
+may be specified, but if you specify a system LD from this one, you MUST have
+LD credits in order for your Mail to be delivered.
+
+ %ADVANCED Back to the advanced commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+

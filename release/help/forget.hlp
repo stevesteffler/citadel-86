@@ -1,0 +1,26 @@
+ Forgetting Rooms
+ ----------------
+   Sometimes you may no longer want to know about a room. To do so,
+<G>oto or <.G>oto that room, and then
+press the 'Z' key.  ^nodetitle will forget you've ever known about this
+room, even if it is a Public room.
+
+   Needless to say, you may not forget the ^baseroom and Mail.  All other rooms
+can be forgotten. (NOTE: Aides may not be able to forget rooms, depending on
+configuration.)
+
+   A list of public (not private) rooms that you have forgotten can be
+summoned by typing a ".Z" in any room.  ^variantname will respond with the list of
+all public rooms you've forgotten that still exist.
+
+   The <.G>oto command can be used to return to a previously forgotten room
+(public or private, but you must use the FULL name of the room, not a partial
+name, even if the room is public), and if you leave that room by any other method than the
+<Z>Forget room method then that room will return to your <K>nown rooms list
+and the <G>oto cycle.
+
+
+ %COMMANDS Back to the commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+

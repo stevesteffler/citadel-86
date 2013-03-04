@@ -1,0 +1,26 @@
+Basic ^variantname Message Flow Control
+
+   ^variantname supports the following basic message flow controls.  To use
+these, simply type the first letter of each command while messages are flowing
+(displaying).  (If you don't know how to display messages, see .Help READ,
+but these basically boils down to <N>ew, <O>ld, <F>orward, <R>everse, and their
+advanced variants).
+
+ <P>ause - This causes the message flow to temporarily stop.  Hitting nearly
+any key will restart output (but see the advanced section below for an
+exception).
+
+ <S>top - This stops the message flow and returns you to the room prompt.
+
+ <N>ext - This stops displaying the current message and begins displaying
+the next message.  If this is the last message to be displayed, you are returned
+to the room prompt.
+
+ <J>ump - This causes the display of the current paragraph to stop and jump
+to the next paragraph of the current message.  If this was the last message,
+Citadel will start displaying the next message.
+
+ %COMMANDS Back to the commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+

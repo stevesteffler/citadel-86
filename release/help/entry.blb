@@ -1,0 +1,6 @@
+  Citadel-86 formats all messages to your screen width.  Carriage-return
+characters are treated as blanks unless followed by a blank, so paragraphs
+should be indented.  To defeat the formatting for graphics or whatever,
+indent every line at least one space.  This usually results in a mess so don't
+bother.
+

@@ -1,0 +1,34 @@
+ OFFLINE READERS:
+
+  An offline reader is a program that a user can run on their computer that knows
+how to scan and process messages downloaded in a specific format from a BBS.
+This allows the user to read and respond to messages while not occupying the
+BBS.
+
+ It DOES require some sophistication on the part of the user: knowing how
+to run such a program, where to get it, and how to tell the BBS to send and
+accept such packets of messages.
+
+ ^variantname supports offline readers for both message reading and entry,
+if the installation has been configured correctly.
+
+ Messages may be read using an option on the .Read ... command.  The supported
+offline readers and the mnemonics used to invoke them are as follows:
+
+	^dloffline
+
+You will be prompted for a compressor to use to compress the results.  If you
+do not specify a protocol, the system will assume Xmodem.  You may use other
+options, such as <G>lobal reading.
+
+ Messages may be entered using an option on the .Enter ... command.  The supported
+offline readers and the mnemonics used to invoke them are as follows:
+
+	^upoffline
+
+You will be prompted for a compressor to use to compress the results.  If you
+do not specify a protocol, the system will assume Xmodem.
+ 
+ %ADVANCED Back to the advanced commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.

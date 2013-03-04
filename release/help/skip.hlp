@@ -1,0 +1,30 @@
+ Skip
+ ----
+   To "Skip" a room means to leave the room without marking the messages within
+as having been read.
+
+   The Skip command usage is identical to the Goto command usage.  To Skip
+the room that you are currently in and Goto the next room with unread messages:
+
+     <S>kip
+
+   ^variantname will print out the name of the room it is going to, and will
+NOT mark the room you're leaving as having been read.
+
+   To Skip the current room and goto room ROOMNAME:
+
+     .Skip ROOMNAME
+
+   If you get to the point where there are no more rooms with unread messages
+besides the one(s) that you've skipped, ^variantname will print out the list of
+rooms that you've skipped and change those rooms' status from Skipped back
+to simply rooms with unread messages.
+
+   Terminating with rooms on the Skipped list simply leaves them marked as
+having unread messages in them for the next time you login.
+
+
+ %ADVANCED Back to the advanced commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+

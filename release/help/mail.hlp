@@ -1,0 +1,61 @@
+  Private Messages:
+  =================
+  ^nodename supports completely private messages between you and other users
+via the Mail> room.  This Mail is visible only to the sender and the recipient(s)
+under normal circumstances, although the Sysop can access users' Mail under
+extreme circumstances.  Mail> is mostly like any other room on the system:
+if you have new messages in Mail, <G>oto will take you to it; .Goto Mail will
+also take you to the Mail> room.
+
+  Mail> is different in intuitive ways.  When you enter messages, you'll be
+asked for a recipient, and the name you enter will be checked to make sure they
+exist here.  If you wish
+to send Mail to more than one person at a time (because of shared interests
+or whatever), you may add additional Recipients for the Mail via the <W>ho
+else command, at the "entry cmd: " prompt.  You'll be asked for the names
+of the persons you wish to receive copies of this Mail message; each will be
+validated.  When you save the message, the Mail> will be delivered to each
+person's account in their Mail> room.
+
+  When you're reading New messages in Mail, after each message you will be
+asked if you wish to Respond to the User in question.  You may either
+answer:
+
+ Yes  -- you will be put into message entry, with the name of the user to reply
+to in place.  Makes answering Mail a breeze.
+
+ No   -- next New message is displayed.
+
+ Skip -- you wish to mark this message as Skipped.  When you leave any other
+rooms, the system assumes you've read all the messages.  But in Mail>, Skipping
+a message will mark that message as unread by you.  You may leave Mail> using
+Goto, but the Mail you've so marked remains New until next time you read New
+(unless you Skip it again).  This lets you leave some Mail as Skipped until
+you have time to answer it, while answering other Mail right away.
+
+ Forward -- you can forward this piece of mail to one or more users on the
+system.  Please use this feature sparingly.  If you do use this feature, you'll
+once again be prompted for what you wanna do when the operation is complete (so
+you can also reply after forwarding without having to re-read the mail).  You
+can forward on the net using "username@system", although some systems won't
+know what to do with the mail.
+
+  The Pause-Enter feature of other rooms (which lets you enter a message while
+reading other messages by typing <P>ause and then <E>nter) does not work the
+same in the Mail> room.  Instead, when you use Pause-Enter, ^variantname will
+try to find the message to which the current message is a reply.  So, if you
+are reading new in Mail> and are wondering what caused the current message
+to be written to you, just Pause-Enter it and the system will try hard to
+figure it out.
+
+  Finally, you can arrange to forward mail sent to you to another account
+on ^nodename by using the .ECM command.  This is straightforward; if you want
+to forward mail to another account on another system, use the .ECA command.
+
+ General complaints, comments and requests should be addressed to "Sysop".
+
+
+ %COMMANDS Back to the commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+

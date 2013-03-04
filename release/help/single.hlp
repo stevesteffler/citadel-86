@@ -1,0 +1,29 @@
+ Single Stroke Commands
+ ----------------------
+   A listing of these commands can be requested at any room prompt simply
+by typing '?'.  Some of these commands will be covered in more detail in
+other help files.
+
+ <C>hat -- Requests a Chat with the system operator (^sysopname).
+ <D>oor -- Use a "door" (an external program such as a door).  You may not
+have privileges to use a door, or there may be none available.
+ <E>nter -- Enter a message in the current room.
+ <F>orward -- Read ALL the messages in the room in order.
+ <G>oto -- Move to the next room in the system with new messages.
+ <H>elp -- Help!
+ <I>nformation -- Get information on the current room, if any.
+ <K>nown rooms -- Get a list of rooms you know about.
+ <L>ogin -- Login to the system.
+ <M>eet User -- read a user biography.
+ <N>ew -- Read all the New messages in the current room.
+ <O>ld -- Read all the Old messages in the current room (reverse order).
+ <R>everse -- Read all the messages in the current room in reverse order.
+ <S>kip -- Same as <G>oto except the room is NOT marked as Read.
+ <T>erminate -- Say goodbye to the system.
+ <U>ngoto -- The reverse of <G>oto.
+ <Z>Forget room -- Forgets the current room (so you never read it again).
+
+ %COMMANDS Back to the commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+

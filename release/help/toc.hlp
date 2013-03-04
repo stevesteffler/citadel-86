@@ -1,0 +1,148 @@
+ File Listings
+ -------------
+   ^variantname allows access to files via special "directory rooms".  You
+can identify a directory room by its prompt.  Normal rooms have a ">" (as
+in "East Bloc>"), while directory rooms have a "]" (as in "Upload Room]").
+
+   In order to do anything useful with directory rooms, you usually need to
+know what's in them (hence the name of this help file, TOC, or "Table Of
+Contents").  ^variantname has two basic commands available, both
+extensions of the .Read command.
+
+   The first is
+
+     <.R>ead <E>xtended-directory <CR>
+
+   This command will list the file's names available in the current directory
+room in the following format:
+
+ <filename>     <filesize in bytes> | <file comment, if any>
+
+   The second command is
+
+     <.R>ead <D>irectory <CR>
+
+   This command lists the file's names followed by their size in 128 byte
+chunks (i.e., number of sectors the file takes up), like this:
+
+ <filename>  <size>  <filename>  <size> ...
+
+   .Read Directory is useful for short quick scans of directories, while
+the slower .Read Extended-directory is useful for getting more information
+(provided by the sysop or the uploaders) on the files (file comments can
+be anything from nothing to veritable tomes).
+
+ Options
+    The two above commands have a variety of options you can attach to them.
+In the interests of clarity, we'll only show examples using .Read Extended;
+please just assume you can use them with .Read Directory as well.  Also, we're
+going to dispense with the "<..>" convention for the balance of this help
+file, because the ">" and "<" are actually of use in some of the options
+which follow.
+
+   The first option is the use of a "file-spec".  A file spec is a way to
+specify only a certain set of files should be selected for display.  When
+specifying a file-spec, a '*' means match 0 or more characters, while a '?'
+means match only one.  For instance, if you only wanted to see files starting
+with the letters DU (like files DUMMY and DUMB), you might type "DU*".  Or
+you might type "DU*.*", because of the peculiarities of some operating systems
+(ahem).
+
+   In any case, when you typed
+
+     .Read Extended-directory
+
+   the implication is that you meant "*.*" or "*" (again, depending on the
+operating system).  You may, instead of typing a carriage soon after the
+".RE", type in a file-spec.  To use our previous example,
+
+     .Read Extended-directory DU*.*
+
+   is perfectly valid and will display all the files which "match" (computer
+jargon) the file-spec, including DUMB and DUMMY -- if such files are actually
+in the current room, of course.
+
+   Additionally, you are not limited to one file-spec.
+
+     .Read Extended-directory DU*.* *.DOC
+
+   is perfectly valid.  In general, you separate each file-spec from the next
+by one or more spaces, and ^variantname will show all files which match any
+of those file-specs.
+
+   Using a file-spec is fairly mundane.  ^variantname also allows you to
+use a "date-spec".  A date-spec tells ^variantname to "match" (once again)
+only those files which match both the file-spec you may or may not have typed
+in, and also the date-spec.  A date-spec is a means to select files who's
+date is either before or after some date you specify.  Generically, a date-spec
+looks like this:
+
+     < or > followed by a date specification.
+
+   A date specification is in ^variantname format: yymmdd, where yy is not
+needed unless the year you're matching against is not the current year.  The
+"< or >" means you may use one or the other.  ">" means "since", while "<"
+means "before".  (If you forget to use either, ^variantname will think your
+date-spec is a file-spec).  So if you wanted to see all the files in the
+directory with a date on or after December 1st, 1989, you'd type
+
+     .Read Extended-directory > 89Dec1
+
+   Similarly, you can actually search for files in a range by simply using
+two date-specs.  If you wanted to find all the files dated between July 1st,
+1989, and December 1st, 1989, you'd type
+
+     .Read Extended-directory > 89Jul1 < 89Dec1
+
+   Naturally, you can use file-specs with date-specs, but file-specs must
+precede date-specs.
+
+   Now, naturally, it's always nice to find all files dated since the last
+time you logged in.  Many upload protocols simply date-stamp each file with
+the current time when the file was uploaded, which makes it especially
+enticing to know what was uploaded since you were last on (but some popular
+protocols do preserve the "real" date of the file, which defeats this scheme).
+Using the above scheme, you'd have to remember the date of your last login
+to achieve what we're talking about, so ^variantname provides a shortcut:
+simply using "<" or ">" without an actual date-spec defaults to the date you
+were last on.  For instance, to list the names of all files dated since you
+were last on, you'd type
+
+     .Read Extended-directory >
+
+   Nice and simple.
+
+   Now for an odd option.  If you've experimented, you've seen the file comments
+^variantname will display for you when you use .Read Extended.  Now suppose
+you want to find a file in a big directory room which you'd seen before, but all
+you can remember is part of the comment, and not the name.  Rather than doing
+a .Read Extended and then scanning the entire list for what you want, wouldn't
+it be nice if you could actually scan using the comment as something to search
+on?  Well, you can!
+     
+     .Read Phrase Extended-directory ...
+
+   will, after your ending carriage return, prompt you for a search phrase.
+Then all of the files which have a comment that has that phrase in it will
+be displayed.
+
+   Finally, ^variantname provides you with the capability to scan ALL the
+directory rooms you know about using all of the commands so noted, by simply
+specifying the <G>lobal option.
+
+     .Read Global Extended-directory ...
+
+   The system will go through ALL the directory rooms you know about, scanning
+for the file-specs and date-specs you specified, if any.  This is very handy
+for finding all the files dated since the last time you were on ...
+
+     .Read Global Extended-directory >
+
+
+ %UPLOAD Information on uploading to ^nodetitle.
+ %DOWNLOAD Information on downloading from ^nodetitle.
+ %FILES Summary of file handling.
+ %ADVANCED Back to the advanced commands help menu.
+ %HELPOPT Get a list of all help files in the system.
+ %MAINHELP First level of help system.
+
