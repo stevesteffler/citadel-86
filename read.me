@@ -1,0 +1,120 @@
+This is a release of Citadel-86 Source: 3.49.
+
+Status
+~~~~~~
+   The original Citadel source by Cynbe ru Taren was released with few, if
+any, constraints on it.  Basically, I can't lay down much in the way of
+conditions, but here's a few ...
+
+1) Those files with a copyright in them are not subject to anything in this
+file.  They are independent source modules I've written for my own use
+that found application within Citadel, but are not Citadel in themselves.
+I've included those files out of the goodness of my heart, not because
+I feel constrained to do so.  Observe those copyrights strictly, since they
+aren't Citadel.  And some may be other people's copyrights, anyways, not mine.
+
+2) Don't try to intermix the current network code with old Citadel variants.
+Just don't.
+
+3) Don't try to stab me in the back with any of this source.  I didn't like
+it last time, I won't like it this time.
+
+4) Don't change* the network code if you're running a system on the net.  I
+very much do not want some system mucking about, screwing up the network,
+and then coming crying to me to fix their problems.  Adding code is a
+different proposition, but changing the code is just asking for trouble unless
+you're an experienced programmer and not just another idiot hacker.
+
+Missing Source
+~~~~~~~~~~~~~~
+   Due to the fact that certain parts of the source used to build Citadel-86
+executables derive from certain contract work, not all the source that
+Citadel-86 is built from is available.  None of the missing source is critical.
+The source accessing the missing source should usually contain notes or
+otherwise be obvious as to how to deal with the missing stuff.  That missing
+source is ...
+
+CTDL.EXE
+--------
+lss.c - independent library for implementing sysop windows.
+
+UTILITIES
+---------
+goo.lib - this has some screen editing libraries etc that are used by
+lgibm.c, nodeedit.c, maybe others.
+
+All Ease Source - it's too interlaced with stuff I can't deliver so it's
+not worth putting it out.  In any case, true porters wouldn't have any use
+for it.
+
+Variants
+~~~~~~~~
+   If you decide you're going to give your variant a name (especially if
+you're going to distribute it), DON'T call it:
+
+ o Citadel
+ o Citadel-86 or anything derivative thereof
+ o Citadel-68K or anything derivative thereof (unless Tony Preston says so)
+ o Amiga Citadel or anything derivative thereof (unless Tony Preston says so)
+ o Macadel or anything derivative thereof
+
+   Those are already used.  If you think you're going to add multi-line
+headers or oodles of keen menus, don't even call it Citadel.  Call it
+RBBS-II or something equally descriptive.
+
+Contributing to Citadel-86
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+   Just 'cuz I'm making the source available after 4 years (or whatever)
+doesn't mean I'm dropping out.  If you're mucking about with the source and
+think you've come up with something "neat" that others might like and you'd
+like to see it in Citadel-86, I have no general objection to adding code
+from others -- I've done it before.  Guidelines:
+
+ o Don't get offended if I don't use your stuff - life's a crapshoot;
+
+ o Don't get offended if I'm a bit slow - I have a real life;
+
+ o Preferably submit in a .LZH or similar file;
+
+ o Document the feature or change in English in a separate file;
+
+ o Make the code changes very very clear to me.  I agree this can be tough
+to do, but don't just send me half the source and tell me to look for all
+the places you marked.  I'll just delete what you sent me.  Preferably,
+modularize the changes so it can either be compiled and linked as a separate
+file, or just added to an existing source module.
+
+ o Don't get offended if I change it; after X years I know what resources
+Citadel has and you probably don't.  Congratulations if you spent the time
+to find just what Citadel already has, I'll respect you for that, but don't
+feel bad if you didn't -- it's a helluva lot of source and some of it is
+non-obvious.
+
+ o Perhaps I feel most ambiguous about code optimization (for space).  It's
+one of the best ways to learn programming when you're a novice, and I'd
+love to get Citadel's waist size down, but it's a bitch to integrate such
+code back in .. or at least so I think.  And new programmers often think
+optimization means spaghetti code.  Often it's just the reverse ... obvious
+code is often small code that works.  Spaghetti is something wannabe hackers
+put out.
+
+Don't Bother To ...
+~~~~~~~~~~~~~~~~~~~
+ o Make shirty remarks concerning the quality of the source.  For those who
+think they're God's gift to programming, please keep in mind this source has
+been worked on by at least a half dozen people, with various and changing
+skill levels.  I myself got the source when I was a raw novice and have long
+used it as an experimental programming arena, and have left those experiments
+in 'cuz they work, more or less.  Make a snotty comment about code quality and
+I'm just going to ignore it.
+
+ o Tell me about how you just put ANSI color handling in and you're so proud.
+I'm not interested.
+
+ o Tell me how you put toggleable multi-line headers in.  I'll just direct you
+to a local RBBS.
+
+ o You put neat-o menu code in.  Go away.  Learn what design philosophy's
+all about. 
+
+                        -- Hue, Jr.
