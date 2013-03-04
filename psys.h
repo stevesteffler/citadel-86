@@ -1,0 +1,23 @@
+#ifndef PSYSNAMES
+#define PSYSNAMES
+
+#define PIBM		"#IBM"
+#define OFFLINE_DELAY	"#OFFLINE-CHAR-DELAY"
+#define COMPORT		"#COM"
+#define BANNER_COUNT	"#BANNER-COUNT"
+#define NETRECEPT	"#NET_RECEPT_AREA"
+#define OEDITOR		"#EDITOR"
+#define EDITAREA	"#EDIT-AREA"
+#define REINIT		"#REINIT"
+#define ENABLE		"#ENABLE-MODEM"
+#define DISABLE		"#DISABLE-MODEM"
+#define PCLOCK		"#CLOCK"
+#define FGROUND		"#FOREGROUND"
+#define BGROUND		"#BACKGROUND"
+#define SFGROUND	"#STATUS-FOREGROUND"
+#define SBGROUND	"#STATUS-BACKGROUND"
+#define OLDVIDEO	"#OLDVIDEO"
+#define LOCKPORT	"#LOCK-PORT"
+#define MDMSETUP	"#modemSetup"
+
+#endif
