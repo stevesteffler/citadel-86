@@ -24,9 +24,9 @@
 #  re-integrate the aforementioned CTDLANSI.H and ANSISYS.H files into this 
 #  makefile, since compile time for the project is no longer a concern.
 #
-STDINC=\tc\include
-LIB_INC=\tc\lib
-CC=tcc -D -ml -O -wpro -wuse -j2
+STDINC=\borlandc\include
+LIB_INC=\borlandc\lib
+CC=bcc -D -ml -O -wpro -wuse -j2
 INC=-I$(STDINC) -I$(LIB_INC)  
 HEADERS=ctdl.h sysdep.h slist.h
 
