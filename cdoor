@@ -1,4 +1,4 @@
-/c c:\tc\lib\c0l c86door
+/c c:\borlandc\lib\c0l c86door
 c86door
 
-cn c:\tc\lib\emu c:\tc\lib\mathl c:\tc\lib\cl
+cn c:\borlandc\lib\emu c:\borlandc\lib\mathl c:\borlandc\lib\cl
