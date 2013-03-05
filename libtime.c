@@ -82,7 +82,7 @@ void getCdate(int *year, char **month, int *day, int *hours, int *minutes)
     int mon, seconds, milli;
 
     getRawDate(year, &mon, day, hours, minutes, &seconds, &milli);
-    *year -= 1900;
+    /* year used to be converted to 2 digits here, not doing that anymore */
     *month = monthTab[mon];
 }
 

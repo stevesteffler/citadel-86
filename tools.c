@@ -221,7 +221,7 @@ int ReadDate(char *date, long *RetTime)
     if (strLen(date) == 0) return FALSE;
 
     if (isdigit(date[0])) {
-	dptr.da_year = atoi(date) + 1900;
+	dptr.da_year = atoi(date) + 2000;
 	while (isdigit(*date)) date++;
     }
     else {

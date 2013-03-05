@@ -535,7 +535,7 @@ void changeDate()
 	return ;
 
     do {
-	year    = (int) getNumber("Year",  87l, 99l) + 1900;
+	year    = (int) getNumber("Year",  0l, 9999l);
 	mon     = (int) getNumber("Month", 1l,  12l)	   ;
 	day     = (int) getNumber("Day",   1l,  31l)	   ;
 	hours   = (int) getNumber("Hour",   0l, 23l)	   ;

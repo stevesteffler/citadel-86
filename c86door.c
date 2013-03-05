@@ -194,7 +194,7 @@ void main()
 		GetDate(&ayr, &amon, &ady, &ahr, &amin);
 		sprintf(line,
 		"    %s used %s %2d%s%02d %d:%02d - %d:%02d (%ld:%02ld)\n",
-		drInf.UserName, drBuf.entrycode, byr - 1900, Months[bmon], bdy,
+		drInf.UserName, drBuf.entrycode, byr, Months[bmon], bdy,
 		bhr, bmin, ahr, amin, ((aabs - babs) / 60l),
 						((aabs - babs) % 60l));
 

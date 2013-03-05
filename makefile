@@ -26,7 +26,7 @@
 #
 STDINC=\tc\include
 LIB_INC=\tc\lib
-CC=\tc\tcc -D -ml -O -wpro -wuse -j2
+CC=tcc -D -ml -O -wpro -wuse -j2
 INC=-I$(STDINC) -I$(LIB_INC)  
 HEADERS=ctdl.h sysdep.h slist.h
 
