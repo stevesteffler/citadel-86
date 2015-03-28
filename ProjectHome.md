@@ -1,0 +1,3 @@
+This is a continuation of the Citadel-86 BBS software, as published by Hue, Jr.  We are attempting to maintain this software so it can continue to be used by BBS Sysops wishing to install a simple, straight forward room-based message board/discussion based system.  For more information on the Citadel legacy see: http://anticlimactic.retrovertigo.com/
+
+Logo credit: Lazarus (scrounged from archive.org)
